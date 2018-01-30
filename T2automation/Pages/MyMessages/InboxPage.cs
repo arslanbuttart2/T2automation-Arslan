@@ -65,6 +65,24 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='cke_1_contents']/iframe")]
         private IWebElement _contentBodyIFrame;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='doc - tabs']/div[2]/a")] 
+        private IWebElement _connectedTabAttribute;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main - tabs']/div[3]/a")]
+        private IWebElement _connectedTabDocFlow;
+        
+        [FindsBy(How = How.XPath, Using = "/html/body/div[10]/div[1]/div[3]/a")]
+        private IWebElement _connectedTabFrom;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='tabActions']")]
+        private IWebElement _connectedTabAction;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main - tabs']/div[1]/a")]
+        private IWebElement _connectedTabDoc;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='doc - part']/div[1]/div[2]/ul/li/a")]
+        private IWebElement _connectedTabTo;
+
         [FindsBy(How = How.XPath, Using = "html/body")]
         private IWebElement _contentBody;
 
@@ -164,6 +182,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedDocCancelBtn;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentDocument']/tbody/tr/td[1]/label")] 
+        private IList<IWebElement> _connectedDocSubjectListCheckBox;
+
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-mail-reply")]
         private IWebElement _replyBtn;     
 
@@ -184,6 +205,7 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[3]"));
         }
 
+        
         private IList<IWebElement> _connectedDocSearchedCheckBoxes()
         {
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[1]/label"));
@@ -767,6 +789,11 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        public void ClickConnectedDocTab(IWebDriver driver)
+        {
+            Click(driver, _connectedDocTab);
+        }
+
         public void SearchConnectedDoc(string subject)
         {
             Click(_driver, _connectedDocTab);
@@ -836,15 +863,63 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _saveDraftBtn);
         }
 
+        public void DeleteDocumetFromTheList(IWebDriver driver,string subject)
+        {
+            for (int index = 0; index <= _connectedDocSubjectList().Count(); index++)
+            {
+                if (ValidateConnectedDocumentList(subject))
+                {
+                    Click(driver, _connectedDocSubjectListCheckBox.ElementAt(index));
+                    WaitTillProcessing();
+                    Click(driver, _connectedDocDeleteBtn);
+                    WaitTillProcessing();
+                    Click(driver,_yesBtn);
+                    return;
+                }
+            }
+        }
+
         public bool ValidateConnectedDocumentList(string subject)
         {
             var subjects = _connectedDocSubjectList();
             foreach (IWebElement listSubject in subjects) {
                 if (GetText(_driver, listSubject).Equals(subject)) {
-                    return true;
+                             return true;
                 }
             }
             return false;
+        }
+
+        public void clickOnConnectedDocumentList(IWebDriver driver)
+        {
+            for (int index = 0; index < _connectedDocSubjectList().Count(); index++)
+            {
+                Click(driver, _connectedDocSubjectList().ElementAt(index));
+                Thread.Sleep(5000);
+                Thread.Sleep(5000);
+                connectedDocListPopupsTab(driver);
+            }
+        }
+        public void connectedDocListPopupsTab(IWebDriver driver)
+        {
+            Click(driver, _connectedTabAttribute);
+            Click(driver, _connectedTabDocFlow);
+            Click(driver, _connectedTabAction);
+            WaitTillProcessing();
+            Click(driver, _connectedTabDoc);
+            Click(driver, _connectedTabTo);
+            foreach (IWebElement cancelBtn in _cancelBtn)
+            {
+                if (cancelBtn.Displayed)
+                {
+                    Click(_driver, cancelBtn);
+                    break;
+                }
+            }
+            Click(driver, _connectedTabFrom);
+            ClickOkBtn();
+            Click(driver, _connectedDocCancelBtn.ElementAt(0));
+            Click(driver, _yesBtn);
         }
     }
 }

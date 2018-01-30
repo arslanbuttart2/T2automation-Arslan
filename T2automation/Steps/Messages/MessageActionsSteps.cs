@@ -250,7 +250,7 @@ namespace T2automation.Steps.Messages
         [When(@"user select connected document with subject ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithSubject(string subject)
         {
-            inboxPage.SelectConnectedDoc(subject);
+            inboxPage.SelectConnectedDoc(subject);   
         }
 
         [When(@"user opens inbox email with subject ""(.*)""")]
@@ -266,6 +266,15 @@ namespace T2automation.Steps.Messages
         {
             Assert.IsTrue(inboxPage.CheckVisibiltyOnConnectedDoc(buttonName, value), buttonName + " should not be visible");
         }
+
+        [When(@"user delete the document with subject ""(.*)"" from the list")]
+        public void WhenUserDeleteTheDocumentWithSunjectFromTheList(string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.DeleteDocumetFromTheList(driver,subject);
+        }
+
 
         [Then(@"the visibilty of tab ""(.*)"" should be ""(.*)"" on connected doc tab")]
         public void ThenTheVisibiltyOfTabShouldBeOnConnectedDocTab(string tab, bool value)
@@ -297,7 +306,18 @@ namespace T2automation.Steps.Messages
         public void WhenUserClickOnReplyButton()
         {
             inboxPage.ClickOnReply();
+            inboxPage.ClickOkBtn();
         }
+
+        [When(@"user enter content ""(.*)""")]
+        public void WhenUserEnterContent(string Content)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage.EnterContentBody(Content);
+            inboxPage.ClickConnectedDocTab(driver);
+            inboxPage.clickOnConnectedDocumentList(driver);
+        }
+
 
         [When(@"user deletes the draft"), Then(@"user deletes the draft")]
         public void WhenUserDeletesTheDraft()
@@ -323,6 +343,17 @@ namespace T2automation.Steps.Messages
             Assert.IsTrue(inboxPage.ValidateConnectedDocumentList(subject), subject + " should appear in the connected document");
         }
 
+        [When(@"user go to dept messages Incoming Document")]
+        public void WhenUserGoToDeptMessagesIncomingDocument()
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToQADeptInbox(driver);
+            inboxPage.CheckButtonClickable(driver, "Incoming Document");
+        }
+
+
         [When(@"user go to dept messages Internal Document")]
         public void WhenUserGoToDeptMessagesInternalDocument()
         {
@@ -332,6 +363,16 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
         }
+        [When(@"user go to dept messages Outgoing Document")]
+        public void WhenUserGoToDeptMessagesOutgoingDocument()
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToQADeptInbox(driver);
+            inboxPage.CheckButtonClickable(driver, "Outgoing Document");
+        }
+
 
         [Then(@"verify that connected document with subject ""(.*)"" should not appear in while adding new")]
         public void ThenVerifyThatConnectedDocumentWithSubjectShouldNotAppearInWhileAddingNew(string subject)

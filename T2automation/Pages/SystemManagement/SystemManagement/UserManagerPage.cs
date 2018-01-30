@@ -88,7 +88,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                     return new PermissionsPage(driver);
                 }
             }
-            return null;
+            return new PermissionsPage(driver);
         }
 
         public void WaitTillProcessing() {

@@ -55,8 +55,15 @@ namespace T2automation.Pages.Comm
                     }
                     catch (Exception)
                     {
-                        ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", element);
-                        return false;
+                        try
+                        {
+                            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", element);
+                            return false;
+                        }
+                        catch (Exception) {
+                            System.Console.WriteLine("Some issue on clicking element");
+                            return false;
+                        }
                     }
                 }
             }
