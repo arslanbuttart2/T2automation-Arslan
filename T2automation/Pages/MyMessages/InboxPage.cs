@@ -65,22 +65,29 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='cke_1_contents']/iframe")]
         private IWebElement _contentBodyIFrame;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='doc - tabs']/div[2]/a")] 
+        [FindsBy(How = How.XPath, Using = "//*[@id='doc-tabs']/div[2]/a")] 
         private IWebElement _connectedTabAttribute;
         
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main - tabs']/div[3]/a")]
+        
+        [FindsBy(How = How.XPath, Using = "/html/body/div[12]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _connectedTabToCloseBtn;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a[@class='']")]
         private IWebElement _connectedTabDocFlow;
         
-        [FindsBy(How = How.XPath, Using = "/html/body/div[10]/div[1]/div[3]/a")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a[@class='active']")]
+        private IWebElement _connectedTabConnentedDocument;
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[10]/div[1]/div[3]/a[@title='Show User Information']")]
         private IWebElement _connectedTabFrom;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='tabActions']")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='tabActions']")]
         private IWebElement _connectedTabAction;
         
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main - tabs']/div[1]/a")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[1]/a[@class='active']")]
         private IWebElement _connectedTabDoc;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='doc - part']/div[1]/div[2]/ul/li/a")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='doc-part']/div[1]/div[2]/ul/li/a[@class='pointer-a']")]
         private IWebElement _connectedTabTo;
 
         [FindsBy(How = How.XPath, Using = "html/body")]
@@ -599,7 +606,10 @@ namespace T2automation.Pages.MyMessages
         }
 
         public void ComposeMail(string subject, string contentBody, string multipleAttachementNo = "No", string multipleAttachmentType = "png") {
-            Subject = subject;
+            if(subject != "")
+            {
+                Subject = subject;
+            }
             EnterContentBody(contentBody);
         }
 
@@ -890,36 +900,59 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
-        public void clickOnConnectedDocumentList(IWebDriver driver)
+        public void clickOnConnectedDocumentList(IWebDriver driver, string subject)
         {
             for (int index = 0; index < _connectedDocSubjectList().Count(); index++)
             {
-                Click(driver, _connectedDocSubjectList().ElementAt(index));
-                Thread.Sleep(5000);
-                Thread.Sleep(5000);
-                connectedDocListPopupsTab(driver);
-            }
-        }
-        public void connectedDocListPopupsTab(IWebDriver driver)
-        {
-            Click(driver, _connectedTabAttribute);
-            Click(driver, _connectedTabDocFlow);
-            Click(driver, _connectedTabAction);
-            WaitTillProcessing();
-            Click(driver, _connectedTabDoc);
-            Click(driver, _connectedTabTo);
-            foreach (IWebElement cancelBtn in _cancelBtn)
-            {
-                if (cancelBtn.Displayed)
+                if (_connectedDocSubjectList().ElementAt(index).Equals(subject))
                 {
-                    Click(_driver, cancelBtn);
-                    break;
+                    Click(driver, _connectedDocSubjectList().ElementAt(index));
+                    Thread.Sleep(5000);
+                    return;
                 }
             }
-            Click(driver, _connectedTabFrom);
-            ClickOkBtn();
-            Click(driver, _connectedDocCancelBtn.ElementAt(0));
-            Click(driver, _yesBtn);
+        }
+        public void connectedDocListPopupsTab(IWebDriver driver, string tabName)
+        {
+            IWebElement element = null;
+            switch (tabName)
+            {
+                case "Attributes":
+                    element = _connectedTabAttribute;
+                    break;
+                case "Document Flow":
+                    element = _connectedTabDocFlow;
+                    break;
+                case "Actions":
+                    element = _connectedTabAction;
+                    break;
+                case "Connected Documents":
+                    element = _connectedTabConnentedDocument;
+                    break;
+                case "Document":
+                    element = _connectedTabDoc;
+                    break;
+            }
+            Click(driver, element);
+            IAlert alert = driver.SwitchTo().Alert();
+        }
+        public void connectedDocListPopupTabTo(IWebDriver driver,string toData)
+        {
+            if (GetText(driver, _connectedTabTo).Equals(toData))
+            {
+                Click(_driver, _connectedTabTo);
+                Thread.Sleep(3000);
+                Click(driver, _connectedTabToCloseBtn);
+            }
+        }
+        public void connectedDocListPopupTabFrom(IWebDriver driver, string toData)
+        {
+            if (GetText(driver, _connectedTabFrom).Contains(toData))
+            {
+                Click(_driver, _connectedTabFrom);
+                Thread.Sleep(3000);
+                ClickOkBtn();
+            }
         }
     }
 }

@@ -370,8 +370,8 @@ Scenario: Message - add connected document - Related departments and below  - De
 	And user go to my messages Outgoing Document
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	Then the connected document with subject "Internal Message to Internal Department 111" should appear in the list
-	#When user select connected document with subject "Incoming Message to child department 111"
-	#Then the connected document with subject "Internal Message to Internal department 111" should appear in the list
+	When user select connected document with subject "Incoming Message to child department 111"
+	Then the connected document with subject "Incoming Message to child department 111" should appear in the list
 	Then verify that connected document with subject "Incoming Message to outside internal department 111" should not appear in while adding new
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
@@ -399,7 +399,16 @@ Scenario: Message - open/add/delete connected document from reply messages - Per
 	And User logs in "UserName" "Password"
 	When user opens inbox email with subject "Internal Message with Connected Documents 111"
 	And user click on reply button
-	And user enter content "any text"
+	And user compose mail "" "any text" 
+	And user open connected document with subject "Incoming Message to Child Department 111"
+	Then Verify tab "Attributes" on connected document detail
+	Then Verify tab "Document Flow" on connected document detail
+	Then Verify tab "Actions" on connected document detail
+	#Then Verify tab "Connected Documents" on connected document detail ############no such field is available there
+	Then verify to detail open "UserMainDepartmentAr"
+	Then verify from detail open "arslanadmin"
+	When user open connected document with subject "Internal Message to Internal Department 111"
+	
 
 Scenario: Message - delete connected document from new message - department mail
 	When Admin set department message permissions for user "Create Internal Message" "True" "User" "internalDepartmentSameDep"

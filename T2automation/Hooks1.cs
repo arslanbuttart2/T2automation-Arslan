@@ -16,7 +16,9 @@ namespace T2automation
         [BeforeScenario]
         public static void SignOut()
         {
+            Directory.SetCurrentDirectory(@"E:\T2automation-master-master");
             string path = Directory.GetCurrentDirectory();
+            Console.WriteLine("Path is: "+path);
             DriverFactory driverFactory = new DriverFactory("BaseUrl");
             IWebDriver driver = driverFactory.GetDriver();
             driver.Navigate().GoToUrl("http://qa.ole5.sa");

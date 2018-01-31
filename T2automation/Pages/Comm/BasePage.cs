@@ -27,8 +27,15 @@ namespace T2automation.Pages.Comm
 
         public void WaitForElement(IWebDriver driver, IWebElement element)
         {
-            WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_SECONDS);
-            wait.Until(drv => ElementIsDisplayed(driver, element));
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_SECONDS);
+                wait.Until(drv => ElementIsDisplayed(driver, element));
+            }
+            catch
+            {
+                Console.WriteLine("Element is not visible");
+            }
         }
 
         public bool Click(IWebDriver driver, IWebElement element) {
