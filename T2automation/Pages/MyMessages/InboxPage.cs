@@ -68,7 +68,6 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='doc-tabs']/div[2]/a")] 
         private IWebElement _connectedTabAttribute;
         
-        
         [FindsBy(How = How.XPath, Using = "/html/body/div[12]/div[2]/div/div[4]/div[2]/button[2]")]
         private IWebElement _connectedTabToCloseBtn;
 
@@ -904,7 +903,7 @@ namespace T2automation.Pages.MyMessages
         {
             for (int index = 0; index < _connectedDocSubjectList().Count(); index++)
             {
-                if (_connectedDocSubjectList().ElementAt(index).Equals(subject))
+                if (GetText(driver, _connectedDocSubjectList().ElementAt(index)).Equals(subject))
                 {
                     Click(driver, _connectedDocSubjectList().ElementAt(index));
                     Thread.Sleep(5000);
@@ -933,8 +932,10 @@ namespace T2automation.Pages.MyMessages
                     element = _connectedTabDoc;
                     break;
             }
+            driver.SwitchTo().Frame("iDocView");
             Click(driver, element);
-            IAlert alert = driver.SwitchTo().Alert();
+            driver.SwitchTo().DefaultContent();
+            //IAlert alert = driver.SwitchTo().Alert();
         }
         public void connectedDocListPopupTabTo(IWebDriver driver,string toData)
         {
