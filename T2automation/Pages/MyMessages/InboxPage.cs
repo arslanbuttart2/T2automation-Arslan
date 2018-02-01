@@ -217,6 +217,11 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[1]/label"));
         }
 
+        private IList<IWebElement> _connectedDocSearchedReferenceNo()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[2]"));
+        }
+
         private IList<IWebElement> _progressbar(IWebDriver driver)
         {
             return driver.FindElements(By.XPath(".//div[@class = 'pParent']"));
@@ -688,6 +693,7 @@ namespace T2automation.Pages.MyMessages
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
+                        Thread.Sleep(1000);
                     }
                 }
                 else
@@ -811,6 +817,19 @@ namespace T2automation.Pages.MyMessages
             SendKeys(_driver, _connectedDocSubject, subject);
             Click(_driver, _connectedDocSearchBtn);
             WaitTillProcessing();
+        }
+
+        public int ReadReferenceNoOfConnectedDoc(string subject)
+        {
+            int searchResults = _connectedDocSearchedReferenceNo().Count;
+            if (searchResults >= 1)
+            {
+                Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
+                Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                return searchResults;
+            }
+            Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            return searchResults;
         }
 
         public int SelectConnectedDoc(string subject)

@@ -200,6 +200,7 @@ namespace T2automation.Steps.Messages
         [When(@"user send the email")]
         public void WhenUserSendTheEmail()
         {
+            Thread.Sleep(1000);
             inboxPage.clickOnSendBtn();
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
@@ -247,6 +248,14 @@ namespace T2automation.Steps.Messages
         {
             inboxPage.SetProperties(deliveryType: deliveryType);
         }
+
+        [When(@"user read connected document reference with subject ""(.*)""")]
+        public void WhenUserReadConnectedDocumentReferenceWithSubject(string subject)
+        {
+            inboxPage.SearchConnectedDoc(subject);
+            inboxPage.ReadReferenceNoOfConnectedDoc(subject);
+        }
+
 
         [When(@"user select connected document with subject ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithSubject(string subject)

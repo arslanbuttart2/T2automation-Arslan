@@ -136,6 +136,7 @@ Scenario Outline:   message - attachment - security level with attachment requir
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
 		| ديوان الوزارة | Users        | internalDepartmentSameDep | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDep |
 
+		#is main sab incoming ko change kar k internal compose mail karna hai bss 
 Scenario: Message - Connected Documents - Test Case 1
 	When user go to my messages Internal Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
@@ -147,29 +148,31 @@ Scenario: Message - Connected Documents - Test Case 1
 	And user compose mail "Internal Message to Outside Internal Department 111" "Internal Message to Outside Internal Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
-	And user go to my messages Incomming Document
+	And user go to my messages Internal Document
 	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And select the external department "ExternalEntitySameCountry"
-	And user enters incomming message no "+923344767911" and incomming message Gregorian date "now"
+	#ye following ek step nai karna bss
+	#And select the external department "ExternalEntitySameCountry"
+	##And user enters incomming message no "+923344767911" and incomming message Gregorian date "now"
 	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email and click on Cancel button
-	And user go to my messages Incomming Document
-	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-	And select the external department "ExternalEntitySameCountry"
-	And user enters incomming message no "+923344767911" and incomming message Gregorian date "now"
-	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email and click on Cancel button
-	And user go to my messages Outgoing Document
-	And select the external department "ExternalEntitySameCountry"
-	And select delivery type "Delivery by hand"
-	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
 	And user go to my messages Internal Document
-	And search "arslan" "UserMainDepartmentAr" "Users"
-	And search "internalDepartmentSameDep" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	#ye following ek step nai karna bss
+	#And select the external department "ExternalEntitySameCountry"
+	#And user enters incomming message no "+923344767911" and incomming message Gregorian date "now"
+	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email
+	And user go to my messages Outgoing Document
+	And select the external department "ExternalEntitySameCountry"   
+	And select delivery type "Delivery by hand"
+	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email and click on Cancel button
+	And user go to my messages Internal Document
+	And search "User" "UserMainDepartmentAr" "Users"
+	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Internal Message with Connected Documents 111" "Internal Message with Connected Documents 111"
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	And user select connected document with subject "Incoming Message to Child Department 111"
@@ -408,7 +411,6 @@ Scenario: Message - open/add/delete connected document from reply messages - Per
 	Then verify to detail open "UserMainDepartmentAr"
 	Then verify from detail open "arslanadmin"
 	When user open connected document with subject "Internal Message to Internal Department 111"
-	
 
 Scenario: Message - delete connected document from new message - department mail
 	When Admin set department message permissions for user "Create Internal Message" "True" "User" "internalDepartmentSameDep"
@@ -419,9 +421,9 @@ Scenario: Message - delete connected document from new message - department mail
 	And Admin set department message permissions for user "Can Link with Related Departments Messages and Below" "True" "User" "internalDepartmentSameDep"
 
 Scenario:Message - add connected document - search - Personal mail
+	When Admin set department message permissions for user "Create Incoming Message" "True" "User" "internalDepartmentSameDep"
 	When Admin set system message permissions for user "Add Related Message" "True" "User"
 	And Admin set system message permissions for user "Can Link it with Whole System Messages" "True" "User"
 	And User logs in "UserName" "Password" 
 	And user go to dept messages Incoming Document 
-	And user select connected document with subject "Incoming Message to Outside Child Department 111"
-	
+	And user read connected document reference with subject "Incoming Message to Outside Child Department 111"
