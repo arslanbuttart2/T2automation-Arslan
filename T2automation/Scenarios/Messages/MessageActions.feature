@@ -136,7 +136,6 @@ Scenario Outline:   message - attachment - security level with attachment requir
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
 		| ديوان الوزارة | Users        | internalDepartmentSameDep | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDep |
 
-		#is main sab incoming ko change kar k internal compose mail karna hai bss 
 Scenario: Message - Connected Documents - Test Case 1
 	When user go to my messages Internal Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
@@ -150,17 +149,11 @@ Scenario: Message - Connected Documents - Test Case 1
 	And user send the email
 	And user go to my messages Internal Document
 	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	#ye following ek step nai karna bss
-	#And select the external department "ExternalEntitySameCountry"
-	##And user enters incomming message no "+923344767911" and incomming message Gregorian date "now"
 	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
 	And user go to my messages Internal Document
 	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-	#ye following ek step nai karna bss
-	#And select the external department "ExternalEntitySameCountry"
-	#And user enters incomming message no "+923344767911" and incomming message Gregorian date "now"
 	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
