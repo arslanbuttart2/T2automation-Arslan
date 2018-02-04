@@ -60,6 +60,12 @@ namespace T2automation.Pages.MyMessages
         private IWebElement _selectToFrameCCBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
+        private IWebElement _inboxSearchField;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div[7]/a/i")]
+        private IWebElement _inboxSearchButton;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _subject;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='cke_1_contents']/iframe")]
@@ -210,6 +216,7 @@ namespace T2automation.Pages.MyMessages
         {
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[3]"));
         }
+
 
         
         private IList<IWebElement> _connectedDocSearchedCheckBoxes()
@@ -481,8 +488,15 @@ namespace T2automation.Pages.MyMessages
             WaitTillMailSent();
         }
 
+        public void firstSearchInbox(string subject)
+        {
+            SendKeys(_driver,_inboxSearchField,subject);
+            Click(_driver, _inboxSearchButton);
+        }
+
         public bool OpenMail(IWebDriver driver, string subject, string encryptPass = "")
         {
+            firstSearchInbox(subject);
             WaitTillMailsGetLoad();
             foreach (IWebElement elem in _subjectList)
             {
@@ -819,17 +833,20 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
         }
 
-        public int ReadReferenceNoOfConnectedDoc(string subject)
+        public string ReadReferenceNoOfConnectedDoc(IWebDriver driver ,string subject)
         {
-            int searchResults = _connectedDocSearchedReferenceNo().Count;
-            if (searchResults >= 1)
+            for (int index = 0; index <= _connectedDocSearchedReferenceNo().Count(); index++)
             {
-                Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
-                Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-                return searchResults;
+                if (GetText(driver,_connectedDocSearchedSubjects().ElementAt(index)).Equals(subject))
+                {
+                    WaitTillProcessing();
+                    Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
+                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(index));
+                }
             }
-            Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-            return searchResults;
+            Console.WriteLine("Error searched document does not exists");
+            return null;
         }
 
         public int SelectConnectedDoc(string subject)

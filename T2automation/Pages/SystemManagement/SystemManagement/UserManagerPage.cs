@@ -82,7 +82,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         public PermissionsPage OpenPermissions(IWebDriver driver, string user) {
             Search(driver, user);
             Thread.Sleep(1000);
-            for (int index = 0; index < _userNames.Count - 1; index++) {
+            for (int index = 0; index <= _userNames.Count - 1; index++) {
                 if (GetText(driver, _userNames.ElementAt(index)).Equals(user)) {
                     Click(driver, _permissionBtn.ElementAt(index));
                     return new PermissionsPage(driver);
