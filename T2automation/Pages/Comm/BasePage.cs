@@ -32,8 +32,9 @@ namespace T2automation.Pages.Comm
                 WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_SECONDS);
                 wait.Until(drv => ElementIsDisplayed(driver, element));
             }
-            catch (Exception) {
-                System.Console.WriteLine("Element not visible on screen");
+            catch
+            {
+                Console.WriteLine("Element is not visible");
             }
         }
 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using T2automation.Init;
 using T2automation.Pages;
@@ -258,6 +259,10 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
+            inboxPage.NavigateToMyMessage(driver);
+            inboxPage.NavigateToMyMessageInbox(driver);
+            Thread.Sleep(3000);
+            inboxPage.WaitTillProcessing();
             inboxPage.OpenMail(driver, subject);
         }
 
@@ -308,16 +313,40 @@ namespace T2automation.Steps.Messages
             inboxPage.ClickOnReply();
             inboxPage.ClickOkBtn();
         }
+        
 
-        [When(@"user enter content ""(.*)""")]
-        public void WhenUserEnterContent(string Content)
+        [When(@"user open connected document with subject ""(.*)""")]
+        public void WhenUserOpenConnectedDocumentWithSubject(string subject)
         {
             driver = driverFactory.GetDriver();
-            inboxPage.EnterContentBody(Content);
             inboxPage.ClickConnectedDocTab(driver);
-            inboxPage.clickOnConnectedDocumentList(driver);
+            inboxPage.clickOnConnectedDocumentList(driver, subject);
+        }
+        [Then(@"Verify tab ""(.*)"" on connected document detail")]
+        public void ThenVerifyTabOnConnectedDocumentDetail(string tab)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage.connectedDocListPopupsTab(driver,tab);
         }
 
+        [Then(@"verify to detail open ""(.*)""")]
+        public void ThenVerifyToDetailOpen(string data)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            inboxPage.ClickConnectedDocTab(driver);
+            inboxPage.connectedDocListPopupsTab(driver, "Document");
+            inboxPage.connectedDocListPopupTabTo(driver,readFromConfig.GetValue(data));
+        }
+
+        [Then(@"verify from detail open ""(.*)""")]
+        public void ThenVerifyFromDetailOpen(string data)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage.ClickConnectedDocTab(driver);
+            inboxPage.connectedDocListPopupsTab(driver, "Document");
+            inboxPage.connectedDocListPopupTabFrom(driver, data);
+        }
 
         [When(@"user deletes the draft"), Then(@"user deletes the draft")]
         public void WhenUserDeletesTheDraft()
