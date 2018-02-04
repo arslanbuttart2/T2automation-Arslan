@@ -408,8 +408,13 @@ Scenario: Message - open/add/delete connected document from reply messages - Per
 	Then verify to detail open "UserMainDepartmentAr"
 	Then verify from detail open "arslanadmin"
 	When user open connected document with subject "Internal Message to Internal Department 111"
+	Then Verify tab "Attributes" on connected document detail
+	Then Verify tab "Document Flow" on connected document detail
+	Then Verify tab "Actions" on connected document detail
+	#Then Verify tab "Connected Documents" on connected document detail ############no such field is available there
+	Then verify to detail open "UserMainDepartmentAr"
+	Then verify from detail open "arslanadmin"
 	
-
 Scenario: Message - delete connected document from new message - department mail
 	When Admin set department message permissions for user "Create Internal Message" "True" "User" "internalDepartmentSameDep"
 	When Admin set department message permissions for user "View Related Messages" "True" "User" "internalDepartmentSameDep"
