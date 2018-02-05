@@ -106,7 +106,7 @@ Scenario Outline: message -  attachement - security level with optional attachme
 
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
-		| ديوان الوزارة | Users        | internalDepartmentSameDep | SecurityLevelOptionalAttach | SecurityLevelOptionalAttacht | 1                     | 1.jpg                  | SecurityLevelOptionalAttach | internalDepartmentSameDep |
+		| ديوان الوزارة | Users        | internalDepartmentSameDep | SecurityLevelOptionalAttach | SecurityLevelOptionalAttacht | 1                     | 1.jpg                  | SecurityLevelOptionalAttach | internalDepartmentSameDepAr |
 
 Scenario Outline: message - attachment - security level with attachment forbidden - personal mail
 	When user sends an internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>"
@@ -120,21 +120,21 @@ Scenario Outline:  message - attachment - security level with attachment forbidd
 
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
-		| ديوان الوزارة | Users        | internalDepartmentSameDep | SecurityLevelForbidAttach | SecurityLevelForbidAttach | 1                     | 1.jpg                  | SecurityLevelForbidAttach | internalDepartmentSameDep |
+		| ديوان الوزارة | Structural Hierarchy        | internalDepartmentSameDep | SecurityLevelForbidAttach | SecurityLevelForbidAttach | 1                     | 1.jpg                  | SecurityLevelForbidAttach | internalDepartmentSameDepAr |
 
 Scenario Outline:  message - attachment - security level with attachment required - with attachement - personal mail
 	When user sends an internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | SecurityLevelOptionalAttach |
-		| ديوان الوزارة | Users        | UserSameDepartment | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach |
+		| ديوان الوزارة | Structural Hierarchy        | UserSameDepartment | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach |
 
 Scenario Outline:   message - attachment - security level with attachment required - without attachement - department mail
 	When user sends an deparment internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
 
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
-		| ديوان الوزارة | Users        | internalDepartmentSameDep | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDep |
+		| ديوان الوزارة | Structural Hierarchy        | internalDepartmentSameDep | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDepAr |
 
 Scenario: Message - Connected Documents - Test Case 1
 	When user go to my messages Internal Document
@@ -386,12 +386,12 @@ Scenario: Message - delete connected document from new message - Personal mail
 	And user delete the document with subject "Internal Message with Connected Documents 111" from the list
 	
 Scenario: Message - open/add/delete connected document from reply messages - Personal mail
-	When Admin set system message permissions for user "View Related Messages" "True" "User"
-	And Admin set system message permissions for user "Can Reply" "True" "User"
-	And Admin set system message permissions for user "View Message Flow and Actions" "True" "User"
-	And Admin set system message permissions for user "Add Related Message" "True" "User"
-	And Admin set system message permissions for user "Remove Related Message" "True" "User"
-	And Admin set system message permissions for user "Open Related Messages" "True" "User"
+	#When Admin set system message permissions for user "View Related Messages" "True" "User"
+	#And Admin set system message permissions for user "Can Reply" "True" "User"
+	#And Admin set system message permissions for user "View Message Flow and Actions" "True" "User"
+	#And Admin set system message permissions for user "Add Related Message" "True" "User"
+	#And Admin set system message permissions for user "Remove Related Message" "True" "User"
+	#And Admin set system message permissions for user "Open Related Messages" "True" "User"
 	And User logs in "UserName" "Password"
 	When user opens inbox email with subject "Internal Message with Connected Documents 111"
 	And user click on reply button
@@ -403,6 +403,7 @@ Scenario: Message - open/add/delete connected document from reply messages - Per
 	#Then Verify tab "Connected Documents" on connected document detail ############no such field is available there
 	Then verify to detail open "UserMainDepartmentAr"
 	Then verify from detail open "arslanadmin"
+	When user close the connected documented
 	When user open connected document with subject "Internal Message to Internal Department 111"
 	Then Verify tab "Attributes" on connected document detail
 	Then Verify tab "Document Flow" on connected document detail
@@ -410,6 +411,7 @@ Scenario: Message - open/add/delete connected document from reply messages - Per
 	#Then Verify tab "Connected Documents" on connected document detail ############no such field is available there
 	Then verify to detail open "UserMainDepartmentAr"
 	Then verify from detail open "arslanadmin"
+	When user close the connected documented
 	
 Scenario: Message - delete connected document from new message - department mail
 	When Admin set department message permissions for user "Create Internal Message" "True" "User" "internalDepartmentSameDep"

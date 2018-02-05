@@ -66,12 +66,6 @@ namespace T2automation.Pages.MyMessages
         private IWebElement _selectToFrameCCBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
-        private IWebElement _inboxSearchField;
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div[7]/a/i")]
-        private IWebElement _inboxSearchButton;
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _subject;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='cke_1_contents']/iframe")]
@@ -92,14 +86,17 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "/html/body/div[10]/div[1]/div[3]/a[@title='Show User Information']")]
         private IWebElement _connectedTabFrom;
 
+        [FindsBy(How = How.XPath, Using = "html/body/div[15]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _connectedTabPopupCancelBtn;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='tabActions']")]
         private IWebElement _connectedTabAction;
         
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[1]/a[@class='active']")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div/a[@data-target='doc']")]
         private IWebElement _connectedTabDoc;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='doc-part']/div[1]/div[2]/ul/li/a[@class='pointer-a']")]
-        private IWebElement _connectedTabTo;
+        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/ul/li")]
+        private IList<IWebElement> _connectedTabTo;
 
         [FindsBy(How = How.XPath, Using = "html/body")]
         private IWebElement _contentBody;
@@ -446,6 +443,7 @@ namespace T2automation.Pages.MyMessages
 
         public void SelectToUser(IWebDriver driver, string user) {
             WaitTillProcessing();
+            Thread.Sleep(2000);
             for (int index = 0; index < _selectToName.Count; index++) {
                 if (GetText(driver, _selectToName.ElementAt(index)).Contains(user)) {
                     Click(driver, _selectToCheck.ElementAt(index));
@@ -499,12 +497,6 @@ namespace T2automation.Pages.MyMessages
                 }
             }
             WaitTillMailSent();
-        }
-
-        public void firstSearchInbox(string subject)
-        {
-            SendKeys(_driver,_inboxSearchField,subject);
-            Click(_driver, _inboxSearchButton);
         }
 
         public bool OpenMail(IWebDriver driver, string subject, string encryptPass = "")
@@ -583,7 +575,6 @@ namespace T2automation.Pages.MyMessages
                 {
                     continue;
                 }
-                Thread.Sleep(5000);
             }
             catch (Exception) {
                 return;
@@ -961,6 +952,7 @@ namespace T2automation.Pages.MyMessages
                 }
             }
         }
+
         public void connectedDocListPopupsTab(IWebDriver driver, string tabName)
         {
             IWebElement element = null;
@@ -987,23 +979,38 @@ namespace T2automation.Pages.MyMessages
             driver.SwitchTo().DefaultContent();
             //IAlert alert = driver.SwitchTo().Alert();
         }
+
         public void connectedDocListPopupTabTo(IWebDriver driver,string toData)
         {
-            if (GetText(driver, _connectedTabTo).Equals(toData))
-            {
-                Click(_driver, _connectedTabTo);
-                Thread.Sleep(3000);
-                Click(driver, _connectedTabToCloseBtn);
+            driver.SwitchTo().Frame("iDocView");
+            foreach (IWebElement to in _connectedTabTo){
+                if (GetText(driver, to).Contains(toData))
+                {
+                    Click(_driver, to);
+                    Thread.Sleep(3000);
+                    Click(driver, _connectedTabToCloseBtn);
+                }
             }
+            driver.SwitchTo().DefaultContent();
         }
+
         public void connectedDocListPopupTabFrom(IWebDriver driver, string toData)
         {
+            driver.SwitchTo().Frame("iDocView");
             if (GetText(driver, _connectedTabFrom).Contains(toData))
             {
                 Click(_driver, _connectedTabFrom);
                 Thread.Sleep(3000);
                 ClickOkBtn();
             }
+            driver.SwitchTo().DefaultContent();
+        }
+
+        public void CloseConnectedTabPopup(IWebDriver driver)
+        {
+            driver.SwitchTo().Frame("iDocView");
+            Click(driver, _connectedTabPopupCancelBtn);
+            driver.SwitchTo().DefaultContent();
         }
     }
 }

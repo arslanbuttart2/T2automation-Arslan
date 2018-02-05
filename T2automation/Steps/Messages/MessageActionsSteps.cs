@@ -412,11 +412,16 @@ namespace T2automation.Steps.Messages
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
         }
 
-
         [Then(@"verify that connected document with subject ""(.*)"" should not appear in while adding new")]
         public void ThenVerifyThatConnectedDocumentWithSubjectShouldNotAppearInWhileAddingNew(string subject)
         {
             Assert.True (inboxPage.SelectConnectedDoc(subject) == 0, "Document with subject " + subject + " should not appear in search while adding new connected document");
+        }
+
+        [When(@"user close the connected documented")]
+        public void WhenUserCloseTheConnectedDocumented()
+        {
+            inboxPage.CloseConnectedTabPopup(driver);
         }
 
     }
