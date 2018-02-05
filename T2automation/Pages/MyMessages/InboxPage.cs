@@ -20,6 +20,12 @@ namespace T2automation.Pages.MyMessages
         private readonly IWebDriver _driver;
         private ReadFromConfig readFromConfig;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
+        private IWebElement _inboxSearchField;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div[7]/a/i")]
+        private IWebElement _inboxSearchButton;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='head-menu']/div/a/label[text() = ' Internal Document']")]
         private IWebElement _internalDocument;
 
@@ -71,10 +77,10 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "/html/body/div[12]/div[2]/div/div[4]/div[2]/button[2]")]
         private IWebElement _connectedTabToCloseBtn;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a[@class='']")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a")]
         private IWebElement _connectedTabDocFlow;
         
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a[@class='active']")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div/a[@data-target='doc']")]
         private IWebElement _connectedTabConnentedDocument;
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[10]/div[1]/div[3]/a[@title='Show User Information']")]
@@ -337,6 +343,13 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        public void firstSearchInbox(string subject)
+        {
+            SendKeys(_driver, _inboxSearchField, subject);
+            Click(_driver, _inboxSearchButton);
+            WaitTillProcessing();
+        }
+
         public bool CheckButtonAvailbility(IWebDriver driver, string buttonName, bool value) {
             IWebElement element = null;
 
@@ -484,6 +497,7 @@ namespace T2automation.Pages.MyMessages
         public bool OpenMail(IWebDriver driver, string subject, string encryptPass = "")
         {
             WaitTillMailsGetLoad();
+            firstSearchInbox(subject);
             foreach (IWebElement elem in _subjectList)
             {
                 if (GetText(driver, elem).Equals(subject))
