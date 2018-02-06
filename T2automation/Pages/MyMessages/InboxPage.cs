@@ -187,9 +187,21 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.Id, Using = "btnDocumentSearch")]
         private IWebElement _connectedDocSearchBtn;
+        
+        private SelectElement _connectedDocDocType(IWebDriver driver)
+        {
+            return new SelectElement(driver.FindElement(By.XPath("//*[@id='DocumentTypeId']")));
+        }
 
+        private SelectElement _connectedDocDeliveryType(IWebDriver driver)
+        {
+            return new SelectElement(driver.FindElement(By.XPath("//*[@id='DeliveryTypeId']")));
+        }
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Save']")]
         private IList<IWebElement> _connectedDocSaveBtn;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='ReferenceNo']")]
+        private IWebElement _connectedDocRefNoField;
 
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedDocCancelBtn;
@@ -833,30 +845,130 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
         }
 
+        public string addNumberInString(string refno,int add)
+        {
+            string[] strArray = refno.Split('-');
+            for(int i=0; i< strArray.Length; i++)
+            {
+                Console.WriteLine("I am in for loop index at "+i+" : "+strArray[i]);
+            }
+            int numValOld = Int16.Parse(strArray[2]);
+            int numValNew = numValOld + add;
+            string numValOldStr = numValOld.ToString();
+            string numValNewStr = numValNew.ToString();
+            strArray[2]=strArray[2].Replace(numValOldStr, numValNewStr);
+
+            string newRefNo = strArray[0] + "-" + strArray[1] + "-" + strArray[2];
+            return newRefNo;
+        }
+
+        public bool validateConnectedDocWithRefNoFoundOrNot(IWebDriver driver,string refno,string docType)
+        {
+            SearchConnectedDocWithRefrenceNo(refno,docType);
+            int searchResults = _connectedDocSearchedReferenceNo().Count;
+            for (int i = 0; i <= searchResults && searchResults >= 1;i++)
+            {
+                if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
+                {
+                    Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return true;
+                }
+            }
+            Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            return false;
+        }
+
+        public bool selectConnectedDocWithRefNoAndDocType(IWebDriver driver, string refno, string docType)
+        {
+            SearchConnectedDocWithRefrenceNo(refno, docType);
+            int searchResults = _connectedDocSearchedReferenceNo().Count;
+            for (int i = 0; i <= searchResults; i++)
+            {
+                if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
+                {
+                    if (searchResults >= 1)
+                    {
+                        Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(i));
+                        Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                        return true;
+                    }
+                }
+            }
+            Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            return false;
+        }
+
+        public bool selectConnectedDocWithRefNoAndDeliveryType(IWebDriver driver, string refno, string deliveryType)
+        {
+            SearchConnectedDocWithRefrenceNo(refno,deliveryType: deliveryType);
+            int searchResults = _connectedDocSearchedReferenceNo().Count;
+            for (int i = 0; i <= searchResults; i++)
+            {
+                if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
+                {
+                    if (searchResults >= 1)
+                    {
+                        Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(i));
+                        Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                        return true;
+                    }
+                }
+            }
+            Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            return false;
+        }
+
+        public void SearchConnectedDocWithRefrenceNo(string refno, string docType="", string deliveryType="")
+        {
+            Click(_driver, _connectedDocTab);
+            Click(_driver, _addNewBtn);
+            WaitTillProcessing();
+            if(docType!= "")
+            {
+                DropdownSelectByText(_driver, _connectedDocDocType(_driver), docType);
+            }
+            if(deliveryType != "")
+            {
+                DropdownSelectByText(_driver, _connectedDocDeliveryType(_driver), docType);
+            }
+            SendKeys(_driver, _connectedDocRefNoField, refno);
+            Click(_driver, _connectedDocSearchBtn);
+            WaitTillProcessing();
+        }
+
         public string ReadReferenceNoOfConnectedDoc(IWebDriver driver ,string subject)
         {
+            SearchConnectedDoc(subject);
             for (int index = 0; index <= _connectedDocSearchedReferenceNo().Count(); index++)
             {
                 if (GetText(driver,_connectedDocSearchedSubjects().ElementAt(index)).Equals(subject))
                 {
                     WaitTillProcessing();
-                    Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
-                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-                    return GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(index));
+                    string refno = GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(index));
+                    Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return refno;
                 }
             }
             Console.WriteLine("Error searched document does not exists");
             return null;
         }
 
-        public int SelectConnectedDoc(string subject)
+    public int SelectConnectedDoc(string subject,bool statusSave= true)
         {
             SearchConnectedDoc(subject);
             int searchResults = _connectedDocSearchedSubjects().Count;
             if (searchResults >= 1) {
                 Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
-                Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-                return searchResults;
+                if (statusSave == true)
+                { 
+                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return searchResults;
+                }
+                else if(statusSave == false)
+                {
+                    Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return searchResults;
+                }
             }
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             return searchResults;

@@ -44,6 +44,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SendMail(subject, content, multipleAttachementNo: multipleAttachementNo, multipleAttachmentType: multipleAttachmentType);
         }
 
+
         [When(@"user sends an departmental internal message with attachment to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenUserSendsAnDepartmentalInternalMessageWithAttachmentTo(string level, string receiverType, string to, string subject, string content, int multipleAttachementNo, string multipleAttachmentType, string dept)
         {
@@ -247,22 +248,46 @@ namespace T2automation.Steps.Messages
         {
             inboxPage.SetProperties(deliveryType: deliveryType);
         }
-
-        [When(@"user read connected document reference with subject ""(.*)""")]
-        public void WhenUserReadConnectedDocumentReferenceWithSubject(string subject)
+        
+        [When(@"user read connected document reference with subject ""(.*)"" add (.*)")]
+        public void WhenUserReadConnectedDocumentReferenceWithSubjectAdd(string subject, int add)
         {
             driver = driverFactory.GetDriver();
-            inboxPage.SearchConnectedDoc(subject);
             string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver,subject);
-            
+            Assert.IsTrue(inboxPage.validateConnectedDocWithRefNoFoundOrNot(driver, refNo, ""), refNo + " should be visible");
+            string newRefNo = inboxPage.addNumberInString(refNo,add);
+            Assert.IsFalse(inboxPage.validateConnectedDocWithRefNoFoundOrNot(driver,newRefNo,""), newRefNo + " should not be visible");
         }
 
+        [When(@"user select document type as ""(.*)"" with subject ""(.*)""")]
+        public void WhenUserSelectDocumentTypeAsWithSubject(string docType, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver, subject);
+            Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDocType(driver, refNo, docType), docType + " Document must be saved!");
+        }
 
-        [When(@"user select connected document with subject ""(.*)""")]
+        [When(@"user select delivery type as ""(.*)"" with subject ""(.*)""")]
+        public void WhenUserSelectDeliveryTypeAsWithSubject(string deliveryType, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver, subject);
+            Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo,readFromConfig.GetValue(deliveryType)), deliveryType + " Document must be saved!");
+        }
+        
+        [When(@"user select connected document with subject ""(.*)"" with save button status ""(.*)""")]
+        public void WhenUserSelectConnectedDocumentWithSubjectWithSaveButtonStatus(string subject, bool saveStatus)
+        {
+            inboxPage.SelectConnectedDoc(subject , saveStatus);
+        }
+        //replace the followin with the above one
+        
+        /*[When(@"user select connected document with subject ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithSubject(string subject)
         {
             inboxPage.SelectConnectedDoc(subject);   
-        }
+        }*/
 
         [When(@"user opens inbox email with subject ""(.*)""")]
         public void WhenUserOpensInboxEmailWithSubject(string subject)
@@ -380,6 +405,12 @@ namespace T2automation.Steps.Messages
         public void ThenTheConnectedDocumentWithSubjectShouldAppearInTheList(string subject)
         {
             Assert.IsTrue(inboxPage.ValidateConnectedDocumentList(subject), subject + " should appear in the connected document");
+        }
+
+        [Then(@"the connected document with subject ""(.*)"" should not appear in the list")]
+        public void ThenTheConnectedDocumentWithSubjectShouldNotAppearInTheList(string subject)
+        {
+            Assert.IsFalse(inboxPage.ValidateConnectedDocumentList(subject), subject + " should not appear in the connected document");
         }
 
         [When(@"user go to dept messages Incoming Document")]

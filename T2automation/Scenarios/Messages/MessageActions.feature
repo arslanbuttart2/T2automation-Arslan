@@ -419,4 +419,49 @@ Scenario:Message - add connected document - search - Personal mail
 	And Admin set system message permissions for user "Can Link it with Whole System Messages" "True" "User"
 	And User logs in "UserName" "Password" 
 	And user go to dept messages Incoming Document 
-	And user read connected document reference with subject "Incoming Message to Outside Child Department 111"
+	And user read connected document reference with subject "Incoming Message to Outside Child Department 111" add 100
+	And user select document type as "Outgoing Document" with subject "Incoming Message to Outside Child Department 111"
+	And user select document type as "Internal Document" with subject "Incoming Message to Outside Child Department 111"
+	Then the connected document with subject "Incoming Message to Outside Child Department 111" should appear in the list
+
+Scenario:Message - add connected document - search - Department mail
+	When Admin set department message permissions for user "Create Outing Message" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "View Related Messages" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Add Related Message" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Can Link it with Whole System Messages" "True" "User" "internalDepartmentSameDep"
+	And User logs in "UserName" "Password" 
+	And user go to dept messages Outgoing Document
+	And user read connected document reference with subject "Outgoing Message to Admin Communication department 111" add -1
+	And user select document type as "Outgoing Document" with subject "Outgoing Message to Admin Communication department 111"
+	And user select document type as "Internal Document" with subject "Outgoing Message to Admin Communication department 111"
+	And user select delivery type as "DeliveryType2Ar" with subject "Outgoing Message to Admin Communication department 111"
+	And user select delivery type as "DeliveryTypeAr" with subject "Outgoing Message to Admin Communication department 111"
+	Then the connected document with subject "Outgoing Message to Admin Communication department 111" should appear in the list
+
+Scenario: Message - add connected document - Cancel button - Personal mail
+	When Admin set system message permissions for user "View Related Messages" "True" "User"
+	When Admin set system message permissions for user "Add Related Message" "True" "User"
+	And User logs in "UserName" "Password"
+	And user go to my messages Internal Document
+	And user select connected document with subject "Internal Message with Connected Documents 111" with save button status "False"
+	Then the connected document with subject "Internal Message with Connected Documents 111" should not appear in the list
+	When Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set system message permissions for user "View Related Messages" "False" "User"
+	When Admin set system message permissions for user "Add Related Message" "False" "User"
+	
+Scenario: Message - add connected document - Cancel button - department mail
+	When Admin set department message permissions for user "Add Related Message" "True" "User" "internalDepartmentSameDep"
+	And User logs in "UserName" "Password" 
+	And user go to dept messages Internal Document
+	And user select connected document with subject "Internal Message with Connected Documents 111" with save button status "False"
+	Then the connected document with subject "Internal Message with Connected Documents 111" should not appear in the list
+	When Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set department message permissions for user "Add Related Message" "False" "User" "internalDepartmentSameDep"
+	
+Scenario: Message - connected Person - Permission view and add - with permission - Personal mail
+	When Admin set system message permissions for user "View Related Persons" "True" "User"
+	When Admin set system message permissions for user "Add Related Person" "True" "User"
+	And User logs in "UserName" "Password"
+	And user go to my messages Incomming Document
+	And user compose mail "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
+	And user send incoming message to "UserMainDepartmentAr" "Users" "User"
