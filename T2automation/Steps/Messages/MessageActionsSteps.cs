@@ -28,18 +28,33 @@ namespace T2automation.Steps.Messages
         private Pages.MyMessages.InboxPage inboxPage;
         private Pages.DeptMessages.InboxPage deptMessageInboxPage;
 
+        [When(@"user send incoming message to ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserSendIncomingMessageTo(string level, string receiverType, string to)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
+            inboxPage.ClickToButton(driver);
+            inboxPage.SelectLevel(driver,readFromConfig.GetValue(level));
+            inboxPage.SelectReceiverType(driver, receiverType);
+            inboxPage.SearchNameCode = readFromConfig.GetValue(to);
+            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
+            inboxPage.ClickOkBtn();
+        }
+
         [When(@"user sends an internal message with attachment to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenUserSendsAnInternalMessageWithAttachmentTo(string level, string receiverType, string to, string subject, string content, int multipleAttachementNo, string multipleAttachmentType)
         {
             driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
             inboxPage = new InboxPage(driver);
             inboxPage.NavigateToMyMessageInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
             inboxPage.ClickToButton(driver);
-            inboxPage.SelectLevel(driver, level);
+            inboxPage.SelectLevel(driver,readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
-            inboxPage.SearchNameCode = to;
-            inboxPage.SelectToUser(driver, to);
+            inboxPage.SearchNameCode =readFromConfig.GetValue(to);
+            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo: multipleAttachementNo, multipleAttachmentType: multipleAttachmentType);
         }
@@ -50,14 +65,15 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             deptMessageInboxPage.CheckButtonClickable(driver, "Internal Document");
             inboxPage.ClickToButton(driver);
-            inboxPage.SelectLevel(driver, level);
+            inboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
-            inboxPage.SearchNameCode = to;
-            inboxPage.SelectToUser(driver, to);
+            inboxPage.SearchNameCode =readFromConfig.GetValue(to);
+            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo:multipleAttachementNo, multipleAttachmentType: multipleAttachmentType);
         }
@@ -67,8 +83,9 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             outboxPage = new OutboxPage(driver);
+            readFromConfig = new ReadFromConfig();
             outboxPage.NavigateToQADeptOutbox(driver);
-            Assert.IsTrue(outboxPage.ValidateMail(driver, to, subject, content, attachmentNo: attachmentNo, attachment: attachmentType));
+            Assert.IsTrue(outboxPage.ValidateMail(driver,readFromConfig.GetValue(to), subject, content, attachmentNo: attachmentNo, attachment: attachmentType));
         }
 
         [When(@"user attach attachment to internal message ""(.*)"" ""(.*)""")]
@@ -138,7 +155,7 @@ namespace T2automation.Steps.Messages
             inboxPage.NavigateToMyMessageInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
             inboxPage.ClickToButton(driver);
-            inboxPage.SelectLevel(driver, level);
+            inboxPage.SelectLevel(driver,readFromConfig.GetValue( level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
             inboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
@@ -156,7 +173,7 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
             inboxPage.ClickToButton(driver);
-            inboxPage.SelectLevel(driver, level);
+            inboxPage.SelectLevel(driver,readFromConfig.GetValue( level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
             inboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
@@ -275,19 +292,19 @@ namespace T2automation.Steps.Messages
             string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver, subject);
             Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo,readFromConfig.GetValue(deliveryType)), deliveryType + " Document must be saved!");
         }
+
         
-        [When(@"user select connected document with subject ""(.*)"" with save button status ""(.*)""")]
-        public void WhenUserSelectConnectedDocumentWithSubjectWithSaveButtonStatus(string subject, bool saveStatus)
+        [When(@"user select connected document without saving it with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserSelectConnectedDocumentWithoutSavingItWithSubject(string subject, bool saveStatus)
         {
-            inboxPage.SelectConnectedDoc(subject , saveStatus);
+            inboxPage.SelectConnectedDoc(subject, saveStatus);
         }
-        //replace the followin with the above one
         
-        /*[When(@"user select connected document with subject ""(.*)""")]
+        [When(@"user select connected document with subject ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithSubject(string subject)
         {
             inboxPage.SelectConnectedDoc(subject);   
-        }*/
+        }
 
         [When(@"user opens inbox email with subject ""(.*)""")]
         public void WhenUserOpensInboxEmailWithSubject(string subject)
@@ -378,9 +395,10 @@ namespace T2automation.Steps.Messages
         public void ThenVerifyFromDetailOpen(string data)
         {
             driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
             inboxPage.ClickConnectedDocTab(driver);
             inboxPage.connectedDocListPopupsTab(driver, "Document");
-            inboxPage.connectedDocListPopupTabFrom(driver, data);
+            inboxPage.connectedDocListPopupTabFrom(driver,readFromConfig.GetValue(data));
         }
 
         [When(@"user deletes the draft"), Then(@"user deletes the draft")]
@@ -443,12 +461,18 @@ namespace T2automation.Steps.Messages
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
         }
 
-
         [Then(@"verify that connected document with subject ""(.*)"" should not appear in while adding new")]
         public void ThenVerifyThatConnectedDocumentWithSubjectShouldNotAppearInWhileAddingNew(string subject)
         {
             Assert.True (inboxPage.SelectConnectedDoc(subject) == 0, "Document with subject " + subject + " should not appear in search while adding new connected document");
         }
+
+        [When(@"user close the connected documented")]
+        public void WhenUserCloseTheConnectedDocumented()
+        {
+            inboxPage.CloseConnectedTabPopup(driver);
+        }
+        
 
     }
 }

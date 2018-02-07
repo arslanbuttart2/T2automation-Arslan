@@ -50,6 +50,7 @@ namespace T2automation.Steps.My_Messages
         public void ThenMailShouldAppearInMyMessageOutBox(string to, string subject, string content, int attachmentNo ,string attachmentType)
         {
             driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
             outboxPage = new OutboxPage(driver);
             outboxPage.NavigateToMyMessageOutbox(driver);
             Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, attachmentNo: attachmentNo, attachment:attachmentType));
