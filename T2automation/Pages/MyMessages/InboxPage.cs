@@ -488,7 +488,7 @@ namespace T2automation.Pages.MyMessages
                     if (cancelBtn.Displayed)
                     {
                         Click(_driver, cancelBtn);
-                        break;
+                        return;
                     }
                 }
             }

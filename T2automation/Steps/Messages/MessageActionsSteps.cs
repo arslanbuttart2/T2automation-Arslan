@@ -27,6 +27,7 @@ namespace T2automation.Steps.Messages
         private LoginPage loginPage;
         private Pages.MyMessages.InboxPage inboxPage;
         private Pages.DeptMessages.InboxPage deptMessageInboxPage;
+        private Util.ExcelDataManager xlDataMngr;
 
         [When(@"user send incoming message to ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenUserSendIncomingMessageTo(string level, string receiverType, string to)
@@ -57,6 +58,38 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo: multipleAttachementNo, multipleAttachmentType: multipleAttachmentType);
+        }
+
+        [Then(@"read reference number from excel with subject ""(.*)""")]
+        public void ThenReadReferenceNumberFromExcelWithSubject(string subject)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            xlDataMngr = new ExcelDataManager();
+            string refno = xlDataMngr.readDataFromExcel(subject);
+            Console.WriteLine("ref No is: "+refno);
+        }
+    
+        [Then(@"save reference number from ""(.*)"" in excel with subject ""(.*)""")]
+        public void ThenSaveReferenceNumberFromInExcelWithSubject(string type, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            xlDataMngr = new ExcelDataManager();
+            if (type.Equals("my"))
+            {
+                outboxPage.NavigateToMyMessageOutbox(driver);
+            }
+            else if (type.Equals("dept"))
+            {
+                outboxPage.NavigateToQADeptOutbox(driver);
+            }
+            outboxPage.OpenMail(driver, subject);
+            string refno = outboxPage.readRefNoFromMail(driver);
+            Assert.IsTrue(xlDataMngr.writeDataToExcel(subject, refno)," this must be written in the excel file!! But failed for some reason!");
+
         }
 
 

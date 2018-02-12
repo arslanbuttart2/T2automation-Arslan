@@ -33,6 +33,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[2]/div[1]/div[2]/ul/li")]
         private IWebElement _subject;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[2]/div[2]/label")]
+        private IWebElement _referenceNo;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='contentBody']/div/div[@class = 'contentBodyHtml']")]
         private IWebElement _contentBody;
 
@@ -94,6 +97,11 @@ namespace T2automation.Pages.MyMessages
             }
             return false;
         }
+        
+        public string readRefNoFromMail(IWebDriver driver)
+        {
+            return GetText(driver, _referenceNo);
+        }
 
         public bool ValidateTo(IWebDriver driver, string to)
         {
@@ -104,7 +112,7 @@ namespace T2automation.Pages.MyMessages
         {
             return GetText(driver, _subject).Equals(subject);
         }
-
+        
         public bool ValidateContentBody(IWebDriver driver, string contentBody)
         {
             return GetText(driver, _contentBody).Equals(contentBody);
