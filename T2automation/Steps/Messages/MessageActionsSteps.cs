@@ -505,7 +505,6 @@ namespace T2automation.Steps.Messages
         {
             inboxPage.CloseConnectedTabPopup(driver);
         }
-        
 
     }
 }

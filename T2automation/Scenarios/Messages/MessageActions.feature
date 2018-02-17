@@ -8,7 +8,7 @@ Scenario Outline:01 message - Add attachement to message - 1 file - personal mai
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then save reference number from "my" in excel with subject "<subject>"
-	Then read reference number from excel with subject "<subject>"
+
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                    |
@@ -475,8 +475,24 @@ Scenario:48 Message - connected Person - Permission view and add - with permissi
 	When Admin set system message permissions for user "Add Related Person" "True" "User"
 	And User logs in "UserName" "Password"
 	And user go to my messages Incomming Document
-	And user compose mail "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
 	And user send incoming message to "UserMainDepartmentAr" "Users" "User"
+	And user compose mail "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
 	And select the external department "ExternalEntitySameCountry"
 	And user open connected document with subject "{subject}"
+
+Scenario:49 Message - connected Person - Permission view and add - with permission - Department mail
+	When Admin set department message permissions for user "Add Related Person" "True" "User" "internalDepartmentSameDepAr"
+	When Admin set department message permissions for user "View Related People" "True" "User" "internalDepartmentSameDepAr"
+	And User logs in "UserName" "Password" 
+	And user go to dept messages Incoming Document
+	And user send incoming message to "UserMainDepartmentAr" "Hierarchy Structure" "internalDepartmentSameDepAr"
+	And user compose mail "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
+	And select the external department "ExternalEntitySameCountry"
+	#incomplete
+Scenario:50 Message - connected Person - Permission view only - with permission - Personal mail
+	When Admin set system message permissions for user "View Related Persons" "True" "User"
+	When Admin set system message permissions for user "Add Related Person" "True" "User"
+	And User logs in "UserName" "Password" 
+	And user go to dept messages Incoming Document
+
 
