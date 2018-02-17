@@ -39,6 +39,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']//a[text() = 'View Related Messages']/../span[1]")]
         private IWebElement _expandViewRelatedMessagePermission;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='divPermTree']/ul/li[3]/ul/li[20]/span/span[1]")]
+        private IWebElement _expandViewRelatedPersonPermission;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']//a[text() = 'Add Related Message']/../span[1]")]
         private IWebElement _expandAddRelatedMessagePermission;
                                             
@@ -57,6 +60,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li[2]/ul/li/span")]
         private IList<IWebElement> _viewRelatedMessagePermissionsClass;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='divPermTree']/ul/li[3]/ul/li[20]/ul/li/span")]
+        private IList<IWebElement> _viewRelatedPersonPermissionsClass;
+        
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li[2]/ul/li/span/a")]
         private IList<IWebElement> _viewRelatedMessagePermissions;
 
@@ -77,12 +83,18 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li[2]/ul/li/ul/li/span/a")]
         private IList<IWebElement> _addRelatedMessagePermissions;
-        
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='divPermTree']/ul/li[3]/ul/li[20]/ul/li/span/a")]
+        private IList<IWebElement> _viewRelatedPersonPermission; 
+
         [FindsBy(How = How.XPath, Using = ".//div[@id = 'divPermTree']/ul/li/ul/li/ul/li/ul/li/ul/li/span/a")]
         private IList<IWebElement> _deptAddRelatedMessagePermissions;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li[2]/ul/li/ul/li/span/span[2]")]
         private IList<IWebElement> _addRelatedMessagePermissionsCheckbox;
+       
+        [FindsBy(How = How.XPath, Using = " //*[@id='divPermTree']/ul/li[3]/ul/li[20]/ul/li/span/span[2]")]
+        private IList<IWebElement> _viewRelatedPersonPermissionsCheckbox;
 
         [FindsBy(How = How.XPath, Using = ".//div[@id = 'divPermTree']/ul/li/ul/li/ul/li/ul/li/ul/li/span/span[2]")]
         private IList<IWebElement> _deptAddRelatedMessagePermissionsCheckbox;
@@ -221,6 +233,25 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                     }
                 }
             }
+            else if (permissionName.Contains("Add Related Person"))
+            {
+                Click(driver, _expandViewRelatedPersonPermission);
+                for (int index = 0; index < _viewRelatedPersonPermission.Count; index++)
+                {
+                    if (GetText(driver, _viewRelatedPersonPermission.ElementAt(index)).Equals(permissionName))
+                    {
+                        if (GetAttribute(driver, _viewRelatedPersonPermissionsClass.ElementAt(index), "class").Contains("selected") != value)
+                        {
+                            Click(driver, _viewRelatedPersonPermissionsCheckbox.ElementAt(index));
+                            Click(driver, _okBtn);
+                            Click(driver, _yesBtn);
+                            return;
+                        }
+                        Click(driver, _cancelBtn);
+                        return;
+                    }
+                }
+            }
             else
             {
                 for (int index = 0; index < _systemMessagePermissions.Count; index++)
@@ -232,7 +263,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                             Click(driver, _selectSystemMessagePermissions.ElementAt(index));
                             Click(driver, _okBtn);
                             Click(driver, _yesBtn);
-                            return;
+                            break;
                         }
                         Click(driver, _cancelBtn);
                         return;
