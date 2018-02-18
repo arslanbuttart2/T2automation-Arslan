@@ -1767,6 +1767,26 @@ this.FeatureBackground();
 #line 562
  testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"True\" \"Us" +
                     "er\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 563
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 564
+ testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 565
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"هوية\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 566
+ testRunner.Then("verify the connected person with name \"Person Name1\" should not appear in the lis" +
+                    "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 567
+ testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 568
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 569
+ testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"False\" " +
+                    "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 570
+ testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"False\" \"U" +
+                    "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

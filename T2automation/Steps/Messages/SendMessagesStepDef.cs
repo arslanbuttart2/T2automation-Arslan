@@ -90,6 +90,14 @@ namespace T2automation.Steps.My_Messages
             Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass)));
         }
 
+        [Then(@"mail should appear in dept inbox ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenMailShouldAppearInDeptInbox(string to, string subject, string content)
+        {
+            myMessageInboxPage = new InboxPage(driver);
+            myMessageInboxPage.NavigateToQADeptInbox(driver);
+            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));
+        }
+
         [Then(@"encrypted mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenEncryptedMailShouldAppearInTheInbox(string to, string subject, string content, string listSubject, string encryptedPass)
         {

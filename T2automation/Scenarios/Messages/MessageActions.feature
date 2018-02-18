@@ -560,4 +560,12 @@ Scenario: 58 Message - Connected Persons - Add Connected Person - Cancel - Perso
 Scenario: 59 Message - Connected Persons - Add Connected Person - Cancel - Department mail
 	When Admin set department message permissions for user "View Related Persons" "True" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Add Related Person" "True" "User" "internalDepartmentSameDep"
+	And User logs in "UserName" "Password"
+	And user go to dept messages Incoming Document
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "False"
+	Then verify the connected person with name "Person Name1" should not appear in the list
+	And user deletes the draft
+	Given Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set department message permissions for user "View Related Persons" "False" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Add Related Person" "False" "User" "internalDepartmentSameDep"
 	

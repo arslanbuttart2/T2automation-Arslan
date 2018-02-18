@@ -125,7 +125,7 @@ namespace T2automation.Pages.MyMessages
             {
                 for (int index = 0; index < attachmentNo; index++)
                 {
-                    if (!attachment.Contains(GetAttribute(driver, _attachments.ElementAt(index), "title")))
+                   if (!attachment.Contains(GetAttribute(driver, _attachments.ElementAt(index), "title")))
                    {
                         return false;
                    }
