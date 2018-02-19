@@ -1,0 +1,4 @@
+TYPE,SUBJECT,REFERENCE NUMBER
+my,Message with attachement 111,001-1439-0001785
+dept,Message with attachement 111,001-1439-0001782
+

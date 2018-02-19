@@ -14,7 +14,8 @@ namespace T2automation.Util
 {
     class ExcelDataManager
     {
-        private static string path = @"E:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xlxs";
+        
+        private static string path = @"E:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xlsx";
         private Excel.Application xlApp = new Application();
         private Excel.Workbook xlWorkBook;
         private Excel.Worksheet xlWorkSheet;
@@ -24,12 +25,10 @@ namespace T2automation.Util
         static System.Globalization.CultureInfo oldCI;
 
         //connection for Excel
-        static OleDbConnection conn = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + path + "; Extended Properties = 'Excel 12.0;HDR=YES;IMEX=1;ReadOnly=false';");
-        OleDbDataAdapter dataAdapter = new OleDbDataAdapter("select * from [sheet1$]", selectConnection: conn);
-        DataSet result = new DataSet();
-
-
-        public bool checkXlIsOnPC()
+        static OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + path + "; Extended Properties = 'Excel 12.0;ReadOnly=false';");
+        OleDbDataAdapter dataAdapter = new OleDbDataAdapter("select * from [sheet1$]", selectConnection: con);
+        
+    public bool checkXlIsOnPC()
         {
             if (xlApp == null)
             {
@@ -140,16 +139,110 @@ namespace T2automation.Util
             return null;
         }
 
+        private string GetConnectionString()
+        {
+            Dictionary<string, string> props = new Dictionary<string, string>();
+
+            // XLSX - Excel 2007, 2010, 2012, 2013
+            props["Provider"] = "Microsoft.ACE.OLEDB.12.0";
+            props["Extended Properties"] = "Excel 12.0 XML";
+            props["Data Source"] = path;
+
+            // XLS - Excel 2003 and Older
+            //props["Provider"] = "Microsoft.Jet.OLEDB.4.0";
+            //props["Extended Properties"] = "Excel 8.0";
+            //props["Data Source"] = "C:\\MyExcel.xls";
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (KeyValuePair<string, string> prop in props)
+            {
+                sb.Append(prop.Key);
+                sb.Append('=');
+                sb.Append(prop.Value);
+                sb.Append(';');
+            }
+
+            return sb.ToString();
+        }
+
         public bool writeToExcel(string subject, string refno)
         {
-            OleDbDataAdapter da = new OleDbDataAdapter("select subject from [sheet1$] where subject = "+subject+"", selectConnection: conn);
-            DataSet data = new DataSet();
-            da.Fill(data);
-            string subfromfile = data.ToString();
-            if (subfromfile.Equals(subject))
+
+            DataSet ds = new DataSet();
+
+            string connectionString = GetConnectionString();
+
+            using (OleDbConnection conn1 = new OleDbConnection(connectionString))
             {
-                //da;
+                conn1.Open();
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.Connection = conn1;
+
+                // Get all Sheets in Excel File
+                System.Data.DataTable dtSheet = conn1.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+                // Loop through all Sheets to get data
+                foreach (DataRow dr in dtSheet.Rows)
+                {
+                    string sheetName = dr["sheet1"].ToString();
+
+                    if (!sheetName.EndsWith("$"))
+                        continue;
+
+                    // Get all rows from the Sheet
+                    cmd.CommandText = "SELECT * FROM [" + sheetName + "]";
+
+                    System.Data.DataTable dt = new System.Data.DataTable();
+                    dt.TableName = sheetName;
+
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    ds.Tables.Add(dt);
+                }
+
+                cmd = null;
+                conn1.Close();
             }
+            
+            return true;
+
+
+
+
+
+            /*
+             * new
+            conn.Open();
+            //OleDbDataAdapter da = new OleDbDataAdapter("select subject from [sheet1$] where subject = "+subject+"", selectConnection: conn);
+            OleDbCommand comd = new OleDbCommand();
+            comd.Connection = conn;
+            comd.CommandText = "select * from [sheet1$]";
+            System.Data.DataTable dt = new System.Data.DataTable();
+            dt.TableName = "sheet1";
+            OleDbDataAdapter da = new OleDbDataAdapter(comd);
+            da.Fill(dt);
+
+
+            */
+
+            /*
+             da.Fill(data);
+             string subfromfile = data.ToString();
+             if (subfromfile.Equals(subject))
+             {
+                 //da;
+             }
+            using (OleDbCommand comm = new OleDbCommand())
+            {
+                comm.CommandText = "select subject from[sheet1$] where subject = "+subject;
+                comm.Connection = conn;
+               
+                    da.SelectCommand = comm;
+                 
+            }*/
+
             return false;
         }
 

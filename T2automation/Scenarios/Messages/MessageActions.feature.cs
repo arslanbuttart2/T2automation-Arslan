@@ -87,7 +87,7 @@ this.FeatureBackground();
 #line 9
  testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -109,7 +109,7 @@ this.FeatureBackground();
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
- testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

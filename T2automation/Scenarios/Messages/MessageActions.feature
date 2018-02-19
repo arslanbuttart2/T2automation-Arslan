@@ -7,7 +7,7 @@ Scenario Outline:01 message - Add attachement to message - 1 file - personal mai
 	
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
-	Then save reference number from "my" in excel with subject "<subject>"
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                    |
@@ -15,7 +15,7 @@ Scenario Outline:01 message - Add attachement to message - 1 file - personal mai
 Scenario Outline:02 message - Add attachement to message - 1 file - department mail
 	When user sends an departmental internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
 	Then mail should appear in department message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType | dept                      |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                  | internalDepartmentSameDepAr |

@@ -525,6 +525,7 @@ namespace T2automation.Pages.MyMessages
         public void SelectToUser(IWebDriver driver, string user) {
             WaitTillProcessing();
             Thread.Sleep(2000);
+            Console.WriteLine("%d",_selectToName.Count);
             for (int index = 0; index < _selectToName.Count; index++) {
                 if (GetText(driver, _selectToName.ElementAt(index)).Contains(user)) {
                     Click(driver, _selectToCheck.ElementAt(index));
@@ -650,10 +651,12 @@ namespace T2automation.Pages.MyMessages
 
         public void WaitTillProcessing()
         {
+            int tries = 0;
             try
             {
-                while (ElementIsDisplayed(_driver, _processing(_driver)))
+                while (ElementIsDisplayed(_driver, _processing(_driver)) && tries < 1000)
                 {
+                    tries++;
                     continue;
                 }
             }
@@ -808,6 +811,7 @@ namespace T2automation.Pages.MyMessages
                         var filePath = readFromConfig.GetValue("AttachementFolder") + multipleAttachmentType;
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
+
                         WaitForUploading();
                     }
                 }
