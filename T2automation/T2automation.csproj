@@ -109,6 +109,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Permissions.feature</DependentUpon>
     </Compile>
+    <Compile Include="Scenarios\Phase1\Phase1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Phase1.feature</DependentUpon>
+    </Compile>
     <Compile Include="Steps\Messages\MessageActionsSteps.cs" />
     <Compile Include="Steps\Messages\SendMessagesStepDef.cs" />
     <Compile Include="Steps\Permissions\PermissionsStepDef.cs" />
@@ -136,6 +141,10 @@
     <None Include="Scenarios\Permissions\Permissions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Permissions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Scenarios\Phase1\Phase1.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Phase1.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

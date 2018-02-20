@@ -486,7 +486,7 @@ Scenario:48 Message - connected Person - Permission view and add - with permissi
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Persons" "False" "User"
 	When Admin set system message permissions for user "Add Related Person" "False" "User"
-	
+
 Scenario:50 Message - connected Person - Permission view only - with permission - Personal mail
 	When Admin set system message permissions for user "View Related Persons" "True" "User"
 	When Admin set system message permissions for user "Add Related Person" "False" "User"
@@ -495,7 +495,7 @@ Scenario:50 Message - connected Person - Permission view only - with permission 
 	Then the visibilty of button "Add" should be "False" on connected person tab
 	And the visibilty of button "Delete" should be "False" on connected person tab
 	And the visibilty of button "Edit" should be "False" on connected person tab
-	And user deletes the draft
+	Then user deletes the draft
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Persons" "False" "User"	
 	

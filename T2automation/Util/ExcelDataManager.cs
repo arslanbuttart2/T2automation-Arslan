@@ -13,8 +13,8 @@ namespace T2automation.Util
 {
     class ExcelDataManager
     {
-        private static string path = @"E:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xls";
-        private string halfpath = @"E:\T2automation-Arslan\ExcelSheetForRefNo";
+        private static string path = @"D:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xls";
+        private string halfpath = @"D:\T2automation-Arslan\ExcelSheetForRefNo";
         private Excel.Application xlApp = new Application();
         private Excel.Workbook xlWorkBook;
         private Excel.Worksheet xlWorkSheet;
@@ -67,6 +67,7 @@ namespace T2automation.Util
             {
                 //xlWorkBook.SaveAs(Filename, FileFormat, Password, WriteResPassword, ReadOnlyRecommended, CreateBackup, AccessMode, ConflictResolution, AddToMru, TextCodepage, TextVisualLayout,Local);
                 xlWorkBook.SaveAs(_path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, false, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                //xlWorkBook.Save();
                 return true;
             }
             catch
@@ -78,7 +79,7 @@ namespace T2automation.Util
         
         private bool ifFileExist()
         {
-            string[] filePaths = Directory.GetFiles(@"E:\T2automation-Arslan\ExcelSheetForRefNo");
+            string[] filePaths = Directory.GetFiles(@"D:\T2automation-Arslan\ExcelSheetForRefNo");
             if (filePaths.Count() >= 1)
             {
                 return true;
