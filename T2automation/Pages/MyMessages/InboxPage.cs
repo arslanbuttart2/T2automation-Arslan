@@ -47,6 +47,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Yes']")]
         private IWebElement _yesBtn;
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[20]/div[2]/div/div[4]/div[2]/button[1]")]
+        private IWebElement yesBtnForDraftDelete;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectTo']")]
         private IWebElement _toButton;
 
@@ -155,6 +158,24 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "tabAttache")]
         private IWebElement _attachmentTab;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='Name']")]
+        private IWebElement _personTabName;
+        
+        [FindsBy(How = How.XPath, Using = "//*[@id='Email_Persion']")]
+        private IWebElement _personTabEmail;
+        
+        [FindsBy(How = How.XPath, Using = "//*[@id='Mobile_Persion']")]
+        private IWebElement _personTabMobile;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='IdNumber']")]
+        private IWebElement _personTabIdNumber;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='IdIssuer']")]
+        private IWebElement _personTabIdIssuer;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='IssueDate']")]
+        private IWebElement _personTabIssueDate;
+        
         [FindsBy(How = How.XPath, Using = ".//*[@id='att-head-menu']/div[1]/a/label")]
         private IWebElement _attacheBtn;
 
@@ -179,12 +200,21 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "relatedDocumentCount")]
         private IWebElement _connectedDocTab;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='buttontbl_documentPerson']")]
+        private IWebElement _connectedPersonDeleteBtn;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='Addbuttontbl_documentPerson']")]
+        private IWebElement _addNewBtnPersonTab;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='Editbuttontbl_documentPerson']")]
+        private IWebElement _editBtnPersonTab;
+
         [FindsBy(How = How.Id, Using = "Addbuttontbl_documentDocument")]
         private IWebElement _addNewBtn;
 
         [FindsBy(How = How.Id, Using = "buttontbl_documentDocument")]
         private IWebElement _connectedDocDeleteBtn;
-
+        
         [FindsBy(How = How.Id, Using = "Subject")]
         private IWebElement _connectedDocSubject;
 
@@ -203,14 +233,28 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Save']")]
         private IList<IWebElement> _connectedDocSaveBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//button[text() = 'Save']")]
+        private IList<IWebElement> _connectedPersonSaveBtn;
+
+
         [FindsBy(How = How.XPath, Using = "//*[@id='ReferenceNo']")]
         private IWebElement _connectedDocRefNoField;
 
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedDocCancelBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
+        private IList<IWebElement> _connectedPersonCancelBtn;
+
 
         [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentDocument']/tbody/tr/td[1]/label")] 
         private IList<IWebElement> _connectedDocSubjectListCheckBox;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentPerson']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _connectedPersonListCheckBox;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a")]
+        private IWebElement _connectedPersonTab;
 
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-mail-reply")]
         private IWebElement _replyBtn;     
@@ -278,6 +322,11 @@ namespace T2automation.Pages.MyMessages
         private SelectElement _receiverType(IWebDriver driver) {
             return new SelectElement(driver.FindElement(By.Id("slctRecieverTypeTemp"))); 
         }
+        
+        private SelectElement _personTabIdType(IWebDriver driver)
+        {
+            return new SelectElement(driver.FindElement(By.XPath("//*[@id='IdType']")));
+        }
 
         private SelectElement _levelSelect(IWebDriver driver)
         {
@@ -326,6 +375,11 @@ namespace T2automation.Pages.MyMessages
         private IList<IWebElement> _connectedDocSubjectList()
         {
             return _driver.FindElements(By.XPath(".//table[@id = 'tbl_documentDocument']/tbody/tr/td[3]"));
+        }
+
+        private IList<IWebElement> _connectedPersonNameList()
+        {
+            return _driver.FindElements(By.XPath("//*[@id='tbl_documentPerson']/tbody/tr/td[2]"));
         }
 
         public string title = "Inbox - Ole5.1";
@@ -414,11 +468,26 @@ namespace T2automation.Pages.MyMessages
                 EnterPassword(driver, "P@ssw0rd!@#");
                 Thread.Sleep(2000);
             }
+            bool flag = false;
+            for (int i = 0; i < 5 && flag == false; i++)
+            {
+                if(!IsAt(driver, "Create document - Ole5.1"))
+                {
+                    Console.WriteLine("Loading Page....");
+                    Thread.Sleep(1000);
+                }
+                else if(IsAt(driver, "Create document - Ole5.1"))
+                {
+                    flag = true;
+                    break;
+                }
+            }
 
+            /*
             while (!IsAt(driver, "Create document - Ole5.1")) {
                 Console.WriteLine("Loading Page....");
                 Thread.Sleep(1000);
-            }
+            }*/
             return IsAt(driver, "Create document - Ole5.1");
         }
 
@@ -957,8 +1026,61 @@ namespace T2automation.Pages.MyMessages
             Console.WriteLine("Error searched document does not exists");
             return null;
         }
+        
+        public void SelectConnectedPerson(IWebDriver driver, string personName ="", string email= "", string mbl="", string idNum="", string idIssue="", string issueDate="", string idType="",string saveStatus = "True")
+        {
+            Click(driver,_connectedPersonTab);
+            Click(driver, _addNewBtnPersonTab);
+            WaitTillProcessing();
+            if(!personName.Equals(""))
+            {
+                Thread.Sleep(1000);
+                SendKeys(driver, _personTabName, personName);
+            }
+            if (!email.Equals(""))
+            {
+                Thread.Sleep(1000);
+                SendKeys(driver, _personTabEmail, email);
+            }
+            if (!mbl.Equals(""))
+            {
+                Thread.Sleep(1000);
+                SendKeys(driver, _personTabMobile, mbl);
+            }
+            if (!idNum.Equals(""))
+            {
+                Thread.Sleep(1000);
+                SendKeys(driver, _personTabIdNumber, idNum);
+            }
+            if (!idIssue.Equals(""))
+            {
+                Thread.Sleep(1000);
+                SendKeys(driver, _personTabIdIssuer, idIssue);
+            }
+            if (!issueDate.Equals(""))
+            { 
+                SendKeys(driver, _personTabIssueDate, new DateTimeHelper().GetDate(issueDate));
+                var result = _daysOnCal();
+                Click(driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(issueDate)-1));
+            }
+            if (!idType.Equals(""))
+            {
+                Thread.Sleep(1000);
+                DropdownSelectByText(driver, _personTabIdType(driver), idType);
+            }
+            if (saveStatus.Equals("True"))
+            {
+                Click(_driver, _connectedPersonSaveBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
+                Thread.Sleep(1000);
+            }
+            if (saveStatus.Equals("False"))
+            {
+                Click(_driver, _connectedPersonCancelBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
+                Thread.Sleep(1000);
+            }
+        }
 
-    public int SelectConnectedDoc(string subject,bool statusSave= true)
+        public int SelectConnectedDoc(string subject,bool statusSave= true)
         {
             SearchConnectedDoc(subject);
             int searchResults = _connectedDocSearchedSubjects().Count;
@@ -977,6 +1099,24 @@ namespace T2automation.Pages.MyMessages
             }
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             return searchResults;
+        }
+
+        public bool CheckVisibiltyOnConnectedPerson(string buttonName, bool value)
+        {
+            Click(_driver, _connectedPersonTab);
+            if (buttonName.Equals("Add"))
+            {
+                return ElementIsDisplayed(_driver, _addNewBtnPersonTab) == value;
+            }
+            else if (buttonName.Equals("Delete"))
+            {
+                return ElementIsDisplayed(_driver, _connectedPersonDeleteBtn) == value;
+            }
+            else if (buttonName.Equals("Edit"))
+            {
+                return ElementIsDisplayed(_driver, _editBtnPersonTab) == value;
+            }
+            return false;
         }
 
         public bool CheckVisibiltyOnConnectedDoc(string buttonName, bool value)
@@ -998,6 +1138,11 @@ namespace T2automation.Pages.MyMessages
             {
                 return ElementIsDisplayed(_driver, _connectedDocTab) == value;
             }
+            if(tab.Equals("Connected Persons"))
+            {
+                return ElementIsDisplayed(_driver, _connectedPersonTab) == value;
+            }
+            
             return false;
         }
 
@@ -1016,7 +1161,10 @@ namespace T2automation.Pages.MyMessages
         public void DeleteDraft()
         {
             Thread.Sleep(5000);
+            WaitTillProcessing();
+            //Thread.Sleep(15000);
             Click(_driver, _deleteDraftBtn);
+            WaitForElement(_driver, _yesBtn);
             Click(_driver, _yesBtn);
         }
 
@@ -1039,6 +1187,97 @@ namespace T2automation.Pages.MyMessages
                     return;
                 }
             }
+        }
+
+        public void EditPersonFromTheList(IWebDriver driver, string name , string personName = "", string email = "", string mbl = "", string idNum = "", string idIssue = "", string issueDate = "", string idType = "", string saveStatus = "True")
+        {
+            for (int index = 0; index <= _connectedPersonNameList().Count(); index++)
+            {
+                if (ValidateConnectedPersonList(name))
+                {
+                    Click(driver, _connectedPersonListCheckBox.ElementAt(index));
+                    WaitTillProcessing();
+                    Click(driver, _editBtnPersonTab);
+                    WaitTillProcessing();
+                    if (!personName.Equals(""))
+                    {
+                        Thread.Sleep(1000);
+                        SendKeys(driver, _personTabName, personName);
+                    }
+                    if (!email.Equals(""))
+                    {
+                        Thread.Sleep(1000);
+                        SendKeys(driver, _personTabEmail, email);
+                    }
+                    if (!mbl.Equals(""))
+                    {
+                        Thread.Sleep(1000);
+                        SendKeys(driver, _personTabMobile, mbl);
+                    }
+                    if (!idNum.Equals(""))
+                    {
+                        Thread.Sleep(1000);
+                        SendKeys(driver, _personTabIdNumber, idNum);
+                    }
+                    if (!idIssue.Equals(""))
+                    {
+                        Thread.Sleep(1000);
+                        SendKeys(driver, _personTabIdIssuer, idIssue);
+                    }
+                    if (!issueDate.Equals(""))
+                    {
+                        SendKeys(driver, _personTabIssueDate, new DateTimeHelper().GetDate(issueDate));
+                        var result = _daysOnCal();
+                        Click(driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(issueDate) - 1));
+                    }
+                    if (!idType.Equals(""))
+                    {
+                        Thread.Sleep(1000);
+                        DropdownSelectByText(driver, _personTabIdType(driver), idType);
+                    }
+                    if (saveStatus.Equals("True"))
+                    {
+                        Click(_driver, _connectedPersonSaveBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
+                        Thread.Sleep(1000);
+                    }
+                    if (saveStatus.Equals("False"))
+                    {
+                        Click(_driver, _connectedPersonCancelBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
+                        Thread.Sleep(1000);
+                    }
+                    Thread.Sleep(5000);
+                    return;
+                }
+            }
+        }
+        public void DeletePersonFromTheList(IWebDriver driver, string name)
+        {
+            for (int index = 0; index <= _connectedPersonNameList().Count(); index++)
+            {
+                if (ValidateConnectedPersonList(name))
+                {
+                    Click(driver, _connectedPersonListCheckBox.ElementAt(index));
+                    WaitTillProcessing();
+                    Click(driver, _connectedPersonDeleteBtn);
+                    WaitTillProcessing();
+                    Click(driver, _yesBtn);
+                    WaitTillProcessing();
+                    return;
+                }
+            }
+        }
+        
+        public bool ValidateConnectedPersonList(string name)
+        {
+            var names = _connectedPersonNameList();
+            foreach (IWebElement listName in names)
+            {
+                if (GetText(_driver, listName).Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool ValidateConnectedDocumentList(string subject)

@@ -98,17 +98,17 @@ this.FeatureBackground();
         public virtual void _02Message_AddAttachementToMessage_1File_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 message - Add attachement to message - 1 file - department mail", exampleTags);
-#line 16
+#line 15
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 17
+#line 16
  testRunner.When(string.Format("user sends an departmental internal message with attachment to \"{0}\" \"{1}\" \"{2}\" " +
                         "\"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 17
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 19
+#line 18
  testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -120,16 +120,16 @@ this.FeatureBackground();
         public virtual void _03Message_AddAttachementMultipleFiles_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 Message- Add attachement (multiple files)- personal mail", exampleTags);
-#line 24
+#line 23
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 25
+#line 24
  testRunner.When(string.Format("user sends an internal message with attachment to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"" +
                         "{5}\" \"{6}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 26
+#line 25
  testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
+#line 26
  testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -141,17 +141,17 @@ this.FeatureBackground();
         public virtual void _04Message_AddAttachementMultipleFiles_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 Message- Add attachement (multiple files)- Department mail", exampleTags);
-#line 32
+#line 31
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 33
+#line 32
  testRunner.When(string.Format("user sends an departmental internal message with attachment to \"{0}\" \"{1}\" \"{2}\" " +
                         "\"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 34
+#line 33
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 35
+#line 34
  testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -163,16 +163,16 @@ this.FeatureBackground();
         public virtual void _05Message_AddAttachementMultipleFileTypes_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05 Message- Add attachement (multiple file types)- personal mail", exampleTags);
-#line 40
+#line 39
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 41
+#line 40
  testRunner.When(string.Format("user sends an internal message with attachment to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"" +
                         "{5}\" \"{6}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 42
+#line 41
  testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 43
+#line 42
  testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -184,17 +184,17 @@ this.FeatureBackground();
         public virtual void _06Message_AddAttachementMultipleFileTypes_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06 Message- Add attachement (multiple file types)- department mail", exampleTags);
-#line 48
+#line 47
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 49
+#line 48
  testRunner.When(string.Format("user sends an departmental internal message with attachment to \"{0}\" \"{1}\" \"{2}\" " +
                         "\"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 50
+#line 49
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 51
+#line 50
  testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -206,15 +206,15 @@ this.FeatureBackground();
         public virtual void _07Message_DeleteAttachementFromMessage_PersonalMail(string multipleAttachmentType, string multipleAttachementNo, string deleteAttachmentNo, string deleteAttachmentTypes, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07 Message- Delete attachement from message - personal mail", exampleTags);
-#line 56
+#line 55
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 57
+#line 56
  testRunner.When(string.Format("user attach attachment to internal message \"{0}\" \"{1}\"", multipleAttachmentType, multipleAttachementNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 58
+#line 57
  testRunner.And(string.Format("user delete the attachment \"{0}\" \"{1}\"", deleteAttachmentTypes, deleteAttachmentNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 59
+#line 58
  testRunner.Then(string.Format("attachment should not appear \"{0}\" \"{1}\" \"{2}\"", multipleAttachmentType, multipleAttachementNo, deleteAttachmentNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -226,15 +226,15 @@ this.FeatureBackground();
         public virtual void _08Message_DeleteMultipleAttachementsFromMessage_DepartmentMail(string multipleAttachmentType, string multipleAttachementNo, string deleteAttachmentNo, string deleteAttachmentTypes, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08 Message- Delete multiple attachements from message - department mail", exampleTags);
-#line 64
+#line 63
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 65
+#line 64
  testRunner.When(string.Format("user attach attachment to department internal message \"{0}\" \"{1}\"", multipleAttachmentType, multipleAttachementNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 66
+#line 65
  testRunner.And(string.Format("user delete the attachment \"{0}\" \"{1}\"", deleteAttachmentTypes, deleteAttachmentNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 66
  testRunner.Then(string.Format("attachment should not appear \"{0}\" \"{1}\" \"{2}\"", multipleAttachmentType, multipleAttachementNo, deleteAttachmentNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -246,13 +246,13 @@ this.FeatureBackground();
         public virtual void _09DownloadAttachement__PersonalMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09 Download attachement. - personal mail", exampleTags);
-#line 72
+#line 71
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 73
+#line 72
  testRunner.When(string.Format("user download the attachment from inbox mail \"{0}\" \"{1}\" \"{2}\"", subject, downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 74
+#line 73
  testRunner.Then(string.Format("the file should appear in downloads \"{0}\" \"{1}\"", downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -264,13 +264,13 @@ this.FeatureBackground();
         public virtual void _10DownloadAttachement_DepartmentMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10 Download attachement - department mail", exampleTags);
-#line 80
+#line 79
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 81
+#line 80
  testRunner.When(string.Format("user download the attachment from department inbox mail \"{0}\" \"{1}\" \"{2}\"", subject, downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 82
+#line 81
  testRunner.Then(string.Format("the file should appear in downloads \"{0}\" \"{1}\"", downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -282,13 +282,13 @@ this.FeatureBackground();
         public virtual void _11DownloadAllAttachment_PersonalMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11 download all attachment - personal mail", exampleTags);
-#line 88
+#line 87
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 89
+#line 88
  testRunner.When(string.Format("user download the attachment from inbox mail \"{0}\" \"{1}\" \"{2}\"", subject, downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 90
+#line 89
  testRunner.Then(string.Format("the file should appear in downloads \"{0}\" \"{1}\"", downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -300,13 +300,13 @@ this.FeatureBackground();
         public virtual void _12DownloadAllAttachment_DepartmentMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12 download all attachment - department mail", exampleTags);
-#line 96
+#line 95
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 97
+#line 96
  testRunner.When(string.Format("user download the attachment from department inbox mail \"{0}\" \"{1}\" \"{2}\"", subject, downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 98
+#line 97
  testRunner.Then(string.Format("the file should appear in downloads \"{0}\" \"{1}\"", downloadFileName, downloadFileNo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -320,14 +320,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("19 message -  attachement - security level with optional attachment - with attach" +
                     "ement -  personal mail", exampleTags);
-#line 104
+#line 103
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 105
+#line 104
  testRunner.When(string.Format("user sends an internal message with properties with attachments \"{0}\" \"{1}\" \"{2}\"" +
                         " \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 106
+#line 105
  testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -341,14 +341,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("20 message -  attachement - security level with optional attachment adding -  wit" +
                     "hout attachement -  department mail", exampleTags);
-#line 111
+#line 110
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 112
+#line 111
  testRunner.When(string.Format("user sends an deparment internal message with properties with attachments \"{0}\" \"" +
                         "{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 113
+#line 112
  testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -362,14 +362,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21 message - attachment - security level with attachment forbidden - personal mai" +
                     "l", exampleTags);
-#line 118
+#line 117
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 119
+#line 118
  testRunner.When(string.Format("user sends an internal message with properties with attachments \"{0}\" \"{1}\" \"{2}\"" +
                         " \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 120
+#line 119
  testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -383,14 +383,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("22 message - attachment - security level with attachment forbidden - department m" +
                     "ail", exampleTags);
-#line 125
+#line 124
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 126
+#line 125
  testRunner.When(string.Format("user sends an deparment internal message with properties with attachments \"{0}\" \"" +
                         "{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 127
+#line 126
  testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -404,14 +404,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("23 message - attachment - security level with attachment required - with attachem" +
                     "ent - personal mail", exampleTags);
-#line 132
+#line 131
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 133
+#line 132
  testRunner.When(string.Format("user sends an internal message with properties with attachments \"{0}\" \"{1}\" \"{2}\"" +
                         " \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 134
+#line 133
  testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -425,14 +425,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("24 message - attachment - security level with attachment required - without attac" +
                     "hement - department mail", exampleTags);
-#line 139
+#line 138
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 140
+#line 139
  testRunner.When(string.Format("user sends an deparment internal message with properties with attachments \"{0}\" \"" +
                         "{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 141
+#line 140
  testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -443,107 +443,107 @@ this.FeatureBackground();
         public virtual void _25Message_ConnectedDocuments_TestCase1()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("25 Message - Connected Documents - Test Case 1", ((string[])(null)));
-#line 146
+#line 145
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 147
+#line 146
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 148
+#line 147
  testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 149
+#line 148
  testRunner.And("user compose mail \"Internal Message to Internal Department 111\" \"Internal Message" +
                     " to Internal Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 150
+#line 149
  testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 151
+#line 150
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 152
+#line 151
  testRunner.Then("save reference number from \"my\" in excel with subject \"Internal Message to Intern" +
                     "al Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 153
+#line 152
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 154
+#line 153
  testRunner.And("search \"InternalDepartmentOtherDepAr\" \"OtherMainDepartmentAr\" \"Structural Hierarc" +
                     "hy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 155
+#line 154
  testRunner.And("user compose mail \"Internal Message to Outside Internal Department 111\" \"Internal" +
                     " Message to Outside Internal Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 156
+#line 155
  testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 157
+#line 156
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 158
+#line 157
  testRunner.Then("save reference number from \"my\" in excel with subject \"Internal Message to Outsid" +
                     "e Internal Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 159
+#line 158
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 160
+#line 159
  testRunner.And("search \"ChildDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 161
+#line 160
  testRunner.And("user compose mail \"Incoming Message to Child Department 111\" \"Incoming Message to" +
                     " Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 162
+#line 161
  testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 163
+#line 162
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 164
+#line 163
  testRunner.Then("save reference number from \"my\" in excel with subject \"Incoming Message to Child " +
                     "Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 165
+#line 164
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 166
+#line 165
  testRunner.And("search \"ChildDepartmentOtherDepAr\" \"OtherMainDepartmentAr\" \"Structural Hierarchy\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 167
+#line 166
  testRunner.And("user compose mail \"Incoming Message to Outside Child Department 111\" \"Incoming Me" +
                     "ssage to Outside Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 168
+#line 167
  testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 169
+#line 168
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 170
+#line 169
  testRunner.Then("save reference number from \"my\" in excel with subject \"Incoming Message to Outsid" +
                     "e Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 171
+#line 170
  testRunner.When("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 172
+#line 171
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 173
+#line 172
  testRunner.And("select delivery type \"Delivery by hand\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 174
+#line 173
  testRunner.And("user compose mail \"Outgoing Message to Admin Communication department 111\" \"Outgo" +
                     "ing Message to Admin Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 175
+#line 174
  testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 176
+#line 175
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 177
+#line 176
  testRunner.Then("save reference number from \"my\" in excel with subject \"Outgoing Message to Admin " +
                     "Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 178
+#line 177
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 179
+#line 178
  testRunner.And("search \"User\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 180
+#line 179
  testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 181
+#line 180
  testRunner.And("user compose mail \"Internal Message with Connected Documents 111\" \"Internal Messa" +
                     "ge with Connected Documents 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 182
+#line 181
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 183
+#line 182
  testRunner.And("user select connected document with subject \"Incoming Message to Child Department" +
                     " 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 184
+#line 183
  testRunner.And("user select connected document with subject \"Outgoing Message to Admin Communicat" +
                     "ion department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 185
+#line 184
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 186
+#line 185
  testRunner.Then("save reference number from \"my\" in excel with subject \"Internal Message with Conn" +
                     "ected Documents 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -555,32 +555,32 @@ this.FeatureBackground();
         public virtual void _26Message_ViewConnectedDocument_WithPermission_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("26 Message - View connected document - with permission -  personal mail", ((string[])(null)));
-#line 188
+#line 187
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 189
+#line 188
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 190
+#line 189
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"False\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 191
+#line 190
  testRunner.And("Admin set system message permissions for user \"Remove Related Messages\" \"False\" \"" +
                     "User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 192
+#line 191
  testRunner.And("Admin set system message permissions for user \"Open Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 193
+#line 192
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 194
+#line 193
  testRunner.And("user opens inbox email with subject \"Internal Message with Connected Documents 11" +
                     "1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 195
+#line 194
  testRunner.Then("the visibilty of tab \"Connected Document\" should be \"True\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 196
+#line 195
  testRunner.Then("the visibilty of button \"Add\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 197
+#line 196
  testRunner.And("the visibilty of button \"Delete\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -591,19 +591,19 @@ this.FeatureBackground();
         public virtual void _27Message_ViewConnectedDocument_WithoutPermission_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("27 Message - View connected document - without permission -  personal mail", ((string[])(null)));
-#line 199
+#line 198
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 200
+#line 199
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 201
+#line 200
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 202
+#line 201
  testRunner.And("user opens inbox email with subject \"Internal Message with Connected Documents 11" +
                     "1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 203
+#line 202
  testRunner.Then("the visibilty of tab \"Connected Document\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -614,39 +614,39 @@ this.FeatureBackground();
         public virtual void _28Message_ViewConnectedDocument_WithPermission_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("28 Message - View connected document - with permission -  department mail", ((string[])(null)));
-#line 205
+#line 204
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 206
+#line 205
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 207
+#line 206
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"False\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 208
+#line 207
  testRunner.When("Admin set department message permissions for user \"Remove Related Messages\" \"Fals" +
                     "e\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 209
+#line 208
  testRunner.When("Admin set department message permissions for user \"Open Related Messages\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 210
+#line 209
  testRunner.When("Admin set department message permissions for user \"Can Reply\" \"True\" \"User\" \"inte" +
                     "rnalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 211
+#line 210
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 212
+#line 211
  testRunner.And("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal Mes" +
                     "sage with Connected Documents 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 213
+#line 212
  testRunner.And("user click on reply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 214
+#line 213
  testRunner.Then("the visibilty of tab \"Connected Document\" should be \"True\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 215
+#line 214
  testRunner.Then("the visibilty of button \"Add\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 216
+#line 215
  testRunner.And("the visibilty of button \"Delete\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 217
+#line 216
  testRunner.When("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
@@ -657,29 +657,29 @@ this.FeatureBackground();
         public virtual void _29Message_ViewConnectedDocument_WithoutPermission_()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("29 Message - View connected document - without permission -", ((string[])(null)));
-#line 219
+#line 218
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 220
+#line 219
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 221
+#line 220
  testRunner.When("Admin set department message permissions for user \"Can Reply\" \"False\" \"User\" \"int" +
                     "ernalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 222
+#line 221
  testRunner.When("Admin set department message permissions for user \"Can Forward\" \"True\" \"User\" \"in" +
                     "ternalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 223
+#line 222
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 224
+#line 223
  testRunner.And("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal Mes" +
                     "sage with Connected Documents 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 225
+#line 224
  testRunner.And("user click on forward button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 226
+#line 225
  testRunner.Then("the visibilty of tab \"Connected Document\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 227
+#line 226
  testRunner.When("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
@@ -690,35 +690,35 @@ this.FeatureBackground();
         public virtual void _30Message_AddConnectedDocument_WithPermission_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("30 Message - add connected document - with permission -  personal mail", ((string[])(null)));
-#line 229
+#line 228
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 230
+#line 229
  testRunner.When("Admin set system message permissions for user \"Create Internal Message\" \"True\" \"U" +
                     "ser\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 231
+#line 230
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 232
+#line 231
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 233
+#line 232
  testRunner.And("Admin set system message permissions for user \"Remove Related Messages\" \"False\" \"" +
                     "User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 234
+#line 233
  testRunner.And("Admin set system message permissions for user \"Open Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 235
+#line 234
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 236
+#line 235
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 237
+#line 236
  testRunner.And("user select connected document with subject \"Internal Message with Connected Docu" +
                     "ments 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 238
+#line 237
  testRunner.And("user clicks on save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 239
+#line 238
  testRunner.Then("the connected document with subject \"Internal Message with Connected Documents 11" +
                     "1\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -730,32 +730,32 @@ this.FeatureBackground();
         public virtual void _31Message_AddDeleteConnectedDocument_NoPermission_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("31 Message - add/delete connected document - no permission -  personal mail", ((string[])(null)));
-#line 241
+#line 240
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 242
+#line 241
  testRunner.When("Admin set system message permissions for user \"Create Internal Message\" \"True\" \"U" +
                     "ser\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 243
+#line 242
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 244
+#line 243
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"False\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 245
+#line 244
  testRunner.And("Admin set system message permissions for user \"Remove Related Messages\" \"False\" \"" +
                     "User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 246
+#line 245
  testRunner.And("Admin set system message permissions for user \"Open Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 247
+#line 246
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 248
+#line 247
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 249
+#line 248
  testRunner.Then("the visibilty of button \"Add\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 250
+#line 249
  testRunner.And("the visibilty of button \"Delete\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -768,35 +768,35 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("32 Message Permission - add connected document - with permission - department mai" +
                     "l", ((string[])(null)));
-#line 252
+#line 251
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 253
+#line 252
  testRunner.When("Admin set department message permissions for user \"Create Internal Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 254
+#line 253
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 255
+#line 254
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 256
+#line 255
  testRunner.When("Admin set department message permissions for user \"Remove Related Messages\" \"Fals" +
                     "e\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 257
+#line 256
  testRunner.When("Admin set department message permissions for user \"Open Related Messages\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 258
+#line 257
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 259
+#line 258
  testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 260
+#line 259
  testRunner.And("user select connected document with subject \"Internal Message with Connected Docu" +
                     "ments 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 261
+#line 260
  testRunner.And("user clicks on save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 262
+#line 261
  testRunner.Then("the connected document with subject \"Internal Message with Connected Documents 11" +
                     "1\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -810,32 +810,32 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("33 Message Permission - add/delete connected document - no permission - departmen" +
                     "t mail", ((string[])(null)));
-#line 264
+#line 263
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 265
+#line 264
  testRunner.When("Admin set department message permissions for user \"Create Internal Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 266
+#line 265
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 267
+#line 266
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"False\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 268
+#line 267
  testRunner.When("Admin set department message permissions for user \"Remove Related Messages\" \"Fals" +
                     "e\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 269
+#line 268
  testRunner.When("Admin set department message permissions for user \"Open Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 270
+#line 269
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 271
+#line 270
  testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 272
+#line 271
  testRunner.Then("the visibilty of button \"Add\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 273
+#line 272
  testRunner.And("the visibilty of button \"Delete\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -848,45 +848,45 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("34 Message - add connected document - system level - with permission -  personal " +
                     "mail", ((string[])(null)));
-#line 275
+#line 274
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 276
+#line 275
  testRunner.When("Admin set system message permissions for user \"Create Internal Message\" \"True\" \"U" +
                     "ser\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 277
+#line 276
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 278
+#line 277
  testRunner.And("Admin set system message permissions for user \"Can Link with Message from Related" +
                     " Departments Messages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 279
+#line 278
  testRunner.And("Admin set system message permissions for user \"Can Link it with Whole System Mess" +
                     "ages\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 280
+#line 279
  testRunner.And("Admin set system message permissions for user \"Can Link with Related Departments " +
                     "Messages and Below\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 281
+#line 280
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 282
+#line 281
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 283
+#line 282
  testRunner.And("user select connected document with subject \"Incoming Message to outside child de" +
                     "partment 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 284
+#line 283
  testRunner.And("user clicks on save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 285
+#line 284
  testRunner.Then("the connected document with subject \"Incoming Message to outside child department" +
                     " 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 286
+#line 285
  testRunner.When("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 287
+#line 286
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 288
+#line 287
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 289
+#line 288
  testRunner.And("Admin set system message permissions for user \"Can Link it with Whole System Mess" +
                     "ages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -900,60 +900,60 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("35 Message - add connected document - Related departments only - with permission " +
                     "-  personal mail", ((string[])(null)));
-#line 291
+#line 290
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 292
+#line 291
  testRunner.When("Admin set system message permissions for user \"Create Internal Message\" \"True\" \"U" +
                     "ser\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 293
+#line 292
  testRunner.And("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 294
+#line 293
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 295
+#line 294
  testRunner.And("Admin set system message permissions for user \"Can Link with Message from Related" +
                     " Departments Messages\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 296
+#line 295
  testRunner.And("Admin set system message permissions for user \"Can Link it with Whole System Mess" +
                     "ages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 297
+#line 296
  testRunner.And("Admin set system message permissions for user \"Can Link with Related Departments " +
                     "Messages and Below\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 298
+#line 297
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 299
+#line 298
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 300
+#line 299
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 301
+#line 300
  testRunner.Then("verify that connected document with subject \"Incoming Message to Child Department" +
                     " 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 302
+#line 301
  testRunner.And("verify that connected document with subject \"Internal Message to Outside Internal" +
                     " Department 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 303
+#line 302
  testRunner.When("user clicks on save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 304
+#line 303
  testRunner.Then("the connected document with subject \"Internal Message to Internal Department 111\"" +
                     " should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 305
+#line 304
  testRunner.When("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 306
+#line 305
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 307
+#line 306
  testRunner.When("Admin set system message permissions for user \"Can Link with Message from Related" +
                     " Departments Messages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 308
+#line 307
  testRunner.And("Admin set system message permissions for user \"Create Internal Message\" \"False\" \"" +
                     "User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 309
+#line 308
  testRunner.And("Admin set system message permissions for user \"View Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 310
+#line 309
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"False\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -967,63 +967,63 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("36 Message - add connected document - Related departments and below - with permis" +
                     "sion -  personal mail", ((string[])(null)));
-#line 312
+#line 311
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 313
+#line 312
  testRunner.When("Admin set system message permissions for user \"Create Outing Message\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 314
+#line 313
  testRunner.And("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 315
+#line 314
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 316
+#line 315
  testRunner.And("Admin set system message permissions for user \"Can Link with Message from Related" +
                     " Departments Messages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 317
+#line 316
  testRunner.And("Admin set system message permissions for user \"Can Link it with Whole System Mess" +
                     "ages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 318
+#line 317
  testRunner.And("Admin set system message permissions for user \"Can Link with Related Departments " +
                     "Messages and Below\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 319
+#line 318
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 320
+#line 319
  testRunner.And("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 321
+#line 320
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 322
+#line 321
  testRunner.And("user select connected document with subject \"Incoming Message to Child Department" +
                     " 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 323
+#line 322
  testRunner.Then("verify that connected document with subject \"Internal Message to Outside Internal" +
                     " Department 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 324
+#line 323
  testRunner.When("user clicks on save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 325
+#line 324
  testRunner.Then("the connected document with subject \"Internal Message to Internal Department 111\"" +
                     " should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 326
+#line 325
  testRunner.Then("the connected document with subject \"Incoming Message to Child Department 111\" sh" +
                     "ould appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 327
+#line 326
  testRunner.When("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 328
+#line 327
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 329
+#line 328
  testRunner.When("Admin set system message permissions for user \"Can Link with Related Departments " +
                     "Messages and Below\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 330
+#line 329
  testRunner.And("Admin set system message permissions for user \"Create Outing Message\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 331
+#line 330
  testRunner.And("Admin set system message permissions for user \"View Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 332
+#line 331
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"False\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1035,49 +1035,49 @@ this.FeatureBackground();
         public virtual void _37Message_AddConnectedDocument_SystemLevel_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("37 Message - add connected document - system level - Department mail", ((string[])(null)));
-#line 334
+#line 333
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 335
+#line 334
  testRunner.When("Admin set department message permissions for user \"Create Internal Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 336
+#line 335
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 337
+#line 336
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 338
+#line 337
  testRunner.And("Admin set department message permissions for user \"Can Link with Message from Rel" +
                     "ated Departments Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 339
+#line 338
  testRunner.And("Admin set department message permissions for user \"Can Link it with Whole System " +
                     "Messages\" \"True\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 340
+#line 339
  testRunner.And("Admin set department message permissions for user \"Can Link with Related Departme" +
                     "nts Messages and Below\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 341
+#line 340
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 342
+#line 341
  testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 343
+#line 342
  testRunner.And("user select connected document with subject \"Incoming Message to outside child de" +
                     "partment 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 344
+#line 343
  testRunner.Then("the connected document with subject \"Incoming Message to outside child department" +
                     " 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 345
+#line 344
  testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 346
+#line 345
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 347
+#line 346
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 348
+#line 347
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"False\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 349
+#line 348
  testRunner.And("Admin set department message permissions for user \"Can Link it with Whole System " +
                     "Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1089,55 +1089,55 @@ this.FeatureBackground();
         public virtual void _38Message_AddConnectedDocument_RelatedDepartmentsOnly_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("38 Message - add connected document - Related departments only - Department mail", ((string[])(null)));
-#line 351
+#line 350
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 352
+#line 351
  testRunner.When("Admin set department message permissions for user \"Create Internal Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 353
+#line 352
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 354
+#line 353
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 355
+#line 354
  testRunner.And("Admin set department message permissions for user \"Can Link with Message from Rel" +
                     "ated Departments Messages\" \"True\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 356
+#line 355
  testRunner.And("Admin set department message permissions for user \"Can Link it with Whole System " +
                     "Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 357
+#line 356
  testRunner.And("Admin set department message permissions for user \"Can Link with Related Departme" +
                     "nts Messages and Below\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 358
+#line 357
  testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 359
+#line 358
  testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 360
+#line 359
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 361
+#line 360
  testRunner.Then("the connected document with subject \"Internal Message to Internal Department 111\"" +
                     " should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 362
+#line 361
  testRunner.Then("verify that connected document with subject \"Incoming Message to child department" +
                     " 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 363
+#line 362
  testRunner.Then("verify that connected document with subject \"Incoming Message to outside internal" +
                     " department 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 364
+#line 363
  testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 365
+#line 364
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 366
+#line 365
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 367
+#line 366
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"False\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 368
+#line 367
  testRunner.And("Admin set department message permissions for user \"Can Link with Message from Rel" +
                     "ated Departments Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1151,58 +1151,58 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("39 Message - add connected document - Related departments and below  - Department" +
                     " mail", ((string[])(null)));
-#line 370
+#line 369
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 371
+#line 370
  testRunner.When("Admin set department message permissions for user \"Create Internal Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 372
+#line 371
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 373
+#line 372
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 374
+#line 373
  testRunner.And("Admin set department message permissions for user \"Can Link with Message from Rel" +
                     "ated Departments Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 375
+#line 374
  testRunner.And("Admin set department message permissions for user \"Can Link it with Whole System " +
                     "Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 376
+#line 375
  testRunner.And("Admin set department message permissions for user \"Can Link with Related Departme" +
                     "nts Messages and Below\" \"True\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 377
+#line 376
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 378
+#line 377
  testRunner.And("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 379
+#line 378
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 380
+#line 379
  testRunner.Then("the connected document with subject \"Internal Message to Internal Department 111\"" +
                     " should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 381
+#line 380
  testRunner.When("user select connected document with subject \"Incoming Message to child department" +
                     " 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 382
+#line 381
  testRunner.Then("the connected document with subject \"Incoming Message to child department 111\" sh" +
                     "ould appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 383
+#line 382
  testRunner.Then("verify that connected document with subject \"Incoming Message to outside internal" +
                     " department 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 384
+#line 383
  testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 385
+#line 384
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 386
+#line 385
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 387
+#line 386
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"False\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 388
+#line 387
  testRunner.And("Admin set department message permissions for user \"Can Link with Related Departme" +
                     "nts Messages and Below\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1214,30 +1214,30 @@ this.FeatureBackground();
         public virtual void _40Message_DeleteConnectedDocumentFromNewMessage_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("40 Message - delete connected document from new message - Personal mail", ((string[])(null)));
-#line 390
+#line 389
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 391
+#line 390
  testRunner.And("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 392
+#line 391
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 393
+#line 392
  testRunner.And("Admin set system message permissions for user \"Remove Related Message\" \"True\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 394
+#line 393
  testRunner.And("Admin set system message permissions for user \"Open Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 395
+#line 394
  testRunner.When("Admin logged in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 396
+#line 395
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 397
+#line 396
  testRunner.And("user select connected document with subject \"Internal Message with Connected Docu" +
                     "ments 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 398
+#line 397
  testRunner.And("user delete the document with subject \"Internal Message with Connected Documents " +
                     "111\" from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1251,50 +1251,50 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("41 Message - open/add/delete connected document from reply messages - Personal ma" +
                     "il", ((string[])(null)));
-#line 400
+#line 399
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 401
+#line 400
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 402
+#line 401
  testRunner.And("Admin set system message permissions for user \"Can Reply\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 403
+#line 402
  testRunner.And("Admin set system message permissions for user \"View Message Flow and Actions\" \"Tr" +
                     "ue\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 404
+#line 403
  testRunner.And("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 405
+#line 404
  testRunner.And("Admin set system message permissions for user \"Remove Related Message\" \"True\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 406
+#line 405
  testRunner.And("Admin set system message permissions for user \"Open Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 407
+#line 406
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 408
+#line 407
  testRunner.When("user opens inbox email with subject \"Internal Message with Connected Documents 11" +
                     "1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 409
+#line 408
  testRunner.And("user click on reply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 410
+#line 409
  testRunner.And("user compose mail \"\" \"any text\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 411
+#line 410
  testRunner.And("user open connected document with subject \"Incoming Message to Child Department 1" +
                     "11\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 412
+#line 411
  testRunner.Then("Verify tab \"Attributes\" on connected document detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 413
+#line 412
  testRunner.Then("Verify tab \"Document Flow\" on connected document detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 414
+#line 413
  testRunner.Then("Verify tab \"Actions\" on connected document detail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 416
+#line 415
  testRunner.Then("verify to detail open \"UserMainDepartmentAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 417
+#line 416
  testRunner.Then("verify from detail open \"AdminUserName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 418
+#line 417
  testRunner.When("user open connected document with subject \"Internal Message to Internal Departmen" +
                     "t 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -1306,26 +1306,26 @@ this.FeatureBackground();
         public virtual void _42Message_DeleteConnectedDocumentFromNewMessage_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("42 Message - delete connected document from new message - department mail", ((string[])(null)));
-#line 420
+#line 419
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 421
+#line 420
  testRunner.When("Admin set department message permissions for user \"Create Internal Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 422
+#line 421
  testRunner.When("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 423
+#line 422
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 424
+#line 423
  testRunner.And("Admin set department message permissions for user \"Can Link with Message from Rel" +
                     "ated Departments Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 425
+#line 424
  testRunner.And("Admin set department message permissions for user \"Can Link it with Whole System " +
                     "Messages\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 426
+#line 425
  testRunner.And("Admin set department message permissions for user \"Can Link with Related Departme" +
                     "nts Messages and Below\" \"True\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1337,33 +1337,33 @@ this.FeatureBackground();
         public virtual void _44Message_AddConnectedDocument_Search_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("44 Message - add connected document - search - Personal mail", ((string[])(null)));
-#line 428
+#line 427
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 429
+#line 428
  testRunner.When("Admin set department message permissions for user \"Create Incoming Message\" \"True" +
                     "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 430
+#line 429
  testRunner.When("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 431
+#line 430
  testRunner.And("Admin set system message permissions for user \"Can Link it with Whole System Mess" +
                     "ages\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 432
+#line 431
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 433
+#line 432
  testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 434
+#line 433
  testRunner.And("user read connected document reference with subject \"Incoming Message to Outside " +
                     "Child Department 111\" add 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 435
+#line 434
  testRunner.And("user select document type as \"Outgoing Document\" with subject \"Incoming Message t" +
                     "o Outside Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 436
+#line 435
  testRunner.And("user select document type as \"Internal Document\" with subject \"Incoming Message t" +
                     "o Outside Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 437
+#line 436
  testRunner.Then("the connected document with subject \"Incoming Message to Outside Child Department" +
                     " 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -1375,42 +1375,42 @@ this.FeatureBackground();
         public virtual void _45Message_AddConnectedDocument_Search_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("45 Message - add connected document - search - Department mail", ((string[])(null)));
-#line 439
+#line 438
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 440
+#line 439
  testRunner.When("Admin set department message permissions for user \"Create Outing Message\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 441
+#line 440
  testRunner.And("Admin set department message permissions for user \"View Related Messages\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 442
+#line 441
  testRunner.And("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 443
+#line 442
  testRunner.And("Admin set department message permissions for user \"Can Link it with Whole System " +
                     "Messages\" \"True\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 444
+#line 443
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 445
+#line 444
  testRunner.And("user go to dept messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 446
+#line 445
  testRunner.And("user read connected document reference with subject \"Outgoing Message to Admin Co" +
                     "mmunication department 111\" add -1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 447
+#line 446
  testRunner.And("user select document type as \"Outgoing Document\" with subject \"Outgoing Message t" +
                     "o Admin Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 448
+#line 447
  testRunner.And("user select document type as \"Internal Document\" with subject \"Outgoing Message t" +
                     "o Admin Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 449
+#line 448
  testRunner.And("user select delivery type as \"DeliveryType2Ar\" with subject \"Outgoing Message to " +
                     "Admin Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 450
+#line 449
  testRunner.And("user select delivery type as \"DeliveryTypeAr\" with subject \"Outgoing Message to A" +
                     "dmin Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 451
+#line 450
  testRunner.Then("the connected document with subject \"Outgoing Message to Admin Communication depa" +
                     "rtment 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -1422,32 +1422,32 @@ this.FeatureBackground();
         public virtual void _46Message_AddConnectedDocument_CancelButton_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("46 Message - add connected document - Cancel button - Personal mail", ((string[])(null)));
-#line 453
+#line 452
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 454
+#line 453
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 455
+#line 454
  testRunner.When("Admin set system message permissions for user \"Add Related Message\" \"True\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 456
+#line 455
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 457
+#line 456
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 458
+#line 457
  testRunner.And("user select connected document with subject \"Internal Message with Connected Docu" +
                     "ments 111\" with save button status \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 459
+#line 458
  testRunner.Then("the connected document with subject \"Internal Message with Connected Documents 11" +
                     "1\" should not appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 460
+#line 459
  testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 461
+#line 460
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 462
+#line 461
  testRunner.When("Admin set system message permissions for user \"Add Related Message\" \"False\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -1459,26 +1459,26 @@ this.FeatureBackground();
         public virtual void _47Message_AddConnectedDocument_CancelButton_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("47 Message - add connected document - Cancel button - department mail", ((string[])(null)));
-#line 464
+#line 463
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 465
+#line 464
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"True\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 466
+#line 465
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 467
+#line 466
  testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 468
+#line 467
  testRunner.And("user select connected document with subject \"Internal Message with Connected Docu" +
                     "ments 111\" with save button status \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 469
+#line 468
  testRunner.Then("the connected document with subject \"Internal Message with Connected Documents 11" +
                     "1\" should not appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 470
+#line 469
  testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 471
+#line 470
  testRunner.When("Admin set department message permissions for user \"Add Related Message\" \"False\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -1492,28 +1492,283 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("48 Message - connected Person - Permission view and add - with permission - Perso" +
                     "nal mail", ((string[])(null)));
-#line 473
+#line 472
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 474
+#line 473
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 475
+#line 474
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 476
+#line 475
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 477
+#line 476
  testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 477
+ testRunner.And("user send incoming message to \"UserMainDepartmentAr\" \"Users\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 478
  testRunner.And("user send incoming message to \"UserMainDepartmentAr\" \"Users\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 479
  testRunner.And("user compose mail \"Incoming Message with Connected Person to User 111\" \"Incoming " +
                     "Message with Connected Person to User 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 480
+#line 479
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 480
+ testRunner.And("user enters incomming message no \"+123456789\" and incomming message Gregorian dat" +
+                    "e \"now\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 481
- testRunner.And("user open connected document with subject \"{subject}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 483
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 484
+ testRunner.Then("mail should appear in the inbox \"User\" \"Incoming Message with Connected Person to" +
+                    " User 111\" \"Incoming Message with Connected Person to User 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 485
+ testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 486
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
+                    "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 487
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("50 Message - connected Person - Permission view only - with permission - Personal" +
+            " mail")]
+        public virtual void _50Message_ConnectedPerson_PermissionViewOnly_WithPermission_PersonalMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("50 Message - connected Person - Permission view only - with permission - Personal" +
+                    " mail", ((string[])(null)));
+#line 489
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 490
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 491
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 492
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 493
+ testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 494
+ testRunner.Then("the visibilty of button \"Add\" should be \"False\" on connected person tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 495
+ testRunner.And("the visibilty of button \"Delete\" should be \"False\" on connected person tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 496
+ testRunner.And("the visibilty of button \"Edit\" should be \"False\" on connected person tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 497
+ testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 498
+ testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 499
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
+                    "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("52 Message - Adding connected Person - Invalid / incomplete data - Personal mail")]
+        public virtual void _52Message_AddingConnectedPerson_InvalidIncompleteData_PersonalMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("52 Message - Adding connected Person - Invalid / incomplete data - Personal mail", ((string[])(null)));
+#line 501
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 502
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 503
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 504
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 505
+ testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 506
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1mail.com\" \"12345\" \"12345\" \"" +
+                    "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 507
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"abcd\" \"12345\" \"" +
+                    "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 508
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"abcd\" \"" +
+                    "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 509
+ testRunner.And("user set connected person \"\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" \"Riyadh\" \"no" +
+                    "w\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 510
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"\" \"12345\" \"Riya" +
+                    "dh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 511
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"\" \"Riya" +
+                    "dh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 512
+ testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 513
+ testRunner.And("user set connected person \"Person Name1\" \"\" \"12345\" \"12345\" \"\" \"\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 514
+ testRunner.Then("the connected person with name \"Person Name1\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 515
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"هوية\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 516
+ testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 517
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 518
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
+                    "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 519
+ testRunner.And("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("54 Message - connected Person - no permission - Personal mail")]
+        public virtual void _54Message_ConnectedPerson_NoPermission_PersonalMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("54 Message - connected Person - no permission - Personal mail", ((string[])(null)));
+#line 521
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 522
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
+                    "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 523
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 524
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 525
+ testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 526
+ testRunner.Then("the visibilty of tab \"Connected Persons\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 527
+ testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 528
+ testRunner.Given("Admin logged in \"adminUserName\" \"adminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 529
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 530
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("56 Message - Connected Person - Edit/Delete - Personal mail")]
+        public virtual void _56Message_ConnectedPerson_EditDelete_PersonalMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("56 Message - Connected Person - Edit/Delete - Personal mail", ((string[])(null)));
+#line 532
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 533
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 534
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 535
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 536
+ testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 537
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 538
+ testRunner.And("user update person with name \"Person Name1\" from the list to \"Person Name2\" \"Pers" +
+                    "onEmail2@mail.com\" \"12345\" \"12345\" \"Riyadh\" \"yesterday\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 539
+ testRunner.Then("the connected person with name \"Person Name2\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 540
+ testRunner.When("user delete the person with name \"Person Name2\" from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 541
+ testRunner.Then("verify the connected person with name \"Person Name2\" should not appear in the lis" +
+                    "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 542
+ testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 543
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 544
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
+                    "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 545
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("58 Message - Connected Persons - Add Connected Person - Cancel - Personal mail")]
+        public virtual void _58Message_ConnectedPersons_AddConnectedPerson_Cancel_PersonalMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("58 Message - Connected Persons - Add Connected Person - Cancel - Personal mail", ((string[])(null)));
+#line 547
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 548
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 549
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 550
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 551
+ testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 552
+ testRunner.And("user send incoming message to \"UserMainDepartmentAr\" \"Users\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 553
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"هوية\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 554
+ testRunner.Then("verify the connected person with name \"Person Name1\" should not appear in the lis" +
+                    "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 555
+ testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 556
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 557
+ testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
+                    "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 558
+ testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("59 Message - Connected Persons - Add Connected Person - Cancel - Department mail")]
+        public virtual void _59Message_ConnectedPersons_AddConnectedPerson_Cancel_DepartmentMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("59 Message - Connected Persons - Add Connected Person - Cancel - Department mail", ((string[])(null)));
+#line 560
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 561
+ testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"True\" \"" +
+                    "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 562
+ testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"True\" \"Us" +
+                    "er\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

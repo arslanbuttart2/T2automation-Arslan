@@ -13,7 +13,8 @@ namespace T2automation.Util
 {
     class ExcelDataManager
     {
-        private static string path = @"E:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xls"; 
+        private static string path = @"E:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xls";
+        private string halfpath = @"E:\T2automation-Arslan\ExcelSheetForRefNo";
         private Excel.Application xlApp = new Application();
         private Excel.Workbook xlWorkBook;
         private Excel.Worksheet xlWorkSheet;
@@ -52,7 +53,7 @@ namespace T2automation.Util
 
         public void CloseXlApp()
         {
-            xlWorkBook.Close(true, path, null);
+            xlWorkBook.Close(true, halfpath, null);
             xlApp.Quit();
             Marshal.ReleaseComObject(xlWorkSheet);
             Marshal.ReleaseComObject(xlWorkBook);
@@ -159,7 +160,7 @@ namespace T2automation.Util
 
                 oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-                xlWorkBook = xlApp.Workbooks.Open(path, 0, false, 1, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, Microsoft.Office.Interop.Excel.XlCorruptLoad.xlExtractData);
+                xlWorkBook = xlApp.Workbooks.Open(path, 0, false, 1, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", true, false, 0, true, 1, Microsoft.Office.Interop.Excel.XlCorruptLoad.xlExtractData);
 
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
@@ -170,14 +171,14 @@ namespace T2automation.Util
 
                 for (rCnt = 1; rCnt <= rw; rCnt++)
                 {
-                    for (cCnt = 1; cCnt <= cl; cCnt++)
+                    for (cCnt = 1; cCnt < cl; cCnt++)
                     {
                         chkString = (string)(xlRange.Cells[rCnt, 1] as Excel.Range).Value2;
                         if (chkString.Equals(subject))
                         {
-                            xlWorkSheet.Cells[rw, 2] = string.Empty;
-                            xlWorkSheet.Cells[rw, 2] = refno;
-                            Console.WriteLine("Reference number of subject: '" + subject + "' updated!!");
+                            xlWorkSheet.Cells[rCnt, 2] = string.Empty;
+                            xlWorkSheet.Cells[rCnt, 2] = refno;
+                            Console.WriteLine("Reference number of subject: '" + subject + "' updated to : "+refno);
                             CloseXlApp();
                             return true;
                         }

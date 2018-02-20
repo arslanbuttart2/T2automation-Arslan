@@ -45,6 +45,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.ClickOkBtn();
             myMessageInboxPage.SendMail(subject, content);
         }
+        
 
         [Then(@"mail should appear in my message out box ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenMailShouldAppearInMyMessageOutBox(string to, string subject, string content, int attachmentNo ,string attachmentType)

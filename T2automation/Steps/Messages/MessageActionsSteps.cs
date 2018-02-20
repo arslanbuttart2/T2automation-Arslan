@@ -232,6 +232,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
+            inboxPage.WaitTillProcessing();
             inboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
             inboxPage.ClickOkBtn();
         }
@@ -339,6 +340,13 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectConnectedDoc(subject);   
         }
 
+        [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserSetConnectedPerson(string personName, string email, string mbl, string idNum, string idIssue, string issueDate, string idType, string saveStatus)
+        {
+            inboxPage.SelectConnectedPerson(driver,personName,email,mbl,idNum,idIssue,issueDate,idType,saveStatus);
+        }
+
+
         [When(@"user opens inbox email with subject ""(.*)""")]
         public void WhenUserOpensInboxEmailWithSubject(string subject)
         {
@@ -351,10 +359,32 @@ namespace T2automation.Steps.Messages
             inboxPage.OpenMail(driver, subject);
         }
 
+        [Then(@"the visibilty of button ""(.*)"" should be ""(.*)"" on connected person tab")]
+        public void ThenTheVisibiltyOfButtonShouldBeOnConnectedPersonTab(string buttonName, bool value)
+        {
+            Assert.IsTrue(inboxPage.CheckVisibiltyOnConnectedPerson(buttonName, value), buttonName + " should not be visible");
+        }
+
         [Then(@"the visibilty of button ""(.*)"" should be ""(.*)"" on connected doc tab")]
         public void ThenTheVisibiltyOfButtonShouldBeOnConnectedDocTab(string buttonName, bool value)
         {
             Assert.IsTrue(inboxPage.CheckVisibiltyOnConnectedDoc(buttonName, value), buttonName + " should not be visible");
+        }
+        
+        [When(@"user update person with name ""(.*)"" from the list to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserUpdatePersonWithNameFromTheListTo(string nameold, string personName, string email, string mbl, string idNum, string idIssue, string issueDate, string idType, string saveStatus)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.EditPersonFromTheList(driver, nameold, personName, email, mbl, idNum, idIssue, issueDate, idType, saveStatus);
+        }
+
+        [When(@"user delete the person with name ""(.*)"" from the list")]
+        public void WhenUserDeleteThePersonWithNameFromTheList(string name)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.DeletePersonFromTheList(driver, name);
         }
 
         [When(@"user delete the document with subject ""(.*)"" from the list")]
@@ -407,6 +437,7 @@ namespace T2automation.Steps.Messages
             inboxPage.ClickConnectedDocTab(driver);
             inboxPage.clickOnConnectedDocumentList(driver, subject);
         }
+
         [Then(@"Verify tab ""(.*)"" on connected document detail")]
         public void ThenVerifyTabOnConnectedDocumentDetail(string tab)
         {
@@ -452,6 +483,19 @@ namespace T2automation.Steps.Messages
             inboxPage.SaveDraft();
         }
 
+        [Then(@"verify the connected person with name ""(.*)"" should not appear in the list")]
+        public void ThenVerifyTheConnectedPersonWithNameShouldNotAppearInTheList(string name)
+        {
+            Assert.False(inboxPage.ValidateConnectedPersonList(name), name + "In verify should not appear in the Connected Person List // my line");
+        }
+
+
+        [Then(@"the connected person with name ""(.*)"" should appear in the list")]
+        public void ThenTheConnectedPersonWithNameShouldAppearInTheList(string name)
+        {
+            Assert.IsTrue(inboxPage.ValidateConnectedPersonList(name), name + " should appear in the Connected Person List");
+        }
+
         [Then(@"the connected document with subject ""(.*)"" should appear in the list")]
         public void ThenTheConnectedDocumentWithSubjectShouldAppearInTheList(string subject)
         {
@@ -463,7 +507,7 @@ namespace T2automation.Steps.Messages
         {
             Assert.IsFalse(inboxPage.ValidateConnectedDocumentList(subject), subject + " should not appear in the connected document");
         }
-
+        
         [When(@"user go to dept messages Incoming Document")]
         public void WhenUserGoToDeptMessagesIncomingDocument()
         {

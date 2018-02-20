@@ -15,6 +15,10 @@ namespace T2automation.Util
             if (option.Equals("now")) {
                 return DateTime.Today.ToString("d");
             }
+            if (option.Equals("yesterday"))
+            {
+                return DateTime.Today.AddDays(-1).ToString("d");
+            }
             return "";
         }
 
@@ -23,6 +27,12 @@ namespace T2automation.Util
             if (option.Equals("now"))
             {
                 return DateTime.Today.Day;
+            }
+            if (option.Equals("yesterday"))
+            {
+                int day = DateTime.Today.Day;
+                day--;
+                return day;
             }
             return -1;
         }
