@@ -23,6 +23,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _inboxSearchField;
 
+        [FindsBy(How = How.XPath, Using = ".//div/div/span[@class='error-msg']/p")]
+        private IList<IWebElement> _errorMessage;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div[7]/a/i")]
         private IWebElement _inboxSearchButton;
 
@@ -67,6 +70,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectCCTemp']")]
         private IWebElement _selectToFrameCCBtn;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectCc']")]
+        private IWebElement _selectMainCcFramBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _subject;
@@ -199,6 +205,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.Id, Using = "relatedDocumentCount")]
         private IWebElement _connectedDocTab;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div[3]/a[@id='conDocumentA']")]
+        private IWebElement _connectedDocTabChk;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='buttontbl_documentPerson']")]
         private IWebElement _connectedPersonDeleteBtn;
@@ -550,7 +559,6 @@ namespace T2automation.Pages.MyMessages
 
         public void clickOnSendBtn(bool checkPopup=false) {
             Click(_driver, _sendBtn);
-            Thread.Sleep(2000);
             if (checkPopup)
             {
                 foreach (IWebElement cancelBtn in _cancelBtn)
@@ -562,6 +570,7 @@ namespace T2automation.Pages.MyMessages
                     }
                 }
             }
+
         }
 
         public void SendMail(string subject, string contentBody, bool checkPopup = false, int multipleAttachementNo = 1, string multipleAttachmentType = "", string securityLevel = "") {
@@ -1031,7 +1040,7 @@ namespace T2automation.Pages.MyMessages
             return null;
         }
         
-        public void SelectConnectedPerson(IWebDriver driver, string personName ="", string email= "", string mbl="", string idNum="", string idIssue="", string issueDate="", string idType="",string saveStatus = "True")
+        public void SelectConnectedPerson(IWebDriver driver, string personName ="", string email= "", string mbl="", string idNum="", string idIssue="", string issueDate="", string idType="",string saveStatus="True")
         {
             Click(driver,_connectedPersonTab);
             Click(driver, _addNewBtnPersonTab);
@@ -1082,6 +1091,26 @@ namespace T2automation.Pages.MyMessages
                 Click(_driver, _connectedPersonCancelBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
                 Thread.Sleep(1000);
             }
+        }
+
+        public void SelectCcUser(IWebDriver driver, string user)
+        {
+            WaitTillProcessing();
+            for (int index = 0; index < _selectToName.Count; index++)
+            {
+                if (GetText(driver, _selectToName.ElementAt(index)).Contains(user))
+                {
+                    Click(driver, _selectToCheck.ElementAt(index));
+                    Click(driver, _selectToFrameCCBtn);
+                    Thread.Sleep(1000);
+                    return;
+                }
+            }
+        }
+
+        public void ClickCCbutton(IWebDriver driver)
+        {
+            Click(driver, _selectMainCcFramBtn);
         }
 
         public int SelectConnectedDoc(string subject,bool statusSave= true)
@@ -1140,7 +1169,8 @@ namespace T2automation.Pages.MyMessages
         {
             if (tab.Equals("Connected Document"))
             {
-                return ElementIsDisplayed(_driver, _connectedDocTab) == value;
+                bool chk = ElementIsDisplayed(_driver, _connectedDocTab) == value;
+                return chk;
             }
             if(tab.Equals("Connected Persons"))
             {
@@ -1367,5 +1397,53 @@ namespace T2automation.Pages.MyMessages
             Click(driver, _connectedTabPopupCancelBtn);
             driver.SwitchTo().DefaultContent();
         }
+
+        public int FindError(IWebDriver driver, string errorMessage = "", string field = "")
+        {
+            if (errorMessage.Equals("") || field.Equals(""))
+            {
+                if (_errorMessage.Count > 0)
+                    return 1;
+                else return 0;
+            }
+            string id = "";
+
+            switch (field)
+            {
+                case "Name":
+                    id = "Name";
+                    break;
+                case "Email":
+                    id = "Email_Persion";
+                    break;
+                case "Mobile":
+                    id = "Mobile_Persion";
+                    break;
+                case "IDNumber":
+                    id = "IdNumber";
+                    break;
+                case "ID":
+                    id = "IdType";
+                    break;
+            }
+            foreach (IWebElement i in _errorMessage)
+            {
+
+                if (GetText(driver, i).Equals(errorMessage))
+                {
+                    IWebElement parent = i.FindElement(By.XPath("../.."));
+                    try
+                    {
+                        IWebElement child = parent.FindElement(By.XPath(".//*[@id='" + id + "']"));
+                        Console.WriteLine("\n Error message is :" + errorMessage + " in Field :" + field + "\n\n");
+                        return 1;
+                    }
+                    catch { }
+
+                }
+            }
+            return 2;
+        }
+
     }
 }

@@ -359,6 +359,8 @@ namespace T2automation.Steps.Messages
         [When(@"user select connected document with subject ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithSubject(string subject)
         {
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
             inboxPage.SelectConnectedDoc(subject);   
         }
 
@@ -571,7 +573,11 @@ namespace T2automation.Steps.Messages
         {
             inboxPage.CloseConnectedTabPopup(driver);
         }
-        
 
+        [Then(@"Error is shown as ""(.*)"" ""(.*)""")]
+        public void ThenErrorIsShownAs(string errorMessage, string field)
+        {
+            Assert.IsTrue(inboxPage.FindError(driver, errorMessage, field) == 1, "Error Message " + errorMessage + " should appear when invalid" + field + " is entered.");
+        }
     }
 }

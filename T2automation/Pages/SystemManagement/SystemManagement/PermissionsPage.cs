@@ -27,6 +27,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.Id, Using = "btnIncludeException")]
         private IWebElement _systemIncludeList;
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[2]/div[4]/div[1]/div[3]/a")]
+        private IWebElement _systemUserSendingPermisionTab;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li/span/a[text() = 'System Settings']/../span[1]")]
         private IWebElement _expandSystemSettings;
 
@@ -35,6 +38,15 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li/span/a[text() = 'Message Permission']/../span[1]")]
         private IWebElement _expandMessagePermission;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='chkbxSendAllDepartments']")]
+        private IWebElement _SendAllDeptPermissionChkbox;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='btnSave']")]
+        private IWebElement _saveBtnForPermissionTab;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='chkbxSendAllUsers']")]
+        private IWebElement _SendAllUserPermissionChkbox;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']//a[text() = 'View Related Messages']/../span[1]")]
         private IWebElement _expandViewRelatedMessagePermission;
@@ -269,6 +281,68 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         return;
                     }
                 }
+            }
+        }
+
+        public void OpenSystemMessagePermissionsTabAndChk(IWebDriver driver, string chkbox)
+        {
+            Click(driver, _systemUserSendingPermisionTab);
+            if (chkbox.Equals("Send All Users"))
+            {
+                chkSendAllUserBox(driver);
+            }
+            else if (chkbox.Equals("Send All Departments"))
+            {
+                chkSendAllDeptBox(driver);
+            }
+            Click(driver, _saveBtnForPermissionTab);
+
+        }
+
+        public void OpenSystemMessagePermissionsTabAndUnchk(IWebDriver driver, string chkbox)
+        {
+            Click(driver, _systemUserSendingPermisionTab);
+
+            if (chkbox.Equals("Send All Users"))
+            {
+                unChkSendAllUserBox(driver);
+            }
+            else if (chkbox.Equals("Send All Departments"))
+            {
+                unChkSendAllDeptBox(driver);
+            }
+
+            Click(driver, _saveBtnForPermissionTab);
+
+        }
+
+        public void chkSendAllUserBox(IWebDriver driver)
+        {
+            if (!_SendAllUserPermissionChkbox.Selected)
+            {
+                Click(driver, _SendAllUserPermissionChkbox);
+            }
+        }
+        public void unChkSendAllUserBox(IWebDriver driver)
+        {
+            if (_SendAllUserPermissionChkbox.Selected)
+            {
+                Click(driver, _SendAllUserPermissionChkbox);
+            }
+        }
+
+        public void chkSendAllDeptBox(IWebDriver driver)
+        {
+            if (!_SendAllDeptPermissionChkbox.Selected)
+            {
+                Click(driver, _SendAllDeptPermissionChkbox);
+            }
+        }
+        public void unChkSendAllDeptBox(IWebDriver driver)
+        {
+            if (_SendAllDeptPermissionChkbox.Selected)
+            {
+                Click(driver, _SendAllDeptPermissionChkbox);
             }
         }
 

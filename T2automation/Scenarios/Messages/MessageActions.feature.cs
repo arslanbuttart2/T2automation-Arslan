@@ -130,7 +130,7 @@ this.FeatureBackground();
 #line 25
  testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -152,7 +152,7 @@ this.FeatureBackground();
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
- testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -173,7 +173,7 @@ this.FeatureBackground();
 #line 41
  testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 42
- testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -195,7 +195,7 @@ this.FeatureBackground();
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 50
- testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -328,7 +328,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an internal message with properties with attachments \"{0}\" \"{1}\" \"{2}\"" +
                         " \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 105
- testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -349,7 +349,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an deparment internal message with properties with attachments \"{0}\" \"" +
                         "{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 112
- testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -370,7 +370,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an internal message with properties with attachments \"{0}\" \"{1}\" \"{2}\"" +
                         " \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 119
- testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -391,7 +391,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an deparment internal message with properties with attachments \"{0}\" \"" +
                         "{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 126
- testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -412,7 +412,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an internal message with properties with attachments \"{0}\" \"{1}\" \"{2}\"" +
                         " \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 133
- testRunner.Then(string.Format("save reference number from \"my\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -433,7 +433,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an deparment internal message with properties with attachments \"{0}\" \"" +
                         "{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", level, receiverType, to, subject, content, securitylevel, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 140
- testRunner.Then(string.Format("save reference number from \"dept\" in excel with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -460,8 +460,8 @@ this.FeatureBackground();
 #line 150
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 151
- testRunner.Then("save reference number from \"my\" in excel with subject \"Internal Message to Intern" +
-                    "al Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Internal Message to Internal" +
+                    " Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 152
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 153
@@ -475,8 +475,8 @@ this.FeatureBackground();
 #line 156
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 157
- testRunner.Then("save reference number from \"my\" in excel with subject \"Internal Message to Outsid" +
-                    "e Internal Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Internal Message to Outside " +
+                    "Internal Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 158
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 159
@@ -489,8 +489,8 @@ this.FeatureBackground();
 #line 162
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 163
- testRunner.Then("save reference number from \"my\" in excel with subject \"Incoming Message to Child " +
-                    "Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Incoming Message to Child De" +
+                    "partment 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 164
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 165
@@ -504,8 +504,8 @@ this.FeatureBackground();
 #line 168
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 169
- testRunner.Then("save reference number from \"my\" in excel with subject \"Incoming Message to Outsid" +
-                    "e Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Incoming Message to Outside " +
+                    "Child Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 170
  testRunner.When("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 171
@@ -520,8 +520,8 @@ this.FeatureBackground();
 #line 175
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 176
- testRunner.Then("save reference number from \"my\" in excel with subject \"Outgoing Message to Admin " +
-                    "Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Outgoing Message to Admin Co" +
+                    "mmunication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 177
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 178
@@ -544,8 +544,8 @@ this.FeatureBackground();
 #line 184
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 185
- testRunner.Then("save reference number from \"my\" in excel with subject \"Internal Message with Conn" +
-                    "ected Documents 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Internal Message with Connec" +
+                    "ted Documents 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -1634,34 +1634,109 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("53 Message - Adding connected Person - Invalid / incomplete data - Department mai" +
+            "l")]
+        public virtual void _53Message_AddingConnectedPerson_InvalidIncompleteData_DepartmentMail()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("53 Message - Adding connected Person - Invalid / incomplete data - Department mai" +
+                    "l", ((string[])(null)));
+#line 521
+ this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 522
+ testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"True\" \"" +
+                    "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 523
+ testRunner.When("Admin set department message permissions for user \"Add Related Persons\" \"True\" \"U" +
+                    "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 524
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 525
+ testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 526
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1mail.com\" \"12345\" \"12345\" \"" +
+                    "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 527
+ testRunner.Then("Error is shown as \"Invalid Email Address\" \"Email\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 528
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"abcd\" \"12345\" \"" +
+                    "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 529
+ testRunner.Then("Error is shown as \"Invalid number format\" \"Mobile\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 530
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"abcd\" \"" +
+                    "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 531
+ testRunner.Then("Error is shown as \"Invalid number format\" \"IDNumber\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 532
+ testRunner.When("user set connected person \"\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" \"Riyadh\" \"no" +
+                    "w\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 533
+ testRunner.Then("Error is shown as \"Required Field\" \"Name\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 534
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"\" \"12345\" \"Riya" +
+                    "dh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 535
+ testRunner.Then("Error is shown as \"Required Field\" \"Mobile\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 536
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"\" \"Riya" +
+                    "dh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 537
+ testRunner.Then("Error is shown as \"Required Field\" \"IDNumber\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 538
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"Riyadh\" \"now\" \"\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 539
+ testRunner.Then("Error is shown as \"Required Field\" \"ID\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 540
+ testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
+                    "\"\" \"\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 541
+ testRunner.Then("the connected person with name \"Person Name1\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 543
+ testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 544
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 545
+ testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"False\" " +
+                    "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 546
+ testRunner.When("Admin set department message permissions for user \"Add Related Persons\" \"False\" \"" +
+                    "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("54 Message - connected Person - no permission - Personal mail")]
         public virtual void _54Message_ConnectedPerson_NoPermission_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("54 Message - connected Person - no permission - Personal mail", ((string[])(null)));
-#line 521
+#line 548
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 522
+#line 549
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 523
+#line 550
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 524
+#line 551
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 525
+#line 552
  testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 526
+#line 553
  testRunner.Then("the visibilty of tab \"Connected Persons\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 527
+#line 554
  testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 528
+#line 555
  testRunner.Given("Admin logged in \"adminUserName\" \"adminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 529
+#line 556
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 530
+#line 557
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
@@ -1672,40 +1747,40 @@ this.FeatureBackground();
         public virtual void _56Message_ConnectedPerson_EditDelete_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("56 Message - Connected Person - Edit/Delete - Personal mail", ((string[])(null)));
-#line 532
+#line 559
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 533
+#line 560
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 534
+#line 561
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 535
+#line 562
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 536
+#line 563
  testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 537
+#line 564
  testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 538
+#line 565
  testRunner.And("user update person with name \"Person Name1\" from the list to \"Person Name2\" \"Pers" +
                     "onEmail2@mail.com\" \"12345\" \"12345\" \"Riyadh\" \"yesterday\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 539
+#line 566
  testRunner.Then("the connected person with name \"Person Name2\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 540
+#line 567
  testRunner.When("user delete the person with name \"Person Name2\" from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 541
+#line 568
  testRunner.Then("verify the connected person with name \"Person Name2\" should not appear in the lis" +
                     "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 542
+#line 569
  testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 543
+#line 570
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 544
+#line 571
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 545
+#line 572
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -1717,35 +1792,35 @@ this.FeatureBackground();
         public virtual void _58Message_ConnectedPersons_AddConnectedPerson_Cancel_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("58 Message - Connected Persons - Add Connected Person - Cancel - Personal mail", ((string[])(null)));
-#line 547
+#line 574
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 548
+#line 575
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"True\" \"User" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 549
+#line 576
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 550
+#line 577
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 551
+#line 578
  testRunner.And("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 552
+#line 579
  testRunner.And("user send incoming message to \"UserMainDepartmentAr\" \"Users\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 553
+#line 580
  testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"هوية\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 554
+#line 581
  testRunner.Then("verify the connected person with name \"Person Name1\" should not appear in the lis" +
                     "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 555
+#line 582
  testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 556
+#line 583
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 557
+#line 584
  testRunner.When("Admin set system message permissions for user \"View Related Persons\" \"False\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 558
+#line 585
  testRunner.When("Admin set system message permissions for user \"Add Related Person\" \"False\" \"User\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -1757,34 +1832,34 @@ this.FeatureBackground();
         public virtual void _59Message_ConnectedPersons_AddConnectedPerson_Cancel_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("59 Message - Connected Persons - Add Connected Person - Cancel - Department mail", ((string[])(null)));
-#line 560
+#line 587
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 561
+#line 588
  testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"True\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 562
+#line 589
  testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"True\" \"Us" +
                     "er\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 563
+#line 590
  testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 564
+#line 591
  testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 565
+#line 592
  testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"هوية\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 566
+#line 593
  testRunner.Then("verify the connected person with name \"Person Name1\" should not appear in the lis" +
                     "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 567
+#line 594
  testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 568
+#line 595
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 569
+#line 596
  testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"False\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 570
+#line 597
  testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"False\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

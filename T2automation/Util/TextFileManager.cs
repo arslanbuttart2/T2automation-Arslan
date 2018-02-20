@@ -107,12 +107,13 @@ namespace T2automation.Util
             StreamWriter writer = new StreamWriter(path, true);
             for (int i= 0; i< updatedLines.Count(); i++)
             {
-                if (!updatedLines[1].Equals(""))
+                string s = updatedLines[i];
+                if (!(updatedLines[i].Equals("\r") || updatedLines[i].Equals("\n") || updatedLines[i].Equals("")))
                 {
                     writer.WriteLine(updatedLines[i]);
                 }
             }
-            writer.WriteLine("");
+            writer.WriteLine();
             writer.Close();
 
         }

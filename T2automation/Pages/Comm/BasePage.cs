@@ -18,7 +18,8 @@ namespace T2automation.Pages.Comm
             WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_SECONDS);
             try
             {
-                return element.Displayed;
+                bool chk = element.Displayed;
+                return chk;
             }
             catch (Exception) {
                 return false;
