@@ -62,8 +62,8 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[1]/label")]
         private IList<IWebElement> _selectToCheck;
 
-        [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[2]")]
-        private IList<IWebElement> _selectToName;
+        //[FindsBy(How = How.XPath, Using = ".//tbody/tr/td[2]")]
+        //private IList<IWebElement> _selectToName;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectToTemp']")]
         private IWebElement _selectToFrameToBtn;
@@ -73,6 +73,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectCc']")]
         private IWebElement _selectMainCcFramBtn;
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[19]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _cancelBtnInOutgoingMail;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _subject;
@@ -130,6 +133,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/ul")]
         private IWebElement _mailTo;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[3]/div[1]/div[2]/ul/li")]
+        private IWebElement _subjectInboxWithCC;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[2]/div[1]/div[2]/ul/li")]
         private IWebElement _subjectInbox;
@@ -285,8 +291,11 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[3]"));
         }
 
+        private IList<IWebElement> _selectToName()
+        {
+            return _driver.FindElements(By.XPath(".//table/tbody/tr/td[2]"));
+        }
 
-        
         private IList<IWebElement> _connectedDocSearchedCheckBoxes()
         {
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[1]/label"));
@@ -534,9 +543,9 @@ namespace T2automation.Pages.MyMessages
         public void SelectToUser(IWebDriver driver, string user) {
             WaitTillProcessing();
             Thread.Sleep(2000);
-            Console.WriteLine("%d",_selectToName.Count);
-            for (int index = 0; index < _selectToName.Count; index++) {
-                if (GetText(driver, _selectToName.ElementAt(index)).Contains(user)) {
+            Console.WriteLine(_selectToName().Count.ToString());
+            for (int index = 0; index < _selectToName().Count; index++) {
+                if (GetText(driver, _selectToName().ElementAt(index)).Contains(user)) {
                     Click(driver, _selectToCheck.ElementAt(index));
                     Click(driver, _selectToFrameToBtn);
                     Thread.Sleep(1000);
@@ -557,8 +566,16 @@ namespace T2automation.Pages.MyMessages
             Thread.Sleep(1000);
         }
 
+        public void clickOnSendBtnAndCancel()
+        {
+            Click(_driver, _sendBtn);
+            WaitForElement(_driver, _cancelBtnInOutgoingMail);
+            Click(_driver, _cancelBtnInOutgoingMail);
+
+        }
         public void clickOnSendBtn(bool checkPopup=false) {
             Click(_driver, _sendBtn);
+            Thread.Sleep(2000);
             if (checkPopup)
             {
                 foreach (IWebElement cancelBtn in _cancelBtn)
@@ -570,7 +587,6 @@ namespace T2automation.Pages.MyMessages
                     }
                 }
             }
-
         }
 
         public void SendMail(string subject, string contentBody, bool checkPopup = false, int multipleAttachementNo = 1, string multipleAttachmentType = "", string securityLevel = "") {
@@ -617,9 +633,12 @@ namespace T2automation.Pages.MyMessages
             return GetText(driver, _mailTo).Contains(to);
         }
 
-        public bool ValidateSubject(IWebDriver driver, string subject)
+        public bool ValidateSubject(IWebDriver driver, string subject,string ccStatus="False")
         {
-            return GetText(driver, _subjectInbox).Equals(subject);
+            if (ccStatus.Equals("False")) {
+                return GetText(driver, _subjectInbox).Equals(subject);
+            }
+            return GetText(driver, _subjectInboxWithCC).Equals(subject);
         }
 
         public bool ValidateContentBody(IWebDriver driver, string contentBody)
@@ -627,11 +646,11 @@ namespace T2automation.Pages.MyMessages
             return GetText(driver, _contentBodyInbox).Equals(contentBody);
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body)
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body , string ccStatus = "False")
         {
             if (OpenMail(driver, subject))
             {
-                return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
+                return (ValidateTo(driver, to) && ValidateSubject(driver, subject,ccStatus) && ValidateContentBody(driver, body));
             }
             return false;
         }
@@ -922,12 +941,12 @@ namespace T2automation.Pages.MyMessages
             Click(driver, _connectedDocTab);
         }
 
-        public void SearchConnectedDoc(string subject)
+        public void SearchConnectedDoc(string refno)
         {
             Click(_driver, _connectedDocTab);
             Click(_driver, _addNewBtn);
             WaitTillProcessing();
-            SendKeys(_driver, _connectedDocSubject, subject);
+            SendKeys(_driver, _connectedDocRefNoField, refno);
             Click(_driver, _connectedDocSearchBtn);
             WaitTillProcessing();
         }
@@ -1096,9 +1115,9 @@ namespace T2automation.Pages.MyMessages
         public void SelectCcUser(IWebDriver driver, string user)
         {
             WaitTillProcessing();
-            for (int index = 0; index < _selectToName.Count; index++)
+            for (int index = 0; index < _selectToName().Count; index++)
             {
-                if (GetText(driver, _selectToName.ElementAt(index)).Contains(user))
+                if (GetText(driver, _selectToName().ElementAt(index)).Contains(user))
                 {
                     Click(driver, _selectToCheck.ElementAt(index));
                     Click(driver, _selectToFrameCCBtn);
@@ -1113,9 +1132,9 @@ namespace T2automation.Pages.MyMessages
             Click(driver, _selectMainCcFramBtn);
         }
 
-        public int SelectConnectedDoc(string subject,bool statusSave= true)
+        public int SelectConnectedDoc(string refno,bool statusSave= true)
         {
-            SearchConnectedDoc(subject);
+            SearchConnectedDoc(refno);
             int searchResults = _connectedDocSearchedSubjects().Count;
             if (searchResults >= 1) {
                 Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));

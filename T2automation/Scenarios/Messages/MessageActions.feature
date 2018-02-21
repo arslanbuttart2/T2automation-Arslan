@@ -143,30 +143,30 @@ Scenario Outline:24 message - attachment - security level with attachment requir
 		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDepAr |
 
 Scenario:25 Message - Connected Documents - Test Case 1
-	When user go to my messages Internal Document
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And user compose mail "Internal Message to Internal Department 111" "Internal Message to Internal Department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email
-	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
-	When user go to my messages Internal Document
-	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-	And user compose mail "Internal Message to Outside Internal Department 111" "Internal Message to Outside Internal Department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email
-	Then save reference number from "my" in txt with subject "Internal Message to Outside Internal Department 111"
-	When user go to my messages Internal Document
-	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email
-	Then save reference number from "my" in txt with subject "Incoming Message to Child Department 111"
-	When user go to my messages Internal Document
-	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email
-	Then save reference number from "my" in txt with subject "Incoming Message to Outside Child Department 111"
+#	When user go to my messages Internal Document
+#	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+#	And user compose mail "Internal Message to Internal Department 111" "Internal Message to Internal Department 111"
+#	And user attach attachments 1 "1.png"
+#	And user send the email
+#	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
+#	When user go to my messages Internal Document
+#	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+#	And user compose mail "Internal Message to Outside Internal Department 111" "Internal Message to Outside Internal Department 111"
+#	And user attach attachments 1 "1.png"
+#	And user send the email
+#	Then save reference number from "my" in txt with subject "Internal Message to Outside Internal Department 111"
+#	When user go to my messages Internal Document
+#	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+#	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
+#	And user attach attachments 1 "1.png"
+#	And user send the email
+#	Then save reference number from "my" in txt with subject "Incoming Message to Child Department 111"
+#	When user go to my messages Internal Document
+#	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+#	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
+#	And user attach attachments 1 "1.png"
+#	And user send the email
+#	Then save reference number from "my" in txt with subject "Incoming Message to Outside Child Department 111"
 	When user go to my messages Outgoing Document
 	And select the external department "ExternalEntitySameCountry"   
 	And select delivery type "Delivery by hand"

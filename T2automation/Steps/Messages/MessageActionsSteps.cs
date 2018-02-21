@@ -89,7 +89,7 @@ namespace T2automation.Steps.Messages
             }
             outboxPage.OpenMail(driver, subject);
             string refno = outboxPage.readRefNoFromMail(driver);
-            Assert.IsTrue(txtManager.writeToFile(type,subject, refno), " this must be written in the excel file!! But failed for some reason!");
+            Assert.IsTrue(txtManager.writeToFile(type,subject, refno), " this must be written in the txt file!!");
         }
 
 
@@ -361,7 +361,7 @@ namespace T2automation.Steps.Messages
         {
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.SelectConnectedDoc(subject);   
+            inboxPage.SelectConnectedDoc(refno);   
         }
 
         [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

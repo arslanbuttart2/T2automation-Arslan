@@ -113,6 +113,12 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']")]
         private IWebElement _qaDeptMenuDiv;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdd8ca884-0b05-4de6-900d-af5fc9623558']")]
+        private IWebElement _commDeptMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdd8ca884-0b05-4de6-900d-af5fc9623558']/a/label")]
+        private IWebElement _commDept;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDept;
 
@@ -122,7 +128,7 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptOutbox;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDiv']/div/div[1]/a/label")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a/label/i[@class='fa fa-comments']")]
         private IWebElement _inboxMessageWithRoot;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[7]/a/label")]
@@ -252,16 +258,9 @@ namespace T2automation.Pages.Comm
                 Click(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
             {
-                var deptList = _deptNames();
-                foreach (IWebElement dept in deptList)
-                {
-                    if (GetText(driver, dept).Equals(CommDept))
-                    {
-                        Click(driver, dept);
-                    }
-                }
+                Click(driver, _commDept);
             }
             Click(driver, _inboxMessageWithRoot);
             Thread.Sleep(1000);

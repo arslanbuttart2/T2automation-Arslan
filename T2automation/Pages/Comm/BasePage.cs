@@ -97,7 +97,6 @@ namespace T2automation.Pages.Comm
             WaitForElement(driver, element);
             //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
             return element.Text;
-
         }
 
         public bool IsSelected(IWebDriver driver, IWebElement element)

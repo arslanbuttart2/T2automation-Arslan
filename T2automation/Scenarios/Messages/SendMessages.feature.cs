@@ -238,27 +238,27 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm28SendingPermissions_SendToAllUsers_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 28 Sending Permissions -  send to all users - Personal mail", ((string[])(null)));
-#line 75
+#line 73
 this.ScenarioSetup(scenarioInfo);
-#line 76
+#line 74
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 77
+#line 75
  testRunner.When("Admin set system message sending permissions for user \"User\" \"Send All Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 78
+#line 76
  testRunner.Then("Admin logged in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 79
+#line 77
  testRunner.Then("user sends an internal message to and cc \"UserMainDepartmentAr\" \"Users\" \"UserSame" +
                     "Department\" \"Sending Permission to All Users 111\" \"Sending Permission to All Use" +
                     "rs 111\" \"OtherMainDepartmentAr\" \"Users\" \"UserOtherDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 80
+#line 78
  testRunner.Then("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 81
+#line 79
  testRunner.Then("Admin unset system message sending permissions for user \"User\" \"Send All Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 82
+#line 80
  testRunner.Then("Admin logged in \"UserOtherDepartment\" \"UserOtherDepartmentPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 83
+#line 81
  testRunner.Then("mail should appear in the inbox \"UserMainDepartment\" \"Sending Permission to All U" +
-                    "sers 111\" \"Sending Permission to All Users 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "sers 111\" \"Sending Permission to All Users 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -268,29 +268,29 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm29SendingPermissions_SendToAllDepartments_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 29 Sending Permissions -  send to all departments - Personal mail", ((string[])(null)));
-#line 85
+#line 83
 this.ScenarioSetup(scenarioInfo);
-#line 86
+#line 84
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 87
+#line 85
  testRunner.When("Admin set system message sending permissions for user \"User\" \"Send All Department" +
                     "s\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 88
+#line 86
  testRunner.Then("Admin logged in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 89
- testRunner.Then("user sends an internal message to and cc \"UserMainDepartmentAr\" \"Users\" \"UserSame" +
-                    "Department\" \"Sending Permission to All Users 111\" \"Sending Permission to All Use" +
-                    "rs 111\" \"OtherMainDepartmentAr\" \"Users\" \"UserOtherDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 90
+#line 87
+ testRunner.Then("user sends an internal message to and cc \"UserMainDepartmentAr\" \"Structural Hiera" +
+                    "rchy\" \"UserSameDepartment\" \"Sending Permission to All Users 111\" \"Sending Permis" +
+                    "sion to All Users 111\" \"OtherMainDepartmentAr\" \"Users\" \"UserOtherDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 88
  testRunner.Then("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 91
+#line 89
  testRunner.Then("Admin unset system message sending permissions for user \"User\" \"Send All Departme" +
                     "nts\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 92
+#line 90
  testRunner.Then("Admin logged in \"UserOtherDepartment\" \"UserOtherDepartmentPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 93
+#line 91
  testRunner.Then("mail should appear in the inbox \"UserMainDepartment\" \"Sending Permission to All U" +
-                    "sers 111\" \"Sending Permission to All Users 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "sers 111\" \"Sending Permission to All Users 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

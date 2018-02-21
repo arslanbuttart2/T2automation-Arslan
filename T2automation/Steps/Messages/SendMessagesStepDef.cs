@@ -80,12 +80,12 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SendMail(subject, content);
         }
 
-        [Then(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)""")]
-        public void ThenMailShouldAppearInTheInbox(string to, string subject, string content)
+        [Then(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenMailShouldAppearInTheInbox(string to, string subject, string content, string ccStatus = "False")
         {
             myMessageInboxPage = new InboxPage(driver);
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
-            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));
+            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, ccStatus));
         }
 
         [When(@"user sends an encrypted message to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

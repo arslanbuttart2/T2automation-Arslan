@@ -69,9 +69,7 @@ Scenario:sm 27 Sending outgoing message - Department  mail
 	And user send the email and click on Cancel button
 	Then mail should appear in my message out box "CommDepSameDep" "Sending Outgoing Message 111" "Sending Outgoing Message 111" "0" ""
 	Then mail should appear in Department Message with Root "CommDepSameDep" "Sending Outgoing Message 111" "Sending Outgoing Message 111"
-	
-### old	TCs
-#28
+
 Scenario:sm 28 Sending Permissions -  send to all users - Personal mail
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message sending permissions for user "User" "Send All Users"
@@ -80,16 +78,16 @@ Scenario:sm 28 Sending Permissions -  send to all users - Personal mail
 	Then Admin logged in "AdminUserName" "AdminPassword"
 	Then Admin unset system message sending permissions for user "User" "Send All Users"
 	Then Admin logged in "UserOtherDepartment" "UserOtherDepartmentPassword"
-	Then mail should appear in the inbox "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111"
-#29
+	Then mail should appear in the inbox "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "True"
+
 Scenario:sm 29 Sending Permissions -  send to all departments - Personal mail
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message sending permissions for user "User" "Send All Departments"
 	Then Admin logged in "UserName" "Password"
-	Then user sends an internal message to and cc "UserMainDepartmentAr" "Users" "UserSameDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "OtherMainDepartmentAr" "Users" "UserOtherDepartment"
+	Then user sends an internal message to and cc "UserMainDepartmentAr" "Structural Hierarchy" "UserSameDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "OtherMainDepartmentAr" "Users" "UserOtherDepartment"
 	Then Admin logged in "AdminUserName" "AdminPassword"
 	Then Admin unset system message sending permissions for user "User" "Send All Departments"
 	Then Admin logged in "UserOtherDepartment" "UserOtherDepartmentPassword"
-	Then mail should appear in the inbox "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111"
-
+	Then mail should appear in the inbox "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" ""
+	
 	

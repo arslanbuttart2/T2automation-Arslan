@@ -32,7 +32,7 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[2]/div[1]/div[2]/ul/li")]
         private IWebElement _subject;
-
+        //*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[2]/div[2]/label
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[2]/div[2]/label")]
         private IWebElement _referenceNo;
 
@@ -100,6 +100,7 @@ namespace T2automation.Pages.MyMessages
         
         public string readRefNoFromMail(IWebDriver driver)
         {
+            WaitForElement(driver, _referenceNo);
             return GetText(driver, _referenceNo);
         }
 
