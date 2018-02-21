@@ -13,7 +13,7 @@ Scenario:1 Message Actions - Deleting Message
 	And user compose mail "Internal message for deletion 111" "Internal message for deletion 111"
 	And user attach attachments 1 "1.pdf"
 	And user send the email
-	Then save reference number from "my" in excel with subject "Internal Message to Internal Department 111"
+	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
 	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for deletion 222" "Internal message for deletion 222"
