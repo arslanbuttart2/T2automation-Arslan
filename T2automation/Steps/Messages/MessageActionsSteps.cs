@@ -111,7 +111,6 @@ namespace T2automation.Steps.Messages
             outboxPage.OpenMail(driver, subject);
             string refno = outboxPage.readRefNoFromMail(driver);
             Assert.IsTrue(xlDataMngr.writeDataToExcel(subject, refno)," this must be written in the excel file!! But failed for some reason!");
-
         }
 
 
