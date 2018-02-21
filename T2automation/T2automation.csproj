@@ -133,7 +133,6 @@
     <Compile Include="Steps\Messages\SendMessagesStepDef.cs" />
     <Compile Include="Steps\Permissions\PermissionsStepDef.cs" />
     <Compile Include="Util\DateTimeHelper.cs" />
-    <Compile Include="Util\ExcelDataManager.cs" />
     <Compile Include="Util\GetDownloadFiles.cs" />
     <Compile Include="Util\RandomData.cs" />
     <Compile Include="Util\ReadFromConfig.cs" />
