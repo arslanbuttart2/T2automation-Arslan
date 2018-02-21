@@ -41,6 +41,31 @@ namespace T2automation
             Thread.Sleep(3000);
         }
 
+        [When(@"Admin set system message sending permissions for user ""(.*)"" ""(.*)""")]
+        public void WhenAdminSetSystemMessageSendingPermissionsForUser(string user, string checkbox)
+        {
+            userManagerPage = new UserManagerPage(driver);
+            userManagerPage.NavigateToUserManager(driver);
+            Assert.IsTrue(userManagerPage.IsAt(driver, userManagerPage.title));
+
+            permissionsPage = userManagerPage.OpenPermissions(driver, new ReadFromConfig().GetValue(user));
+
+            permissionsPage.OpenSystemMessagePermissionsTabAndChk(driver, checkbox);
+
+        }
+
+        [Then(@"Admin unset system message sending permissions for user ""(.*)"" ""(.*)""")]
+        public void ThenAdminUnsetSystemMessageSendingPermissionsForUser(string user, string chkbox)
+        {
+            userManagerPage = new UserManagerPage(driver);
+            userManagerPage.NavigateToUserManager(driver);
+            Assert.IsTrue(userManagerPage.IsAt(driver, userManagerPage.title));
+
+            permissionsPage = userManagerPage.OpenPermissions(driver, new ReadFromConfig().GetValue(user));
+
+            permissionsPage.OpenSystemMessagePermissionsTabAndUnchk(driver, chkbox);
+        }
+
         [Given("^Admin set system message permissions for user \"(.*)\" \"(.*)\" \"(.*)\"$"), When("^Admin set system message permissions for user \"(.*)\" \"(.*)\" \"(.*)\"$"), Then("^Admin set system message permissions for user \"(.*)\" \"(.*)\" \"(.*)\"$")]
         public void AdminSetSystemMessagePermissionsForUser(string permissionName, bool value, string user) {
             userManagerPage = new UserManagerPage(driver);

@@ -8,13 +8,14 @@ using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
+using System.Data;
 
 namespace T2automation.Util
 {
     class ExcelDataManager
     {
-        private static string path = @"D:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xls";
-        private string halfpath = @"D:\T2automation-Arslan\ExcelSheetForRefNo";
+        
+        private static string path = @"E:\T2automation-Arslan\ExcelSheetForRefNo\TestData.xlsx";
         private Excel.Application xlApp = new Application();
         private Excel.Workbook xlWorkBook;
         private Excel.Worksheet xlWorkSheet;
@@ -24,12 +25,10 @@ namespace T2automation.Util
         static System.Globalization.CultureInfo oldCI;
 
         //connection for Excel
-        static OleDbConnection conn = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + path + "; Extended Properties = 'Excel 12.0;HDR=YES;IMEX=1;ReadOnly=false';");
-        OleDbDataAdapter adapter = new OleDbDataAdapter("select * from [sheet1$]", selectConnection: conn);
+        static OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + path + "; Extended Properties = 'Excel 12.0;ReadOnly=false';");
+        OleDbDataAdapter dataAdapter = new OleDbDataAdapter("select * from [sheet1$]", selectConnection: con);
         
-
-
-        public bool checkXlIsOnPC()
+    public bool checkXlIsOnPC()
         {
             if (xlApp == null)
             {
@@ -53,7 +52,7 @@ namespace T2automation.Util
 
         public void CloseXlApp()
         {
-            xlWorkBook.Close(true, halfpath, null);
+            xlWorkBook.Close(true, path, null);
             xlApp.Quit();
             Marshal.ReleaseComObject(xlWorkSheet);
             Marshal.ReleaseComObject(xlWorkBook);
@@ -67,7 +66,6 @@ namespace T2automation.Util
             {
                 //xlWorkBook.SaveAs(Filename, FileFormat, Password, WriteResPassword, ReadOnlyRecommended, CreateBackup, AccessMode, ConflictResolution, AddToMru, TextCodepage, TextVisualLayout,Local);
                 xlWorkBook.SaveAs(_path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, false, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                //xlWorkBook.Save();
                 return true;
             }
             catch
@@ -79,7 +77,7 @@ namespace T2automation.Util
         
         private bool ifFileExist()
         {
-            string[] filePaths = Directory.GetFiles(@"D:\T2automation-Arslan\ExcelSheetForRefNo");
+            string[] filePaths = Directory.GetFiles(@"E:\T2automation-Arslan\ExcelSheetForRefNo");
             if (filePaths.Count() >= 1)
             {
                 return true;
@@ -94,7 +92,7 @@ namespace T2automation.Util
             {
                 CreateNewXlFile();
                 Console.WriteLine("File Just created! No such data found!");
-                return "What are you looking for?? huh!";
+                return "";
             }
 
             if (ifFileExist())
@@ -139,6 +137,113 @@ namespace T2automation.Util
             }
 
             return null;
+        }
+
+        private string GetConnectionString()
+        {
+            Dictionary<string, string> props = new Dictionary<string, string>();
+
+            // XLSX - Excel 2007, 2010, 2012, 2013
+            props["Provider"] = "Microsoft.ACE.OLEDB.12.0";
+            props["Extended Properties"] = "Excel 12.0 XML";
+            props["Data Source"] = path;
+
+            // XLS - Excel 2003 and Older
+            //props["Provider"] = "Microsoft.Jet.OLEDB.4.0";
+            //props["Extended Properties"] = "Excel 8.0";
+            //props["Data Source"] = "C:\\MyExcel.xls";
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (KeyValuePair<string, string> prop in props)
+            {
+                sb.Append(prop.Key);
+                sb.Append('=');
+                sb.Append(prop.Value);
+                sb.Append(';');
+            }
+
+            return sb.ToString();
+        }
+
+        public bool writeToExcel(string subject, string refno)
+        {
+
+            DataSet ds = new DataSet();
+
+            string connectionString = GetConnectionString();
+
+            using (OleDbConnection conn1 = new OleDbConnection(connectionString))
+            {
+                conn1.Open();
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.Connection = conn1;
+
+                // Get all Sheets in Excel File
+                System.Data.DataTable dtSheet = conn1.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+                // Loop through all Sheets to get data
+                foreach (DataRow dr in dtSheet.Rows)
+                {
+                    string sheetName = dr["sheet1"].ToString();
+
+                    if (!sheetName.EndsWith("$"))
+                        continue;
+
+                    // Get all rows from the Sheet
+                    cmd.CommandText = "SELECT * FROM [" + sheetName + "]";
+
+                    System.Data.DataTable dt = new System.Data.DataTable();
+                    dt.TableName = sheetName;
+
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    ds.Tables.Add(dt);
+                }
+
+                cmd = null;
+                conn1.Close();
+            }
+            
+            return true;
+
+
+
+
+
+            /*
+             * new
+            conn.Open();
+            //OleDbDataAdapter da = new OleDbDataAdapter("select subject from [sheet1$] where subject = "+subject+"", selectConnection: conn);
+            OleDbCommand comd = new OleDbCommand();
+            comd.Connection = conn;
+            comd.CommandText = "select * from [sheet1$]";
+            System.Data.DataTable dt = new System.Data.DataTable();
+            dt.TableName = "sheet1";
+            OleDbDataAdapter da = new OleDbDataAdapter(comd);
+            da.Fill(dt);
+
+
+            */
+
+            /*
+             da.Fill(data);
+             string subfromfile = data.ToString();
+             if (subfromfile.Equals(subject))
+             {
+                 //da;
+             }
+            using (OleDbCommand comm = new OleDbCommand())
+            {
+                comm.CommandText = "select subject from[sheet1$] where subject = "+subject;
+                comm.Connection = conn;
+               
+                    da.SelectCommand = comm;
+                 
+            }*/
+
+            return false;
         }
 
         public bool writeDataToExcel(string subject, string refno)

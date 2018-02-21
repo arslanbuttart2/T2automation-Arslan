@@ -247,12 +247,20 @@ namespace T2automation.Pages.Comm
 
         public void NavigateToMessageRoot(IWebDriver driver, string CommDept)
         {
-            Click(driver, _departmentMessages);
-            var deptList = _deptNames();
-            foreach (IWebElement dept in deptList) {
-                if (GetText(driver, dept).Equals(CommDept))
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                Click(driver, _departmentMessages);
+            }
+
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                var deptList = _deptNames();
+                foreach (IWebElement dept in deptList)
                 {
-                    Click(driver, dept);
+                    if (GetText(driver, dept).Equals(CommDept))
+                    {
+                        Click(driver, dept);
+                    }
                 }
             }
             Click(driver, _inboxMessageWithRoot);

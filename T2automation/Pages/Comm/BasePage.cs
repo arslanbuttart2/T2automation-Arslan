@@ -12,13 +12,14 @@ namespace T2automation.Pages.Comm
 {
     class BasePage
     {
-        public static TimeSpan WAIT_FOR_SECONDS = TimeSpan.FromSeconds(45);
+        public static TimeSpan WAIT_FOR_SECONDS = TimeSpan.FromSeconds(30);
 
         public static bool ElementIsDisplayed(IWebDriver driver, IWebElement element) {
             WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_SECONDS);
             try
             {
-                return element.Displayed;
+                bool chk = element.Displayed;
+                return chk;
             }
             catch (Exception) {
                 return false;

@@ -7,8 +7,7 @@ Scenario Outline:01 message - Add attachement to message - 1 file - personal mai
 	
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
-	Then save reference number from "my" in excel with subject "<subject>"
-
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                    |
@@ -16,7 +15,7 @@ Scenario Outline:01 message - Add attachement to message - 1 file - personal mai
 Scenario Outline:02 message - Add attachement to message - 1 file - department mail
 	When user sends an departmental internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
 	Then mail should appear in department message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType | dept                      |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                  | internalDepartmentSameDepAr |
@@ -24,7 +23,7 @@ Scenario Outline:02 message - Add attachement to message - 1 file - department m
 Scenario Outline:03 Message- Add attachement (multiple files)- personal mail
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"	
-	Then save reference number from "my" in excel with subject "<subject>"
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 10                   | 1.jpg                    |
@@ -32,7 +31,7 @@ Scenario Outline:03 Message- Add attachement (multiple files)- personal mail
 Scenario Outline:04 Message- Add attachement (multiple files)- Department mail
 	When user sends an departmental internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
 	Then mail should appear in department message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType | dept                      |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 10                    | 1.jpg                  | internalDepartmentSameDep |
@@ -40,7 +39,7 @@ Scenario Outline:04 Message- Add attachement (multiple files)- Department mail
 Scenario Outline:05 Message- Add attachement (multiple file types)- personal mail
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"	
-	Then save reference number from "my" in excel with subject "<subject>"
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple type attachement 111 | Message with multiple attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 3                   | 1.png,1.mp3,1.avi,1.pdf,1.xlsx |
@@ -48,7 +47,7 @@ Scenario Outline:05 Message- Add attachement (multiple file types)- personal mai
 Scenario Outline:06 Message- Add attachement (multiple file types)- department mail
 	When user sends an departmental internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
 	Then mail should appear in department message out box "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType		  | dept                      |
 		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple type attachement 111 |Message with multiple attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 3                  | 1.png,1.mp3,1.avi,1.pdf,1.xlsx | internalDepartmentSameDepAr |
@@ -103,42 +102,42 @@ Scenario Outline:12 download all attachment - department mail
 
 Scenario Outline:19 message -  attachement - security level with optional attachment - with attachement -  personal mail
 	When user sends an internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>"
-	Then save reference number from "my" in excel with subject "<subject>"
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel |
 		| UserMainDepartmentAr | Users        | UserSameDepartment | SecurityLevelOptionalAttach | SecurityLevelOptionalAttacht | 1                     | 1.jpg                  | SecurityLevelOptionalAttach |
 
 Scenario Outline:20 message -  attachement - security level with optional attachment adding -  without attachement -  department mail
 	When user sends an deparment internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
 		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | SecurityLevelOptionalAttach | SecurityLevelOptionalAttacht | 1                     | 1.jpg                  | SecurityLevelOptionalAttach | internalDepartmentSameDepAr |
 
 Scenario Outline:21 message - attachment - security level with attachment forbidden - personal mail
 	When user sends an internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>"
-	Then save reference number from "my" in excel with subject "<subject>"
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel |
 		| UserMainDepartmentAr | Users        | UserSameDepartment | SecurityLevelForbidAttach | SecurityLevelForbidAttach | 1                     | 1.jpg                  | SecurityLevelForbidAttach |
 
 Scenario Outline:22 message - attachment - security level with attachment forbidden - department mail
 	When user sends an deparment internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
 		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | SecurityLevelForbidAttach | SecurityLevelForbidAttach | 1                     | 1.jpg                  | SecurityLevelForbidAttach | internalDepartmentSameDepAr |
 
 Scenario Outline:23 message - attachment - security level with attachment required - with attachement - personal mail
 	When user sends an internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>"
-	Then save reference number from "my" in excel with subject "<subject>"
+	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel |
 		| UserMainDepartmentAr | Users        | UserSameDepartment | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach |
 
 Scenario Outline:24 message - attachment - security level with attachment required - without attachement - department mail
 	When user sends an deparment internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
-	Then save reference number from "dept" in excel with subject "<subject>"
+	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to                 | subject                     | content                      | multipleAttachementNo | multipleAttachmentType | securitylevel | dept                      |
 		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDepAr |
@@ -149,32 +148,32 @@ Scenario:25 Message - Connected Documents - Test Case 1
 	And user compose mail "Internal Message to Internal Department 111" "Internal Message to Internal Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
-	Then save reference number from "my" in excel with subject "Internal Message to Internal Department 111"
+	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
 	When user go to my messages Internal Document
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Internal Message to Outside Internal Department 111" "Internal Message to Outside Internal Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
-	Then save reference number from "my" in excel with subject "Internal Message to Outside Internal Department 111"
+	Then save reference number from "my" in txt with subject "Internal Message to Outside Internal Department 111"
 	When user go to my messages Internal Document
 	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
-	Then save reference number from "my" in excel with subject "Incoming Message to Child Department 111"
+	Then save reference number from "my" in txt with subject "Incoming Message to Child Department 111"
 	When user go to my messages Internal Document
 	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email
-	Then save reference number from "my" in excel with subject "Incoming Message to Outside Child Department 111"
+	Then save reference number from "my" in txt with subject "Incoming Message to Outside Child Department 111"
 	When user go to my messages Outgoing Document
 	And select the external department "ExternalEntitySameCountry"   
 	And select delivery type "Delivery by hand"
 	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
 	And user attach attachments 1 "1.png"
 	And user send the email and click on Cancel button
-	Then save reference number from "my" in excel with subject "Outgoing Message to Admin Communication department 111"
+	Then save reference number from "my" in txt with subject "Outgoing Message to Admin Communication department 111"
 	When user go to my messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
@@ -183,7 +182,7 @@ Scenario:25 Message - Connected Documents - Test Case 1
 	And user select connected document with subject "Incoming Message to Child Department 111"
 	And user select connected document with subject "Outgoing Message to Admin Communication department 111"
 	And user send the email
-	Then save reference number from "my" in excel with subject "Internal Message with Connected Documents 111"
+	Then save reference number from "my" in txt with subject "Internal Message with Connected Documents 111"
 	
 Scenario:26 Message - View connected document - with permission -  personal mail
 	When Admin set system message permissions for user "View Related Messages" "True" "User"
@@ -195,7 +194,7 @@ Scenario:26 Message - View connected document - with permission -  personal mail
 	Then the visibilty of tab "Connected Document" should be "True" on connected doc tab
 	Then the visibilty of button "Add" should be "False" on connected doc tab
 	And the visibilty of button "Delete" should be "False" on connected doc tab
-
+	#isske tab visibiility main error hai k connected tab ka elemanet nai milta isko
 Scenario:27 Message - View connected document - without permission -  personal mail
 	When Admin set system message permissions for user "View Related Messages" "False" "User"
 	And User logs in "UserName" "Password"
@@ -486,7 +485,7 @@ Scenario:48 Message - connected Person - Permission view and add - with permissi
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Persons" "False" "User"
 	When Admin set system message permissions for user "Add Related Person" "False" "User"
-
+	
 Scenario:50 Message - connected Person - Permission view only - with permission - Personal mail
 	When Admin set system message permissions for user "View Related Persons" "True" "User"
 	When Admin set system message permissions for user "Add Related Person" "False" "User"
@@ -495,7 +494,7 @@ Scenario:50 Message - connected Person - Permission view only - with permission 
 	Then the visibilty of button "Add" should be "False" on connected person tab
 	And the visibilty of button "Delete" should be "False" on connected person tab
 	And the visibilty of button "Edit" should be "False" on connected person tab
-	Then user deletes the draft
+	And user deletes the draft
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Persons" "False" "User"	
 	
@@ -519,6 +518,33 @@ Scenario:52 Message - Adding connected Person - Invalid / incomplete data - Pers
 	When Admin set system message permissions for user "View Related Persons" "False" "User"
 	And Admin set system message permissions for user "Add Related Person" "False" "User"
 	
+	Scenario:53 Message - Adding connected Person - Invalid / incomplete data - Department mail
+	When Admin set department message permissions for user "View Related Persons" "True" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Add Related Persons" "True" "User" "internalDepartmentSameDep"
+	And User logs in "UserName" "Password"
+	And user go to dept messages Incoming Document
+	When user set connected person "Person Name1" "PersonEmail1mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	Then Error is shown as "Invalid Email Address" "Email"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "abcd" "12345" "Riyadh" "now" "هوية" "True"
+	Then Error is shown as "Invalid number format" "Mobile"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "abcd" "Riyadh" "now" "هوية" "True"
+	Then Error is shown as "Invalid number format" "IDNumber"
+	When user set connected person "" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	Then Error is shown as "Required Field" "Name"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "" "12345" "Riyadh" "now" "هوية" "True"
+	Then Error is shown as "Required Field" "Mobile"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "" "Riyadh" "now" "هوية" "True"
+	Then Error is shown as "Required Field" "IDNumber"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "" "True"
+	Then Error is shown as "Required Field" "ID"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "" "" "هوية" "True"
+	Then the connected person with name "Person Name1" should appear in the list
+	###check error for adding person with same name and id number
+	Then user deletes the draft
+	Given Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set department message permissions for user "View Related Persons" "False" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Add Related Persons" "False" "User" "internalDepartmentSameDep"
+
 Scenario:54 Message - connected Person - no permission - Personal mail
 	When Admin set system message permissions for user "View Related Persons" "False" "User"
 	When Admin set system message permissions for user "Add Related Person" "False" "User"
@@ -561,4 +587,12 @@ Scenario: 58 Message - Connected Persons - Add Connected Person - Cancel - Perso
 Scenario: 59 Message - Connected Persons - Add Connected Person - Cancel - Department mail
 	When Admin set department message permissions for user "View Related Persons" "True" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Add Related Person" "True" "User" "internalDepartmentSameDep"
+	And User logs in "UserName" "Password"
+	And user go to dept messages Incoming Document
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "False"
+	Then verify the connected person with name "Person Name1" should not appear in the list
+	And user deletes the draft
+	Given Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set department message permissions for user "View Related Persons" "False" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Add Related Person" "False" "User" "internalDepartmentSameDep"
 	

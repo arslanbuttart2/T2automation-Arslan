@@ -57,6 +57,29 @@ namespace T2automation.Steps.My_Messages
             Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, attachmentNo: attachmentNo, attachment:attachmentType));
         }
 
+        [When(@"user sends an internal message to and cc ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"""), Then(@"user sends an internal message to and cc ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserSendsAnInternalMessageToAndCc(string level, string receiverType, string to, string subject, string content, string cclevel, string ccReciverType, string ccTo)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            myMessageInboxPage = new InboxPage(driver);
+            myMessageInboxPage.NavigateToMyMessageInbox(driver);
+            myMessageInboxPage.CheckButtonClickable(driver, "Internal Document");
+            myMessageInboxPage.ClickToButton(driver);
+            myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
+            myMessageInboxPage.SelectReceiverType(driver, receiverType);
+            myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(to);
+            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            myMessageInboxPage.ClickOkBtn();
+            myMessageInboxPage.ClickCCbutton(driver);
+            myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(cclevel));
+            myMessageInboxPage.SelectReceiverType(driver, receiverType);
+            myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(ccTo);
+            myMessageInboxPage.SelectCcUser(driver, readFromConfig.GetValue(ccTo));
+            myMessageInboxPage.ClickOkBtn();
+            myMessageInboxPage.SendMail(subject, content);
+        }
+
         [Then(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenMailShouldAppearInTheInbox(string to, string subject, string content)
         {
@@ -90,6 +113,14 @@ namespace T2automation.Steps.My_Messages
             Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass)));
         }
 
+        [Then(@"mail should appear in dept inbox ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenMailShouldAppearInDeptInbox(string to, string subject, string content)
+        {
+            myMessageInboxPage = new InboxPage(driver);
+            myMessageInboxPage.NavigateToQADeptInbox(driver);
+            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));
+        }
+
         [Then(@"encrypted mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenEncryptedMailShouldAppearInTheInbox(string to, string subject, string content, string listSubject, string encryptedPass)
         {
@@ -104,6 +135,7 @@ namespace T2automation.Steps.My_Messages
         {
             driver = driverFactory.GetDriver();
             myMessageInboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
             myMessageInboxPage.CheckButtonClickable(driver, "Incoming Document");
             myMessageInboxPage.ClickToButton(driver);
