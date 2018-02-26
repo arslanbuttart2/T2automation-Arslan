@@ -119,3 +119,4 @@ Scenario:ph 2 Message Actions - Archiving Message
 	And mail should appear in dept inbox "internalDepartmentSameDepAr" "Outgoing message for archiving 444" "Outgoing message for archiving 444"
 	
 
+
