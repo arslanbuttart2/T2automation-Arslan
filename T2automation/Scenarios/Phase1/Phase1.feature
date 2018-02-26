@@ -6,8 +6,8 @@ Background:
 Scenario:ph 1 Message Actions - Deleting Message
 	When Admin set system message permissions for user "Delete Messages from Inbox" "True" "User"
 	And Admin set system message permissions for user "Rollback Messages from Deleted Items" "True" "User"
-	And Admin set department message permissions for user "Delete Messages from Inbox" "True" "User" "internalDepartmentSameDepAr"
-	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "True" "User" "internalDepartmentSameDepAr"
+	And Admin set department message permissions for user "Delete Messages from Inbox" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "True" "User" "internalDepartmentSameDep"
 	When user go to my messages Internal Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Internal message for deletion 111" "Internal message for deletion 111"
