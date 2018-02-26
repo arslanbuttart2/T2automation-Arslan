@@ -17,11 +17,12 @@ namespace T2automation
         [BeforeScenario]
         public static void SignOut()
         {
-            Directory.SetCurrentDirectory(@"D:\T2automation-Arslan");
+            Directory.SetCurrentDirectory(@"E:\T2automation-Arslan");
             string path = Directory.GetCurrentDirectory();
             DriverFactory driverFactory = new DriverFactory("BaseUrl");
             IWebDriver driver = driverFactory.GetDriver();
-            driver.Navigate().GoToUrl("http://qa.ole5.sa");
+            //driver.Navigate().GoToUrl("http://qa.ole5.sa");
+            driver.Navigate().GoToUrl("http://qa-stg.ole5.sa");
             Array.ForEach(Directory.GetFiles(path+"\\T2automation\\Downloads"), File.Delete);
         }
 

@@ -14,6 +14,21 @@ namespace T2automation.Pages.MyMessages
     {
         private readonly IWebDriver _driver;
 
+        private IWebElement _mailLoading(IWebDriver driver)
+        {
+            return driver.FindElement(By.Id("container_processing"));
+        }
+
+        private IWebElement _processing(IWebDriver driver)
+        {
+            return driver.FindElement(By.ClassName("dataTables_processing"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']//a/i[@class='fa fa-search']")]
+        private IWebElement _outboxSearchButton;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
+        private IWebElement _outboxSearchField;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td/label")]
         private IList<IWebElement> _checkboxList;
@@ -77,6 +92,58 @@ namespace T2automation.Pages.MyMessages
             return false;
         }*/
 
+        public void firstSearchOutbox(string subject)
+        {
+            SendKeys(_driver, _outboxSearchField, subject);
+            Click(_driver, _outboxSearchButton);
+            WaitTillProcessing();
+        }
+
+        public void WaitTillProcessing()
+        {
+            int tries = 0;
+            try
+            {
+                while (ElementIsDisplayed(_driver, _processing(_driver)) && tries < 1000)
+                {
+                    tries++;
+                    continue;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        public void WaitTillMailsGetLoad()
+        {
+            while (ElementIsDisplayed(_driver, _mailLoading(_driver)))
+            {
+                continue;
+            }
+        }
+
+        public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
+        {
+            firstSearchOutbox(strData);
+            WaitTillMailsGetLoad();
+            int searchResult = _subjectList.Count();
+
+            if (searchResult >= 1 && withSubject == true)
+            {
+                Click(driver, _subjectList.ElementAt(0));
+                return true;
+            }
+            else if (searchResult >= 1 && withSubject == false)
+            {
+                Click(driver, _referenceNoList.ElementAt(0));
+                return true;
+            }
+            Console.WriteLine("No such mail found!!!");
+            return false;
+        }
+
         public bool OpenMail(IWebDriver driver, string subject, string encryptPass = "")
         {
             Thread.Sleep(3000);
@@ -98,10 +165,17 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
         
-        public string readRefNoFromMail(IWebDriver driver)
+        public string readRefNoFromMail(IWebDriver driver,string subject)
         {
             WaitForElement(driver, _referenceNo);
-            return GetText(driver, _referenceNo);
+            if(GetText(driver, _subject).Equals(subject))
+            {
+                return GetText(driver, _referenceNo);
+            }
+            else
+            {
+                return "Subjects not matched!!!";
+            }
         }
 
         public bool ValidateTo(IWebDriver driver, string to)

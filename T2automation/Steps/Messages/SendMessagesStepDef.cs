@@ -41,7 +41,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             myMessageInboxPage.SelectReceiverType(driver, receiverType);
             myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to),receiverType);
             myMessageInboxPage.ClickOkBtn();
             myMessageInboxPage.SendMail(subject, content);
         }
@@ -69,7 +69,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             myMessageInboxPage.SelectReceiverType(driver, receiverType);
             myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to),receiverType);
             myMessageInboxPage.ClickOkBtn();
             myMessageInboxPage.ClickCCbutton(driver);
             myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(cclevel));
@@ -80,8 +80,8 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SendMail(subject, content);
         }
 
-        [Then(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
-        public void ThenMailShouldAppearInTheInbox(string to, string subject, string content, string ccStatus = "False")
+        [Then(@"mail should appear in the inbox read CC too ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenMailShouldAppearInTheInboxReadCCToo(string to, string subject, string content, string ccStatus = "False")
         {
             myMessageInboxPage = new InboxPage(driver);
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
@@ -99,7 +99,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             myMessageInboxPage.SelectReceiverType(driver, receiverType);
             myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to),receiverType);
             myMessageInboxPage.ClickOkBtn();
             myMessageInboxPage.SendMail(subject, content);
         }
@@ -142,7 +142,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             myMessageInboxPage.SelectReceiverType(driver, receiverType);
             myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to),receiverType);
             myMessageInboxPage.ClickOkBtn();
             myMessageInboxPage.SendMail(subject, content);
         }

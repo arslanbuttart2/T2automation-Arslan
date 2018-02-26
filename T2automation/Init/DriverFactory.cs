@@ -43,7 +43,7 @@ namespace T2automation.Init
 
             else if (browserType.Equals("chrome") || browserType.Equals("ch"))
             {
-                Directory.SetCurrentDirectory(@"D:\T2automation-Arslan");
+                Directory.SetCurrentDirectory(@"E:\T2automation-Arslan");
                 string path = Directory.GetCurrentDirectory();
                 Array.ForEach(Directory.GetFiles(path+"\\T2automation\\Downloads"), File.Delete);
                 var chromeOptions = new ChromeOptions();

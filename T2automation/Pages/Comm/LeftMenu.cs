@@ -118,6 +118,15 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdd8ca884-0b05-4de6-900d-af5fc9623558']/a/label")]
         private IWebElement _commDept;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub644dc7d2-f626-4abf-851f-8395d8a79674']/a")]
+        private IWebElement _accountingDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
+        private IWebElement _accountingDeptInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
+        private IWebElement _accountingDeptOutbox;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDept;
@@ -222,6 +231,28 @@ namespace T2automation.Pages.Comm
         {
             NavigateToMyMessage(driver);
             Click(driver, _myMessageOutbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAccountingDeptInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                Click(driver, _departmentMessages);
+            }
+            Click(driver, _accountingDept);
+            Click(driver, _accountingDeptInbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAccountingDeptOutbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                Click(driver, _departmentMessages);
+            }
+            Click(driver, _accountingDept);
+            Click(driver, _accountingDeptOutbox);
             Thread.Sleep(1000);
         }
 

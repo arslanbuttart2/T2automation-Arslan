@@ -167,13 +167,13 @@ Scenario:25 Message - Connected Documents - Test Case 1
 #	And user attach attachments 1 "1.png"
 #	And user send the email
 #	Then save reference number from "my" in txt with subject "Incoming Message to Outside Child Department 111"
-	When user go to my messages Outgoing Document
-	And select the external department "ExternalEntitySameCountry"   
-	And select delivery type "Delivery by hand"
-	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
-	And user attach attachments 1 "1.png"
-	And user send the email and click on Cancel button
-	Then save reference number from "my" in txt with subject "Outgoing Message to Admin Communication department 111"
+#	When user go to my messages Outgoing Document
+#	And select the external department "ExternalEntitySameCountry"   
+#	And select delivery type "Delivery by hand"
+#	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
+#	And user attach attachments 1 "1.png"
+#	And user send the email and click on Cancel button
+#	Then save reference number from "my" in txt with subject "Outgoing Message to Admin Communication department 111"
 	When user go to my messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"

@@ -447,22 +447,6 @@ this.FeatureBackground();
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 170
- testRunner.When("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 171
- testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 172
- testRunner.And("select delivery type \"Delivery by hand\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 173
- testRunner.And("user compose mail \"Outgoing Message to Admin Communication department 111\" \"Outgo" +
-                    "ing Message to Admin Communication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 174
- testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 175
- testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 176
- testRunner.Then("save reference number from \"my\" in txt with subject \"Outgoing Message to Admin Co" +
-                    "mmunication department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 177
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 178

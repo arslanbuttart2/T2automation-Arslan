@@ -61,7 +61,13 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//tbody/tr/td[1]/label")]
         private IList<IWebElement> _selectToCheck;
-
+        //*[@id="searchGrid2Temp"]/tbody/tr/td[1]/label
+        [FindsBy(How = How.XPath, Using = ".//*[@id='searchGrid2Temp']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _selectToCheckForUser;
+        //*[@id='organizationSearchGridTemp']/tbody/tr/td[1]/label
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationSearchGridTemp']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _selectToCheckForStructuralHierarchy;
+        
         //[FindsBy(How = How.XPath, Using = ".//tbody/tr/td[2]")]
         //private IList<IWebElement> _selectToName;
 
@@ -276,7 +282,8 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-forward")]
         private IWebElement _forwardBtn;
-
+        //*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[8]/a/label
+        //*[@id='main-parent']/*//a/label/i[@class='fa fa-remove']
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[4]/div[1]/div[3]/a/label")]
         private IWebElement _deleteDraftBtn;
 
@@ -294,6 +301,16 @@ namespace T2automation.Pages.MyMessages
         private IList<IWebElement> _selectToName()
         {
             return _driver.FindElements(By.XPath(".//table/tbody/tr/td[2]"));
+        }
+
+        private IList<IWebElement> _selectToNameForUsers()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='searchGrid2Temp']/tbody/tr[1]/td[2]"));
+        }
+
+        private IList<IWebElement> _selectToNameForStructuralHierarchy()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='organizationSearchGridTemp']/tbody/tr/td[2]"));
         }
 
         private IList<IWebElement> _connectedDocSearchedCheckBoxes()
@@ -431,6 +448,11 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        private IWebElement _UpperHeadMenuTabBtns(IWebDriver driver, string btnTxt)
+        {
+            return driver.FindElement(By.XPath(".//*[@id='head-menu']/*/a/label[text()='" + btnTxt + "']"));
+        } 
+
         public void firstSearchInbox(string subject)
         {
             SendKeys(_driver, _inboxSearchField, subject);
@@ -540,16 +562,34 @@ namespace T2automation.Pages.MyMessages
             Thread.Sleep(1000);
         }
 
-        public void SelectToUser(IWebDriver driver, string user) {
+        public void SelectToUser(IWebDriver driver, string user, string receiverType) {
             WaitTillProcessing();
             Thread.Sleep(2000);
-            Console.WriteLine(_selectToName().Count.ToString());
-            for (int index = 0; index < _selectToName().Count; index++) {
-                if (GetText(driver, _selectToName().ElementAt(index)).Contains(user)) {
-                    Click(driver, _selectToCheck.ElementAt(index));
-                    Click(driver, _selectToFrameToBtn);
-                    Thread.Sleep(1000);
-                    return;
+            
+            if (receiverType.Equals("Users"))
+            {
+                for (int index = 0; index < _selectToNameForUsers().Count; index++)
+                {
+                    if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForUser.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                }
+            }
+            else if (receiverType.Equals("Structural Hierarchy"))
+            {
+                for (int index = 0; index < _selectToNameForStructuralHierarchy().Count; index++)
+                {
+                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }
                 }
             }
         }
@@ -606,25 +646,48 @@ namespace T2automation.Pages.MyMessages
             WaitTillMailSent();
         }
 
-        public bool OpenMail(IWebDriver driver, string subject, string encryptPass = "")
+        public bool OpenMail(IWebDriver driver, string strData, string encryptPass = "" , bool withSubject = true)
         {
-            firstSearchInbox(subject);
+            firstSearchInbox(strData);
             WaitTillMailsGetLoad();
-            firstSearchInbox(subject);
-            foreach (IWebElement elem in _subjectList)
+            int searchResult = _subjectList.Count();
+            if (searchResult >= 1 && withSubject == true)
             {
-                if (GetText(driver, elem).Equals(subject))
+                foreach (IWebElement elem in _subjectList)
                 {
-                    Click(driver, elem);
-                    Thread.Sleep(1000);
-                    if (!encryptPass.Equals("")) {
-                        EncryptedPassword = encryptPass;
-                        Click(driver, _encryptedPasswordOkBtn);
-                        Thread.Sleep(5000);
+                    if (GetText(driver, elem).Equals(strData))
+                    {
+                        Click(driver, elem);
+                        Thread.Sleep(1000);
+                        if (!encryptPass.Equals(""))
+                        {
+                            EncryptedPassword = encryptPass;
+                            Click(driver, _encryptedPasswordOkBtn);
+                            Thread.Sleep(5000);
+                        }
+                        return true;
                     }
-                    return true;
                 }
             }
+            else if (searchResult >=1 && withSubject == false)
+            {
+                foreach (IWebElement elem in _referenceNoList)
+                {
+                    if (GetText(driver, elem).Equals(strData))
+                    {
+                        Click(driver, elem);
+                        Thread.Sleep(1000);
+                        if (!encryptPass.Equals(""))
+                        {
+                            EncryptedPassword = encryptPass;
+                            Click(driver, _encryptedPasswordOkBtn);
+                            Thread.Sleep(5000);
+                        }
+                        return true;
+                    }
+                }
+            }
+            Console.WriteLine("No such mail found!!!");
             return false;
         }
 
@@ -941,16 +1004,16 @@ namespace T2automation.Pages.MyMessages
             Click(driver, _connectedDocTab);
         }
 
-        public void SearchConnectedDoc(string refno)
+        public void SearchConnectedDoc(string subject)
         {
             Click(_driver, _connectedDocTab);
             Click(_driver, _addNewBtn);
-            WaitTillProcessing();
-            SendKeys(_driver, _connectedDocRefNoField, refno);
+            Thread.Sleep(1000);
+            SendKeys(_driver, _connectedDocSubject, subject);
             Click(_driver, _connectedDocSearchBtn);
-            WaitTillProcessing();
+            Thread.Sleep(2000);
         }
-
+        
         public string addNumberInString(string refno,int add)
         {
             string[] strArray = refno.Split('-');
@@ -1132,10 +1195,12 @@ namespace T2automation.Pages.MyMessages
             Click(driver, _selectMainCcFramBtn);
         }
 
-        public int SelectConnectedDoc(string refno,bool statusSave= true)
+        public int SelectConnectedDoc(string subject,bool statusSave= true)
         {
-            SearchConnectedDoc(refno);
+            SearchConnectedDoc(subject);
             int searchResults = _connectedDocSearchedSubjects().Count;
+            //SearchConnectedDocWithRefrenceNo(refno);
+            //int searchResults = _connectedDocSearchedReferenceNo().Count;
             if (searchResults >= 1) {
                 Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
                 if (statusSave == true)

@@ -257,8 +257,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 80
  testRunner.Then("Admin logged in \"UserOtherDepartment\" \"UserOtherDepartmentPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 81
- testRunner.Then("mail should appear in the inbox \"UserMainDepartment\" \"Sending Permission to All U" +
-                    "sers 111\" \"Sending Permission to All Users 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("mail should appear in the inbox read CC too \"UserMainDepartment\" \"Sending Permiss" +
+                    "ion to All Users 111\" \"Sending Permission to All Users 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -289,8 +289,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 90
  testRunner.Then("Admin logged in \"UserOtherDepartment\" \"UserOtherDepartmentPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 91
- testRunner.Then("mail should appear in the inbox \"UserMainDepartment\" \"Sending Permission to All U" +
-                    "sers 111\" \"Sending Permission to All Users 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("mail should appear in the inbox read CC too \"UserMainDepartment\" \"Sending Permiss" +
+                    "ion to All Users 111\" \"Sending Permission to All Users 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

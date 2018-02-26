@@ -78,7 +78,7 @@ Scenario:sm 28 Sending Permissions -  send to all users - Personal mail
 	Then Admin logged in "AdminUserName" "AdminPassword"
 	Then Admin unset system message sending permissions for user "User" "Send All Users"
 	Then Admin logged in "UserOtherDepartment" "UserOtherDepartmentPassword"
-	Then mail should appear in the inbox "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "True"
+	Then mail should appear in the inbox read CC too "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "True"
 
 Scenario:sm 29 Sending Permissions -  send to all departments - Personal mail
 	Given Admin logged in "AdminUserName" "AdminPassword"
@@ -88,6 +88,6 @@ Scenario:sm 29 Sending Permissions -  send to all departments - Personal mail
 	Then Admin logged in "AdminUserName" "AdminPassword"
 	Then Admin unset system message sending permissions for user "User" "Send All Departments"
 	Then Admin logged in "UserOtherDepartment" "UserOtherDepartmentPassword"
-	Then mail should appear in the inbox "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" ""
+	Then mail should appear in the inbox read CC too "UserMainDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" ""
 	
 	

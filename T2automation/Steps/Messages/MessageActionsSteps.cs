@@ -39,7 +39,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver,readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
+            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
         }
 
@@ -55,7 +55,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver,readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode =readFromConfig.GetValue(to);
-            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
+            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo: multipleAttachementNo, multipleAttachmentType: multipleAttachmentType);
         }
@@ -75,8 +75,8 @@ namespace T2automation.Steps.Messages
             {
                 outboxPage.NavigateToQADeptOutbox(driver);
             }
-            outboxPage.OpenMail(driver, subject);
-            string refno = outboxPage.readRefNoFromMail(driver);
+            outboxPage.OpenMailSpecialForTxtFile(driver, subject,withSubject: false);
+            string refno = outboxPage.readRefNoFromMail(driver,subject);
             Assert.IsTrue(txtManager.writeToFile(type,subject, refno), " this must be written in the txt file!!");
         }
         
@@ -93,7 +93,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode =readFromConfig.GetValue(to);
-            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to));
+            inboxPage.SelectToUser(driver,readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo:multipleAttachementNo, multipleAttachmentType: multipleAttachmentType);
         }
@@ -178,7 +178,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver,readFromConfig.GetValue( level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            inboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            inboxPage.SelectToUser(driver, readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo: attachmentNo, multipleAttachmentType: attachmentType, securityLevel: readFromConfig.GetValue(securityLevel));
         }
@@ -196,7 +196,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver,readFromConfig.GetValue( level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            inboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            inboxPage.SelectToUser(driver, readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
             inboxPage.SendMail(subject, content, multipleAttachementNo: attachmentNo, multipleAttachmentType: attachmentType, securityLevel: readFromConfig.GetValue(securityLevel));
         }
@@ -220,7 +220,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
             inboxPage.WaitTillProcessing();
-            inboxPage.SelectToUser(driver, readFromConfig.GetValue(to));
+            inboxPage.SelectToUser(driver, readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
         }
 
@@ -270,6 +270,14 @@ namespace T2automation.Steps.Messages
         public void WhenUserEntersIncommingMessageNoAndIncommingMessageGregorianDate(string messageNo, string messageGreorianDate)
         {
             inboxPage.SetProperties(messageNo: messageNo, messageGreorianDate: messageGreorianDate);
+        }
+
+        [Then(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"""), When(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenMailShouldAppearInTheInbox(string to, string subject, string content)
+        {
+            inboxPage = new InboxPage(driver);
+            inboxPage.NavigateToMyMessageInbox(driver);
+            Assert.IsTrue(inboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));
         }
 
         [When(@"user go to my messages Outgoing Document")]
@@ -326,7 +334,7 @@ namespace T2automation.Steps.Messages
         {
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.SelectConnectedDoc(refno);   
+            inboxPage.SelectConnectedDoc(subject);   
         }
 
         [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -398,6 +406,8 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
             inboxPage.OpenMail(driver, subject);
         }
 
@@ -517,6 +527,17 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
         }
+
+        [When(@"user go to dept ""(.*)"" messages Internal Document")]
+        public void WhenUserGoToDeptMessagesInternalDocument(string deptName)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
+            inboxPage.CheckButtonClickable(driver, "Internal Document");
+        }
+        
         [When(@"user go to dept messages Outgoing Document")]
         public void WhenUserGoToDeptMessagesOutgoingDocument()
         {

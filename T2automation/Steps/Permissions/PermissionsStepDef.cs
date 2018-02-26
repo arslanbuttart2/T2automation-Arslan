@@ -47,11 +47,8 @@ namespace T2automation
             userManagerPage = new UserManagerPage(driver);
             userManagerPage.NavigateToUserManager(driver);
             Assert.IsTrue(userManagerPage.IsAt(driver, userManagerPage.title));
-
             permissionsPage = userManagerPage.OpenPermissions(driver, new ReadFromConfig().GetValue(user));
-
             permissionsPage.OpenSystemMessagePermissionsTabAndChk(driver, checkbox);
-
         }
 
         [Then(@"Admin unset system message sending permissions for user ""(.*)"" ""(.*)""")]
