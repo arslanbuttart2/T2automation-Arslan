@@ -118,5 +118,3 @@ Scenario:ph 2 Message Actions - Archiving Message
 	Then mail should appear in dept inbox "internalDepartmentSameDepAr" "Encrypted message for archiving 222" "Encrypted message for archiving 222"
 	And mail should appear in dept inbox "internalDepartmentSameDepAr" "Outgoing message for archiving 444" "Outgoing message for archiving 444"
 	
-
-
