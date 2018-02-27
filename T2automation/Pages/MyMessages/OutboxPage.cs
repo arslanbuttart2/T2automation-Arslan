@@ -30,6 +30,15 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _outboxSearchField;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/*//a/i[@class='fa fa-eraser']")]
+        private IWebElement _outboxPageEraseButton;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/*//a/label/i[@class='fa fa-undo']")]
+        private IWebElement _btnRollback;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtRefernceNumber']")]
+        private IWebElement _outboxRefNoSearchField;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td/label")]
         private IList<IWebElement> _checkboxList;
 
@@ -74,6 +83,11 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        private IWebElement _UpperHeadMenuTabBtns(IWebDriver driver, string btnTxt)
+        {
+            return driver.FindElement(By.XPath(".//*[@id='head-menu']/*/a/label[text()='" + btnTxt + "']"));
+        }
+
         public string title = "Outbox - Ole5.1";
 
         public OutboxPage(IWebDriver driver) : base(driver)
@@ -81,19 +95,20 @@ namespace T2automation.Pages.MyMessages
             _driver = driver;
             PageFactory.InitElements(_driver, this);
         }
-
-        /*public bool OpenMail(IWebDriver driver, string subject) {
-            foreach (IWebElement elem in _subjectList){
-                if (GetText(driver, elem).Equals(subject)) {
-                    Click(driver, elem);
-                    return true;
-                }
-            }
-            return false;
-        }*/
+        
+        public void firstSearchFolderWithRefNo(string refno)
+        {
+            Click(_driver, _outboxPageEraseButton);
+            WaitTillProcessing();
+            SendKeys(_driver, _outboxRefNoSearchField, refno);
+            Click(_driver, _outboxSearchButton);
+            WaitTillProcessing();
+        }
 
         public void firstSearchOutbox(string subject)
         {
+            Click(_driver, _outboxPageEraseButton);
+            WaitTillProcessing();
             SendKeys(_driver, _outboxSearchField, subject);
             Click(_driver, _outboxSearchButton);
             WaitTillProcessing();
@@ -126,8 +141,17 @@ namespace T2automation.Pages.MyMessages
 
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
-            firstSearchOutbox(strData);
-            WaitTillMailsGetLoad();
+            if (withSubject == false)
+            {
+                firstSearchFolderWithRefNo(strData);
+                WaitTillMailsGetLoad();
+            }
+            else if (withSubject == true)
+            {
+                firstSearchOutbox(strData);
+                WaitTillMailsGetLoad();
+            }
+
             int searchResult = _subjectList.Count();
 
             if (searchResult >= 1 && withSubject == true)
@@ -142,6 +166,36 @@ namespace T2automation.Pages.MyMessages
             }
             Console.WriteLine("No such mail found!!!");
             return false;
+        }
+
+        public bool userClickRollbackBtn(IWebDriver driver)
+        {
+            try
+            {
+                Click(driver, _btnRollback);
+                Console.WriteLine("Rollback is Clicked!!!");
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Unable to Click!!!");
+                return false;
+            }
+        }
+
+        public bool userClickUpperTabBtn(IWebDriver driver,string btnName)
+        {
+            try
+            {
+                Click(driver, _UpperHeadMenuTabBtns(driver, btnName));
+                Console.WriteLine("Upper Button tab Clicked!!!");
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Upper Button tab is not Clicked!!!");
+                return false;
+            }
         }
 
         public bool OpenMail(IWebDriver driver, string subject, string encryptPass = "")
@@ -212,7 +266,7 @@ namespace T2automation.Pages.MyMessages
 
         public bool ValidateMail(IWebDriver driver, string to, string subject, string body, int attachmentNo = 1, string attachment = null)
         {
-            if (OpenMail(driver, subject))
+            if (OpenMailSpecialForTxtFile(driver, subject))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body) && ValidateAttachments(driver, attachmentNo, attachment));
             }
@@ -221,7 +275,7 @@ namespace T2automation.Pages.MyMessages
 
         public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass)
         {
-            if (OpenMail(driver, listSubject, encryptPass))
+            if (OpenMailSpecialForTxtFile(driver, listSubject, encryptPass))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
             }

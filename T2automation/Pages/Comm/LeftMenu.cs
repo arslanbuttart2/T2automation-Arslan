@@ -128,11 +128,17 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
         private IWebElement _accountingDeptOutbox;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a/label")]
+        private IWebElement _accountingDeptDeletedF;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDept;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label/i[@class='fa fa-trash-o']")]
+        private IWebElement _qaDeptDeletedF;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptOutbox;
@@ -227,6 +233,13 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
+        public void NavigateToMyMessageDeletedF(IWebDriver driver)
+        {
+            NavigateToMyMessage(driver);
+            Click(driver, _myMessageDeleted);
+            Thread.Sleep(1000);
+        }
+
         public void NavigateToMyMessageOutbox(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
@@ -264,6 +277,17 @@ namespace T2automation.Pages.Comm
             }
             Click(driver, _qaDept);
             Click(driver, _qaDeptInbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToQADeptDeletedFolder(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                Click(driver, _departmentMessages);
+            }
+            Click(driver, _qaDept);
+            Click(driver, _qaDeptDeletedF);
             Thread.Sleep(1000);
         }
 

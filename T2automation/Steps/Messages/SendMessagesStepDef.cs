@@ -116,6 +116,8 @@ namespace T2automation.Steps.My_Messages
         [Then(@"mail should appear in dept inbox ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenMailShouldAppearInDeptInbox(string to, string subject, string content)
         {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
             myMessageInboxPage = new InboxPage(driver);
             myMessageInboxPage.NavigateToQADeptInbox(driver);
             Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));

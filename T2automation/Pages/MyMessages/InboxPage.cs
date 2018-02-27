@@ -25,6 +25,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//div/div/span[@class='error-msg']/p")]
         private IList<IWebElement> _errorMessage;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/*//a/i[@class='fa fa-eraser']")]
+        private IWebElement _inboxPageEraseButton;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div[7]/a/i")]
         private IWebElement _inboxSearchButton;
@@ -190,8 +193,8 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='IdIssuer']")]
         private IWebElement _personTabIdIssuer;
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='IssueDate']")]
+        //*[@id="IssueDate2"] 2 is in the case of old server remove '2' for new server
+        [FindsBy(How = How.XPath, Using = "//*[@id='IssueDate2']")]
         private IWebElement _personTabIssueDate;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='att-head-menu']/div[1]/a/label")]
@@ -212,7 +215,8 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "txtSendDate2")]
         private IWebElement _incommingHijriMessageDate;
 
-        [FindsBy(How = How.Id, Using = "txtSendDate")]
+        //*[@id="txtSendDate2"] for georgia calander in old server but for new server remove the '2' from the end of the id -.-
+        [FindsBy(How = How.Id, Using = "txtSendDate2")]
         private IWebElement _incommingGregorianMessageDate;
 
         [FindsBy(How = How.Id, Using = "relatedDocumentCount")]
@@ -282,8 +286,14 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-forward")]
         private IWebElement _forwardBtn;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtRefernceNumber']")]
+        private IWebElement _inboxRefNoSearchField;
         //*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[8]/a/label
         //*[@id='main-parent']/*//a/label/i[@class='fa fa-remove']
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/*//a/label/i[@class='fa fa-remove']")]
+        private IWebElement _deleteMailBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[4]/div[1]/div[3]/a/label")]
         private IWebElement _deleteDraftBtn;
 
@@ -455,6 +465,8 @@ namespace T2automation.Pages.MyMessages
 
         public void firstSearchInbox(string subject)
         {
+            Click(_driver, _inboxPageEraseButton);
+            WaitTillProcessing();
             SendKeys(_driver, _inboxSearchField, subject);
             Click(_driver, _inboxSearchButton);
             WaitTillProcessing();
@@ -646,6 +658,53 @@ namespace T2automation.Pages.MyMessages
             WaitTillMailSent();
         }
 
+        public void firstSearchFolderWithRefNo(string refno)
+        {
+            Click(_driver, _inboxPageEraseButton);
+            SendKeys(_driver, _inboxRefNoSearchField, refno);
+            Click(_driver, _inboxSearchButton);
+            WaitTillProcessing();
+        }
+
+        public void firstSearchinbox(string subject)
+        {
+            Click(_driver, _inboxPageEraseButton);
+            WaitTillProcessing();
+            SendKeys(_driver, _inboxSearchField, subject);
+            Click(_driver, _inboxSearchButton);
+            WaitTillProcessing();
+        }
+
+
+        public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
+        {
+            if (withSubject == false)
+            {
+                firstSearchFolderWithRefNo(strData);
+                WaitTillMailsGetLoad();
+            }
+            else if(withSubject == true)
+            {
+                firstSearchInbox(strData);
+                WaitTillMailsGetLoad();
+            }
+
+            int searchResult = _subjectList.Count();
+
+            if (searchResult >= 1 && withSubject == true)
+            {
+                Click(driver, _subjectList.ElementAt(0));
+                return true;
+            }
+            else if (searchResult >= 1 && withSubject == false)
+            {
+                Click(driver, _referenceNoList.ElementAt(0));
+                return true;
+            }
+            Console.WriteLine("No such mail found!!!");
+            return false;
+        }
+
         public bool OpenMail(IWebDriver driver, string strData, string encryptPass = "" , bool withSubject = true)
         {
             firstSearchInbox(strData);
@@ -709,9 +768,9 @@ namespace T2automation.Pages.MyMessages
             return GetText(driver, _contentBodyInbox).Equals(contentBody);
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body , string ccStatus = "False")
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body , string ccStatus = "False" , string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true)
         {
-            if (OpenMail(driver, subject))
+            if (OpenMailSpecialForTxtFile(driver, refno,withSubject: false))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject,ccStatus) && ValidateContentBody(driver, body));
             }
@@ -1276,13 +1335,18 @@ namespace T2automation.Pages.MyMessages
             Thread.Sleep(5000);
         }
 
+        public void DeleteMail()
+        {
+            WaitTillProcessing();
+            Click(_driver, _deleteMailBtn);
+            Click(_driver, _yesBtn);
+        }
+
         public void DeleteDraft()
         {
-            Thread.Sleep(5000);
+            SaveDraft();
             WaitTillProcessing();
-            //Thread.Sleep(15000);
             Click(_driver, _deleteDraftBtn);
-            WaitForElement(_driver, _yesBtn);
             Click(_driver, _yesBtn);
         }
 

@@ -228,6 +228,46 @@ namespace T2automation.Steps.Messages
             inboxPage.ClickOkBtn();
         }
 
+        [When(@"user open ""(.*)"" deleted message with suject ""(.*)"" and click on button ""(.*)""")]
+        public void WhenUserOpenDeletedMessageWithSujectAndClickOnButton(string dept, string subject, string buttonName)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                outboxPage.NavigateToMyMessageDeletedF(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                outboxPage.NavigateToQADeptDeletedFolder(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            outboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false);
+            Assert.IsTrue(outboxPage.userClickRollbackBtn(driver));
+        }
+
+        [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" deleted message")]
+        public void ThenMailWithSubjectShouldNotAppearInDeletedMessage(string subject, string dept)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                outboxPage.NavigateToMyMessageDeletedF(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                outboxPage.NavigateToQADeptDeletedFolder(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsFalse(outboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false));
+        }
+
+
         [When(@"user compose mail ""(.*)"" ""(.*)""")]
         public void WhenUserComposeMail(string subject, string content)
         {
@@ -279,9 +319,13 @@ namespace T2automation.Steps.Messages
         [Then(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"""), When(@"mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenMailShouldAppearInTheInbox(string to, string subject, string content)
         {
+            driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
+            txtManager = new TextFileManager();
             inboxPage.NavigateToMyMessageInbox(driver);
-            Assert.IsTrue(inboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsTrue(inboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content,refno:refno));
         }
 
         [When(@"user go to my messages Outgoing Document")]
@@ -325,7 +369,6 @@ namespace T2automation.Steps.Messages
             string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver, subject);
             Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo,readFromConfig.GetValue(deliveryType)), deliveryType + " Document must be saved!");
         }
-
         
         [When(@"user select connected document without saving it with subject ""(.*)"" ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithoutSavingItWithSubject(string subject, bool saveStatus)
@@ -353,11 +396,13 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
             inboxPage.NavigateToMyMessage(driver);
             inboxPage.NavigateToMyMessageInbox(driver);
             Thread.Sleep(3000);
             inboxPage.WaitTillProcessing();
-            inboxPage.OpenMail(driver, subject);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false);
         }
 
         [Then(@"the visibilty of button ""(.*)"" should be ""(.*)"" on connected person tab")]
@@ -412,8 +457,27 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMail(driver, subject);
+            inboxPage.OpenMailSpecialForTxtFile(driver,refno,withSubject: false);
         }
+
+        [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" inbox")]
+        public void ThenMailWithSubjectShouldNotAppearInInbox(string subject, string dept)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                inboxPage.NavigateToMyMessageInbox(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                inboxPage.NavigateToQADeptInbox(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsFalse(inboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false));
+        }
+
 
         [When(@"user go to department ""(.*)"" inbox")]
         public void WhenUserGoToDepartmentInbox(string dept)
@@ -472,6 +536,12 @@ namespace T2automation.Steps.Messages
         public void WhenUserDeletesTheDraft()
         {
             inboxPage.DeleteDraft();
+        }
+
+        [Then(@"user deletes the mail"), When(@"user deletes the mail")]
+        public void ThenUserDeletesTheMail()
+        {
+            inboxPage.DeleteMail();
         }
 
         [When(@"user click on forward button")]

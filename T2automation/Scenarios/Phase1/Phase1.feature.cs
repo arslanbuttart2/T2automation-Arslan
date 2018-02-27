@@ -140,10 +140,75 @@ this.FeatureBackground();
  testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
- testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
- testRunner.Then("save reference number from \"deptAcc\" in txt with subject \"Internal message for de" +
+ testRunner.Then("save reference number from \"deptAcc\" in txt with subject \"Incoming message for de" +
                     "letion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 32
+ testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+ testRunner.And("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
+                    "sage for deletion 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
+ testRunner.Then("mail with subject \"Internal message for deletion 111\" should not appear in \"dept\"" +
+                    " inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+ testRunner.When("user open \"dept\" deleted message with suject \"Internal message for deletion 111\" " +
+                    "and click on button \"  Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
+ testRunner.Then("mail with subject \"Internal message for deletion 111\" should not appear in \"dept\"" +
+                    " deleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 38
+ testRunner.Then("mail should appear in dept inbox \"internalDepartmentSameDepAr\" \"Internal message " +
+                    "for deletion 111\" \"Internal message for deletion 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 39
+ testRunner.When("user opens inbox email with subject \"Internal message for deletion 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+ testRunner.Then("mail with subject \"Internal message for deletion 222\" should not appear in \"my\" i" +
+                    "nbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+ testRunner.When("user opens inbox email with subject \"Incoming message for deletion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 44
+ testRunner.Then("mail with subject \"Incoming message for deletion 333\" should not appear in \"my\" i" +
+                    "nbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 45
+ testRunner.When("user open \"my\" deleted message with suject \"Internal message for deletion 222\" an" +
+                    "d click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 46
+ testRunner.Then("mail with subject \"Internal message for deletion 222\" should not appear in \"my\" d" +
+                    "eleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 47
+ testRunner.Then("mail should appear in the inbox \"User\" \"Internal message for deletion 222\" \"Inter" +
+                    "nal message for deletion 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 48
+ testRunner.When("user open \"my\" deleted message with suject \"Incoming message for deletion 333\" an" +
+                    "d click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 49
+ testRunner.Then("mail with subject \"Incoming message for deletion 333\" should not appear in \"my\" d" +
+                    "eleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
+ testRunner.Then("mail should appear in the inbox \"User\" \"Incoming message for deletion 333\" \"Incom" +
+                    "ing message for deletion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 51
+ testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 52
+ testRunner.When("Admin set system message permissions for user \"Delete Messages from Inbox\" \"False" +
+                    "\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
+ testRunner.And("Admin set system message permissions for user \"Rollback Messages from Deleted Ite" +
+                    "ms\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+ testRunner.And("Admin set department message permissions for user \"Delete Messages from Inbox\" \"F" +
+                    "alse\" \"User\" \"internalDepartmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.And("Admin set department message permissions for user \"Rollback Messages from Deleted" +
+                    " Items\" \"False\" \"User\" \"internalDepartmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -164,16 +229,16 @@ this.FeatureBackground();
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 60
  testRunner.And("Admin set department message permissions for user \"Archive Messages\" \"True\" \"User" +
-                    "\" \"internalDepartmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 61
  testRunner.And("Admin set department message permissions for user \"Rollback from Archive\" \"True\" " +
-                    "\"User\" \"internalDepartmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 62
  testRunner.And("Admin set department message permissions for user \"Archive Messages\" \"True\" \"User" +
-                    "\" \"CommDepSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "\" \"CommDepSameDepEn\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 63
  testRunner.And("Admin set department message permissions for user \"Rollback from Archive\" \"True\" " +
-                    "\"User\" \"CommDepSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "\"User\" \"CommDepSameDepEn\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 64
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 65
