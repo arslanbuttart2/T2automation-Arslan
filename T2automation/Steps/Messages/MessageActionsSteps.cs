@@ -75,6 +75,10 @@ namespace T2automation.Steps.Messages
             {
                 outboxPage.NavigateToQADeptOutbox(driver);
             }
+            else if (type.Equals("deptAcc"))
+            {
+                outboxPage.NavigateToAccountingDeptOutbox(driver);
+            }
             outboxPage.OpenMailSpecialForTxtFile(driver, subject,withSubject: false);
             string refno = outboxPage.readRefNoFromMail(driver,subject);
             Assert.IsTrue(txtManager.writeToFile(type,subject, refno), " this must be written in the txt file!!");
@@ -537,7 +541,17 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
         }
-        
+
+        [When(@"user go to dept ""(.*)"" messages Incoming Document")]
+        public void WhenUserGoToDeptMessagesIncomingDocument(string p0)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
+            inboxPage.CheckButtonClickable(driver,"Incoming Document");
+        }
+
         [When(@"user go to dept messages Outgoing Document")]
         public void WhenUserGoToDeptMessagesOutgoingDocument()
         {

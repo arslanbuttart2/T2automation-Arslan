@@ -42,19 +42,18 @@ namespace T2automation.Util
             {
                 StreamReader reader = new StreamReader(path);
                 string data = reader.ReadToEnd();
+                reader.Close();
                 string[] lines = data.Split('\n');
                 string[] strArray;
-                for (int i = 0; i < lines.Count(); i++)
+                for (int i = 0; i < lines.Count() && !(lines[i].Equals("\n") || lines[i].Equals("\r") || lines[i].Equals("")); i++)
                 {
                     strArray = lines[i].Split(',');
                     if (subject.Equals(strArray[1]))
                     {
-                        reader.Close();
                         return strArray[2];
                     }
                 }
-                reader.Close();
-                return "No Data Found!!!";
+                return "No Data Found From File!!!";
             }
             return null;
         }
@@ -76,7 +75,7 @@ namespace T2automation.Util
                 for (int i = 0; i < lines.Count(); i++)
                 {
                     strArray = lines[i].Split(',');
-                    if (type.Equals(strArray[0]) && subject.Equals(strArray[1]))
+                    if (type.Equals(strArray[0]) && subject.Equals(strArray[1]) && !strArray[2].Equals("Subjects not matched!!!"))
                     {
                         reader.Close();
                         strArray[2] = refno;

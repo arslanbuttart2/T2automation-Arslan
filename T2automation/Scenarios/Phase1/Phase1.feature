@@ -13,15 +13,14 @@ Scenario:ph 1 Message Actions - Deleting Message
 	And user compose mail "Internal message for deletion 111" "Internal message for deletion 111"
 	And user attach attachments 1 "1.pdf"
 	And user send the email
-	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
-	#Check the following Step
+	Then save reference number from "my" in txt with subject "Internal message for deletion 111"
 	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for deletion 222" "Internal message for deletion 222"
 	And user attach attachments 1 "1.pdf"
-	And user select connected document with subject "Incoming Message to outside child department 111"
+	And user select connected document with subject "Incoming Message to Outside Child Department 111"
 	And user send the email
-	Then save reference number from "my" in txt with subject "Internal message for deletion 222"
+	Then save reference number from "deptAcc" in txt with subject "Internal message for deletion 222"
 	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Incoming Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user compose mail "Incoming message for deletion 333" "Incoming message for deletion 333"
@@ -29,38 +28,39 @@ Scenario:ph 1 Message Actions - Deleting Message
 	And user enters incomming message no "+123456789" and incomming message Gregorian date "now"
 	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
 	And user send the email
-	Then save reference number from "my" in txt with subject "Internal message for deletion 222"
-	And User logs in "UserName" "Password"
-	When user go to my messages Internal Document
-	And user opens inbox email with subject "Internal message for deletion 111"
+	Then save reference number from "deptAcc" in txt with subject "Internal message for deletion 333"
+#	And User logs in "UserName" "Password"
+#	When user go to my messages Internal Document
+#	And user opens inbox email with subject "Internal message for deletion 111"
 	#may be following function would not work as per different btn name or xpath
-	Then user deletes the draft
-	When user open "my" deleted message with suject "Internal message for deletion 111" and click on button "Rollback"
-	Then mail with subject "Internal message for deletion 111" should not appear in "my" deleted message
-	When user opens inbox email with subject "Internal message for deletion 111"
-	Then verify mail appear in the deleted folder "Type(My,Dept)" "Internal message for deletion 111" "value"	
-	Then mail should appear in the inbox "User" "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
-	When user go to dept messages inbox select and delete messgae with subject "Dept name" "Internal message for deletion 222"
-	When user go to dept messages inbox select and delete messgae with subject "Dept name" "Internal message for deletion 333"
-	When user open "dept name" deleted message with suject "Internal message for deletion 222" and click on button "Rollback"
-	When user open "dept name" deleted message with suject "Internal message for deletion 333" and click on button "Rollback"
-	Then mail with subject "Internal message for deletion 222" should not appear in "dept name" deleted message
-	And mail with subject "Internal message for deletion 333" should not appear in "dept name" deleted message
+#	Then user deletes the draft
+#	When user open "my" deleted message with suject "Internal message for deletion 111" and click on button "Rollback"
+#	Then mail with subject "Internal message for deletion 111" should not appear in "my" deleted message
+#	When user opens inbox email with subject "Internal message for deletion 111"
+#	Then verify mail appear in the deleted folder "Type(My,Dept)" "Internal message for deletion 111" "value"	
+#	Then mail should appear in the inbox "User" "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
+#	When user go to dept messages inbox select and delete messgae with subject "Dept name" "Internal message for deletion 222"
+#	When user go to dept messages inbox select and delete messgae with subject "Dept name" "Internal message for deletion 333"
+#	When user open "dept name" deleted message with suject "Internal message for deletion 222" and click on button "Rollback"
+#	When user open "dept name" deleted message with suject "Internal message for deletion 333" and click on button "Rollback"
+#	Then mail with subject "Internal message for deletion 222" should not appear in "dept name" deleted message
+#	And mail with subject "Internal message for deletion 333" should not appear in "dept name" deleted message
 	#When user opens department "internalDepartmentSameDep" mail with subject "Internal Message with Connected Documents 111"
-	Then mail should appear in department "dept name" inbox "User" "Internal message for deletion 222" "Internal message for deletion 222"	
-	Then mail should appear in department "dept name" inbox "User" "Internal message for deletion 333" "Internal message for deletion 333"	
-	When Admin set system message permissions for user "Delete Messages from Inbox" "False" "User"
-	And Admin set system message permissions for user "Rollback Messages from Deleted Items" "False" "User"
-	And Admin set department message permissions for user "Delete Messages from Inbox" "False" "User" "internalDepartmentSameDepAr"
-	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDepAr"
+#	Then mail should appear in department "dept name" inbox "User" "Internal message for deletion 222" "Internal message for deletion 222"	
+#	Then mail should appear in department "dept name" inbox "User" "Internal message for deletion 333" "Internal message for deletion 333"	
+#	When Admin logged in "AdminUserName" "AdminPassword"
+#	When Admin set system message permissions for user "Delete Messages from Inbox" "False" "User"
+#	And Admin set system message permissions for user "Rollback Messages from Deleted Items" "False" "User"
+#	And Admin set department message permissions for user "Delete Messages from Inbox" "False" "User" "internalDepartmentSameDepAr"
+#	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDepAr"
 
 Scenario:ph 2 Message Actions - Archiving Message
 	When Admin set system message permissions for user "Archive Messages" "True" "User"
 	And Admin set system message permissions for user "Rollback from Archive" "True" "User"
 	And Admin set department message permissions for user "Archive Messages" "True" "User" "internalDepartmentSameDepAr"
 	And Admin set department message permissions for user "Rollback from Archive" "True" "User" "internalDepartmentSameDepAr"
-	And Admin set department message permissions for user "Archive Messages" "True" "User" "InternalDepartmentSameDepartment2Ar"
-	And Admin set department message permissions for user "Rollback from Archive" "True" "User" "InternalDepartmentSameDepartment2Ar"
+	And Admin set department message permissions for user "Archive Messages" "True" "User" "CommDepSameDep"
+	And Admin set department message permissions for user "Rollback from Archive" "True" "User" "CommDepSameDep"
 	When user go to my messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for archiving 111" "Internal message for archiving 111"
@@ -117,4 +117,20 @@ Scenario:ph 2 Message Actions - Archiving Message
 	And mail with subject "Outgoing message for archiving 444" should not appear in "dept name" archive message
 	Then mail should appear in dept inbox "internalDepartmentSameDepAr" "Encrypted message for archiving 222" "Encrypted message for archiving 222"
 	And mail should appear in dept inbox "internalDepartmentSameDepAr" "Outgoing message for archiving 444" "Outgoing message for archiving 444"
-	
+	When user go to "dept name" exported messages with suject "Outgoing message for archiving 444" 
+	Then user click on "Archive" button and set "Comment" ""
+	Then mail should not appear in "dept name" dept inbox with subject "Outgoing message for archiving 444"
+	Then mail with subject "Internal message for archiving 444" should not appear in "dept" archive message
+	When user go to "CommDepSameDep" archieve with suject "Outgoing message for archiving 444" and click on button "Rollback"
+	When user opens inbox email with subject "Incoming message for archiving 333"
+	Then mail with subject "Outgoing message for archiving 444" should not appear in "CommDepSameDep" archive message
+	Then mail should appear in department "CommDepSameDep" exported "User" "Outgoing message for archiving 444" "Outgoing message for archiving 444"	
+	When Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set system message permissions for user "Archive Messages" "False" "User"
+	And Admin set system message permissions for user "Rollback from Archive" "False" "User"
+	And Admin set department message permissions for user "Archive Messages" "False" "User" "internalDepartmentSameDepAr"
+	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "internalDepartmentSameDepAr"
+	And Admin set department message permissions for user "Archive Messages" "False" "User" "CommDepSameDep"
+	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "CommDepSameDep"
+
+
