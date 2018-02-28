@@ -47,6 +47,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'ajs-content']/input")]
         private IWebElement _passwordInput;
 
+        [FindsBy(How = How.XPath, Using = "./html/body/div[22]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _cancelBtnForIncomingMail;
+
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _cancelBtn;
 
@@ -625,6 +628,14 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _cancelBtnInOutgoingMail);
 
         }
+
+        public void clickOnSendBtnAndCancelBtnForIncomingMail(bool checkPopup = false)
+        {
+            Click(_driver, _sendBtn);
+            Thread.Sleep(2000);
+            Click(_driver, _cancelBtnForIncomingMail);
+        }
+
         public void clickOnSendBtn(bool checkPopup=false) {
             Click(_driver, _sendBtn);
             Thread.Sleep(2000);
@@ -632,6 +643,7 @@ namespace T2automation.Pages.MyMessages
             {
                 foreach (IWebElement cancelBtn in _cancelBtn)
                 {
+                    WaitForElement(_driver, cancelBtn);
                     if (cancelBtn.Displayed)
                     {
                         Click(_driver, cancelBtn);
@@ -684,6 +696,35 @@ namespace T2automation.Pages.MyMessages
                 WaitTillMailsGetLoad();
             }
             else if(withSubject == true)
+            {
+                firstSearchInbox(strData);
+                WaitTillMailsGetLoad();
+            }
+
+            int searchResult = _subjectList.Count();
+
+            if (searchResult >= 1 && withSubject == true)
+            {
+                Click(driver, _subjectList.ElementAt(0));
+                return true;
+            }
+            else if (searchResult >= 1 && withSubject == false)
+            {
+                Click(driver, _referenceNoList.ElementAt(0));
+                return true;
+            }
+            Console.WriteLine("No such mail found!!!");
+            return false;
+        }
+
+        public bool OpenMailSpecial(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
+        {
+            if (withSubject == false)
+            {
+                firstSearchFolderWithRefNo(strData);
+                WaitTillMailsGetLoad();
+            }
+            else if (withSubject == true)
             {
                 firstSearchInbox(strData);
                 WaitTillMailsGetLoad();

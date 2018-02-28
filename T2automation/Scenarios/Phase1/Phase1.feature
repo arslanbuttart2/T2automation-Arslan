@@ -51,8 +51,8 @@ Scenario:ph 1 Message Actions - Deleting Message
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "Delete Messages from Inbox" "False" "User"
 	And Admin set system message permissions for user "Rollback Messages from Deleted Items" "False" "User"
-	And Admin set department message permissions for user "Delete Messages from Inbox" "False" "User" "internalDepartmentSameDepAr"
-	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDepAr"
+	And Admin set department message permissions for user "Delete Messages from Inbox" "False" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDep"
 
 Scenario:ph 2 Message Actions - Archiving Message
 	When Admin set system message permissions for user "Archive Messages" "True" "User"

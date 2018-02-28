@@ -244,7 +244,7 @@ namespace T2automation.Steps.Messages
                 outboxPage.NavigateToQADeptDeletedFolder(driver);
             }
             string refno = txtManager.readFromFile(subject);
-            outboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false);
+            outboxPage.OpenMailSpecial(driver, refno, withSubject: false);
             Assert.IsTrue(outboxPage.userClickRollbackBtn(driver));
         }
 
@@ -264,7 +264,7 @@ namespace T2automation.Steps.Messages
                 outboxPage.NavigateToQADeptDeletedFolder(driver);
             }
             string refno = txtManager.readFromFile(subject);
-            Assert.IsFalse(outboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false));
+            Assert.IsFalse(outboxPage.OpenMailSpecial(driver, refno, withSubject: false));
         }
 
 
@@ -306,7 +306,7 @@ namespace T2automation.Steps.Messages
         [When(@"user send the email and click on Cancel button")]
         public void WhenUserSendTheEmailAndClickOnCancelButton()
         {
-            inboxPage.clickOnSendBtn(true);
+            inboxPage.clickOnSendBtnAndCancelBtnForIncomingMail();
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
@@ -402,7 +402,7 @@ namespace T2automation.Steps.Messages
             Thread.Sleep(3000);
             inboxPage.WaitTillProcessing();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
         }
 
         [Then(@"the visibilty of button ""(.*)"" should be ""(.*)"" on connected person tab")]
@@ -457,7 +457,7 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecialForTxtFile(driver,refno,withSubject: false);
+            inboxPage.OpenMailSpecial(driver,refno,withSubject: false);
         }
 
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" inbox")]
@@ -475,7 +475,7 @@ namespace T2automation.Steps.Messages
                 inboxPage.NavigateToQADeptInbox(driver);
             }
             string refno = txtManager.readFromFile(subject);
-            Assert.IsFalse(inboxPage.OpenMailSpecialForTxtFile(driver, refno, withSubject: false));
+            Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false));
         }
 
 

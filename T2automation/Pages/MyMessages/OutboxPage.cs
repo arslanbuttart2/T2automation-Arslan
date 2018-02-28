@@ -139,7 +139,29 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
+        {
+            firstSearchOutbox(strData);
+            WaitTillMailsGetLoad();
+           
+            int searchResult = _subjectList.Count();
+
+            if (searchResult >= 1 && withSubject == true)
+            {
+                Click(driver, _subjectList.ElementAt(0));
+                return true;
+            }
+            else if (searchResult >= 1 && withSubject == false)
+            {
+                Click(driver, _referenceNoList.ElementAt(0));
+                return true;
+            }
+            Console.WriteLine("No such mail found!!!");
+            return false;
+        }
+
+        public bool OpenMailSpecial(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
             if (withSubject == false)
             {
