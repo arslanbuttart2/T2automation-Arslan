@@ -139,6 +139,9 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label/i[@class='fa fa-trash-o']")]
         private IWebElement _qaDeptDeletedF;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a[@data-folder-flag='3']")]
+        private IWebElement _qaDeptArchivedF;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptOutbox;
@@ -240,6 +243,13 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
+        public void NavigateToMyMessageArchiveF(IWebDriver driver)
+        {
+            NavigateToMyMessage(driver);
+            Click(driver, _myMessageArchived);
+            Thread.Sleep(1000);
+        }
+
         public void NavigateToMyMessageOutbox(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
@@ -288,6 +298,17 @@ namespace T2automation.Pages.Comm
             }
             Click(driver, _qaDept);
             Click(driver, _qaDeptDeletedF);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToQADeptArchiveFolder(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                Click(driver, _departmentMessages);
+            }
+            Click(driver, _qaDept);
+            Click(driver, _qaDeptArchivedF);
             Thread.Sleep(1000);
         }
 

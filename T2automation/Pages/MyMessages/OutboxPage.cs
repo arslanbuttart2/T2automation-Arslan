@@ -54,7 +54,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/ul")]
         private IWebElement _mailTo;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[2]/div[1]/div[2]/ul/li")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/*//div[2]/ul/li[@class='normal-text']")]
         private IWebElement _subject;
         //*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[2]/div[2]/label
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[2]/div[2]/label")]
@@ -141,21 +141,24 @@ namespace T2automation.Pages.MyMessages
         
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
-            firstSearchOutbox(strData);
+            Thread.Sleep(2000);
+            //firstSearchOutbox(strData);
+
+            Click(_driver, _outboxPageEraseButton);
             WaitTillMailsGetLoad();
            
             int searchResult = _subjectList.Count();
 
             if (searchResult >= 1 && withSubject == true)
             {
+                Thread.Sleep(2000);
                 Click(driver, _subjectList.ElementAt(0));
-                Thread.Sleep(1000);
                 return true;
             }
             else if (searchResult >= 1 && withSubject == false)
             {
+                Thread.Sleep(2000);
                 Click(driver, _referenceNoList.ElementAt(0));
-                Thread.Sleep(1000);
                 return true;
             }
             Console.WriteLine("No such mail found!!!");
@@ -179,11 +182,13 @@ namespace T2automation.Pages.MyMessages
 
             if (searchResult >= 1 && withSubject == true)
             {
+                Thread.Sleep(2000);
                 Click(driver, _subjectList.ElementAt(0));
                 return true;
             }
             else if (searchResult >= 1 && withSubject == false)
             {
+                Thread.Sleep(2000);
                 Click(driver, _referenceNoList.ElementAt(0));
                 return true;
             }
@@ -289,7 +294,7 @@ namespace T2automation.Pages.MyMessages
 
         public bool ValidateMail(IWebDriver driver, string to, string subject, string body, int attachmentNo = 1, string attachment = null)
         {
-            if (OpenMailSpecialForTxtFile(driver, subject))
+            if (OpenMailSpecial(driver, subject))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body) && ValidateAttachments(driver, attachmentNo, attachment));
             }
@@ -298,7 +303,7 @@ namespace T2automation.Pages.MyMessages
 
         public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass)
         {
-            if (OpenMailSpecialForTxtFile(driver, listSubject, encryptPass))
+            if (OpenMailSpecial(driver, listSubject, encryptPass))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
             }

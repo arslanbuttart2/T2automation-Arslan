@@ -47,7 +47,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//div[@class = 'ajs-content']/input")]
         private IWebElement _passwordInput;
 
-        [FindsBy(How = How.XPath, Using = "./html/body/div[22]/div[2]/div/div[4]/div[2]/button[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[@class='alertify  ajs-movable ajs-resizable ajs-closable ajs-pinnable ajs-pulse']/div[@class='ajs-modal']/div[@class='ajs-dialog']/div[@class='ajs-footer']/div[@class='ajs-primary ajs-buttons']/button[2]")]
         private IWebElement _cancelBtnForIncomingMail;
 
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
@@ -149,7 +149,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[3]/div[1]/div[2]/ul/li")]
         private IWebElement _subjectInboxWithCC;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[2]/div[1]/div[2]/ul/li")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/*//div[2]/ul/li[@class='normal-text']")]
         private IWebElement _subjectInbox;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='contentBody']/div/div[@class = 'contentBodyHtml']")]
@@ -200,6 +200,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='IssueDate2']")]
         private IWebElement _personTabIssueDate;
         
+        [FindsBy(How = How.XPath, Using = ".//*[@id='archiveAttachment']")]
+        private IWebElement _archiveAttacheBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='att-head-menu']/div[1]/a/label")]
         private IWebElement _attacheBtn;
 
@@ -215,13 +218,19 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "txtIncomingMessageNumber")]
         private IWebElement _incommingMessageNo;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='docProperty-part']/*//div[@class='divNeedReplyRadio']/input[@class='narrowRadio'][@value='1']")]
+        private IWebElement _directExportMethod;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='docProperty-part']/*//div[@class='divNeedReplyRadio']/input[@class='narrowRadio'][@value='0']")]
+        private IWebElement _indirectExportMethod;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='txtTangAttachNum']")]
         private IWebElement _tengibleNo;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtTangAttachDesc']")]
         private IWebElement _tengibleDesc;
-
-        [FindsBy(How = How.Id, Using = "txtSendDate2")]
+        //its 1 in old server and 2 in new server
+        [FindsBy(How = How.Id, Using = "txtSendDate1")]
         private IWebElement _incommingHijriMessageDate;
 
         //*[@id="txtSendDate2"] for georgia calander in old server but for new server remove the '2' from the end of the id -.-
@@ -302,6 +311,12 @@ namespace T2automation.Pages.MyMessages
         //*[@id='main-parent']/*//a/label/i[@class='fa fa-remove']
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/*//a/label/i[@class='fa fa-remove']")]
         private IWebElement _deleteMailBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
+        private IWebElement _inboxArchiveBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='archiveComment']")]
+        private IWebElement _inboxArchiveComment;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[4]/div[1]/div[3]/a/label")]
         private IWebElement _deleteDraftBtn;
@@ -633,19 +648,22 @@ namespace T2automation.Pages.MyMessages
             Thread.Sleep(1000);
         }
 
-        public void clickOnSendBtnAndCancel()
+        public void clickOnSendBtnAndCancelForOutgoingMail()
         {
             Click(_driver, _sendBtn);
+            Thread.Sleep(2000);
             WaitForElement(_driver, _cancelBtnInOutgoingMail);
             Click(_driver, _cancelBtnInOutgoingMail);
-
         }
 
         public void clickOnSendBtnAndCancelBtnForIncomingMail(bool checkPopup = false)
         {
             Click(_driver, _sendBtn);
-            Thread.Sleep(2000);
-            Click(_driver, _cancelBtnForIncomingMail);
+            WaitForElement(_driver, _cancelBtnForIncomingMail);
+            if (_cancelBtnForIncomingMail.Displayed)
+            {
+                Click(_driver, _cancelBtnForIncomingMail);
+            }
         }
 
         public void clickOnSendBtn(bool checkPopup=false) {
@@ -899,8 +917,9 @@ namespace T2automation.Pages.MyMessages
             return -1;
         }
 
-        public bool SelectExternalDeptTo(string deptName = "", string deptCode = "", string type = "") {
-            Thread.Sleep(5000);
+        public bool SelectExternalDeptTo(string deptName = "", string deptCode = "", string type = "")
+        {
+            Thread.Sleep(4000);
             Click(_driver, _externalDeptToBtn);
             int index = SearchDept(deptName, deptCode, type);
             if (index != -1) {
@@ -923,7 +942,7 @@ namespace T2automation.Pages.MyMessages
             EnterContentBody(contentBody);
         }
 
-        public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "", string messageType = "", string tengibleNo = "", string tengibleDesc = "")
+        public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "", string messageType = "", string tengibleNo = "", string tengibleDesc = "", string exportMethod= "")
         {
             Click(_driver, _documentTab);
             Click(_driver, _propertiesTab);
@@ -955,6 +974,22 @@ namespace T2automation.Pages.MyMessages
             {
                 SendKeys(_driver, _incommingMessageNo, messageNo);
             }
+            
+            if (!exportMethod.Equals(""))
+            {
+                if (exportMethod.Equals("Indirect Export Method"))
+                {
+                    var btn = _driver.FindElement(By.XPath("//*[@id='docProperty-part']/*//div[@class='divNeedReplyRadio']/input[@class='narrowRadio'][@value='0']"));
+                    btn.Click();
+                    //Click(_driver, _indirectExportMethod);
+                }
+                else if(exportMethod.Equals("Direct Export Method"))
+                {
+                    var btn = _driver.FindElement(By.XPath("//*[@id='docProperty-part']/*//div[@class='divNeedReplyRadio']/input[@class='narrowRadio'][@value='1']"));
+                    btn.Click();
+                    //Click(_driver, _directExportMethod);
+                }
+            }
 
             if (!messageGreorianDate.Equals(""))
             {
@@ -965,7 +1000,9 @@ namespace T2automation.Pages.MyMessages
 
             if (!messageHijriDate.Equals(""))
             {
-                SendKeys(_driver, _incommingHijriMessageDate, messageHijriDate);
+                SendKeys(_driver, _incommingHijriMessageDate, new DateTimeHelper().GetDate(messageHijriDate));
+                var result = _daysOnCal();
+                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(messageHijriDate) - 1));
             }
         }
 
@@ -1302,7 +1339,40 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
-        public void SelectCcUser(IWebDriver driver, string user)
+        public void SelectCcUser(IWebDriver driver, string user, string receiverType)
+        {
+            WaitTillProcessing();
+            Thread.Sleep(2000);
+
+            if (receiverType.Equals("Users"))
+            {
+                for (int index = 0; index < _selectToNameForUsers().Count; index++)
+                {
+                    if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForUser.ElementAt(index));
+                        Click(driver, _selectToFrameCCBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                }
+            }
+            else if (receiverType.Equals("Structural Hierarchy"))
+            {
+                for (int index = 0; index < _selectToNameForStructuralHierarchy().Count; index++)
+                {
+                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToFrameCCBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                }
+            }
+        }
+
+        /*public void SelectCcUser(IWebDriver driver, string user)
         {
             WaitTillProcessing();
             for (int index = 0; index < _selectToName().Count; index++)
@@ -1315,7 +1385,7 @@ namespace T2automation.Pages.MyMessages
                     return;
                 }
             }
-        }
+        }*/
 
         public void ClickCCbutton(IWebDriver driver)
         {
@@ -1416,6 +1486,32 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
             Click(_driver, _deleteDraftBtn);
             Click(_driver, _yesBtn);
+        }
+
+        public void ClickOnArchive(string comnt, string attachmentFile="")
+        {
+            Click(_driver, _inboxArchiveBtn);
+            WaitTillProcessing();
+            if(!comnt.Equals(""))
+            {
+                SendKeys(_driver, _inboxArchiveComment, comnt);
+            }
+            if (attachmentFile.Equals(""))
+            {
+                for (int i = 0; i < 1; i++)
+                {
+                    Click(_driver, _archiveAttacheBtn);
+                    AutoItX3 autoIt = new AutoItX3();
+                    autoIt.WinActivate("Open");
+                    readFromConfig = new ReadFromConfig();
+                    var filePath = readFromConfig.GetValue("AttachementFolder") + attachmentFile;
+                    autoIt.Send(filePath);
+                    autoIt.Send("{ENTER}");
+
+                    WaitForUploading();
+                }
+                ClickOkBtn();
+            }
         }
 
         public void SaveDraft()

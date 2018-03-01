@@ -89,7 +89,14 @@ namespace T2automation.Steps.Messages
             }
             outboxPage.OpenMailSpecialForTxtFile(driver, subject,withSubject: false);
             string refno = outboxPage.readRefNoFromMail(driver,subject);
-            Assert.IsTrue(txtManager.writeToFile(type,subject, refno), " this must be written in the txt file!!");
+            if(!refno.Equals("Subjects not matched in mail!!!"))
+            {
+                Assert.IsTrue(txtManager.writeToFile(type, subject, refno), " this must be written in the txt file!!");
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
         
         [When(@"user sends an departmental internal message with attachment to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -238,6 +245,27 @@ namespace T2automation.Steps.Messages
             inboxPage.ClickOkBtn();
         }
 
+        [When(@"user open ""(.*)"" archive message with suject ""(.*)"" and click on button ""(.*)""")]
+        public void WhenUserOpenArchiveMessageWithSujectAndClickOnButton(string dept, string subject, string p2)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                outboxPage.NavigateToMyMessageArchiveF(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                outboxPage.NavigateToQADeptArchiveFolder(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            outboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            Assert.IsTrue(outboxPage.userClickRollbackBtn(driver));
+        }
+
+
         [When(@"user open ""(.*)"" deleted message with suject ""(.*)"" and click on button ""(.*)""")]
         public void WhenUserOpenDeletedMessageWithSujectAndClickOnButton(string dept, string subject, string buttonName)
         {
@@ -256,6 +284,25 @@ namespace T2automation.Steps.Messages
             string refno = txtManager.readFromFile(subject);
             outboxPage.OpenMailSpecial(driver, refno, withSubject: false);
             Assert.IsTrue(outboxPage.userClickRollbackBtn(driver));
+        }
+
+        [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" archive message")]
+        public void ThenMailWithSubjectShouldNotAppearInArchiveMessage(string subject, string dept)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                outboxPage.NavigateToMyMessageArchiveF(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                outboxPage.NavigateToQADeptArchiveFolder(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsFalse(outboxPage.OpenMailSpecial(driver, refno, withSubject: false));
         }
 
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" deleted message")]
@@ -400,6 +447,13 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectConnectedPerson(driver,personName,email,mbl,idNum,idIssue,issueDate,idType,saveStatus);
         }
 
+        [Then(@"user click on ""(.*)"" button and set ""(.*)"" ""(.*)""")]
+        public void ThenUserClickOnButtonAndSet(string btnName, string comment, string attachment="")
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.ClickOnArchive(comment,attachment);
+        }
 
         [When(@"user opens inbox email with subject ""(.*)""")]
         public void WhenUserOpensInboxEmailWithSubject(string subject)
@@ -623,13 +677,23 @@ namespace T2automation.Steps.Messages
         }
 
         [When(@"user go to dept ""(.*)"" messages Incoming Document")]
-        public void WhenUserGoToDeptMessagesIncomingDocument(string p0)
+        public void WhenUserGoToDeptMessagesIncomingDocument(string deptName)
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
             inboxPage.CheckButtonClickable(driver,"Incoming Document");
+        }
+
+        [When(@"user go to dept ""(.*)"" messages Outgoing Document")]
+        public void WhenUserGoToDeptMessagesOutgoingDocument(string deptName)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
+            inboxPage.CheckButtonClickable(driver, "Outgoing Document");
         }
 
         [When(@"user go to dept messages Outgoing Document")]

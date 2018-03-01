@@ -57,6 +57,20 @@ namespace T2automation.Steps.My_Messages
             Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, attachmentNo: attachmentNo, attachment:attachmentType));
         }
 
+        [When(@"user click CC button ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserClickCCButton(string cclevel, string receiverType, string ccTo)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            myMessageInboxPage = new InboxPage(driver);
+            myMessageInboxPage.ClickCCbutton(driver);
+            myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(cclevel));
+            myMessageInboxPage.SelectReceiverType(driver, receiverType);
+            myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(ccTo);
+            myMessageInboxPage.SelectCcUser(driver, readFromConfig.GetValue(ccTo), receiverType);
+            myMessageInboxPage.ClickOkBtn();
+        }
+
         [When(@"user sends an internal message to and cc ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"""), Then(@"user sends an internal message to and cc ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenUserSendsAnInternalMessageToAndCc(string level, string receiverType, string to, string subject, string content, string cclevel, string ccReciverType, string ccTo)
         {
@@ -75,7 +89,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SelectLevel(driver, readFromConfig.GetValue(cclevel));
             myMessageInboxPage.SelectReceiverType(driver, receiverType);
             myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(ccTo);
-            myMessageInboxPage.SelectCcUser(driver, readFromConfig.GetValue(ccTo));
+            myMessageInboxPage.SelectCcUser(driver, readFromConfig.GetValue(ccTo), receiverType);
             myMessageInboxPage.ClickOkBtn();
             myMessageInboxPage.SendMail(subject, content);
         }
@@ -89,12 +103,12 @@ namespace T2automation.Steps.My_Messages
             Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, ccStatus));
         }
 
-        [When(@"user set properties ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
-        public void WhenUserSetProperties(string messageType, string tengibleNo, string tengibleDesc, string p1, string p2, string p3)
+        [When(@"user set properties ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserSetProperties(string messageType="", string tengibleNo="", string tengibleDesc="", string messageNo="", string messageGreoianDate="", string messageHijriDate="", string exportMethod="")
         {
             driver = driverFactory.GetDriver();
             myMessageInboxPage = new InboxPage(driver);
-            myMessageInboxPage.SetProperties(messageType: messageType, tengibleNo: tengibleNo, tengibleDesc: tengibleDesc);
+            myMessageInboxPage.SetProperties(messageType: messageType, tengibleNo: tengibleNo, tengibleDesc: tengibleDesc,messageNo: messageNo,messageGreorianDate: messageGreoianDate, messageHijriDate: messageHijriDate, exportMethod: exportMethod);
         }
 
 
