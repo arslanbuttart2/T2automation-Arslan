@@ -84,8 +84,34 @@ namespace T2automation.Steps.My_Messages
         public void ThenMailShouldAppearInTheInboxReadCCToo(string to, string subject, string content, string ccStatus = "False")
         {
             myMessageInboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
             Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, ccStatus));
+        }
+
+        [When(@"user set properties ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserSetProperties(string messageType, string tengibleNo, string tengibleDesc, string p1, string p2, string p3)
+        {
+            driver = driverFactory.GetDriver();
+            myMessageInboxPage = new InboxPage(driver);
+            myMessageInboxPage.SetProperties(messageType: messageType, tengibleNo: tengibleNo, tengibleDesc: tengibleDesc);
+        }
+
+
+        [When(@"user go to ""(.*)"" encrypted message")]
+        public void WhenUserGoToEncryptedMessage(string dept)
+        {
+            driver = driverFactory.GetDriver();
+            myMessageInboxPage = new InboxPage(driver);
+            if (dept.Equals("my"))
+            {
+                myMessageInboxPage.NavigateToMyMessageInbox(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                myMessageInboxPage.NavigateToQADeptInbox(driver);
+            }
+            myMessageInboxPage.CheckButtonClickable(driver, "Encrypted internal message");
         }
 
         [When(@"user sends an encrypted message to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -93,6 +119,7 @@ namespace T2automation.Steps.My_Messages
         {
             driver = driverFactory.GetDriver();
             myMessageInboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
             myMessageInboxPage.CheckButtonClickable(driver, "Encrypted internal message");
             myMessageInboxPage.ClickToButton(driver);

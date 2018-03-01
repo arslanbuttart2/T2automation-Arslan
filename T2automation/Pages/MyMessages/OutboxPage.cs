@@ -138,8 +138,7 @@ namespace T2automation.Pages.MyMessages
                 continue;
             }
         }
-
-
+        
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
             firstSearchOutbox(strData);
@@ -150,11 +149,13 @@ namespace T2automation.Pages.MyMessages
             if (searchResult >= 1 && withSubject == true)
             {
                 Click(driver, _subjectList.ElementAt(0));
+                Thread.Sleep(1000);
                 return true;
             }
             else if (searchResult >= 1 && withSubject == false)
             {
                 Click(driver, _referenceNoList.ElementAt(0));
+                Thread.Sleep(1000);
                 return true;
             }
             Console.WriteLine("No such mail found!!!");

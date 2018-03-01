@@ -215,6 +215,12 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "txtIncomingMessageNumber")]
         private IWebElement _incommingMessageNo;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtTangAttachNum']")]
+        private IWebElement _tengibleNo;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtTangAttachDesc']")]
+        private IWebElement _tengibleDesc;
+
         [FindsBy(How = How.Id, Using = "txtSendDate2")]
         private IWebElement _incommingHijriMessageDate;
 
@@ -318,7 +324,7 @@ namespace T2automation.Pages.MyMessages
 
         private IList<IWebElement> _selectToNameForUsers()
         {
-            return _driver.FindElements(By.XPath(".//*[@id='searchGrid2Temp']/tbody/tr[1]/td[2]"));
+            return _driver.FindElements(By.XPath(".//*[@id='searchGrid2Temp']/tbody/tr/td[2]"));
         }
 
         private IList<IWebElement> _selectToNameForStructuralHierarchy()
@@ -391,6 +397,11 @@ namespace T2automation.Pages.MyMessages
             return new SelectElement(_driver.FindElement(By.Id("slctDeliveryType")));
         }
 
+        private SelectElement _messageType()
+        {
+            return new SelectElement(_driver.FindElement(By.XPath("//*[@id='slctMessageType']")));
+        }
+
         private SelectElement _securityLevel()
         {
             return new SelectElement(_driver.FindElement(By.Id("slctSecurityLevels")));
@@ -423,6 +434,11 @@ namespace T2automation.Pages.MyMessages
         private IList<IWebElement> _connectedDocSubjectList()
         {
             return _driver.FindElements(By.XPath(".//table[@id = 'tbl_documentDocument']/tbody/tr/td[3]"));
+        }
+
+        private IWebElement _UpperHeadMenuTabBtns(IWebDriver driver, string btnTxt)
+        {
+            return driver.FindElement(By.XPath(".//*[@id='head-menu']/*//a/label[text()=' " + btnTxt + "']"));
         }
 
         private IList<IWebElement> _connectedPersonNameList()
@@ -461,11 +477,7 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
-        private IWebElement _UpperHeadMenuTabBtns(IWebDriver driver, string btnTxt)
-        {
-            return driver.FindElement(By.XPath(".//*[@id='head-menu']/*/a/label[text()='" + btnTxt + "']"));
-        } 
-
+        
         public void firstSearchInbox(string subject)
         {
             Click(_driver, _inboxPageEraseButton);
@@ -911,10 +923,25 @@ namespace T2automation.Pages.MyMessages
             EnterContentBody(contentBody);
         }
 
-        public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "")
+        public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "", string messageType = "", string tengibleNo = "", string tengibleDesc = "")
         {
             Click(_driver, _documentTab);
             Click(_driver, _propertiesTab);
+            if (!messageType.Equals(""))
+            {
+                DropdownSelectByText(_driver, _messageType(), messageType);
+            }
+
+            if (!tengibleNo.Equals(""))
+            {
+                SendKeys(_driver, _tengibleNo, tengibleNo);
+            }
+
+            if (!tengibleDesc.Equals(""))
+            {
+                SendKeys(_driver, _tengibleDesc, tengibleDesc);
+            }
+
             if (!deliveryType.Equals(""))
             {
                 DropdownSelectByText(_driver, _deliveryType(), deliveryType);

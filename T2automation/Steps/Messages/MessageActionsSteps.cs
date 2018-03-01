@@ -67,6 +67,7 @@ namespace T2automation.Steps.Messages
             readFromConfig = new ReadFromConfig();
             outboxPage = new OutboxPage(driver);
             txtManager = new TextFileManager();
+            string enc = "This message need a password";
             if (type.Equals("my"))
             {
                 outboxPage.NavigateToMyMessageOutbox(driver);
@@ -78,6 +79,13 @@ namespace T2automation.Steps.Messages
             else if (type.Equals("deptAcc"))
             {
                 outboxPage.NavigateToAccountingDeptOutbox(driver);
+            }
+            if(subject.Contains("Encrypted message"))
+            {
+                outboxPage.OpenMail(driver, enc, "P@ssw0rd!@#");
+                string refno2 = outboxPage.readRefNoFromMail(driver, subject);
+                Assert.IsTrue(txtManager.writeToFile(type, subject, refno2), " this must be written in the txt file!!");
+                return;
             }
             outboxPage.OpenMailSpecialForTxtFile(driver, subject,withSubject: false);
             string refno = outboxPage.readRefNoFromMail(driver,subject);
@@ -218,6 +226,8 @@ namespace T2automation.Steps.Messages
         [When(@"search ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenSearch(string to, string level, string receiverType)
         {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
             readFromConfig = new ReadFromConfig();
             inboxPage.ClickToButton(driver);
             inboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
