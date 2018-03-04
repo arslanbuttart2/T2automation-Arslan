@@ -27,6 +27,7 @@ namespace T2automation.Steps.My_Messages
         private LoginPage loginPage;
         private Pages.MyMessages.InboxPage myMessageInboxPage;
         private Pages.DeptMessages.InboxPage deptMessageInboxPage;
+        private TextFileManager txtManager;
 
 
         [When(@"user sends an internal message to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -161,7 +162,20 @@ namespace T2automation.Steps.My_Messages
             readFromConfig = new ReadFromConfig();
             myMessageInboxPage = new InboxPage(driver);
             myMessageInboxPage.NavigateToQADeptInbox(driver);
-            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content));
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject:subject);
+            if (subject.Contains("Encrypted message"))
+            {
+                Assert.IsTrue(myMessageInboxPage.ValidateMailEncrypted(driver, readFromConfig.GetValue(to), subject, content, refno: refno,encryptPass:"P@ssw0rd!@#"));
+            }
+            else if(subject.Contains("Outgoing"))
+            {
+                Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, refno: refno, ccStatus:"True"));
+            }
+            else
+            {
+                Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, refno: refno));
+            }
         }
 
         [Then(@"encrypted mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

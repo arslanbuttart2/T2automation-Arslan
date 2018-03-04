@@ -363,7 +363,7 @@ namespace T2automation.Steps.Messages
         [When(@"user send the email and click on Cancel button")]
         public void WhenUserSendTheEmailAndClickOnCancelButton()
         {
-            inboxPage.clickOnSendBtnAndCancelBtnForIncomingMail();
+            inboxPage.clickOnSendBtnAndCancelBtnForIncomingMail(true);
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
@@ -452,7 +452,18 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
-            inboxPage.ClickOnArchive(comment,attachment);
+            if (btnName.Contains("my"))
+            {
+                inboxPage.ClickOnArchive(comment, attachment,"my");
+            }
+            else if (btnName.Contains("deptOutgoing"))
+            {
+                inboxPage.ClickOnArchive(comment, attachment, "deptOutgoing");
+            }
+            else if(btnName.Contains("dept"))
+            {
+                inboxPage.ClickOnArchive(comment, attachment, "dept");
+            }
         }
 
         [When(@"user opens inbox email with subject ""(.*)""")]
@@ -512,8 +523,8 @@ namespace T2automation.Steps.Messages
             Assert.True(inboxPage.CheckVisibiltyOfTab(tab, value), tab + " visibilty should be " + value.ToString());
         }
 
-        [When(@"user opens department ""(.*)"" mail with subject ""(.*)""")]
-        public void WhenUserOpensDepartmentMailWithSubject(string dept, string subject)
+        [When(@"user opens department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpensDepartmentMailWithSubject(string dept, string subject, string encryptedPassword = "")
         {
             driver = driverFactory.GetDriver();
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
@@ -521,7 +532,7 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver,refno,withSubject: false);
+            inboxPage.OpenMailSpecial(driver,refno,withSubject: false,encryptPass:encryptedPassword);
         }
 
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" inbox")]

@@ -230,7 +230,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='txtTangAttachDesc']")]
         private IWebElement _tengibleDesc;
         //its 1 in old server and 2 in new server
-        [FindsBy(How = How.Id, Using = "txtSendDate1")]
+        [FindsBy(How = How.Id, Using = "txtSendDate")]
         private IWebElement _incommingHijriMessageDate;
 
         //*[@id="txtSendDate2"] for georgia calander in old server but for new server remove the '2' from the end of the id -.-
@@ -307,6 +307,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtRefernceNumber']")]
         private IWebElement _inboxRefNoSearchField;
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[14]/div[2]/div/div[4]/div[2]/button[1]")]
+        private IWebElement _okArchiveBtn;
         //*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[8]/a/label
         //*[@id='main-parent']/*//a/label/i[@class='fa fa-remove']
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/*//a/label/i[@class='fa fa-remove']")]
@@ -314,7 +317,13 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
         private IWebElement _inboxArchiveBtn;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[4]/a/label")]
+        private IWebElement _inboxDeptArchiveBtn;
+        //*[@id="main-parent"]/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
+        private IWebElement _inboxDeptOutgoingArchiveBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='archiveComment']")]
         private IWebElement _inboxArchiveComment;
 
@@ -659,6 +668,11 @@ namespace T2automation.Pages.MyMessages
         public void clickOnSendBtnAndCancelBtnForIncomingMail(bool checkPopup = false)
         {
             Click(_driver, _sendBtn);
+            Thread.Sleep(2000);
+            if (checkPopup)
+            {
+                Click(_driver, _okBtn());
+            }
             WaitForElement(_driver, _cancelBtnForIncomingMail);
             if (_cancelBtnForIncomingMail.Displayed)
             {
@@ -765,11 +779,23 @@ namespace T2automation.Pages.MyMessages
             if (searchResult >= 1 && withSubject == true)
             {
                 Click(driver, _subjectList.ElementAt(0));
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
                 return true;
             }
             else if (searchResult >= 1 && withSubject == false)
             {
                 Click(driver, _referenceNoList.ElementAt(0));
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
                 return true;
             }
             Console.WriteLine("No such mail found!!!");
@@ -839,9 +865,18 @@ namespace T2automation.Pages.MyMessages
             return GetText(driver, _contentBodyInbox).Equals(contentBody);
         }
 
+        public bool ValidateMailEncrypted(IWebDriver driver, string to, string subject, string body, string ccStatus = "False", string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true, string encryptPass="")
+        {
+            if (OpenMailSpecial(driver, refno, encryptPass,withSubject:false))
+            {
+                return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
+            }
+            return false;
+        }
+
         public bool ValidateMail(IWebDriver driver, string to, string subject, string body , string ccStatus = "False" , string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true)
         {
-            if (OpenMailSpecialForTxtFile(driver, refno,withSubject: false))
+            if (OpenMailSpecial(driver, refno,withSubject: false))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject,ccStatus) && ValidateContentBody(driver, body));
             }
@@ -1488,15 +1523,28 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _yesBtn);
         }
 
-        public void ClickOnArchive(string comnt, string attachmentFile="")
+        public void ClickOnArchive(string comnt, string attachmentFile="", string dept="")
         {
-            Click(_driver, _inboxArchiveBtn);
-            WaitTillProcessing();
-            if(!comnt.Equals(""))
+            if (dept.Equals("my"))
+            {
+                Click(_driver, _inboxArchiveBtn);
+                WaitTillProcessing();
+            }
+            else if (dept.Equals("dept"))
+            {
+                Click(_driver, _inboxDeptArchiveBtn);
+                WaitTillProcessing();
+            }
+            else if(dept.Equals("deptOutgoing"))
+            {
+                Click(_driver, _inboxDeptOutgoingArchiveBtn);
+                WaitTillProcessing();
+            }
+            if (!comnt.Equals(""))
             {
                 SendKeys(_driver, _inboxArchiveComment, comnt);
             }
-            if (attachmentFile.Equals(""))
+            if (!attachmentFile.Equals(""))
             {
                 for (int i = 0; i < 1; i++)
                 {
@@ -1510,8 +1558,11 @@ namespace T2automation.Pages.MyMessages
 
                     WaitForUploading();
                 }
+                Thread.Sleep(1000);
+                //Click(_driver,_okArchiveBtn);
                 ClickOkBtn();
             }
+            ClickOkBtn();
         }
 
         public void SaveDraft()
