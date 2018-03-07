@@ -37,8 +37,7 @@ namespace T2automation.Util
             {
                 creatTxtFile();
             }
-
-            if (File.Exists(path))
+            else if (File.Exists(path))
             {
                 StreamReader reader = new StreamReader(path);
                 string data = reader.ReadToEnd();
@@ -54,6 +53,22 @@ namespace T2automation.Util
                     }
                 }
                 return "No Data Found From File!!!";
+            }
+            return null;
+        }
+
+        public string refnoPure(string refno)
+        {
+            string[] temp;
+            temp = refno.Split('\r');
+            for (int i = 0; i < temp.Count() ; i++)
+            {
+                if (!(temp[i].Contains("\r") && temp[i].Contains("\n") && temp[i].Contains("")))
+                {
+                    temp[i].Remove('\r');
+                    temp[i].Remove('\n');
+                    return temp[i];
+                }
             }
             return null;
         }
@@ -75,7 +90,7 @@ namespace T2automation.Util
                 for (int i = 0; i < lines.Count(); i++)
                 {
                     strArray = lines[i].Split(',');
-                    if (type.Equals(strArray[0]) && subject.Equals(strArray[1]) && !strArray[2].Equals("Subjects not matched!!!"))
+                    if (type.Equals(strArray[0]) && subject.Equals(strArray[1]) && !strArray[2].Equals("Subjects not matched in mail!!!"))
                     {
                         reader.Close();
                         strArray[2] = refno;

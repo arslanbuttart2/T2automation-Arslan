@@ -25,11 +25,11 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//div/div/span[@class='error-msg']/p")]
         private IList<IWebElement> _errorMessage;
-        
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/*//a/i[@class='fa fa-eraser']")]
         private IWebElement _inboxPageEraseButton;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div[7]/a/i")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div/a[@title='Search']")]
         private IWebElement _inboxSearchButton;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='head-menu']/div/a/label[text() = ' Internal Document']")]
@@ -73,7 +73,7 @@ namespace T2automation.Pages.MyMessages
         //*[@id='organizationSearchGridTemp']/tbody/tr/td[1]/label
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationSearchGridTemp']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _selectToCheckForStructuralHierarchy;
-        
+
         //[FindsBy(How = How.XPath, Using = ".//tbody/tr/td[2]")]
         //private IList<IWebElement> _selectToName;
 
@@ -85,9 +85,39 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectCc']")]
         private IWebElement _selectMainCcFramBtn;
+        
+        [FindsBy(How = How.XPath, Using = "/html/body/div[20]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _cancelBtnInMyInboxMail;
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[19]/div[2]/div/div[4]/div[2]/button[2]")]
         private IWebElement _cancelBtnInOutgoingMail;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[7]/a/label")]
+        private IWebElement _exportBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
+        private IWebElement _exportBtnInUnexportFolder;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='contentBodyItemDiv']/div/div[1]/input")]
+        private IWebElement _chk1;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='AttachmentItemDiv']/div/div[1]/input")]
+        private IWebElement _chk2;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[6]/a/label")]
+        private IWebElement _returnBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='searchDiv']/div[2]/input[2]")]
+        private IWebElement _clearBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='btnSearch']")]
+        private IWebElement _searchBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='txtRefNo']")]
+        private IWebElement _refNoFieldInSearch;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='retriveLable']")]
+        private IWebElement _retrieveBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtSubject']")]
         private IWebElement _subject;
@@ -95,15 +125,15 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='cke_1_contents']/iframe")]
         private IWebElement _contentBodyIFrame;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='doc-tabs']/div[2]/a")] 
+        [FindsBy(How = How.XPath, Using = "//*[@id='doc-tabs']/div[2]/a")]
         private IWebElement _connectedTabAttribute;
-        
+
         [FindsBy(How = How.XPath, Using = "/html/body/div[12]/div[2]/div/div[4]/div[2]/button[2]")]
         private IWebElement _connectedTabToCloseBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a")]
         private IWebElement _connectedTabDocFlow;
-        
+
         [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div/a[@data-target='doc']")]
         private IWebElement _connectedTabConnentedDocument;
 
@@ -115,7 +145,7 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='tabActions']")]
         private IWebElement _connectedTabAction;
-        
+
         [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div/a[@data-target='doc']")]
         private IWebElement _connectedTabDoc;
 
@@ -136,6 +166,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td[4]")]
         private IList<IWebElement> _subjectList;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='searchResultGrid']/tbody/tr/td[4]")]
+        private IList<IWebElement> _advanceSearchRefNoList;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td[5]")]
         private IList<IWebElement> _referenceNoList;
@@ -164,8 +197,14 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "btnDepartmentTo")]
         private IWebElement _externalDeptToBtn;
 
+        [FindsBy(How = How.Id, Using = "btnDepartmentCc")]
+        private IWebElement _externalDeptCcBtn;
+
         [FindsBy(How = How.Id, Using = "txtSearchTo3")]
         private IWebElement _searchDeptName;
+
+        [FindsBy(How = How.Id, Using = "txtSearch3")]
+        private IWebElement _searchCcDeptName;
 
         [FindsBy(How = How.Id, Using = "txtSearchExtDepToCode")]
         private IWebElement _searchDeptCodeName;
@@ -184,10 +223,10 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='Name']")]
         private IWebElement _personTabName;
-        
+
         [FindsBy(How = How.XPath, Using = "//*[@id='Email_Persion']")]
         private IWebElement _personTabEmail;
-        
+
         [FindsBy(How = How.XPath, Using = "//*[@id='Mobile_Persion']")]
         private IWebElement _personTabMobile;
 
@@ -196,10 +235,17 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='IdIssuer']")]
         private IWebElement _personTabIdIssuer;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='txtExportDate2']")]
+        private IWebElement _searchTabExportedDateFrom;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='txtCreateDate2']")]
+        private IWebElement _searchTabCreatedDateFrom;
+
         //*[@id="IssueDate2"] 2 is in the case of old server remove '2' for new server
         [FindsBy(How = How.XPath, Using = "//*[@id='IssueDate2']")]
         private IWebElement _personTabIssueDate;
-        
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='archiveAttachment']")]
         private IWebElement _archiveAttacheBtn;
 
@@ -239,7 +285,7 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.Id, Using = "relatedDocumentCount")]
         private IWebElement _connectedDocTab;
-        
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div[3]/a[@id='conDocumentA']")]
         private IWebElement _connectedDocTabChk;
 
@@ -257,13 +303,13 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.Id, Using = "buttontbl_documentDocument")]
         private IWebElement _connectedDocDeleteBtn;
-        
+
         [FindsBy(How = How.Id, Using = "Subject")]
         private IWebElement _connectedDocSubject;
 
         [FindsBy(How = How.Id, Using = "btnDocumentSearch")]
         private IWebElement _connectedDocSearchBtn;
-        
+
         private SelectElement _connectedDocDocType(IWebDriver driver)
         {
             return new SelectElement(driver.FindElement(By.XPath("//*[@id='DocumentTypeId']")));
@@ -282,15 +328,18 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='ReferenceNo']")]
         private IWebElement _connectedDocRefNoField;
+        
+        [FindsBy(How = How.XPath, Using = "./html/body/div[15]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _exportCancelBtn;
 
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedDocCancelBtn;
-        
+
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedPersonCancelBtn;
 
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentDocument']/tbody/tr/td[1]/label")] 
+        [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentDocument']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _connectedDocSubjectListCheckBox;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentPerson']/tbody/tr/td[1]/label")]
@@ -300,14 +349,14 @@ namespace T2automation.Pages.MyMessages
         private IWebElement _connectedPersonTab;
 
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-mail-reply")]
-        private IWebElement _replyBtn;     
+        private IWebElement _replyBtn;
 
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-forward")]
         private IWebElement _forwardBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtRefernceNumber']")]
         private IWebElement _inboxRefNoSearchField;
-
+        
         [FindsBy(How = How.XPath, Using = "/html/body/div[14]/div[2]/div/div[4]/div[2]/button[1]")]
         private IWebElement _okArchiveBtn;
         //*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[8]/a/label
@@ -320,9 +369,12 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[4]/a/label")]
         private IWebElement _inboxDeptArchiveBtn;
-        //*[@id="main-parent"]/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
         private IWebElement _inboxDeptOutgoingArchiveBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='retreiveDiv']/a/label")]
+        private IWebElement _commDeptExportArchiveBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='archiveComment']")]
         private IWebElement _inboxArchiveComment;
@@ -398,9 +450,9 @@ namespace T2automation.Pages.MyMessages
         }
 
         private SelectElement _receiverType(IWebDriver driver) {
-            return new SelectElement(driver.FindElement(By.Id("slctRecieverTypeTemp"))); 
+            return new SelectElement(driver.FindElement(By.Id("slctRecieverTypeTemp")));
         }
-        
+
         private SelectElement _personTabIdType(IWebDriver driver)
         {
             return new SelectElement(driver.FindElement(By.XPath("//*[@id='IdType']")));
@@ -431,6 +483,11 @@ namespace T2automation.Pages.MyMessages
             return new SelectElement(_driver.FindElement(By.Id("slctSecurityLevels")));
         }
 
+        private IList<IWebElement> _deptCcRadioBtn(IWebDriver driver)
+        {
+            return driver.FindElements(By.XPath(".//*[@id='externalDepartmentGrid']/tbody/tr/td[1]/label"));
+        }
+
         private IList<IWebElement> _deptRadioBtn(IWebDriver driver)
         {
             return driver.FindElements(By.XPath(".//*[@id='externalDepartmentToGrid']/tbody/tr/td[1]/input"));
@@ -439,6 +496,11 @@ namespace T2automation.Pages.MyMessages
         private IList<IWebElement> _deptNames(IWebDriver driver)
         {
             return driver.FindElements(By.XPath(".//*[@id='externalDepartmentToGrid']/tbody/tr/td[2]"));
+        }
+
+        private IList<IWebElement> _deptCcNames(IWebDriver driver)
+        {
+            return driver.FindElements(By.XPath(".//*[@id='externalDepartmentGrid']/tbody/tr/td[2]"));
         }
 
         private IList<IWebElement> _attachedFileNames(IWebDriver driver)
@@ -458,6 +520,11 @@ namespace T2automation.Pages.MyMessages
         private IList<IWebElement> _connectedDocSubjectList()
         {
             return _driver.FindElements(By.XPath(".//table[@id = 'tbl_documentDocument']/tbody/tr/td[3]"));
+        }
+
+        private IList<IWebElement> _connectedDocRefNoList()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='tbl_documentDocument']/tbody/tr/td[1]"));
         }
 
         private IWebElement _UpperHeadMenuTabBtns(IWebDriver driver, string btnTxt)
@@ -501,7 +568,7 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
-        
+
         public void firstSearchInbox(string subject)
         {
             Click(_driver, _inboxPageEraseButton);
@@ -562,12 +629,12 @@ namespace T2automation.Pages.MyMessages
             bool flag = false;
             for (int i = 0; i < 5 && flag == false; i++)
             {
-                if(!IsAt(driver, "Create document - Ole5.1"))
+                if (!IsAt(driver, "Create document - Ole5.1"))
                 {
                     Console.WriteLine("Loading Page....");
                     Thread.Sleep(1000);
                 }
-                else if(IsAt(driver, "Create document - Ole5.1"))
+                else if (IsAt(driver, "Create document - Ole5.1"))
                 {
                     flag = true;
                     break;
@@ -616,7 +683,7 @@ namespace T2automation.Pages.MyMessages
         public void SelectToUser(IWebDriver driver, string user, string receiverType) {
             WaitTillProcessing();
             Thread.Sleep(2000);
-            
+
             if (receiverType.Equals("Users"))
             {
                 for (int index = 0; index < _selectToNameForUsers().Count; index++)
@@ -665,6 +732,14 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _cancelBtnInOutgoingMail);
         }
 
+        public void clickOnSendBtnAndCancelForMyInboxMail()
+        {
+            Click(_driver, _sendBtn);
+            Thread.Sleep(2000);
+            WaitForElement(_driver, _cancelBtnInMyInboxMail);
+            Click(_driver, _cancelBtnInMyInboxMail);
+        }
+        
         public void clickOnSendBtnAndCancelBtnForIncomingMail(bool checkPopup = false)
         {
             Click(_driver, _sendBtn);
@@ -680,7 +755,7 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
-        public void clickOnSendBtn(bool checkPopup=false) {
+        public void clickOnSendBtn(bool checkPopup = false) {
             Click(_driver, _sendBtn);
             Thread.Sleep(2000);
             if (checkPopup)
@@ -739,7 +814,7 @@ namespace T2automation.Pages.MyMessages
                 firstSearchFolderWithRefNo(strData);
                 WaitTillMailsGetLoad();
             }
-            else if(withSubject == true)
+            else if (withSubject == true)
             {
                 firstSearchInbox(strData);
                 WaitTillMailsGetLoad();
@@ -761,12 +836,66 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
+        public void writeRefNoToFieldInSearch(string refno)
+        {
+            Thread.Sleep(1000);
+            SendKeys(_driver, _refNoFieldInSearch, refno);
+        }
+
+        public void writeDateCreatedDateFromInSearch(string date)
+        {
+            if (!date.Equals(""))
+            {
+                SendKeys(_driver, _searchTabCreatedDateFrom, new DateTimeHelper().GetDate(date));
+                var result = _daysOnCal();
+                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(date) - 1));
+            }
+        }
+
+        public void writeDateExportDateFromInSearch(string date)
+        {
+            if (!date.Equals(""))
+            {
+                SendKeys(_driver, _searchTabExportedDateFrom, new DateTimeHelper().GetDate(date));
+                var result = _daysOnCal();
+                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(date) - 1));
+            }
+        }
+
+        public void ClickOnClearBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _clearBtn);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickOnSearchBtn()
+        {
+            Click(_driver, _searchBtn);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickOnRetrieveBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _retrieveBtn);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickOnReturnBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _returnBtn);
+            Thread.Sleep(2000);
+        }
+
         public bool OpenMailSpecial(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
             if (withSubject == false)
             {
                 firstSearchFolderWithRefNo(strData);
                 WaitTillMailsGetLoad();
+                Thread.Sleep(2000);
             }
             else if (withSubject == true)
             {
@@ -802,7 +931,25 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
-        public bool OpenMail(IWebDriver driver, string strData, string encryptPass = "" , bool withSubject = true)
+        public void clickExportBtn(bool checkPopup = false)
+        {
+            Click(_driver, _exportBtn);
+            Thread.Sleep(2000);
+            Click(_driver, _chk1);
+            Click(_driver, _chk2);
+            Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            WaitTillProcessing();
+        }
+
+        public void clickExportBtnInCommDeptUnexportedF(bool checkPopup = false)
+        {
+            Click(_driver, _exportBtnInUnexportFolder);
+            Thread.Sleep(1000);
+            Click(_driver, _exportCancelBtn);
+            Thread.Sleep(2000);
+        }
+
+        public bool OpenMail(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
             firstSearchInbox(strData);
             WaitTillMailsGetLoad();
@@ -825,7 +972,7 @@ namespace T2automation.Pages.MyMessages
                     }
                 }
             }
-            else if (searchResult >=1 && withSubject == false)
+            else if (searchResult >= 1 && withSubject == false)
             {
                 foreach (IWebElement elem in _referenceNoList)
                 {
@@ -852,7 +999,7 @@ namespace T2automation.Pages.MyMessages
             return GetText(driver, _mailTo).Contains(to);
         }
 
-        public bool ValidateSubject(IWebDriver driver, string subject,string ccStatus="False")
+        public bool ValidateSubject(IWebDriver driver, string subject, string ccStatus = "False")
         {
             if (ccStatus.Equals("False")) {
                 return GetText(driver, _subjectInbox).Equals(subject);
@@ -865,20 +1012,20 @@ namespace T2automation.Pages.MyMessages
             return GetText(driver, _contentBodyInbox).Equals(contentBody);
         }
 
-        public bool ValidateMailEncrypted(IWebDriver driver, string to, string subject, string body, string ccStatus = "False", string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true, string encryptPass="")
+        public bool ValidateMailEncrypted(IWebDriver driver, string to, string subject, string body, string ccStatus = "False", string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true, string encryptPass = "")
         {
-            if (OpenMailSpecial(driver, refno, encryptPass,withSubject:false))
+            if (OpenMailSpecial(driver, refno, encryptPass, withSubject: false))
             {
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
             }
             return false;
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body , string ccStatus = "False" , string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true)
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string ccStatus = "False", string refno = "", bool aviKaParameterToDifferentiateWithBelowFunction = true)
         {
-            if (OpenMailSpecial(driver, refno,withSubject: false))
+            if (OpenMailSpecial(driver, refno, withSubject: false))
             {
-                return (ValidateTo(driver, to) && ValidateSubject(driver, subject,ccStatus) && ValidateContentBody(driver, body));
+                return (ValidateTo(driver, to) && ValidateSubject(driver, subject, ccStatus) && ValidateContentBody(driver, body));
             }
             return false;
         }
@@ -969,15 +1116,61 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
+
+        public bool SelectExternalDeptCc(string deptName = "", string deptCode = "", string type = "")
+        {
+            Thread.Sleep(4000);
+            Click(_driver, _externalDeptCcBtn);
+            int index = SearchCcDept(deptName, deptCode, type);
+            if (index != -1)
+            {
+                Thread.Sleep(5000);
+                Click(_driver, _deptCcRadioBtn(_driver).ElementAt(index));
+                Thread.Sleep(2000);
+                Click(_driver, _okBtn());
+                Thread.Sleep(2000);
+                return true;
+            }
+            Click(_driver, _okBtn());
+            return false;
+        }
+
+
+        public int SearchCcDept(string deptName = "", string deptCode = "", string type = "")
+        {
+            if (!deptName.Equals(""))
+            {
+                SendKeys(_driver, _searchCcDeptName, deptName);
+            }
+            if (!deptCode.Equals(""))
+            {
+                SendKeys(_driver, _searchDeptCodeName, deptName);
+            }
+            if (!type.Equals(""))
+            {
+                DropdownSelectByText(_driver, _deptType(_driver), type);
+            }
+            Thread.Sleep(5000);
+            var deptNames = _deptCcNames(_driver);
+            for (int index = 0; index < deptNames.Count; index++)
+            {
+                if (GetText(_driver, deptNames.ElementAt(index)).Equals(deptName))
+                {
+                    return index;
+                }
+            }
+            return -1;
+        }
+
         public void ComposeMail(string subject, string contentBody, string multipleAttachementNo = "No", string multipleAttachmentType = "png") {
-            if(subject != "")
+            if (subject != "")
             {
                 Subject = subject;
             }
             EnterContentBody(contentBody);
         }
 
-        public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "", string messageType = "", string tengibleNo = "", string tengibleDesc = "", string exportMethod= "")
+        public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "", string messageType = "", string tengibleNo = "", string tengibleDesc = "", string exportMethod = "")
         {
             Click(_driver, _documentTab);
             Click(_driver, _propertiesTab);
@@ -1009,7 +1202,7 @@ namespace T2automation.Pages.MyMessages
             {
                 SendKeys(_driver, _incommingMessageNo, messageNo);
             }
-            
+
             if (!exportMethod.Equals(""))
             {
                 if (exportMethod.Equals("Indirect Export Method"))
@@ -1018,7 +1211,7 @@ namespace T2automation.Pages.MyMessages
                     btn.Click();
                     //Click(_driver, _indirectExportMethod);
                 }
-                else if(exportMethod.Equals("Direct Export Method"))
+                else if (exportMethod.Equals("Direct Export Method"))
                 {
                     var btn = _driver.FindElement(By.XPath("//*[@id='docProperty-part']/*//div[@class='divNeedReplyRadio']/input[@class='narrowRadio'][@value='1']"));
                     btn.Click();
@@ -1053,7 +1246,7 @@ namespace T2automation.Pages.MyMessages
         public void WaitForUploading()
         {
             Thread.Sleep(1000);
-            while (_progressbar(_driver).Count != 0 )
+            while (_progressbar(_driver).Count != 0)
             {
                 bool stillUploading = false;
                 var progress = _progressbar(_driver);
@@ -1144,7 +1337,7 @@ namespace T2automation.Pages.MyMessages
         public bool ValidateAttachments(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0)
         {
             var fileNames = _attachedFileNames(_driver);
-            if (fileNames.Count == attachmentNo-deleteAttachmentNo)
+            if (fileNames.Count == attachmentNo - deleteAttachmentNo)
             {
                 for (int index = 0; index < attachmentNo - deleteAttachmentNo; index++)
                 {
@@ -1212,29 +1405,29 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _connectedDocSearchBtn);
             Thread.Sleep(2000);
         }
-        
-        public string addNumberInString(string refno,int add)
+
+        public string addNumberInString(string refno, int add)
         {
             string[] strArray = refno.Split('-');
-            for(int i=0; i< strArray.Length; i++)
+            for (int i = 0; i < strArray.Length; i++)
             {
-                Console.WriteLine("I am in for loop index at "+i+" : "+strArray[i]);
+                Console.WriteLine("I am in for loop index at " + i + " : " + strArray[i]);
             }
             int numValOld = Int16.Parse(strArray[2]);
             int numValNew = numValOld + add;
             string numValOldStr = numValOld.ToString();
             string numValNewStr = numValNew.ToString();
-            strArray[2]=strArray[2].Replace(numValOldStr, numValNewStr);
+            strArray[2] = strArray[2].Replace(numValOldStr, numValNewStr);
 
             string newRefNo = strArray[0] + "-" + strArray[1] + "-" + strArray[2];
             return newRefNo;
         }
 
-        public bool validateConnectedDocWithRefNoFoundOrNot(IWebDriver driver,string refno,string docType)
+        public bool validateConnectedDocWithRefNoFoundOrNot(IWebDriver driver, string refno, string docType)
         {
-            SearchConnectedDocWithRefrenceNo(refno,docType);
+            SearchConnectedDocWithRefrenceNo(refno, docType);
             int searchResults = _connectedDocSearchedReferenceNo().Count;
-            for (int i = 0; i <= searchResults && searchResults >= 1;i++)
+            for (int i = 0; i <= searchResults && searchResults >= 1; i++)
             {
                 if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
                 {
@@ -1268,7 +1461,7 @@ namespace T2automation.Pages.MyMessages
 
         public bool selectConnectedDocWithRefNoAndDeliveryType(IWebDriver driver, string refno, string deliveryType)
         {
-            SearchConnectedDocWithRefrenceNo(refno,deliveryType: deliveryType);
+            SearchConnectedDocWithRefrenceNo(refno, deliveryType: deliveryType);
             int searchResults = _connectedDocSearchedReferenceNo().Count;
             for (int i = 0; i <= searchResults; i++)
             {
@@ -1286,16 +1479,16 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
-        public void SearchConnectedDocWithRefrenceNo(string refno, string docType="", string deliveryType="")
+        public void SearchConnectedDocWithRefrenceNo(string refno, string docType = "", string deliveryType = "")
         {
             Click(_driver, _connectedDocTab);
             Click(_driver, _addNewBtn);
             WaitTillProcessing();
-            if(docType!= "")
+            if (docType != "")
             {
                 DropdownSelectByText(_driver, _connectedDocDocType(_driver), docType);
             }
-            if(deliveryType != "")
+            if (deliveryType != "")
             {
                 DropdownSelectByText(_driver, _connectedDocDeliveryType(_driver), docType);
             }
@@ -1304,12 +1497,12 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
         }
 
-        public string ReadReferenceNoOfConnectedDoc(IWebDriver driver ,string subject)
+        public string ReadReferenceNoOfConnectedDoc(IWebDriver driver, string subject)
         {
             SearchConnectedDoc(subject);
             for (int index = 0; index <= _connectedDocSearchedReferenceNo().Count(); index++)
             {
-                if (GetText(driver,_connectedDocSearchedSubjects().ElementAt(index)).Equals(subject))
+                if (GetText(driver, _connectedDocSearchedSubjects().ElementAt(index)).Equals(subject))
                 {
                     WaitTillProcessing();
                     string refno = GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(index));
@@ -1320,13 +1513,13 @@ namespace T2automation.Pages.MyMessages
             Console.WriteLine("Error searched document does not exists");
             return null;
         }
-        
-        public void SelectConnectedPerson(IWebDriver driver, string personName ="", string email= "", string mbl="", string idNum="", string idIssue="", string issueDate="", string idType="",string saveStatus="True")
+
+        public void SelectConnectedPerson(IWebDriver driver, string personName = "", string email = "", string mbl = "", string idNum = "", string idIssue = "", string issueDate = "", string idType = "", string saveStatus = "True")
         {
-            Click(driver,_connectedPersonTab);
+            Click(driver, _connectedPersonTab);
             Click(driver, _addNewBtnPersonTab);
             WaitTillProcessing();
-            if(!personName.Equals(""))
+            if (!personName.Equals(""))
             {
                 Thread.Sleep(1000);
                 SendKeys(driver, _personTabName, personName);
@@ -1352,10 +1545,10 @@ namespace T2automation.Pages.MyMessages
                 SendKeys(driver, _personTabIdIssuer, idIssue);
             }
             if (!issueDate.Equals(""))
-            { 
+            {
                 SendKeys(driver, _personTabIssueDate, new DateTimeHelper().GetDate(issueDate));
                 var result = _daysOnCal();
-                Click(driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(issueDate)-1));
+                Click(driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(issueDate) - 1));
             }
             if (!idType.Equals(""))
             {
@@ -1372,6 +1565,25 @@ namespace T2automation.Pages.MyMessages
                 Click(_driver, _connectedPersonCancelBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
                 Thread.Sleep(1000);
             }
+        }
+
+        public bool ValidateMailAppearInAdvanceSearch(IWebDriver driver, string refno)
+        {
+            int searchResult = _advanceSearchRefNoList.Count();
+
+            if (searchResult >= 1)
+            {
+                for(int i = 0; i < searchResult;i++)
+                {
+                    string temp = GetText(driver, _advanceSearchRefNoList.ElementAt(i));
+                    if (GetText(driver,_advanceSearchRefNoList.ElementAt(i)).Equals(refno))
+                    {
+                        Thread.Sleep(1000);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public void SelectCcUser(IWebDriver driver, string user, string receiverType)
@@ -1425,6 +1637,29 @@ namespace T2automation.Pages.MyMessages
         public void ClickCCbutton(IWebDriver driver)
         {
             Click(driver, _selectMainCcFramBtn);
+        }
+
+        public int SelectConnectedDocWithRefno(string refno, bool statusSave = true)
+        {
+            SearchConnectedDocWithRefrenceNo(refno);
+            Thread.Sleep(3000);
+            int searchResults = _connectedDocSearchedReferenceNo().Count;
+            if (searchResults >= 1)
+            {
+                Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
+                if (statusSave == true)
+                {
+                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return searchResults;
+                }
+                else if (statusSave == false)
+                {
+                    Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return searchResults;
+                }
+            }
+            Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            return searchResults;
         }
 
         public int SelectConnectedDoc(string subject,bool statusSave= true)
@@ -1508,11 +1743,34 @@ namespace T2automation.Pages.MyMessages
             Thread.Sleep(5000);
         }
 
-        public void DeleteMail()
+        public void clickOnYesbtn()
         {
-            WaitTillProcessing();
-            Click(_driver, _deleteMailBtn);
+            Thread.Sleep(2000);
             Click(_driver, _yesBtn);
+        }
+
+        public void clickOnCancelbtn()
+        {
+            Thread.Sleep(2000);
+            Click(_driver, _connectedPersonCancelBtn.ElementAt(_connectedPersonSaveBtn.Count - 1));
+        }
+
+        public bool DeleteMail()
+        {
+            try
+            {
+                WaitTillProcessing();
+                Click(_driver, _deleteMailBtn);
+                Thread.Sleep(1000);
+                Click(_driver, _yesBtn);
+                Console.WriteLine("Mail Deleted!!!");
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Some Error in Deleting Mail!!!");
+                return false;
+            }
         }
 
         public void DeleteDraft()
@@ -1538,6 +1796,12 @@ namespace T2automation.Pages.MyMessages
             else if(dept.Equals("deptOutgoing"))
             {
                 Click(_driver, _inboxDeptOutgoingArchiveBtn);
+
+                WaitTillProcessing();
+            }
+            else if (dept.Equals("deptCommDept"))
+            {
+                Click(_driver, _commDeptExportArchiveBtn);
                 WaitTillProcessing();
             }
             if (!comnt.Equals(""))
@@ -1559,7 +1823,11 @@ namespace T2automation.Pages.MyMessages
                     WaitForUploading();
                 }
                 Thread.Sleep(1000);
-                //Click(_driver,_okArchiveBtn);
+                if (dept.Equals("deptCommDept"))
+                {
+                    Click(_driver, _okArchiveBtn);
+                    return;
+                }
                 ClickOkBtn();
             }
             ClickOkBtn();
@@ -1572,6 +1840,7 @@ namespace T2automation.Pages.MyMessages
 
         public void DeleteDocumetFromTheList(IWebDriver driver,string subject)
         {
+            Click(_driver, _connectedDocTab);
             for (int index = 0; index <= _connectedDocSubjectList().Count(); index++)
             {
                 if (ValidateConnectedDocumentList(subject))
@@ -1687,7 +1956,7 @@ namespace T2automation.Pages.MyMessages
             }
             return false;
         }
-
+        
         public void clickOnConnectedDocumentList(IWebDriver driver, string subject)
         {
             for (int index = 0; index < _connectedDocSubjectList().Count(); index++)

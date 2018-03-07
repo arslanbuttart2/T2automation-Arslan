@@ -28,6 +28,7 @@ namespace T2automation.Steps.My_Messages
         private Pages.MyMessages.InboxPage myMessageInboxPage;
         private Pages.DeptMessages.InboxPage deptMessageInboxPage;
         private TextFileManager txtManager;
+        private InboxPage inboxPage;
 
 
         [When(@"user sends an internal message to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -98,6 +99,7 @@ namespace T2automation.Steps.My_Messages
         [Then(@"mail should appear in the inbox read CC too ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenMailShouldAppearInTheInboxReadCCToo(string to, string subject, string content, string ccStatus = "False")
         {
+            driver = driverFactory.GetDriver();
             myMessageInboxPage = new InboxPage(driver);
             readFromConfig = new ReadFromConfig();
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
@@ -149,6 +151,7 @@ namespace T2automation.Steps.My_Messages
         [Then(@"encrypted mail should appear in the out box ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenEncryptedMailShouldAppearInTheOutBox(string to, string subject, string content, string listSubject, string encryptedPass)
         {
+            driver = driverFactory.GetDriver();
             outboxPage = new OutboxPage(driver);
             outboxPage.NavigateToMyMessageOutbox(driver);
             readFromConfig = new ReadFromConfig();
@@ -181,6 +184,7 @@ namespace T2automation.Steps.My_Messages
         [Then(@"encrypted mail should appear in the inbox ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenEncryptedMailShouldAppearInTheInbox(string to, string subject, string content, string listSubject, string encryptedPass)
         {
+            driver = driverFactory.GetDriver();
             myMessageInboxPage = new InboxPage(driver);
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
             readFromConfig = new ReadFromConfig();
@@ -214,13 +218,127 @@ namespace T2automation.Steps.My_Messages
         }
 
         [Then(@"mail should appear in Department Message with Root ""(.*)"" ""(.*)"" ""(.*)""")]
-        public void ThenMailShouldAppearInDepartmentMessageWithRoot(string CommDept, string subject, string content)
+        public void ThenMailShouldAppearInDepartmentMessageWithRoot(string commDept, string subject, string content)
         {
+            driver = driverFactory.GetDriver();
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
-            deptMessageInboxPage.NavigateToMessageRoot(driver, readFromConfig.GetValue(CommDept));
-            Assert.IsTrue(deptMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(CommDept), subject, content));
+            deptMessageInboxPage.NavigateToMessageRoot(driver, readFromConfig.GetValue(commDept));
+            Assert.IsTrue(deptMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(commDept), subject, content));
         }
 
+        [When(@"user go to dept ""(.*)"" messages Unexported folder")]
+        public void WhenUserGoToDeptMessagesUnexportedFolder(string commDept)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToMessageRoot(driver, readFromConfig.GetValue(commDept));
+        }
+
+        [When(@"user go to dept ""(.*)"" Outbox")]
+        public void WhenUserGoToDeptOutbox(string commDept)
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToCommDeptOutbox(driver, readFromConfig.GetValue(commDept));
+        }
+
+        [When(@"user go to dept ""(.*)"" Exported")]
+        public void WhenUserGoToDeptExported(string commDept)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToCommDeptExportF(driver, readFromConfig.GetValue(commDept));
+        }
+
+        [Then(@"user search and open mail in dept ""(.*)"" with subject ""(.*)""")]
+        public void ThenUserSearchAndOpenMailInDeptWithSubject(string commDept, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+        }
+
+        [Then(@"click on ""(.*)"" button")]
+        public void ThenClickOnButton(string btnName)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            if (btnName.Equals("Return"))
+            {
+                inboxPage.ClickOnReturnBtn();
+                inboxPage.ClickOkBtn();
+            }
+            if (btnName.Equals("Retrieve"))
+            {
+                inboxPage.ClickOnRetrieveBtn();
+                inboxPage.clickOnYesbtn();
+            }
+            if (btnName.Equals("Export"))
+            {
+                Thread.Sleep(1000);
+                inboxPage.clickExportBtnInCommDeptUnexportedF();
+            }
+            //This button is available in Advance Search Menu
+            if (btnName.Equals("Clear"))
+            {
+                inboxPage.ClickOnClearBtn();
+            }
+            if (btnName.Equals("Search"))
+            {
+                inboxPage.ClickOnSearchBtn();
+            }
+        }
+        [Then(@"write reference number of ""(.*)""")]
+        public void ThenWriteReferenceNumberOf(string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject: subject);
+            inboxPage.writeRefNoToFieldInSearch(refno);
+        }
+
+        [Then(@"write export date from ""(.*)""")]
+        public void ThenWriteExportDateFrom(string date)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.writeDateExportDateFromInSearch(date);
+        }
+
+        [Then(@"write created date from ""(.*)""")]
+        public void ThenWriteCreatedDateFrom(string date)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.writeDateCreatedDateFromInSearch(date);
+        }
+
+        [Then(@"Check the advance searched results with subject ""(.*)""")]
+        public void ThenCheckTheAdvanceSearchedResultsWithSubject(string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            refno = txtManager.refnoPure(refno);
+            Assert.IsTrue(inboxPage.ValidateMailAppearInAdvanceSearch(driver,refno));
+        }
+
+        [When(@"user select and save the reference no ""(.*)"" of connected document with subject ""(.*)""")]
+        public void WhenUserSelectAndSaveTheReferenceNoOfConnectedDocumentWithSubject(string type, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.SelectConnectedDocWithRefno(refno);
+            Assert.IsTrue(txtManager.writeToFile(type,subject, refno));
+        }
 
     }
 }

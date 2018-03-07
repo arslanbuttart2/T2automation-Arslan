@@ -33,7 +33,7 @@ Scenario:ph 1 Message Actions - Deleting Message
 	And user opens department "internalDepartmentSameDep" mail with subject "Internal message for deletion 111" ""
 	Then user deletes the mail
 	Then mail with subject "Internal message for deletion 111" should not appear in "dept" inbox
-	When user open "dept" deleted message with suject "Internal message for deletion 111" and click on button "  Rollback"
+	When user open "dept" deleted message with suject "Internal message for deletion 111" and click on button "Rollback"
 	Then mail with subject "Internal message for deletion 111" should not appear in "dept" deleted message
 	Then mail should appear in dept inbox "internalDepartmentSameDepAr" "Internal message for deletion 111" "Internal message for deletion 111"
 	When user opens inbox email with subject "Internal message for deletion 222"
@@ -138,13 +138,64 @@ Scenario:ph 2 Message Actions - Archiving Message
 
 
 Scenario:ph 3 Exporting Message -1
-	When user go to my messages Incomming Document
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
+	#When user go to my messages Incomming Document
+	#And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	#And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
+	#And select the external department "ExternalEntitySameCountry"
+	#And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
+	#And user attach attachments 1 "1.pdf"
+	#And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	#And user send the email and click on Cancel button
+	#Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
+	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for indirect export 111" ""
+	And click on export button
+	And user compose mail "Incoming message for indirect export 666" "Incoming message for indirect export 666"
 	And select the external department "ExternalEntitySameCountry"
-	And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
-	And user attach attachments 1 "1.pdf"
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-	And user send the email and click on Cancel button
-	Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
+	And select the external cc department "ExternalEntitySameCountry2"
 
+Scenario:ph 4 Exporting Message - 2
+	When user go to dept messages Internal Document
+	And search "Admin" "UserMainDepartmentAr" "Users"
+	And user compose mail "Internal message for direct export 222" "Internal message for direct export 222"
+	And user attach attachments 1 "1.pdf"
+	And user select and save the reference no "CD2" of connected document with subject "Internal Message to Internal Department 111"
+	And user send the email
+	Then save reference number from "dept" in txt with subject "Internal message for direct export 222"
+	When user opens inbox email with subject "Internal message for direct export 222"
+	And click on export button
+	And user compose mail "Internal message for direct export 888" "Internal message for direct export 888"
+	And user set properties "" "" "" "" "" "" "Direct Export Method"
+	And select the external department "ExternalEntitySameCountry"
+	####following is not the working!!!
+	And user delete the document with subject "Internal Message to Internal Department 111" from the list
+	And user send the email in "my" and click on Cancel button
+	Then save reference number from "my" in txt with subject "Internal message for direct export 888"
+	When user go to dept "CommDepSameDep" messages Unexported folder 
+	Then user search and open mail in dept "CommDepSameDep" with subject "Internal message for direct export 888"
+	And click on "Return" button
+	When user go to dept "CommDepSameDep" Outbox
+	Then user search and open mail in dept "CommDepSameDep" with subject "Internal message for direct export 888"
+	And click on "Retrieve" button
+	When user go to dept "CommDepSameDep" messages Unexported folder
+	Then user search and open mail in dept "CommDepSameDep" with subject "Internal message for direct export 888"
+	Then click on "Export" button
+	When user go to dept "CommDepSameDep" Exported
+	Then user search and open mail in dept "CommDepSameDep" with subject "Internal message for direct export 888"
+	And user click on "deptCommDept,Archive" button and set "Comment for archive" "1.jpg"
+	When user open "deptCommDept" archive message with suject "Internal message for direct export 888" and click on button "Delete"
+	###When user go to "deptCommDept" deleted message
+	Then mail with subject "Internal message for direct export 888" should appear in "deptCommDept" Delete
+	When user go to search "Advance Search"
+	Then click on "Clear" button
+	And write reference number of "Internal message for direct export 888"
+	And write export date from "now"
+	Then click on "Search" button
+	Then Check the advance searched results with subject "Internal message for direct export 888" 
+	Then click on "Clear" button
+	And write reference number of "Internal message for direct export 888"
+	And write created date from "now"
+	Then click on "Search" button
+	Then Check the advance searched results with subject "Internal message for direct export 888" 
+
+Scenario:ph 7 Retrieve  Message - 1
+	
