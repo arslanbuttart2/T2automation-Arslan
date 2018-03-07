@@ -262,7 +262,7 @@ namespace T2automation.Steps.My_Messages
             inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
         }
 
-        [Then(@"click on ""(.*)"" button")]
+        [Then(@"click on ""(.*)"" button"), When(@"click on ""(.*)"" button")]
         public void ThenClickOnButton(string btnName)
         {
             driver = driverFactory.GetDriver();
@@ -291,6 +291,12 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnSearchBtn();
             }
+            //This buttons are in dept inbox opened mail
+            if (btnName.Equals("Print"))
+            {
+                inboxPage.ClickOnSearchBtn();
+            }
+
         }
         [Then(@"write reference number of ""(.*)""")]
         public void ThenWriteReferenceNumberOf(string subject)

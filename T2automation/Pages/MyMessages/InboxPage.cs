@@ -112,6 +112,15 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='btnSearch']")]
         private IWebElement _searchBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='print-docment-div']/div[1]/label[1]")]
+        private IWebElement _selectAllCheck;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[4]/a/label")]
+        private IWebElement _printBtndept;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
+        private IWebElement _printStickerBtndept;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='txtRefNo']")]
         private IWebElement _refNoFieldInSearch;
@@ -860,6 +869,20 @@ namespace T2automation.Pages.MyMessages
                 var result = _daysOnCal();
                 Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(date) - 1));
             }
+        }
+
+        public void ClickOnPrintBtn()
+        {
+            Click(_driver, _printBtndept);
+            Thread.Sleep(2000);
+
+        }
+
+        public void ClickOnPrintStickerBtn()
+        {
+            Click(_driver, _printStickerBtndept);
+            Thread.Sleep(2000);
+            Click(_driver, _selectAllCheck)
         }
 
         public void ClickOnClearBtn()

@@ -198,4 +198,12 @@ Scenario:ph 4 Exporting Message - 2
 	Then Check the advance searched results with subject "Internal message for direct export 888" 
 
 Scenario:ph 7 Retrieve  Message - 1
-	
+	When user go to my messages Internal Document
+	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
+	And user compose mail "Internal message for Retreiving 111" "Internal message for Retreiving 111"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Internal message for Retreiving 111"
+	When user opens department "internalDepartmentSameDep" mail with subject "Internal message for Retreiving 111" ""
+	And click on "Print" button 
+
