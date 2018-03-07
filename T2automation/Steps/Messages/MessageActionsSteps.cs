@@ -239,6 +239,20 @@ namespace T2automation.Steps.Messages
             inboxPage.CheckButtonClickable(driver, "Internal Document");
         }
 
+        [When(@"search CC ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenSearchCC(string ccTo, string cclevel, string receiverType)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            inboxPage = new InboxPage(driver);
+            inboxPage.ClickToButton(driver);
+            inboxPage.SelectLevel(driver, readFromConfig.GetValue(cclevel));
+            inboxPage.SelectReceiverType(driver, receiverType);
+            inboxPage.SearchNameCode = readFromConfig.GetValue(ccTo);
+            inboxPage.SelectCcUser(driver, readFromConfig.GetValue(ccTo), receiverType);
+            inboxPage.ClickOkBtn();
+        }
+
         [When(@"search ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenSearch(string to, string level, string receiverType)
         {
@@ -559,6 +573,25 @@ namespace T2automation.Steps.Messages
             Thread.Sleep(3000);
             inboxPage.WaitTillProcessing();
             string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+        }
+
+        [When(@"user opens outbox email with subject ""(.*)""")]
+        public void WhenUserOpensOutboxEmailWithSubject(string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            inboxPage.NavigateToMyMessage(driver);
+            inboxPage.NavigateToMyMessageOutbox(driver);
+            Thread.Sleep(3000);
+            inboxPage.WaitTillProcessing();
+            string refno = txtManager.readFromFile(subject);
+            if(subject.Contains("Encrypted"))
+            {
+                inboxPage.OpenMailSpecial(driver, refno, withSubject: false,encryptPass: "P@ssw0rd!@#");
+                return;
+            }
             inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
         }
 

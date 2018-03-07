@@ -60,6 +60,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']//a[text() = 'Add Related Message']/../span[1]")]
         private IWebElement _expandDeptAddRelatedMessagePermission;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li/ul/li[2]/ul/li[16]/span/span[1]")]
+        private IWebElement _expandDeptRetreiveMessagePermission;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li/span")]
         private IList<IWebElement> _systemMessagePermissionsClass;
 
@@ -93,6 +96,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.XPath, Using = ".//div[@id = 'divPermTree']/ul/li/ul/li/ul/li/ul/li/ul/li/span")]
         private IList<IWebElement> _deptAddRelatedMessagePermissionsClass;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li/ul/li[2]/ul/li[16]/ul/li/span")]
+        private IList<IWebElement> _deptRetreiveMessagePermissionsClass;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li[2]/ul/li/ul/li/span/a")]
         private IList<IWebElement> _addRelatedMessagePermissions;
 
@@ -101,7 +107,10 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
 
         [FindsBy(How = How.XPath, Using = ".//div[@id = 'divPermTree']/ul/li/ul/li/ul/li/ul/li/ul/li/span/a")]
         private IList<IWebElement> _deptAddRelatedMessagePermissions;
-
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li/ul/li[2]/ul/li[16]/ul/li/span/a")]
+        private IList<IWebElement> _deptRetreiveMessagePermissions;
+        
         [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li[3]/ul/li[2]/ul/li/ul/li/span/span[2]")]
         private IList<IWebElement> _addRelatedMessagePermissionsCheckbox;
        
@@ -110,6 +119,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
 
         [FindsBy(How = How.XPath, Using = ".//div[@id = 'divPermTree']/ul/li/ul/li/ul/li/ul/li/ul/li/span/span[2]")]
         private IList<IWebElement> _deptAddRelatedMessagePermissionsCheckbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divPermTree']/ul/li/ul/li[2]/ul/li[16]/ul/li/span/span[2]")]
+        private IList<IWebElement> _deptRetreiveMessagePermissionsCheckbox;
 
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Ok']")]
         private IWebElement _okBtn;
@@ -389,6 +401,26 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                                 if (GetAttribute(driver, _deptAddRelatedMessagePermissionsClass.ElementAt(index1), "class").Contains("selected") != value)
                                 {
                                     Click(driver, _deptAddRelatedMessagePermissionsCheckbox.ElementAt(index1));
+                                    Click(driver, _okBtn);
+                                    Click(driver, _yesBtn);
+                                    return;
+                                }
+                                Click(driver, _cancelBtn);
+                                return;
+                            }
+                        }
+                    }
+                    else if (permissionName.Contains("Retreive Message after Reading"))
+                    {
+                        Click(driver, _expandDeptRetreiveMessagePermission);
+
+                        for (int index1 = 0; index1 < _deptRetreiveMessagePermissions.Count; index1++)
+                        {
+                            if (GetText(driver, _deptRetreiveMessagePermissions.ElementAt(index1)).Equals(permissionName))
+                            {
+                                if (GetAttribute(driver, _deptRetreiveMessagePermissionsClass.ElementAt(index1), "class").Contains("selected") != value)
+                                {
+                                    Click(driver, _deptRetreiveMessagePermissionsCheckbox.ElementAt(index1));
                                     Click(driver, _okBtn);
                                     Click(driver, _yesBtn);
                                     return;

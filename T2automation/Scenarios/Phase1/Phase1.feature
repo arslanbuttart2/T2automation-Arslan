@@ -206,4 +206,24 @@ Scenario:ph 7 Retrieve  Message - 1
 	Then save reference number from "my" in txt with subject "Internal message for Retreiving 111"
 	When user opens department "internalDepartmentSameDep" mail with subject "Internal message for Retreiving 111" ""
 	And click on "Print" button 
+	And click on "Print Sticker" button
+	When user opens outbox email with subject "Internal message for Retreiving 111"
+	And click on "Retrieve" button
+	And user send the email
+	Then save reference number from "my" in txt with subject "Internal message for Retreiving 111"
+	When user opens department "internalDepartmentSameDep" mail with subject "Internal message for Retreiving 111" ""
+	And click on "Confirm Receiving" button
+	When user opens outbox email with subject "Internal message for Retreiving 111"
+	And click on "Retrieve" button
+
+Scenario:ph 8 Retrieve  Message - 2
+	#When Admin set department message permissions for user "Retreive Message" "True" "Admin" "internalDepartmentSameDep"
+	#And Admin set department message permissions for user "Retreive Message after Reading" "False" "Admin" "internalDepartmentSameDep"
+	#When Admin logged in "AdminUserName" "AdminPassword"
+	When user go to dept messages Internal Document
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	And search CC "Admin" "UserMainDepartmentAr" "Users"
+	And user compose mail "Internal message for Retreiving 222" "Internal message for Retreiving 222"
+	And user send the email
+	Then save reference number from "dept" in txt with subject "Internal message for Retreiving 222"
 

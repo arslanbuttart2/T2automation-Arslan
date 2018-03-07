@@ -94,6 +94,9 @@ namespace T2automation.Pages.MyMessages
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[7]/a/label")]
         private IWebElement _exportBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='confirmReceivingDocumentDiv']/a/label")]
+        private IWebElement _confirmReceivingBtn;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
         private IWebElement _exportBtnInUnexportFolder;
@@ -113,6 +116,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='btnSearch']")]
         private IWebElement _searchBtn;
         
+        [FindsBy(How = How.XPath, Using = ".//*[@id='print-header']/div/button[2]")]
+        private IWebElement _cancelBtnPrintPreview;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='print-docment-div']/div[1]/label[1]")]
         private IWebElement _selectAllCheck;
 
@@ -871,18 +877,37 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        public void CancelFunctionForNewWindowPrint()
+        {
+            // Choosing the second window which is the print dialog.
+            // Switching to opened window of print dialog.
+            _driver.SwitchTo().Window(_driver.WindowHandles.ToArray()[1].ToString());
+            // Runs code for cancelling print operation.
+            // This code only executes for Chrome browsers.
+            //_driver.FindElement(By.XPath(".//*[@id='print-header']/div/button[2]")).Click();
+            Click(_driver, _cancelBtnPrintPreview);
+            // Switches to main window after print dialog operation.
+            _driver.SwitchTo().Window(_driver.WindowHandles.ToArray()[0].ToString());
+        }
+
         public void ClickOnPrintBtn()
         {
             Click(_driver, _printBtndept);
             Thread.Sleep(2000);
-
+            Click(_driver, _selectAllCheck);
+            //okarchivebtn act as print btn here! 
+            Click(_driver, _okArchiveBtn);
+            Thread.Sleep(2000);
+            CancelFunctionForNewWindowPrint();
+            Thread.Sleep(1000);
         }
 
         public void ClickOnPrintStickerBtn()
         {
             Click(_driver, _printStickerBtndept);
             Thread.Sleep(2000);
-            Click(_driver, _selectAllCheck)
+            CancelFunctionForNewWindowPrint();
+            Thread.Sleep(1000);
         }
 
         public void ClickOnClearBtn()
@@ -962,6 +987,14 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _chk2);
             Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             WaitTillProcessing();
+        }
+
+        public void clickConfirmReceivingBtn()
+        {
+            Click(_driver, _confirmReceivingBtn);
+            Thread.Sleep(1000);
+            Click(_driver, _okArchiveBtn);
+            Thread.Sleep(2000);
         }
 
         public void clickExportBtnInCommDeptUnexportedF(bool checkPopup = false)

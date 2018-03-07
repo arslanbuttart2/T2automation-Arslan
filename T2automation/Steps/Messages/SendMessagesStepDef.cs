@@ -236,11 +236,14 @@ namespace T2automation.Steps.My_Messages
         }
 
         [When(@"user go to dept ""(.*)"" Outbox")]
-        public void WhenUserGoToDeptOutbox(string commDept)
+        public void WhenUserGoToDeptOutbox(string Dept)
         {
             driver = driverFactory.GetDriver();
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
-            deptMessageInboxPage.NavigateToCommDeptOutbox(driver, readFromConfig.GetValue(commDept));
+            if (Dept.Equals("CommDepSameDep"))
+            {
+                deptMessageInboxPage.NavigateToCommDeptOutbox(driver, Dept);
+            }
         }
 
         [When(@"user go to dept ""(.*)"" Exported")]
@@ -272,29 +275,39 @@ namespace T2automation.Steps.My_Messages
                 inboxPage.ClickOnReturnBtn();
                 inboxPage.ClickOkBtn();
             }
-            if (btnName.Equals("Retrieve"))
+            else if (btnName.Equals("Retrieve"))
             {
                 inboxPage.ClickOnRetrieveBtn();
                 inboxPage.clickOnYesbtn();
             }
-            if (btnName.Equals("Export"))
+            else if (btnName.Equals("Export"))
             {
                 Thread.Sleep(1000);
                 inboxPage.clickExportBtnInCommDeptUnexportedF();
             }
+            else if (btnName.Equals("Confirm Receiving"))
+            {
+                Thread.Sleep(1000);
+                inboxPage.clickConfirmReceivingBtn();
+            }
+
             //This button is available in Advance Search Menu
-            if (btnName.Equals("Clear"))
+            else if (btnName.Equals("Clear"))
             {
                 inboxPage.ClickOnClearBtn();
             }
-            if (btnName.Equals("Search"))
+            else if (btnName.Equals("Search"))
             {
                 inboxPage.ClickOnSearchBtn();
             }
             //This buttons are in dept inbox opened mail
-            if (btnName.Equals("Print"))
+            else if (btnName.Equals("Print"))
             {
-                inboxPage.ClickOnSearchBtn();
+                inboxPage.ClickOnPrintBtn();
+            }
+            else if (btnName.Equals("Print Sticker"))
+            {
+                inboxPage.ClickOnPrintStickerBtn();
             }
 
         }
