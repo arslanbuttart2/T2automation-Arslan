@@ -94,6 +94,9 @@ namespace T2automation.Pages.MyMessages
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[7]/a/label")]
         private IWebElement _exportBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[1]/a/label")]
+        private IWebElement _myInboxReplyBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='confirmReceivingDocumentDiv']/a/label")]
         private IWebElement _confirmReceivingBtn;
@@ -115,7 +118,46 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='btnSearch']")]
         private IWebElement _searchBtn;
-        
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div[22]/div[2]/div/div[4]/div[2]/button[2]")]
+        private IWebElement _cancelBtnForIncomingMail2;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[7]/a/label")]
+        private IWebElement _editBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[9]/a/label")]
+        private IWebElement _processEditBtn;
+
+        [FindsBy(How = How.Id, Using = "externalDepartmentToBtn")]
+        private IWebElement _externalDeptToBtnInRoot;
+
+        [FindsBy(How = How.Id, Using = "externalDepartmentCCBtn")]
+        private IWebElement _externalDeptCCBtnInRoot;
+
+        private IList<IWebElement> _deptCcCheckBox(IWebDriver driver)
+        {
+            return driver.FindElements(By.XPath(".//*[@id='externalDepartmentGrid']/tbody/tr/td[1]/label"));
+        }
+
+        private IWebElement _cancel()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Cancel']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return _driver.FindElement(By.XPath(".//button[text() = 'Cancel']"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='retriveLable']")]
+        private IWebElement _retriveBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
+        private IWebElement _rollBackBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='print-header']/div/button[2]")]
         private IWebElement _cancelBtnPrintPreview;
 
@@ -166,6 +208,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/ul/li")]
         private IList<IWebElement> _connectedTabTo;
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div[21]/div[2]/div/div[4]/div[2]/button[1]")]
+        private IWebElement _okBtnForIncomingMail;
 
         [FindsBy(How = How.XPath, Using = "html/body")]
         private IWebElement _contentBody;
@@ -821,6 +866,86 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
         }
 
+        public void clickOnSendBtnAndOkBtnForIncomingMail(bool checkPopup = false)
+        {
+            Click(_driver, _sendBtn);
+            Thread.Sleep(2000);
+
+            Click(_driver, _okBtnForIncomingMail);
+
+        }
+
+        public void clickCancelBtnForIncomingMail(bool checkPopup = false)
+        {
+            Thread.Sleep(2000);
+            Click(_driver, _cancelBtnForIncomingMail2);
+
+        }
+
+        public void clickEditBtn()
+        {
+            Click(_driver, _editBtn);
+        }
+
+        public bool SelectExternalDeptToButton(string deptName = "", string deptCode = "", string type = "")
+        {
+            Thread.Sleep(5000);
+            Click(_driver, _externalDeptToBtnInRoot);
+            int index = SearchDept(deptName, deptCode, type);
+            if (index != -1)
+            {
+                Thread.Sleep(5000);
+                Click(_driver, _deptRadioBtn(_driver).ElementAt(index));
+                Thread.Sleep(2000);
+                Click(_driver, _okBtn());
+                Thread.Sleep(2000);
+                return true;
+            }
+            Click(_driver, _okBtn());
+            return false;
+        }
+
+        public bool SelectExternalDeptCCButton(string deptName = "", string deptCode = "", string type = "")
+        {
+
+            Thread.Sleep(5000);
+            Click(_driver, _externalDeptCCBtnInRoot);
+
+            int index = SearchCcDept(deptName, deptCode, type);
+            if (index != -1)
+            {
+                Click(_driver, _deptCcCheckBox(_driver).ElementAt(index));
+                Thread.Sleep(2000);
+                Click(_driver, _okBtn());
+                Thread.Sleep(2000);
+                return true;
+            }
+            Click(_driver, _okBtn());
+            return false;
+        }
+
+        public void clickProcessEditBtn()
+        {
+            Click(_driver, _processEditBtn);
+        }
+
+        public void ClickCancelBtn()
+        {
+            Click(_driver, _cancel());
+            Thread.Sleep(1000);
+        }
+
+        public void clickRetriveBtn()
+        {
+            Click(_driver, _retriveBtn);
+            Click(_driver, _yesBtn);
+        }
+
+        public void clickRollbackBtn()
+        {
+            Click(_driver, _rollBackBtn);
+        }
+        
 
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
@@ -988,6 +1113,13 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             WaitTillProcessing();
         }
+        
+        public void clickReplyBtnMyInbox()
+        {
+            Click(_driver, _myInboxReplyBtn);
+            Thread.Sleep(2000);
+        }
+
 
         public void clickConfirmReceivingBtn()
         {

@@ -407,6 +407,100 @@ namespace T2automation.Steps.Messages
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
+        [When(@"user send the email and click on Ok button")]
+        public void WhenUserSendTheEmailAndClickOnOkButton()
+        {
+            inboxPage.clickOnSendBtnAndOkBtnForIncomingMail();
+            inboxPage.clickCancelBtnForIncomingMail();
+            Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
+        }
+
+        [When(@"user click cancel button")]
+        public void WhenUserClickCancelButton()
+        {
+            inboxPage.clickCancelBtnForIncomingMail();
+        }
+
+        [When(@"click export")]
+        public void WhenClickExport()
+        {
+            inboxPage.clickExportBtn();
+        }
+
+        [When(@"user opens root department ""(.*)"" mail with subject ""(.*)""")]
+        public void WhenUserOpensRootDepartmentMailWithSubject(string CommDept = "", string subject = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToMessageRoot(driver, CommDept);
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+        }
+
+        [When(@"user click on edit button")]
+        public void WhenUserClickOnEditButton()
+        {
+            inboxPage.clickEditBtn();
+        }
+
+        [When(@"select the external department in root""(.*)""")]
+        public void WhenSelectTheExternalDepartmentInRoot(string to)
+        {
+            readFromConfig = new ReadFromConfig();
+            inboxPage.SelectExternalDeptToButton(deptName: readFromConfig.GetValue(to));
+        }
+
+        [When(@"user click ok button")]
+        public void WhenUserClickOkButton()
+        {
+            inboxPage.ClickOkBtn();
+        }
+
+        [When(@"select the external cc department in root ""(.*)""")]
+        public void WhenSelectTheExternalCcDepartmentInRoot(string cc)
+        {
+            readFromConfig = new ReadFromConfig();
+            inboxPage.SelectExternalDeptCCButton(deptName: readFromConfig.GetValue(cc));
+        }
+
+        [When(@"user click on process edit change and export button")]
+        public void WhenUserClickOnProcessEditChangeAndExportButton()
+        {
+            inboxPage.clickProcessEditBtn();
+        }
+
+        [When(@"user click on retrive button")]
+        public void WhenUserClickOnRetriveButton()
+        {
+            inboxPage.clickRetriveBtn();
+        }
+
+        [When(@"user click on cancel button")]
+        public void WhenUserClickOnCancelButton()
+        {
+            inboxPage.ClickCancelBtn();
+        }
+
+        [When(@"user opens department delete ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpensDepartmentDeleteMailWithSubject(string dept, string subject, string encpass = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToQADeptDeletedFolder(driver);
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encpass);
+        }
+
+        [When(@"user click on roll back button")]
+        public void WhenUserClickOnRollBackButton()
+        {
+            inboxPage.clickRollbackBtn();
+        }
+
         [When(@"user go to my messages Incomming Document")]
         public void WhenUserGoToMyMessagesIncommingDocument()
         {

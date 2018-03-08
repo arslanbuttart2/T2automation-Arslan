@@ -244,6 +244,11 @@ namespace T2automation.Steps.My_Messages
             {
                 deptMessageInboxPage.NavigateToCommDeptOutbox(driver, Dept);
             }
+            if (Dept.Equals("qaDept"))
+            {
+                deptMessageInboxPage.NavigateToQADeptOutbox(driver);
+            }
+
         }
 
         [When(@"user go to dept ""(.*)"" Exported")]
@@ -290,7 +295,12 @@ namespace T2automation.Steps.My_Messages
                 Thread.Sleep(1000);
                 inboxPage.clickConfirmReceivingBtn();
             }
-
+            else if (btnName.Equals("Reply"))
+            {
+                Thread.Sleep(1000);
+                inboxPage.clickReplyBtnMyInbox();
+            }
+            
             //This button is available in Advance Search Menu
             else if (btnName.Equals("Clear"))
             {

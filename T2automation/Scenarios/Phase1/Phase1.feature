@@ -137,21 +137,63 @@ Scenario:ph 2 Message Actions - Archiving Message
 	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "CommDepSameDep"
 
 
+#Scenario:ph 3 Exporting Message -1
+#	#When user go to my messages Incomming Document
+#	#And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+#	#And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
+#	#And select the external department "ExternalEntitySameCountry"
+#	#And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
+#	#And user attach attachments 1 "1.pdf"
+#	#And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+#	#And user send the email and click on Cancel button
+#	#Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
+#	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for indirect export 111" ""
+#	And click on export button
+#	And user compose mail "Incoming message for indirect export 666" "Incoming message for indirect export 666"
+#	And select the external department "ExternalEntitySameCountry"
+#	And select the external cc department "ExternalEntitySameCountry2"
+
+
+
+
 Scenario:ph 3 Exporting Message -1
-	#When user go to my messages Incomming Document
-	#And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	#And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
-	#And select the external department "ExternalEntitySameCountry"
-	#And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
-	#And user attach attachments 1 "1.pdf"
-	#And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-	#And user send the email and click on Cancel button
-	#Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
+	When user go to my messages Incomming Document
+	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
+	And select the external department "ExternalEntitySameCountry"
+	And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
+	And user attach attachments 1 "1.pdf"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"	
+	And user send the email and click on Ok button
+	And user click cancel button
+	Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
 	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for indirect export 111" ""
-	And click on export button
+	And click export
 	And user compose mail "Incoming message for indirect export 666" "Incoming message for indirect export 666"
 	And select the external department "ExternalEntitySameCountry"
 	And select the external cc department "ExternalEntitySameCountry2"
+	And user set properties "" "" "" "" "" "" "indirectExport"
+	And user select connected document with subject "Internal Message to Internal Department 111"
+	And user send the email and click on Cancel button	
+	Then save reference number from "dept" in txt with subject "Incoming message for indirect export 666"
+	When user opens root department "CommDepSameDep" mail with subject "Incoming message for indirect export 666"	
+	And user click on edit button
+	And select the external department in root"ExternalEntitySameCountry2"
+	And user click ok button
+	And select the external cc department in root "ExternalEntitySameCountry"
+	And user click on process edit change and export button
+	And user click ok button	
+	And user click on cancel button
+	##DUE TO BUG LEFT OUT
+	#When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for indirect export 666"
+	#And user click on reply button compose mail with subject "Reply :incoming message for indirect export 666" "Reply :incoming message for indirect export 666"
+	###And user delete the person with name "Person Name1" from the list
+	###And user delete the document with subject "Incoming message for indirect export 111" from the list
+	#And user delete the connected document with subject "Incoming message for indirect export 111" from the list
+	#And user attach attachments 1 "1.jpg"
+	#And user send the email
+	###When user opens depart
+
 
 Scenario:ph 4 Exporting Message - 2
 	When user go to dept messages Internal Document
@@ -226,4 +268,49 @@ Scenario:ph 8 Retrieve  Message - 2
 	And user compose mail "Internal message for Retreiving 222" "Internal message for Retreiving 222"
 	And user send the email
 	Then save reference number from "dept" in txt with subject "Internal message for Retreiving 222"
+	###########following needs to be executed!!! And Tested!!!
+	When user go to my messages Internal Document
+	And user opens inbox email with subject "Internal message for Retreiving 222"
+	And user opens department "internalDepartmentSameDep" mail with subject "Internal message for Retreiving 222" ""
+	And click on "Retrieve" button
+	#When Admin set department message permissions for user "Retreive Message" "True" "Admin" "internalDepartmentSameDep"
+	#And Admin set department message permissions for user "Retreive Message after Reading" "True" "Admin" "internalDepartmentSameDep"
+	#When Admin logged in "AdminUserName" "AdminPassword"
+	When user go to dept "qaDept" Outbox
+	Then user search and open mail in dept "qaDept" with subject "Internal message for Retreiving 222"
+	And click on "Retrieve" button
+	When user send the email
+	And user opens inbox email with subject "Internal message for Retreiving 222"
+	And click on "Reply" button
+	And user compose mail "Reply: Internal message for Retreiving 222" "Reply: Internal message for Retreiving 222"
+	And user send the email
+	When user go to dept "qaDept" Outbox
+	Then user search and open mail in dept "qaDept" with subject "Internal message for Retreiving 222"
+	And click on "Retrieve" button
+	
+Scenario:ph 9 Retrieve  Message - 3	
+	When user go to "my" encrypted message 
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And user compose mail "Encrypted message for Reteiving 333" "Encrypted message for Reteiving 333"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Encrypted message for Reteiving 333"
+	When user opens department "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	And user deletes the mail
+	When user opens outbox email with subject "Encrypted message for Reteiving 333"
+	And user click on retrive button
+	When user opens department delete "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	And user click on roll back button
+	When user opens outbox email with subject "Encrypted message for Reteiving 333"
+	And user click on retrive button
+	## SN 25-29 BUG NEXT STEPS NEED TO BE IMPLEMETED
 
+Scenario:ph 10 Retrieve  Message - 4
+	#######ISSUE dETECTED of Xpath
+	When user go to dept messages Incoming Document
+	And search "AdminUserName" "UserMainDepartmentAr" "Users"
+	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
+	And user set properties "" "" "" "12345" "now" "now" ""
+	And select the external department "ExternalEntitySameCountry"
+	And user send the email and click on Ok button
+	##Then save reference number from "my" in tx
