@@ -66,7 +66,7 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             inboxPage.clickExportBtn();
-            Thread.Sleep(4000);
+            Thread.Sleep(3000);
         }
 
         [Then(@"save reference number from ""(.*)"" in txt with subject ""(.*)""")]
@@ -159,6 +159,7 @@ namespace T2automation.Steps.Messages
         }
 
         [When(@"user delete the attachment ""(.*)"" ""(.*)""")]
+        [Then(@"user delete the attachment ""(.*)"" ""(.*)""")]
         public void WhenUserDeleteTheAttachment(string deleteAttachmentTypes, int deleteAttachmentNo)
         {
             inboxPage.DeleteAttachments(deleteAttachmentTypes, deleteAttachmentNo);
@@ -192,6 +193,13 @@ namespace T2automation.Steps.Messages
         public void ThenTheFileShouldAppearInDownloads(string downloadFileName, int downloadFileNo)
         {
             Assert.IsTrue(new GetDownloadFiles().ValidateFilesNos(downloadFileNo));
+        }
+
+        [Then(@"the file should appear in download ""(.*)""")]
+        public void ThenTheFileShouldAppearInDownload(string downloadFileName)
+        {
+            Thread.Sleep(3000);
+            Assert.IsTrue(new GetDownloadFiles().ValidateFiles(downloadFileName));
         }
 
         [When(@"user sends an internal message with properties with attachments ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -288,8 +296,18 @@ namespace T2automation.Steps.Messages
             {
                 outboxPage.NavigateToCommDeptArchiveF(driver, "");
             }
-            string refno = txtManager.readFromFile(subject);
-            outboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+
+            if(subject.Contains("Encrypted message"))
+            {
+                string refno = txtManager.readFromFile(subject);
+                outboxPage.OpenMailSpecial(driver, refno,"P@ssw0rd!@#", withSubject: false);
+            }
+            else
+            {
+                string refno = txtManager.readFromFile(subject);
+                outboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            }
+
             if (btnName.Equals("Rollback"))
             {
                 Assert.IsTrue(outboxPage.userClickRollbackBtn(driver));
@@ -348,7 +366,32 @@ namespace T2automation.Steps.Messages
                 outboxPage.NavigateToCommDeptDeleteF(driver, "");
             }
         }
-        
+
+        [Then(@"mail with subject ""(.*)"" should appear in ""(.*)"" archive message")]
+        public void ThenMailWithSubjectShouldAppearInArchiveMessage(string subject, string dept)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                outboxPage.NavigateToMyMessageArchiveF(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                outboxPage.NavigateToQADeptArchiveFolder(driver);
+            }
+            else if (dept.Equals("deptCommDept"))
+            {
+                outboxPage.NavigateToCommDeptArchiveF(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsTrue(outboxPage.OpenMailSpecial(driver, refno, withSubject: false));
+        }
+    
+
+
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" archive message")]
         public void ThenMailWithSubjectShouldNotAppearInArchiveMessage(string subject, string dept)
         {
@@ -363,6 +406,10 @@ namespace T2automation.Steps.Messages
             else if (dept.Equals("dept"))
             {
                 outboxPage.NavigateToQADeptArchiveFolder(driver);
+            }
+            else if (dept.Equals("deptCommDept"))
+            {
+                outboxPage.NavigateToCommDeptArchiveF(driver);
             }
             string refno = txtManager.readFromFile(subject);
             Assert.IsFalse(outboxPage.OpenMailSpecial(driver, refno, withSubject: false));
@@ -391,20 +438,45 @@ namespace T2automation.Steps.Messages
         [When(@"user compose mail ""(.*)"" ""(.*)""")]
         public void WhenUserComposeMail(string subject, string content)
         {
+            inboxPage.WaitTillProcessing();
+            Thread.Sleep(2000);
             inboxPage.ComposeMail(subject, content);
         }
 
         [When(@"user attach attachments (.*) ""(.*)""")]
+        [Then(@"user attach attachments (.*) ""(.*)""")]
         public void WhenUserAttachAttachments(int attachmentNo, string attachmentTypes)
         {
             inboxPage.AddAttachments(attachmentTypes, attachmentNo);
         }
 
+        [When(@"user select all files in attachment ""(.*)""")]
+        [Then(@"user select all files in attachment ""(.*)""")]
+        public void WhenUserSelectAllFilesInAttachment(int size)
+        {
+            inboxPage.selectAllAttachmentInMail(size);
+        }
+
+        [When(@"user select files type in attachment ""(.*)"" ""(.*)""")]
+        [Then(@"user select files type in attachment ""(.*)"" ""(.*)""")]
+        public void ThenUserSelectFilesTypeInAttachment(string fileType, int size)
+        {
+            inboxPage.selectSpecificFileTypeAttachmentInMail(fileType,size);
+        }
+        
         [When(@"user send the email")]
         public void WhenUserSendTheEmail()
         {
             inboxPage.clickOnSendBtn();
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
+        }
+
+        [Then(@"user send the email and save refrence no from popup ""(.*)"" ""(.*)""")]
+        public void ThenUserSendTheEmailAndSaveRefrenceNoFromPopup(string type, string subject)
+        {
+            inboxPage.clickOnSendBtn();
+            inboxPage.readRefNoFromPopupAndSaveItInTxtFile(type, subject);
+            //Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
         [When(@"user send the email and click on Ok button")]
@@ -477,7 +549,7 @@ namespace T2automation.Steps.Messages
             inboxPage.clickRetriveBtn();
         }
 
-        [When(@"user click on cancel button")]
+        [When(@"user click on cancel button"), Then(@"user click on cancel button")]
         public void WhenUserClickOnCancelButton()
         {
             inboxPage.ClickCancelBtn();
@@ -511,6 +583,7 @@ namespace T2automation.Steps.Messages
         }
 
         [When(@"select the external department ""(.*)""")]
+        [Then(@"select the external department ""(.*)""")]
         public void WhenSelectTheExternalDepartment(string to)
         {
             readFromConfig = new ReadFromConfig();
@@ -518,6 +591,7 @@ namespace T2automation.Steps.Messages
         }
 
         [When(@"select the external cc department ""(.*)""")]
+        [Then(@"select the external cc department ""(.*)""")]
         public void WhenSelectTheExternalCcDepartment(string to)
         {
             readFromConfig = new ReadFromConfig();
@@ -543,13 +617,14 @@ namespace T2automation.Steps.Messages
             }
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
-
+        
         [When(@"user send the email and click on Cancel button")]
+        [Then(@"user send the email and click on Cancel button")]
         public void WhenUserSendTheEmailAndClickOnCancelButton()
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
-            inboxPage.clickOnSendBtnAndCancelBtnForIncomingMail(true);
+            inboxPage.clickOnSendBtnAndCancelBtnForIncomingMail();
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
@@ -761,6 +836,29 @@ namespace T2automation.Steps.Messages
             string refno = txtManager.readFromFile(subject);
             Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false));
         }
+
+        [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" Exported")]
+        public void ThenMailWithSubjectShouldNotAppearInExported(string subject, string dept)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            if (dept.Equals("my"))
+            {
+                inboxPage.NavigateToMyMessageInbox(driver);
+            }
+            else if (dept.Equals("dept"))
+            {
+                inboxPage.NavigateToQADeptInbox(driver);
+            }
+            else if (dept.Equals("deptCommDept"))
+            {
+                inboxPage.NavigateToCommDeptExportF(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false));
+        }
+
 
         [Then(@"mail with subject ""(.*)"" should appear in ""(.*)"" Delete")]
         public void ThenMailWithSubjectShouldAppearInDelete(string subject, string dept)

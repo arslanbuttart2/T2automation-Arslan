@@ -137,76 +137,78 @@ this.FeatureBackground();
  testRunner.And("user enters incomming message no \"+123456789\" and incomming message Gregorian dat" +
                     "e \"now\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
+ testRunner.And("user set properties \"\" \"\" \"\" \"\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
  testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
- testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
  testRunner.Then("save reference number from \"deptAcc\" in txt with subject \"Incoming message for de" +
                     "letion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 32
- testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
+ testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 34
  testRunner.And("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
                     "sage for deletion 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
- testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 35
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
  testRunner.Then("mail with subject \"Internal message for deletion 111\" should not appear in \"dept\"" +
                     " inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 36
+#line 37
  testRunner.When("user open \"dept\" deleted message with suject \"Internal message for deletion 111\" " +
                     "and click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 37
+#line 38
  testRunner.Then("mail with subject \"Internal message for deletion 111\" should not appear in \"dept\"" +
                     " deleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 38
+#line 39
  testRunner.Then("mail should appear in dept inbox \"internalDepartmentSameDepAr\" \"Internal message " +
                     "for deletion 111\" \"Internal message for deletion 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 39
- testRunner.When("user opens inbox email with subject \"Internal message for deletion 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
- testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user opens inbox email with subject \"Internal message for deletion 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 41
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
  testRunner.Then("mail with subject \"Internal message for deletion 222\" should not appear in \"my\" i" +
                     "nbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
- testRunner.When("user opens inbox email with subject \"Incoming message for deletion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 43
- testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user opens inbox email with subject \"Incoming message for deletion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 44
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 45
  testRunner.Then("mail with subject \"Incoming message for deletion 333\" should not appear in \"my\" i" +
                     "nbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
+#line 46
  testRunner.When("user open \"my\" deleted message with suject \"Internal message for deletion 222\" an" +
                     "d click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 46
+#line 47
  testRunner.Then("mail with subject \"Internal message for deletion 222\" should not appear in \"my\" d" +
                     "eleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 47
+#line 48
  testRunner.Then("mail should appear in the inbox \"User\" \"Internal message for deletion 222\" \"Inter" +
                     "nal message for deletion 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 48
+#line 49
  testRunner.When("user open \"my\" deleted message with suject \"Incoming message for deletion 333\" an" +
                     "d click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 49
+#line 50
  testRunner.Then("mail with subject \"Incoming message for deletion 333\" should not appear in \"my\" d" +
                     "eleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 50
+#line 51
  testRunner.Then("mail should appear in the inbox \"User\" \"Incoming message for deletion 333\" \"Incom" +
                     "ing message for deletion 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 51
- testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 52
+ testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
  testRunner.When("Admin set system message permissions for user \"Delete Messages from Inbox\" \"False" +
                     "\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
+#line 54
  testRunner.And("Admin set system message permissions for user \"Rollback Messages from Deleted Ite" +
                     "ms\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 54
+#line 55
  testRunner.And("Admin set department message permissions for user \"Delete Messages from Inbox\" \"F" +
                     "alse\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 55
+#line 56
  testRunner.And("Admin set department message permissions for user \"Rollback Messages from Deleted" +
                     " Items\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -218,193 +220,172 @@ this.FeatureBackground();
         public virtual void Ph2MessageActions_ArchivingMessage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 2 Message Actions - Archiving Message", ((string[])(null)));
-#line 57
+#line 58
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 58
- testRunner.When("Admin set system message permissions for user \"Archive Messages\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 59
+ testRunner.When("Admin set system message permissions for user \"Archive Messages\" \"True\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 60
  testRunner.And("Admin set system message permissions for user \"Rollback from Archive\" \"True\" \"Use" +
                     "r\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 60
+#line 61
  testRunner.And("Admin set department message permissions for user \"Archive Messages\" \"True\" \"User" +
                     "\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 62
  testRunner.And("Admin set department message permissions for user \"Rollback from Archive\" \"True\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 62
+#line 63
  testRunner.And("Admin set department message permissions for user \"Archive Messages\" \"True\" \"User" +
                     "\" \"CommDepSameDepEn\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
+#line 64
  testRunner.And("Admin set department message permissions for user \"Rollback from Archive\" \"True\" " +
                     "\"User\" \"CommDepSameDepEn\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 64
- testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 65
- testRunner.And("search \"User\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 66
+ testRunner.And("search \"User\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
  testRunner.And("user compose mail \"Internal message for archiving 111\" \"Internal message for arch" +
                     "iving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
- testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 68
+ testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 69
- testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 70
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
  testRunner.Then("save reference number from \"my\" in txt with subject \"Internal message for archivi" +
                     "ng 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 71
- testRunner.When("user go to \"my\" encrypted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 72
+ testRunner.When("user go to \"my\" encrypted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 73
  testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 73
+#line 74
  testRunner.And("user compose mail \"Encrypted message for archiving 222\" \"Encrypted message for ar" +
                     "chiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
- testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
- testRunner.And("user attach attachments 1 \"1.xlsx\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 76
+ testRunner.And("user attach attachments 1 \"1.xlsx\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 77
- testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 78
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
  testRunner.Then("save reference number from \"my\" in txt with subject \"Encrypted message for archiv" +
                     "ing 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 79
- testRunner.When("user go to dept \"InternalDepartmentSameDepartment2Ar\" messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 80
- testRunner.And("search \"User\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user go to dept \"InternalDepartmentSameDepartment2Ar\" messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 81
- testRunner.And("user set properties \"\" \"\" \"\" \"12345\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search \"User\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 82
- testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user set properties \"\" \"\" \"\" \"12345\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 83
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
  testRunner.And("user compose mail \"Incoming message for archiving 333\" \"Incoming message for arch" +
                     "iving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 85
- testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 86
+ testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 87
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 87
+#line 88
  testRunner.When("user set connected person \"PersonName1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" \"" +
                     "Riyadh\" \"now\" \"هوية\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 88
- testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 89
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 90
  testRunner.Then("save reference number from \"deptAcc\" in txt with subject \"Incoming message for ar" +
                     "chiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 90
- testRunner.When("user go to dept \"InternalDepartmentSameDepartment2Ar\" messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 91
+ testRunner.When("user go to dept \"InternalDepartmentSameDepartment2Ar\" messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 92
  testRunner.And("user click CC button \"UserMainDepartmentAr\" \"Structural Hierarchy\" \"internalDepar" +
                     "tmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 92
+#line 93
  testRunner.And("user compose mail \"Outgoing message for archiving 444\" \"Outgoing message for arch" +
                     "iving 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 93
- testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 94
- testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 95
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
  testRunner.And("user select connected document with subject \"Internal Message to Internal Departm" +
                     "ent 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 96
- testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 97
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 98
  testRunner.Then("save reference number from \"deptAcc\" in txt with subject \"Outgoing message for ar" +
                     "chiving 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 98
- testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 99
- testRunner.And("user opens inbox email with subject \"Internal message for archiving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 100
- testRunner.Then("user click on \"my,Archive\" button and set \"Comment for archive\" \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("user opens inbox email with subject \"Internal message for archiving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 101
+ testRunner.Then("user click on \"my,Archive\" button and set \"Comment for archive\" \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 102
  testRunner.And("mail with subject \"Internal message for archiving 111\" should not appear in \"my\" " +
                     "inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 102
- testRunner.When("user opens inbox email with subject \"Incoming message for archiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 103
- testRunner.Then("user click on \"my,Archive\" button and set \"Comment for archive\" \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user opens inbox email with subject \"Incoming message for archiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 104
+ testRunner.Then("user click on \"my,Archive\" button and set \"Comment for archive\" \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 105
  testRunner.And("mail with subject \"Incoming message for archiving 333\" should not appear in \"my\" " +
                     "inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 105
+#line 106
  testRunner.When("user open \"my\" archive message with suject \"Internal message for archiving 111\" a" +
                     "nd click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 106
- testRunner.Then("mail with subject \"Internal message for archiving 111\" should not appear in \"my\" " +
-                    "archive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 107
+ testRunner.Then("mail with subject \"Internal message for archiving 111\" should appear in \"my\" arch" +
+                    "ive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 108
  testRunner.When("user open \"my\" archive message with suject \"Incoming message for archiving 333\" a" +
                     "nd click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 108
- testRunner.Then("mail with subject \"Incoming message for archiving 333\" should not appear in \"my\" " +
-                    "archive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 109
- testRunner.Then("mail should appear in the inbox \"User\" \"Internal message for archiving 111\" \"Inte" +
-                    "rnal message for archiving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 110
- testRunner.Then("mail should appear in the inbox \"User\" \"Incoming message for archiving 333\" \"Inco" +
-                    "ming message for archiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 111
+ testRunner.Then("mail with subject \"Incoming message for archiving 333\" should appear in \"my\" arch" +
+                    "ive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 112
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Encrypted me" +
                     "ssage for archiving 222\" \"P@ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 112
- testRunner.Then("user click on \"dept,Archive\" button and set \"Comment for archive\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 113
+ testRunner.Then("user click on \"dept,Archive\" button and set \"Comment for archive\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 114
  testRunner.And("mail with subject \"Encrypted message for archiving 222\" should not appear in \"dep" +
                     "t\" inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 114
+#line 115
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Outgoing mes" +
                     "sage for archiving 444\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 115
- testRunner.Then("user click on \"deptOutgoing,Archive\" button and set \"Comment for archive\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 116
+ testRunner.Then("user click on \"deptOutgoing,Archive\" button and set \"Comment for archive\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 117
  testRunner.And("mail with subject \"Outgoing message for archiving 444\" should not appear in \"dept" +
                     "\" inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 117
+#line 118
  testRunner.When("user open \"dept\" archive message with suject \"Encrypted message for archiving 222" +
                     "\" and click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 118
- testRunner.And("user open \"dept\" archive message with suject \"Outgoing message for archiving 444\"" +
-                    " and click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 119
- testRunner.Then("mail with subject \"Encrypted message for archiving 222\" should not appear in \"dep" +
-                    "t\" archive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 120
- testRunner.And("mail with subject \"Outgoing message for archiving 444\" should not appear in \"dept" +
-                    "\" archive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 121
- testRunner.Then("mail should appear in dept inbox \"internalDepartmentSameDepAr\" \"Encrypted message" +
-                    " for archiving 222\" \"Encrypted message for archiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 122
- testRunner.And("mail should appear in dept inbox \"CommDepSameDep\" \"Outgoing message for archiving" +
-                    " 444\" \"Outgoing message for archiving 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 131
+#line 135
  testRunner.When("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 132
+#line 136
  testRunner.When("Admin set system message permissions for user \"Archive Messages\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 133
+#line 137
  testRunner.And("Admin set system message permissions for user \"Rollback from Archive\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 134
+#line 138
  testRunner.And("Admin set department message permissions for user \"Archive Messages\" \"False\" \"Use" +
                     "r\" \"internalDepartmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 135
+#line 139
  testRunner.And("Admin set department message permissions for user \"Rollback from Archive\" \"False\"" +
                     " \"User\" \"internalDepartmentSameDepAr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 136
+#line 140
  testRunner.And("Admin set department message permissions for user \"Archive Messages\" \"False\" \"Use" +
                     "r\" \"CommDepSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 137
+#line 141
  testRunner.And("Admin set department message permissions for user \"Rollback from Archive\" \"False\"" +
                     " \"User\" \"CommDepSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -492,105 +473,314 @@ this.FeatureBackground();
         public virtual void Ph4ExportingMessage_2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 4 Exporting Message - 2", ((string[])(null)));
-#line 198
+#line 197
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 199
+#line 198
  testRunner.When("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 200
+#line 199
  testRunner.And("search \"Admin\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 201
+#line 200
  testRunner.And("user compose mail \"Internal message for direct export 222\" \"Internal message for " +
                     "direct export 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 202
+#line 201
  testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 203
+#line 202
  testRunner.And("user select and save the reference no \"CD2\" of connected document with subject \"I" +
                     "nternal Message to Internal Department 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 204
+#line 203
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 205
+#line 204
  testRunner.Then("save reference number from \"dept\" in txt with subject \"Internal message for direc" +
                     "t export 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 206
+#line 205
  testRunner.When("user opens inbox email with subject \"Internal message for direct export 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 207
+#line 206
  testRunner.And("click on export button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 208
+#line 207
  testRunner.And("user compose mail \"Internal message for direct export 888\" \"Internal message for " +
                     "direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 209
+#line 208
  testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Direct Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 210
+#line 209
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 212
+#line 211
  testRunner.And("user delete the document with subject \"Internal Message to Internal Department 11" +
                     "1\" from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 213
+#line 212
  testRunner.And("user send the email in \"my\" and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 214
+#line 213
  testRunner.Then("save reference number from \"my\" in txt with subject \"Internal message for direct " +
                     "export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 214
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 215
- testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
+                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 216
- testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
-                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 217
  testRunner.And("click on \"Return\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 218
+#line 217
  testRunner.When("user go to dept \"CommDepSameDep\" Outbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 218
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
+                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 219
- testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
-                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 220
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 221
+#line 220
  testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 221
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
+                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 222
- testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
-                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 223
  testRunner.Then("click on \"Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 224
+#line 223
  testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 225
+#line 224
  testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
                     " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 226
+#line 225
  testRunner.And("user click on \"deptCommDept,Archive\" button and set \"Comment for archive\" \"1.jpg\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 227
+#line 226
  testRunner.When("user open \"deptCommDept\" archive message with suject \"Internal message for direct" +
                     " export 888\" and click on button \"Delete\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 229
+#line 228
  testRunner.Then("mail with subject \"Internal message for direct export 888\" should appear in \"dept" +
                     "CommDept\" Delete", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 230
+#line 229
  testRunner.When("user go to search \"Advance Search\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 230
+ testRunner.Then("click on \"Clear\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 231
- testRunner.Then("click on \"Clear\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("write reference number of \"Internal message for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 232
- testRunner.And("write reference number of \"Internal message for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 233
  testRunner.And("write export date from \"now\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 233
+ testRunner.Then("click on \"Search\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 234
- testRunner.Then("click on \"Search\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Check the advance searched results with subject \"Internal message for direct expo" +
+                    "rt 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 235
- testRunner.Then("Check the advance searched results with subject \"Internal message for direct expo" +
-                    "rt 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 236
  testRunner.Then("click on \"Clear\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 237
+#line 236
  testRunner.And("write reference number of \"Internal message for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 238
+#line 237
  testRunner.And("write created date from \"now\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 239
+#line 238
  testRunner.Then("click on \"Search\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 240
+#line 239
  testRunner.Then("Check the advance searched results with subject \"Internal message for direct expo" +
                     "rt 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("ph 5 Exporting Message - 3")]
+        public virtual void Ph5ExportingMessage_3()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 5 Exporting Message - 3", ((string[])(null)));
+#line 241
+ this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 242
+ testRunner.When("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 243
+ testRunner.And("user click CC button \"MainDepartment\" \"Structural Hierarchy\" \"InternalDepartmentS" +
+                    "ameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 244
+ testRunner.And("user send incoming message to \"MainDepartment\" \"Structural Hierarchy\" \"InternalDe" +
+                    "partmentOtherDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 245
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 246
+ testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 247
+ testRunner.And("user compose mail \"Outgoing message for direct export 444\" \"Outgoing message for " +
+                    "direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 248
+ testRunner.And("user select connected document with subject \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 249
+ testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 251
+ testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Direct Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 252
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 253
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Outgoing message for direct " +
+                    "export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 254
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 255
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 256
+ testRunner.When("user open connected document with subject \"Internal Message to Internal Departmen" +
+                    "t 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 257
+ testRunner.Then("click on \"Return\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 258
+ testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Outgoing mes" +
+                    "sage for direct export 444\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 259
+ testRunner.And("click on \"Reply All\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 260
+ testRunner.And("user compose mail \"Reply All: Outgoing message for direct export 444\" \"Reply All:" +
+                    " Outgoing message for direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 261
+ testRunner.And("user set properties \"Paper\" \"67890\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 262
+ testRunner.And("user select connected document with subject \"Outgoing message for direct export 4" +
+                    "44\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 263
+ testRunner.And("user delete the attachment \"1.pdf\" \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 264
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 265
+ testRunner.When("user open \"InternalDepartmentSameDep\" deleted message with suject \"Reply All: Out" +
+                    "going message for direct export 444\" and click on button \"delete\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 266
+ testRunner.Then("mail with subject \"Reply All: Outgoing message for direct export 444\" should not " +
+                    "appear in \"InternalDepartmentSameDep\" deleted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 268
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 269
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 270
+ testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 271
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 272
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Internal message" +
+                    " for direct export 888\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 273
+ testRunner.And("click on export button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 274
+ testRunner.When("user go to search \"Advance Search\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 275
+ testRunner.Then("click on \"Clear\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 276
+ testRunner.And("write reference number of \"Outgoing message for direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 277
+ testRunner.And("write export date from \"now\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 278
+ testRunner.And("click on \"Search\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 279
+ testRunner.And("Check the advance searched results with subject \"Outgoing message for direct expo" +
+                    "rt 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 280
+ testRunner.And("click on \"Clear\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 281
+ testRunner.And("write reference number of \"Outgoing message for direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 282
+ testRunner.And("write created date from \"now\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 283
+ testRunner.And("Check the advance searched results with subject \"Outgoing message for direct expo" +
+                    "rt 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 284
+ testRunner.When("user opens inbox email with subject \"Outgoing message for direct export 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 285
+ testRunner.Then("click on \"Undo Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("ph 6 Exporting Message - 4")]
+        public virtual void Ph6ExportingMessage_4()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 6 Exporting Message - 4", ((string[])(null)));
+#line 287
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 288
+ testRunner.When("user go to dept \"InternalDepartmentSameDep\" messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 289
+ testRunner.And("user compose mail \"Outgoing message for direct export 555\" \"Outgoing message for " +
+                    "direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 290
+ testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 291
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 292
+ testRunner.And("select the external cc department \"ExternalEntitySameCountry2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 293
+ testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 294
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 295
+ testRunner.Then("save reference number from \"dept\" in txt with subject \"Outgoing message for direc" +
+                    "t export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 296
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 297
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 298
+ testRunner.And("click on export button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 299
+ testRunner.And("click on cancel button on printing popup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 300
+ testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 301
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 302
+ testRunner.And("click on \"Undo Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 303
+ testRunner.When("user opens department \"CommDepSameDep\" mail with subject \"Outgoing message for di" +
+                    "rect export 555\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 304
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 305
+ testRunner.And("click on \"Undo Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 306
+ testRunner.And("user delete the attachment \"1.pdf\" \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 307
+ testRunner.And("user attach attachments 1 \"1.png\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 308
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 309
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 310
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 311
+ testRunner.And("user click on Outgoing incoming date tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 312
+ testRunner.And("user click on Document tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 313
+ testRunner.And("click on edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 314
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 315
+ testRunner.And("select the external cc department \"ExternalEntitySameCountry2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 316
+ testRunner.And("click on Process Edit Changes and Export button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 317
+ testRunner.And("click on Yes in Export pop-up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 318
+ testRunner.And("click on cancel button on printing popup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 319
+ testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 320
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 321
+ testRunner.And("user click on \"deptCommDept\" button and set \"Comment for archive\" \"1.jpg\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 322
+ testRunner.When("user open \"CommDepSameDep\" archive message with suject \"Outgoing message for dire" +
+                    "ct export 555\" and click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 323
+ testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 324
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
+                    " for direct export555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -600,49 +790,49 @@ this.FeatureBackground();
         public virtual void Ph7RetrieveMessage_1()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 7 Retrieve  Message - 1", ((string[])(null)));
-#line 242
+#line 326
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 243
+#line 327
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 244
+#line 328
  testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 245
+#line 329
  testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 246
+#line 330
  testRunner.And("user compose mail \"Internal message for Retreiving 111\" \"Internal message for Ret" +
                     "reiving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 247
+#line 331
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 248
+#line 332
  testRunner.Then("save reference number from \"my\" in txt with subject \"Internal message for Retreiv" +
                     "ing 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 249
+#line 333
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
                     "sage for Retreiving 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 250
+#line 334
  testRunner.And("click on \"Print\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 251
+#line 335
  testRunner.And("click on \"Print Sticker\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 252
+#line 336
  testRunner.When("user opens outbox email with subject \"Internal message for Retreiving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 253
+#line 337
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 254
+#line 338
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 255
+#line 339
  testRunner.Then("save reference number from \"my\" in txt with subject \"Internal message for Retreiv" +
                     "ing 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 256
+#line 340
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
                     "sage for Retreiving 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 257
+#line 341
  testRunner.And("click on \"Confirm Receiving\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 258
+#line 342
  testRunner.When("user opens outbox email with subject \"Internal message for Retreiving 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 259
+#line 343
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -653,58 +843,58 @@ this.FeatureBackground();
         public virtual void Ph8RetrieveMessage_2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 8 Retrieve  Message - 2", ((string[])(null)));
-#line 261
+#line 345
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 265
+#line 349
  testRunner.When("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 266
+#line 350
  testRunner.And("search \"InternalDepartmentOtherDepAr\" \"OtherMainDepartmentAr\" \"Structural Hierarc" +
                     "hy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 267
+#line 351
  testRunner.And("search CC \"Admin\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 268
+#line 352
  testRunner.And("user compose mail \"Internal message for Retreiving 222\" \"Internal message for Ret" +
                     "reiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 269
+#line 353
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 270
+#line 354
  testRunner.Then("save reference number from \"dept\" in txt with subject \"Internal message for Retre" +
                     "iving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 272
+#line 356
  testRunner.When("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 273
+#line 357
  testRunner.And("user opens inbox email with subject \"Internal message for Retreiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 274
+#line 358
  testRunner.And("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
                     "sage for Retreiving 222\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 275
+#line 359
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 279
+#line 363
  testRunner.When("user go to dept \"qaDept\" Outbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 280
+#line 364
  testRunner.Then("user search and open mail in dept \"qaDept\" with subject \"Internal message for Ret" +
                     "reiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 281
+#line 365
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 282
+#line 366
  testRunner.When("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 283
+#line 367
  testRunner.And("user opens inbox email with subject \"Internal message for Retreiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 284
+#line 368
  testRunner.And("click on \"Reply\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 285
+#line 369
  testRunner.And("user compose mail \"Reply: Internal message for Retreiving 222\" \"Reply: Internal m" +
                     "essage for Retreiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 286
+#line 370
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 287
+#line 371
  testRunner.When("user go to dept \"qaDept\" Outbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 288
+#line 372
  testRunner.Then("user search and open mail in dept \"qaDept\" with subject \"Internal message for Ret" +
                     "reiving 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 289
+#line 373
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -715,43 +905,43 @@ this.FeatureBackground();
         public virtual void Ph9RetrieveMessage_3()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 9 Retrieve  Message - 3", ((string[])(null)));
-#line 291
+#line 375
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 292
+#line 376
  testRunner.When("user go to \"my\" encrypted message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 293
+#line 377
  testRunner.And("search \"InternalDepartmentOtherDepAr\" \"OtherMainDepartmentAr\" \"Structural Hierarc" +
                     "hy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 294
+#line 378
  testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 295
+#line 379
  testRunner.And("user compose mail \"Encrypted message for Reteiving 333\" \"Encrypted message for Re" +
                     "teiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 296
+#line 380
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 297
+#line 381
  testRunner.Then("save reference number from \"my\" in txt with subject \"Encrypted message for Reteiv" +
                     "ing 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 298
+#line 382
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Encrypted me" +
                     "ssage for Reteiving 333\" \"P@ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 299
+#line 383
  testRunner.And("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 300
+#line 384
  testRunner.When("user opens outbox email with subject \"Encrypted message for Reteiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 301
+#line 385
  testRunner.And("user click on retrive button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 302
+#line 386
  testRunner.When("user opens department delete \"internalDepartmentSameDep\" mail with subject \"Encry" +
                     "pted message for Reteiving 333\" \"P@ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 303
+#line 387
  testRunner.And("user click on roll back button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 304
+#line 388
  testRunner.When("user opens outbox email with subject \"Encrypted message for Reteiving 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 305
+#line 389
  testRunner.And("user click on retrive button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -762,23 +952,41 @@ this.FeatureBackground();
         public virtual void Ph10RetrieveMessage_4()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 10 Retrieve  Message - 4", ((string[])(null)));
-#line 308
+#line 392
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 310
+#line 394
  testRunner.When("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 311
+#line 395
  testRunner.And("search \"AdminUserName\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 312
+#line 396
  testRunner.And("user compose mail \"Incoming message for Reteiving 444\" \"Incoming message for Rete" +
                     "iving 444\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 313
+#line 397
  testRunner.And("user set properties \"\" \"\" \"\" \"12345\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 314
+#line 398
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 315
+#line 399
  testRunner.And("user send the email and click on Ok button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("ph 11 Print message - 1")]
+        public virtual void Ph11PrintMessage_1()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 11 Print message - 1", ((string[])(null)));
+#line 402
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 440
+ testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 441
+ testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Export: Internal" +
+                    " message for print 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

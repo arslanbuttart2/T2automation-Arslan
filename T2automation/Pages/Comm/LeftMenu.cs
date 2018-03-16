@@ -353,7 +353,7 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
-        public void NavigateToMessageRoot(IWebDriver driver, string CommDept)
+        public void NavigateToMessageRoot(IWebDriver driver, string CommDept="")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
@@ -368,7 +368,7 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
-        public void NavigateToCommDeptOutbox(IWebDriver driver, string CommDept)
+        public void NavigateToCommDeptOutbox(IWebDriver driver, string CommDept="")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
@@ -384,7 +384,7 @@ namespace T2automation.Pages.Comm
         }
 
 
-        public void NavigateToCommDeptExportF(IWebDriver driver, string CommDept)
+        public void NavigateToCommDeptExportF(IWebDriver driver, string CommDept="")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
@@ -399,7 +399,7 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
-        public void NavigateToCommDeptArchiveF(IWebDriver driver, string CommDept)
+        public void NavigateToCommDeptArchiveF(IWebDriver driver, string CommDept="")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
@@ -414,7 +414,7 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
-        public void NavigateToCommDeptDeleteF(IWebDriver driver, string CommDept)
+        public void NavigateToCommDeptDeleteF(IWebDriver driver, string CommDept="")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {

@@ -280,6 +280,30 @@ namespace T2automation.Steps.My_Messages
                 inboxPage.ClickOnReturnBtn();
                 inboxPage.ClickOkBtn();
             }
+            else if (btnName.Contains("Print All,Save as PDF,"))
+            {
+                inboxPage.ClickonPrintAllAndSaveAsButton(btnName,driver);
+            }
+            else if (btnName.Contains("Print,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintBtnAndSaveAsBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Print Barcode,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintBarcodeBtnAndSaveAsBtn(btnName,driver);
+            }
+            else if (btnName.Contains("Print Reference Number,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintReferenceNumberBtnAndSaveAsBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Print Delivery statement,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDeliveryStatementBtnAndSaveAsBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Print Document,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDocumentBtnAndSaveAsBtn(btnName, driver);
+            }
             else if (btnName.Equals("Retrieve"))
             {
                 inboxPage.ClickOnRetrieveBtn();
@@ -310,7 +334,7 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnSearchBtn();
             }
-            //This buttons are in dept inbox opened mail
+            //These buttons are in dept inbox opened mail
             else if (btnName.Equals("Print"))
             {
                 inboxPage.ClickOnPrintBtn();
@@ -319,7 +343,25 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnPrintStickerBtn();
             }
+            //These buttons are in dept outbox opened mail
+            else if (btnName.Contains("Print outbox,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintAndSaveAsBtn(btnName,driver);
+            }
+            else if (btnName.Contains("Print Delivery statement outbox,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDeliveryStatementAndSaveAsBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Print Sticker outbox,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintStickerAndSaveAsBtn(btnName, driver);
+            }
 
+            //Extras
+            else if (btnName.Equals("Reply All"))
+            {
+                inboxPage.ClickOnReplyAllBtn();
+            }
         }
         [Then(@"write reference number of ""(.*)""")]
         public void ThenWriteReferenceNumberOf(string subject)
@@ -364,8 +406,8 @@ namespace T2automation.Steps.My_Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
-            string refno = txtManager.readFromFile(subject);
-            inboxPage.SelectConnectedDocWithRefno(refno);
+            //string refno = txtManager.readFromFile(subject);
+            string refno = inboxPage.SelectConnectedDocWithRefNoToSave(subject);
             Assert.IsTrue(txtManager.writeToFile(type,subject, refno));
         }
 

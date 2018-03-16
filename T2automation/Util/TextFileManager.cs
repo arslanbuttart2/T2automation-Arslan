@@ -31,7 +31,33 @@ namespace T2automation.Util
             Console.WriteLine("File Created!!!");
         }
 
-       public string readFromFile(string subject)
+        public string readFromFileForCD(string subject,string type = "")
+        {
+            if (!File.Exists(path))
+            {
+                creatTxtFile();
+            }
+            else if (File.Exists(path))
+            {
+                StreamReader reader = new StreamReader(path);
+                string data = reader.ReadToEnd();
+                reader.Close();
+                string[] lines = data.Split('\n');
+                string[] strArray;
+                for (int i = 0; i < lines.Count() && !(lines[i].Equals("\n") || lines[i].Equals("\r") || lines[i].Equals("")); i++)
+                {
+                    strArray = lines[i].Split(',');
+                    if (subject.Equals(strArray[1]) && type.Equals(strArray[0]))
+                    {
+                        return strArray[2];
+                    }
+                }
+                return "No Data Found From File!!!";
+            }
+            return null;
+        }
+
+        public string readFromFile(string subject)
         {
             if (!File.Exists(path))
             {

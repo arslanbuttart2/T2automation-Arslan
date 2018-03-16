@@ -24,6 +24,8 @@ namespace T2automation
             //driver.Navigate().GoToUrl("http://qa.ole5.sa");
             driver.Navigate().GoToUrl("http://qa-stg.ole5.sa");
             Array.ForEach(Directory.GetFiles(path+"\\T2automation\\Downloads"), File.Delete);
+            //string path1 = @"";
+            //File.Delete(path1);
         }
 
         [AfterTestRun]

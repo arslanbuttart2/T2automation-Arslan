@@ -153,12 +153,24 @@ namespace T2automation.Pages.MyMessages
             {
                 Thread.Sleep(2000);
                 Click(driver, _subjectList.ElementAt(0));
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
                 return true;
             }
             else if (searchResult >= 1 && withSubject == false)
             {
                 Thread.Sleep(2000);
                 Click(driver, _referenceNoList.ElementAt(0));
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
                 return true;
             }
             Console.WriteLine("No such mail found!!!");
@@ -184,12 +196,24 @@ namespace T2automation.Pages.MyMessages
             {
                 Thread.Sleep(2000);
                 Click(driver, _subjectList.ElementAt(0));
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
                 return true;
             }
             else if (searchResult >= 1 && withSubject == false)
             {
                 Thread.Sleep(2000);
                 Click(driver, _referenceNoList.ElementAt(0));
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
                 return true;
             }
             Console.WriteLine("No such mail found!!!");
@@ -200,6 +224,7 @@ namespace T2automation.Pages.MyMessages
         {
             try
             {
+                WaitForElement(driver, _btnRollback);
                 Click(driver, _btnRollback);
                 Console.WriteLine("Rollback is Clicked!!!");
                 return true;
