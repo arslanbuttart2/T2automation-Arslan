@@ -9,11 +9,15 @@ namespace T2automation.Util
 {
     class TextFileManager
     {
+        private static ReadFromConfig readFromConfig;
+
         string path = getDirectory()+"/"+"data.txt";
+
 
         public static string getDirectory()
         {
-            Directory.SetCurrentDirectory(@"E:\T2automation-Arslan");
+            readFromConfig = new ReadFromConfig();
+            Directory.SetCurrentDirectory(readFromConfig.GetValue("DefaultDir"));
             return Directory.GetCurrentDirectory();
         }
 

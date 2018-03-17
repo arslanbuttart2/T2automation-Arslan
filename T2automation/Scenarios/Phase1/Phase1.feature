@@ -400,43 +400,43 @@ Scenario:ph 10 Retrieve  Message - 4
 	##Then save reference number from "my" in tx
 
 Scenario:ph 11 Print message - 1
-	#When user go to dept messages Internal Document
-	#And search "Admin" "UserMainDepartmentAr" "Users"
-	#And user compose mail "Internal message for print 222" "Internal message for print 222"
-	#And user select and save the reference no "CD2" of connected document with subject "Incoming Message to Child Department 111"
-	#And user attach attachments 1 "1.pdf"
-	#And user send the email
-	#Then save reference number from "dept" in txt with subject "Internal message for print 222"
-	#When user go to dept "qaDept" Outbox
-	#Then user search and open mail in dept "qaDept" with subject "Internal message for print 222"
-	#And click on "Print outbox,Save as PDF,dept,Internal message for print 222,Print All-Outbox-In-" button 
-	#Then the file should appear in download "dept,Internal message for print 222,Print All-Outbox-In-"
-	#And click on "Print Delivery statement outbox,Save as PDF,dept,Internal message for print 222,Print Delivery Statement-Outbox-In-" button
-	#Then the file should appear in download "dept,Internal message for print 222,Print Delivery Statement-Outbox-In-"
-	#And click on "Print Sticker outbox,Save as PDF,dept,Internal message for print 222,Print Sticker-Outbox-In-" button
-	#Then the file should appear in download "dept,Internal message for print 222,Print Sticker-Outbox-In-"
-	#When user opens inbox email with subject "Internal message for print 222"
-	#And click on export button
-	#And user compose mail "Export: Internal message for print 222" "Export: Internal message for print 222"
-	#And select the external department "ExternalEntitySameCountry"
-	#And user set properties "" "" "" "" "" "" "indirectExport"
-	#And user attach attachments 1 "1.jpg"
-	#And user select all files in attachment "2"
-	#And click on "Print All,Save as PDF,dept,Internal message for print 222,Print All Attachments-On Creating-" button
-	#Then the file should appear in download "dept,Internal message for print 222,Print All Attachments-On Creating-"
-	#And user select files type in attachment ".jpg" "2"
-	#And click on "Print,Save as PDF,dept,Internal message for print 222,Print Attachments-On Creating-" button
-	#Then the file should appear in download "dept,Internal message for print 222,Print Attachments-On Creating-"
-	#And user send the email and save refrence no from popup "my" "Export: Internal message for print 222"
-	#And click on "Print Barcode,Save as PDF,my,Export: Internal message for print 222,Print Barcode-On Sending-" button
-	#Then the file should appear in download "my,Export: Internal message for print 222,Print Barcode-On Sending-"
-	##And click on "Print Reference Number,Save as PDF,my,Export: Internal message for print 222,Print Reference Number-On Sending-" button
-	##Then the file should appear in download "my,Export: Internal message for print 222,Print Reference Number-On Sending-"
-	#And click on "Print Delivery statement,Save as PDF,my,Export: Internal message for print 222,Print Delivery statement-On Sending-" button
-	#Then the file should appear in download "my,Export: Internal message for print 222,Print Delivery statement-On Sending-"
-	#And click on "Print Document,Save as PDF,my,Export: Internal message for print 222,Print Document-On Sending-" button
-	#Then the file should appear in download "my,Export: Internal message for print 222,Print Document-On Sending-"
-	#And user click on cancel button
+	When user go to dept messages Internal Document
+	And search "Admin" "UserMainDepartmentAr" "Users"
+	And user compose mail "Internal message for print 222" "Internal message for print 222"
+	And user select and save the reference no "CD2" of connected document with subject "Incoming Message to Child Department 111"
+	And user attach attachments 1 "1.pdf"
+	And user send the email
+	Then save reference number from "dept" in txt with subject "Internal message for print 222"
+	When user go to dept "qaDept" Outbox
+	Then user search and open mail in dept "qaDept" with subject "Internal message for print 222"
+	And click on "Print outbox,Save as PDF,dept,Internal message for print 222,Print All-Outbox-In-" button 
+	Then the file should appear in download "dept,Internal message for print 222,Print All-Outbox-In-"
+	And click on "Print Delivery statement outbox,Save as PDF,dept,Internal message for print 222,Print Delivery Statement-Outbox-In-" button
+	Then the file should appear in download "dept,Internal message for print 222,Print Delivery Statement-Outbox-In-"
+	And click on "Print Sticker outbox,Save as PDF,dept,Internal message for print 222,Print Sticker-Outbox-In-" button
+	Then the file should appear in download "dept,Internal message for print 222,Print Sticker-Outbox-In-"
+	When user opens inbox email with subject "Internal message for print 222"
+	And click on export button
+	And user compose mail "Export: Internal message for print 222" "Export: Internal message for print 222"
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "" "" "" "" "" "" "indirectExport"
+	And user attach attachments 1 "1.jpg"
+	And user select all files in attachment "2"
+	And click on "Print All,Save as PDF,dept,Internal message for print 222,Print All Attachments-On Creating-" button
+	Then the file should appear in download "dept,Internal message for print 222,Print All Attachments-On Creating-"
+	And user select files type in attachment ".jpg" "2"
+	And click on "Print,Save as PDF,dept,Internal message for print 222,Print Attachments-On Creating-" button
+	Then the file should appear in download "dept,Internal message for print 222,Print Attachments-On Creating-"
+	And user send the email and save refrence no from popup "my" "Export: Internal message for print 222"
+	And click on "Print Barcode,Save as PDF,my,Export: Internal message for print 222,Print Barcode-On Sending-" button
+	Then the file should appear in download "my,Export: Internal message for print 222,Print Barcode-On Sending-"
+	#And click on "Print Reference Number,Save as PDF,my,Export: Internal message for print 222,Print Reference Number-On Sending-" button
+	#Then the file should appear in download "my,Export: Internal message for print 222,Print Reference Number-On Sending-"
+	And click on "Print Delivery statement,Save as PDF,my,Export: Internal message for print 222,Print Delivery statement-On Sending-" button
+	Then the file should appear in download "my,Export: Internal message for print 222,Print Delivery statement-On Sending-"
+	And click on "Print Document,Save as PDF,my,Export: Internal message for print 222,Print Document-On Sending-" button
+	Then the file should appear in download "my,Export: Internal message for print 222,Print Document-On Sending-"
+	And user click on cancel button
 	When user go to dept "CommDepSameDep" messages Unexported folder
 	Then user search and open mail in dept "CommDepSameDep" with subject "Export: Internal message for print 222" 
 	

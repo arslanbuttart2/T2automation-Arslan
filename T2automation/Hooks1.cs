@@ -17,7 +17,8 @@ namespace T2automation
         [BeforeScenario]
         public static void SignOut()
         {
-            Directory.SetCurrentDirectory(@"E:\T2automation-Arslan");
+            ReadFromConfig readFromConfig = new ReadFromConfig();
+            Directory.SetCurrentDirectory(readFromConfig.GetValue("DefaultDir"));
             string path = Directory.GetCurrentDirectory();
             DriverFactory driverFactory = new DriverFactory("BaseUrl");
             IWebDriver driver = driverFactory.GetDriver();

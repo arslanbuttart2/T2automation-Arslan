@@ -10,19 +10,21 @@ namespace T2automation.Util
     class GetDownloadFiles
     {
 
-        TextFileManager fileManager;
-        ReadFromConfig readFromConfig;
-        string Path = @"E:\T2automation-Arslan\T2automation\Downloads";
+        private TextFileManager fileManager;
+        private static ReadFromConfig readFromConfig;
+        
 
-
-        public bool ValidateFilesNos(int fileNos) {
-            string[] filePaths = Directory.GetFiles(@"E:\T2automation-Arslan\T2automation\Downloads");
+        public bool ValidateFilesNos(int fileNos)
+        {
+            readFromConfig = new ReadFromConfig();
+            string[] filePaths = Directory.GetFiles(readFromConfig.GetValue("DefaultDownload"));
             return filePaths.Count() == fileNos;
         }
 
         public bool ValidateFiles(string name)
         {
-            string[] filePaths = Directory.GetFiles(@"E:\T2automation-Arslan\T2automation\Downloads");
+            readFromConfig = new ReadFromConfig();
+            string[] filePaths = Directory.GetFiles(readFromConfig.GetValue("DefaultDownload"));
             if (filePaths.Count() >= 1)
             {
                 string nameNew = "";
@@ -45,9 +47,10 @@ namespace T2automation.Util
         }
         private static bool CheckFileDownloaded(string filename)
         {
+
+            readFromConfig = new ReadFromConfig();
             bool exist = false;
-            //string Path = System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Downloads";
-            string[] filePaths = Directory.GetFiles(@"E:\T2automation-Arslan\T2automation\Downloads");
+            string[] filePaths = Directory.GetFiles(readFromConfig.GetValue("DefaultDownload"));
             
             for(int i= 0; i< filePaths.Count();i++)
             {
