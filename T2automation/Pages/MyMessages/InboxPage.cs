@@ -1743,9 +1743,9 @@ namespace T2automation.Pages.MyMessages
 
             if (!messageHijriDate.Equals(""))
             {
-                SendKeys(_driver, _incommingHijriMessageDate, new DateTimeHelper().GetDate(messageHijriDate));
+                SendKeys(_driver, _incommingHijriMessageDate, new DateTimeHelper().GetDateHijri(messageHijriDate));
                 var result = _daysOnCal();
-                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(messageHijriDate) - 1));
+                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDayHijri(messageHijriDate) - 1));
             }
         }
 

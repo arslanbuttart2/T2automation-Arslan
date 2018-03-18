@@ -751,7 +751,6 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
-            inboxPage.NavigateToMyMessage(driver);
             inboxPage.NavigateToMyMessageOutbox(driver);
             Thread.Sleep(3000);
             inboxPage.WaitTillProcessing();
