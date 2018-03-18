@@ -260,6 +260,17 @@ namespace T2automation.Steps.My_Messages
             deptMessageInboxPage.NavigateToCommDeptExportF(driver, readFromConfig.GetValue(commDept));
         }
 
+        [Then(@"user search and select mail in dept ""(.*)"" with subject ""(.*)""")]
+        public void ThenUserSearchAndSelectMailInDeptWithSubject(string commDept, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.firstSearchFolderWithRefNo(refno);
+            inboxPage.selectMailSearched();
+        }
+
         [Then(@"user search and open mail in dept ""(.*)"" with subject ""(.*)""")]
         public void ThenUserSearchAndOpenMailInDeptWithSubject(string commDept, string subject)
         {

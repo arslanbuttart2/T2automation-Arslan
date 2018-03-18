@@ -32,7 +32,10 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[21]/div/a[@title='Search']")]
         private IWebElement _inboxSearchButton;
-
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr[1]/td[1]/label")]
+        private IWebElement _SearchedCheckBox;
+        
         [FindsBy(How = How.XPath, Using = ".//*[@id='head-menu']/div/a/label[text() = ' Internal Document']")]
         private IWebElement _internalDocument;
 
@@ -123,6 +126,18 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[6]/a/label")]
         private IWebElement _returnBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr[1]/td[7]/a[1]/i")]
+        private IWebElement _followUpBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr[1]/td[7]/a[2]/i")]
+        private IWebElement _ActionAndMovementBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='rb-normal-view']")]
+        private IWebElement _NormalViewBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='rb-formal-view']")]
+        private IWebElement _ViewUsingFormalTemplateBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='searchDiv']/div[2]/input[2]")]
         private IWebElement _clearBtn;
 
@@ -162,6 +177,18 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElement(By.XPath(".//button[text() = 'Cancel']"));
         }
 
+        private IWebElement _close()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Close']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return _driver.FindElement(By.XPath(".//button[text() = 'Close']"));
+        }
 
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
         private IWebElement _replyAllBtn;
@@ -219,6 +246,12 @@ namespace T2automation.Pages.MyMessages
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[3]/a/label")]
         private IWebElement _printStickerBtnDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='printPageBtn']")]
+        private IWebElement _printThisPageBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='printAllBtn']")]
+        private IWebElement _printAllBtnUnExported;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
         private IWebElement _printStickerBtndept;
@@ -954,11 +987,16 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
         }
 
+        public void selectMailSearched()
+        {
+            WaitForElement(_driver, _SearchedCheckBox);
+            Click(_driver, _SearchedCheckBox);
+        }
+
         public void clickOnSendBtnAndOkBtnForIncomingMail(bool checkPopup = false)
         {
             Click(_driver, _sendBtn);
             Thread.Sleep(2000);
-
             Click(_driver, _okBtnForIncomingMail);
 
         }
@@ -1019,6 +1057,12 @@ namespace T2automation.Pages.MyMessages
         public void ClickCancelBtn()
         {
             Click(_driver, _cancel());
+            Thread.Sleep(1000);
+        }
+
+        public void ClickCloseBtn()
+        {
+            Click(_driver, _close());
             Thread.Sleep(1000);
         }
 
@@ -1146,6 +1190,22 @@ namespace T2automation.Pages.MyMessages
             }
             // Switches to main window after print dialog operation.
             driver.SwitchTo().Window(driver.WindowHandles.ToArray()[0].ToString());
+        }
+        
+        public void ClickOnPrintAllAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printAllBtnUnExported);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnPrintThisPageAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printThisPageBtn);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
         }
 
         public void ClickOnPrintStickerAndSaveAsBtn(string data, IWebDriver driver)
@@ -1281,6 +1341,41 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _okBtn());
             Thread.Sleep(2000);
             SaveAsFunctionForNewWindowPrint(data, driver);
+        }
+
+        public void clickFormateOption(string opt)
+        {
+            WaitTillProcessing();
+            if (opt.Equals("Normal View"))
+            {
+                Click(_driver, _NormalViewBtn);
+                Thread.Sleep(2000);
+            }
+            else if (opt.Equals("Formal View"))
+            {
+                Click(_driver, _ViewUsingFormalTemplateBtn);
+                Thread.Sleep(2000);
+            }
+            else
+            {
+                Console.WriteLine("No such option Found to Click on!!!");
+            }
+
+            Thread.Sleep(2000);
+        }
+        
+        public void ClickOnActionsAndMovementsBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _ActionAndMovementBtn);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickOnFollowUpBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _followUpBtn);
+            Thread.Sleep(2000);
         }
 
         public void ClickOnReturnBtn()
@@ -1641,6 +1736,9 @@ namespace T2automation.Pages.MyMessages
                 SendKeys(_driver, _incommingGregorianMessageDate, new DateTimeHelper().GetDate(messageGreorianDate));
                 var result = _daysOnCal();
                 Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDay(messageGreorianDate) - 1));
+                _incommingGregorianMessageDate.SendKeys(Keys.Enter);
+                Click(_driver, _incommingHijriMessageDate);
+                _incommingHijriMessageDate.SendKeys(Keys.Tab);
             }
 
             if (!messageHijriDate.Equals(""))

@@ -106,6 +106,39 @@ namespace T2automation
             permissionsPage.IncludeDeptMessagePermissions(driver, readFromConfig.GetDeptName(dept), permissionName, value);
         }
 
+        [Then(@"click on ""(.*)"" button and select ""(.*)"" ""(.*)""")]
+        public void ThenClickOnButtonAndSelect(string btnName, string p1="" , string p2="")
+        {
+            driver = driverFactory.GetDriver();
+            myMessageInboxPage = new Pages.MyMessages.InboxPage(driver);
+
+            if (btnName.Equals("Follow-up Button"))
+            {
+                myMessageInboxPage.ClickOnFollowUpBtn();
+                if (!p1.Equals(""))
+                {
+                    myMessageInboxPage.clickFormateOption(p1);
+                }
+                if (!p2.Equals(""))
+                {
+                    myMessageInboxPage.clickFormateOption(p2);
+                }
+                myMessageInboxPage.ClickCloseBtn();
+            }
+            else if (btnName.Equals("Actions And Movements"))
+            {
+                myMessageInboxPage.ClickOnActionsAndMovementsBtn();
+                if (p1.Contains("Print this page,Save as PDF,"))
+                {
+                    myMessageInboxPage.ClickOnPrintThisPageAndSaveAsBtn(p1,driver);
+                }
+                if (p2.Equals("Print this page,Save as PDF,"))
+                {
+                    myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
+                }
+            }
+        }
+
         [Then(@"""(.*)"" visibility should be ""(.*)"" on Department Messages inbox")]
         public void ThenVisibilityShouldBeOnDepartmentMessagesInbox(string buttonName, bool value)
         {
