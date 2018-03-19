@@ -1160,9 +1160,7 @@ namespace T2automation.Steps.Messages
         public void WhenUserGoToSearch(string subFolder)
         {
             driver = driverFactory.GetDriver();
-            readFromConfig = new ReadFromConfig();
             outboxPage = new OutboxPage(driver);
-            txtManager = new TextFileManager();
             if (subFolder.Equals("Advance Search"))
             {
                 outboxPage.NavigateToSearchAdvance(driver);

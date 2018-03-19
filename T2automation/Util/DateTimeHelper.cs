@@ -68,7 +68,7 @@ namespace T2automation.Util
             {
                 DateTime utc = DateTime.UtcNow;
                 Calendar cal = new HijriCalendar();
-                int d = cal.GetDayOfMonth(utc) - 1;
+                int d = cal.GetDayOfMonth(utc)-1;
 
                 return d;
             }

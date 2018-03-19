@@ -417,6 +417,7 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _commDept);
             }
+            Thread.Sleep(1500);
             ClickForNavigation(driver, _commDeptOutbox);
             Thread.Sleep(1000);
         }
@@ -469,20 +470,30 @@ namespace T2automation.Pages.Comm
 
         public void NavigateToSearchAdvance(IWebDriver driver)
         {
+            if (GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
             if (!GetAttribute(driver, _searchMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _Search);
             }
+            Thread.Sleep(1000);
             ClickForNavigation(driver, _advanceSearch);
             Thread.Sleep(1000);
         }
 
         public void NavigateToSearchInquiry(IWebDriver driver)
         {
+            if (GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
             if (!GetAttribute(driver, _searchMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _Search);
             }
+            Thread.Sleep(1000);
             ClickForNavigation(driver, _inquerySearch);
             Thread.Sleep(1000);
         }

@@ -104,6 +104,7 @@ Scenario:ph 2 Message Actions - Archiving Message
 	When user opens inbox email with subject "Incoming message for archiving 333"
 	Then user click on "my,Archive" button and set "Comment for archive" "1.png"
 	And mail with subject "Incoming message for archiving 333" should not appear in "my" inbox
+	### Rollback button is not working here!!! for arslan user and danish
 	When user open "my" archive message with suject "Internal message for archiving 111" and click on button "Rollback"
 	Then mail with subject "Internal message for archiving 111" should not appear in "my" archive message
 	When user open "my" archive message with suject "Incoming message for archiving 333" and click on button "Rollback"

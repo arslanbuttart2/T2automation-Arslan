@@ -147,7 +147,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ". //*[@id='main-parent']/div/div/div/div/div/div[9]/a/label/i[@class='fa fa-folder']")]
         private IWebElement _movFoldBtn;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div[8]/a/label/i[@class='fa fa-archive']")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div/div/div/a/label[contains(text(),'Archive')]")]
         private IWebElement _archieveBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='rb-normal-view']")]
@@ -543,7 +543,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/*//a/label/i[@class='fa fa-remove']")]
         private IWebElement _deleteMailBtn;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Archive')]")]
         private IWebElement _inboxArchiveBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[4]/a/label")]
@@ -637,6 +637,17 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElement(By.XPath(".//button[text() = 'Ok']"));
         }
 
+        private void _ifOkBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Ok']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
         private SelectElement _receiverType(IWebDriver driver) {
             return new SelectElement(driver.FindElement(By.Id("slctRecieverTypeTemp")));
         }
@@ -967,6 +978,7 @@ namespace T2automation.Pages.MyMessages
             {
                 Click(_driver, _okBtn());
             }
+            ChkIfPopupThenOK();
             WaitForElement(_driver, _cancelBtnForIncomingMail);
             if (_cancelBtnForIncomingMail.Displayed)
             {
@@ -2510,9 +2522,15 @@ namespace T2automation.Pages.MyMessages
                     Click(driver, _connectedDocDeleteBtn);
                     WaitTillProcessing();
                     Click(driver,_yesBtn);
+                    ChkIfPopupThenOK();
                     return;
                 }
             }
+        }
+
+        public void ChkIfPopupThenOK()
+        {
+            _ifOkBtn();
         }
 
         public void createFolder(String name)
