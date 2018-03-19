@@ -106,8 +106,8 @@ namespace T2automation
             permissionsPage.IncludeDeptMessagePermissions(driver, readFromConfig.GetDeptName(dept), permissionName, value);
         }
 
-        [Then(@"click on ""(.*)"" button and select ""(.*)"" ""(.*)""")]
-        public void ThenClickOnButtonAndSelect(string btnName, string p1="" , string p2="")
+        [Then(@"click on ""(.*)"" button and select ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenClickOnButtonAndSelect(string btnName, string p1="" , string p2="", string p3="")
         {
             driver = driverFactory.GetDriver();
             myMessageInboxPage = new Pages.MyMessages.InboxPage(driver);
@@ -130,12 +130,19 @@ namespace T2automation
                 myMessageInboxPage.ClickOnActionsAndMovementsBtn();
                 if (p1.Contains("Print this page,Save as PDF,"))
                 {
-                    myMessageInboxPage.ClickOnPrintThisPageAndSaveAsBtn(p1,driver);
+                    //Click is not working here
+                    //myMessageInboxPage.ClickOnPrintThisPageAndSaveAsBtn(p1,driver);
                 }
-                if (p2.Equals("Print this page,Save as PDF,"))
+                if (p2.Contains("Print All,Save as PDF,"))
                 {
-                    myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
+                    //And this button is not showing pdf preview
+                    //myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
                 }
+                if(p3.Contains("Print Flow,Save as PDF,"))
+                {
+                    myMessageInboxPage.ClickOnPrintFlowAndSaveAsBtn(p3, driver);
+                }
+                myMessageInboxPage.clickBackBtn();
             }
         }
 

@@ -107,6 +107,12 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDiv']")]
         private IWebElement _departmentMessagesMenuDiv;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']")]
+        private IWebElement _departmentQAMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub644dc7d2-f626-4abf-851f-8395d8a79674']")]
+        private IWebElement _departmentAccountMenuDiv;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[6]")]
         private IWebElement _searchMenuDiv;
 
@@ -241,16 +247,16 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _systemManagementMainDiv, "class").Contains("active"))
             {
-                Click(driver, _systemManagementMain);
-                Click(driver, _systemManagement);
+                ClickForNavigation(driver, _systemManagementMain);
+                ClickForNavigation(driver, _systemManagement);
             }
-            Click(driver, _userManager);
+            ClickForNavigation(driver, _userManager);
             Thread.Sleep(1000);
         }
 
         public void NavigateToMyMessage(IWebDriver driver) {
             if (!GetAttribute(driver, _myMessagesMenuDiv, "class").Contains("active")) {
-                Click(driver, _myMessages);
+                ClickForNavigation(driver, _myMessages);
                 Thread.Sleep(1000);
             }
         }
@@ -258,28 +264,28 @@ namespace T2automation.Pages.Comm
         public void NavigateToMyMessageInbox(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
-            Click(driver, _myMessageInbox);
+            ClickForNavigation(driver, _myMessageInbox);
             Thread.Sleep(1000);
         }
 
         public void NavigateToMyMessageDeletedF(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
-            Click(driver, _myMessageDeleted);
+            ClickForNavigation(driver, _myMessageDeleted);
             Thread.Sleep(1000);
         }
 
         public void NavigateToMyMessageArchiveF(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
-            Click(driver, _myMessageArchived);
+            ClickForNavigation(driver, _myMessageArchived);
             Thread.Sleep(1000);
         }
 
         public void NavigateToMyMessageOutbox(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
-            Click(driver, _myMessageOutbox);
+            ClickForNavigation(driver, _myMessageOutbox);
             Thread.Sleep(1000);
         }
 
@@ -287,10 +293,13 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
-            Click(driver, _accountingDept);
-            Click(driver, _accountingDeptInbox);
+            if (!GetAttribute(driver, _departmentAccountMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _accountingDept);
+            }
+            ClickForNavigation(driver, _accountingDeptInbox);
             Thread.Sleep(1000);
         }
 
@@ -298,10 +307,13 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
-            Click(driver, _accountingDept);
-            Click(driver, _accountingDeptOutbox);
+            if (!GetAttribute(driver, _departmentAccountMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _accountingDept);
+            }
+            ClickForNavigation(driver, _accountingDeptOutbox);
             Thread.Sleep(1000);
         }
 
@@ -309,10 +321,13 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
-            Click(driver, _qaDept);
-            Click(driver, _qaDeptInbox);
+            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _qaDept);
+            }
+            ClickForNavigation(driver, _qaDeptInbox);
             Thread.Sleep(1000);
         }
 
@@ -320,10 +335,13 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
-            Click(driver, _qaDept);
-            Click(driver, _qaDeptDeletedF);
+            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _qaDept);
+            }
+            ClickForNavigation(driver, _qaDeptDeletedF);
             Thread.Sleep(1000);
         }
 
@@ -331,10 +349,13 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
-            Click(driver, _qaDept);
-            Click(driver, _qaDeptArchivedF);
+            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _qaDept);
+            }
+            ClickForNavigation(driver, _qaDeptArchivedF);
             Thread.Sleep(1000);
         }
 
@@ -342,14 +363,14 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
 
             if (!GetAttribute(driver, _qaDeptMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _qaDept);
+                ClickForNavigation(driver, _qaDept);
             }
-            Click(driver, _qaDeptOutbox);
+            ClickForNavigation(driver, _qaDeptOutbox);
             Thread.Sleep(1000);
         }
 
@@ -357,14 +378,14 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
 
             if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _commDept);
+                ClickForNavigation(driver, _commDept);
             }
-            Click(driver, _inboxMessageWithRoot);
+            ClickForNavigation(driver, _inboxMessageWithRoot);
             Thread.Sleep(1000);
         }
 
@@ -372,14 +393,14 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
 
             if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _commDept);
+                ClickForNavigation(driver, _commDept);
             }
-            Click(driver, _commDeptOutbox);
+            ClickForNavigation(driver, _commDeptOutbox);
             Thread.Sleep(1000);
         }
 
@@ -388,14 +409,14 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
 
             if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _commDept);
+                ClickForNavigation(driver, _commDept);
             }
-            Click(driver, _commDeptExported);
+            ClickForNavigation(driver, _commDeptExported);
             Thread.Sleep(1000);
         }
 
@@ -403,14 +424,14 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
 
             if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _commDept);
+                ClickForNavigation(driver, _commDept);
             }
-            Click(driver, _commDeptArchivedF);
+            ClickForNavigation(driver, _commDeptArchivedF);
             Thread.Sleep(1000);
         }
 
@@ -418,14 +439,14 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
 
             if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _commDept);
+                ClickForNavigation(driver, _commDept);
             }
-            Click(driver, _commDeptDeleteF);
+            ClickForNavigation(driver, _commDeptDeleteF);
             Thread.Sleep(1000);
         }
 
@@ -433,9 +454,9 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _searchMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _Search);
+                ClickForNavigation(driver, _Search);
             }
-            Click(driver, _advanceSearch);
+            ClickForNavigation(driver, _advanceSearch);
             Thread.Sleep(1000);
         }
 
@@ -443,9 +464,9 @@ namespace T2automation.Pages.Comm
         {
             if (!GetAttribute(driver, _searchMenuDiv, "class").Contains("active"))
             {
-                Click(driver, _Search);
+                ClickForNavigation(driver, _Search);
             }
-            Click(driver, _inquerySearch);
+            ClickForNavigation(driver, _inquerySearch);
             Thread.Sleep(1000);
         }
     }

@@ -389,8 +389,65 @@ namespace T2automation.Steps.Messages
             string refno = txtManager.readFromFile(subject);
             Assert.IsTrue(outboxPage.OpenMailSpecial(driver, refno, withSubject: false));
         }
-    
 
+        [When(@"user click on save editing button")]
+        public void WhenUserClickOnSaveEdittingButton()
+        {
+            inboxPage.clickSaveEditBtn();
+        }
+
+        [When(@"user click on return button")]
+        public void WhenUserClickOnReturnButton()
+        {
+            inboxPage.ClickOnReturnBtn();
+        }
+
+        [When(@"user click export btn in dept CommDepSameDep unexported")]
+        public void WhenUserClickExportBtnInDeptCommDepSameDepUnexported()
+        {
+            inboxPage.ClickOnExportBtn2();
+            inboxPage.ClickCancelBtn();
+        }
+
+        [When(@"user opens exported department ""(.*)"" mail with subject ""(.*)""")]
+        public void WhenUserOpensExportedDepartmentMailWithSubject(string CommDept = "", string subject = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            deptMessageInboxPage.NavigateToCommDeptExportF(driver, CommDept);
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+        }
+
+        [When(@"user click on close button")]
+        public void WhenUserClickOnCloseTab()
+        {
+            inboxPage.ClickOnCloseBtn();
+        }
+
+        [When(@"user open dept ""(.*)"" Outbox mail with subject""(.*)""")]
+        public void WhenUserOpenDeptOutboxMailWithSubject(string Dept, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            if (Dept.Equals("qaDept"))
+            {
+                deptMessageInboxPage.NavigateToQADeptOutbox(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+        }
+
+        [When(@"user click on undo export button")]
+        public void WhenUserClickOnUndoExportButton()
+        {
+            inboxPage.clickUndoExportBtn();
+            inboxPage.clickOnYesbtn();
+        }
 
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" archive message")]
         public void ThenMailWithSubjectShouldNotAppearInArchiveMessage(string subject, string dept)
@@ -895,7 +952,7 @@ namespace T2automation.Steps.Messages
         public void WhenUserClickOnReplyButton()
         {
             inboxPage.ClickOnReply();
-            inboxPage.ClickOkBtn();
+            //inboxPage.ClickOkBtn();
         }
         
 

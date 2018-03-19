@@ -77,6 +77,48 @@ namespace T2automation.Pages.Comm
             }
         }
 
+        public bool ClickForNavigation(IWebDriver driver, IWebElement element)
+        {
+            try
+            {
+                WaitForElement(driver, element);
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+                element.Click();
+                return true;
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    Thread.Sleep(3000);
+                    element.Click();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView();", element);
+                        element.Click();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        try
+                        {
+                            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", element);
+                            return false;
+                        }
+                        catch (Exception)
+                        {
+                            System.Console.WriteLine("Some issue on clicking element");
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
         public void Submit(IWebDriver driver, IWebElement element)
         {
             WaitForElement(driver, element);
@@ -109,8 +151,8 @@ namespace T2automation.Pages.Comm
 
         public string GetAttribute(IWebDriver driver, IWebElement element, string attribute)
         {
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
             WaitForElement(driver, element);
-            //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
             return element.GetAttribute(attribute);
         }
 

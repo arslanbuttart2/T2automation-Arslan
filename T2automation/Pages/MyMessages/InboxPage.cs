@@ -107,7 +107,13 @@ namespace T2automation.Pages.MyMessages
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[7]/a/label")]
         private IWebElement _exportBtn;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div[8]/a/label/i[@class='fa fa-save']")]
+        private IWebElement _saveEditBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='retriveLable']/i")]
+        private IWebElement _undoExportBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[1]/a/label")]
         private IWebElement _myInboxReplyBtn;
 
@@ -131,6 +137,12 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr[1]/td[7]/a[2]/i")]
         private IWebElement _ActionAndMovementBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[6]/a/label/i")]
+        private IWebElement _exportBtn2;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='cancel-a']")]
+        private IWebElement _closeBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='rb-normal-view']")]
         private IWebElement _NormalViewBtn;
@@ -192,6 +204,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
         private IWebElement _replyAllBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='back-button-a']")]
+        private IWebElement _backBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='retriveLable']")]
         private IWebElement _retriveBtn;
@@ -252,6 +267,12 @@ namespace T2automation.Pages.MyMessages
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='printAllBtn']")]
         private IWebElement _printAllBtnUnExported;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div[2]/a")]
+        private IWebElement _printDocFlowTabUnExported;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='df-part']/div[1]/div/div/button")]
+        private IWebElement _printDocFlowBtnUnExported;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[5]/a/label")]
         private IWebElement _printStickerBtndept;
@@ -497,7 +518,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentPerson']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _connectedPersonListCheckBox;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div[3]/a")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div/a[contains(text(),'ConnectedPersons')]")]
         private IWebElement _connectedPersonTab;
 
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-mail-reply")]
@@ -838,6 +859,7 @@ namespace T2automation.Pages.MyMessages
 
             if (receiverType.Equals("Users"))
             {
+                Thread.Sleep(4000);
                 for (int index = 0; index < _selectToNameForUsers().Count; index++)
                 {
                     if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
@@ -851,6 +873,7 @@ namespace T2automation.Pages.MyMessages
             }
             else if (receiverType.Equals("Structural Hierarchy"))
             {
+                Thread.Sleep(4000);
                 for (int index = 0; index < _selectToNameForStructuralHierarchy().Count; index++)
                 {
                     if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
@@ -1049,6 +1072,11 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
+        public void clickBackBtn()
+        {
+            Click(_driver, _backBtn);
+        }
+
         public void clickProcessEditBtn()
         {
             Click(_driver, _processEditBtn);
@@ -1191,7 +1219,16 @@ namespace T2automation.Pages.MyMessages
             // Switches to main window after print dialog operation.
             driver.SwitchTo().Window(driver.WindowHandles.ToArray()[0].ToString());
         }
-        
+
+        public void ClickOnPrintFlowAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printDocFlowTabUnExported);
+            Click(_driver, _printDocFlowBtnUnExported);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
         public void ClickOnPrintAllAndSaveAsBtn(string data, IWebDriver driver)
         {
             Click(_driver, _printAllBtnUnExported);
@@ -1202,6 +1239,7 @@ namespace T2automation.Pages.MyMessages
 
         public void ClickOnPrintThisPageAndSaveAsBtn(string data, IWebDriver driver)
         {
+            WaitForElement(_driver, _printThisPageBtn);
             Click(_driver, _printThisPageBtn);
             Thread.Sleep(2000);
             SaveAsFunctionForNewWindowPrint(data, driver);
@@ -1363,7 +1401,21 @@ namespace T2automation.Pages.MyMessages
 
             Thread.Sleep(2000);
         }
-        
+
+        public void ClickOnExportBtn2()
+        {
+            WaitTillProcessing();
+            Click(_driver, _exportBtn2);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickOnCloseBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _closeBtn);
+            Thread.Sleep(2000);
+        }
+
         public void ClickOnActionsAndMovementsBtn()
         {
             WaitTillProcessing();
@@ -1425,6 +1477,20 @@ namespace T2automation.Pages.MyMessages
             }
             Console.WriteLine("No such mail found!!!");
             return false;
+        }
+
+        public void clickSaveEditBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _saveEditBtn);
+            Thread.Sleep(2000);
+        }
+
+        public void clickUndoExportBtn()
+        {
+            WaitTillProcessing();
+            Click(_driver, _undoExportBtn);
+            Thread.Sleep(1000);
         }
 
         public void clickExportBtn(bool checkPopup = false)
@@ -2375,6 +2441,7 @@ namespace T2automation.Pages.MyMessages
                 for (int i = 0; i < 1; i++)
                 {
                     Click(_driver, _archiveAttacheBtn);
+                    Thread.Sleep(1600);
                     AutoItX3 autoIt = new AutoItX3();
                     autoIt.WinActivate("Open");
                     readFromConfig = new ReadFromConfig();
