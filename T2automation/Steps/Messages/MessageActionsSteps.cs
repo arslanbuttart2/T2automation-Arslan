@@ -472,6 +472,43 @@ namespace T2automation.Steps.Messages
             Assert.IsFalse(outboxPage.OpenMailSpecial(driver, refno, withSubject: false));
         }
 
+        [When(@"user open department ""(.*)"" inbox and create new folder ""(.*)""")]
+        public void WhenUserOpenDepartmentInboxAndCreateNewFolder(string dept, string name)
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage.NavigateToQADeptInbox(driver);
+
+            inboxPage.createFolder(name);
+        }
+
+        [When(@"user opens Automation department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpensAutomationDepartmentMailWithSubject(string dept, string subject, string encryptedPassword = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+
+            deptMessageInboxPage.NavigateToQAAutomation111DeptInbox(driver);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
+        }
+
+        [When(@"user click on archieve button")]
+        public void WhenUserClickOnArchieveButton()
+        {
+            inboxPage.clickArchieveBtn();
+        }
+
+        [When(@"user move mail to folder ""(.*)""")]
+        public void WhenUserMoveMailToFolder(string folder)
+        {
+            inboxPage.SelectFolder(driver, folder);
+            inboxPage.ClickOkBtn();
+        }
+
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" deleted message")]
         public void ThenMailWithSubjectShouldNotAppearInDeletedMessage(string subject, string dept)
         {

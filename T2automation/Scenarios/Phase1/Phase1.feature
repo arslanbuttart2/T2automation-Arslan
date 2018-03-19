@@ -381,7 +381,7 @@ Scenario:ph 8 Retrieve  Message - 2
 	When user go to dept "qaDept" Outbox
 	Then user search and open mail in dept "qaDept" with subject "Internal message for Retreiving 222"
 	And click on "Retrieve" button
-	
+		
 Scenario:ph 9 Retrieve  Message - 3	
 	When user go to "my" encrypted message 
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
@@ -396,18 +396,44 @@ Scenario:ph 9 Retrieve  Message - 3
 	When user opens department delete "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
 	And user click on roll back button
 	When user opens outbox email with subject "Encrypted message for Reteiving 333"
+	####following step is not working
 	And user click on retrive button
-	## SN 25-29 BUG NEXT STEPS NEED TO BE IMPLEMETED
+	When user open department "internalDepartmentSameDep" inbox and create new folder "Automation 111"
+	When user opens department "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	And user move mail to folder "Automation 111"
+	When user opens Automation department "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	And user move mail to folder "Automation 111"
+	When user opens outbox email with subject "Encrypted message for Reteiving 333"
+	And user click on retrive button
 
 Scenario:ph 10 Retrieve  Message - 4
-	#######ISSUE dETECTED of Xpath
-	When user go to dept messages Incoming Document
+When user go to dept messages Incoming Document
 	And search "AdminUserName" "UserMainDepartmentAr" "Users"
 	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
 	And user set properties "" "" "" "12345" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
-	And user send the email and click on Ok button
-	##Then save reference number from "my" in tx
+	And user attach attachments 1 "1.pdf"
+	And user send the email and click on Cancel button
+	Then save reference number from "dept" in txt with subject "Incoming message for Reteiving 444"
+	When user opens inbox email with subject "Incoming message for Reteiving 444"
+	And user click on archieve button
+	When user open dept "qaDept" Outbox mail with subject"Incoming message for Reteiving 444"
+	And user click on retrive button
+	When user open "my" archive message with suject "Incoming message for Reteiving 444" and click on button "Rollback"
+	Then mail with subject "Incoming message for Reteiving 444" should not appear in "my" archive message
+	When user open dept "qaDept" Outbox mail with subject"Incoming message for Reteiving 444"
+	####following step is not working
+	And user click on retrive button
+	When user opens inbox email with subject "Incoming message for Reteiving 444"
+	And click on export button
+	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "" "" "" "" "" "" "Indirect Export Method"
+	And user send the email and click on Cancel button
+	Then save reference number from "dept" in txt with subject "Incoming message for Reteiving 444"
+	When user open dept "qaDept" Outbox mail with subject"Incoming message for Reteiving 444"
+	####following step is not working
+	And user click on retrive button
 
 Scenario:ph 11 Print message - 1
 	#When user go to dept messages Internal Document

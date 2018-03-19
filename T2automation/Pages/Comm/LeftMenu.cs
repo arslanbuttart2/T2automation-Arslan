@@ -137,6 +137,9 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
         private IWebElement _accountingDeptInbox;
 
+        [FindsBy(How = How.XPath, Using = "//*/a[@data-folder-flag='0'][@class='o-folder'][@data-orgid='3c76399d-2a03-4b67-9459-8a0925263d2e']/label[contains(text(),'Automation 111')]")]
+        private IWebElement _automation111DeptInbox;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
         private IWebElement _accountingDeptOutbox;
 
@@ -286,6 +289,20 @@ namespace T2automation.Pages.Comm
         {
             NavigateToMyMessage(driver);
             ClickForNavigation(driver, _myMessageOutbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToQAAutomation111DeptInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                Thread.Sleep(2000);
+                Click(driver, _departmentMessages);
+            }
+            Thread.Sleep(2000);
+            Click(driver, _qaDept);
+            Thread.Sleep(2000);
+            Click(driver, _automation111DeptInbox);
             Thread.Sleep(1000);
         }
 

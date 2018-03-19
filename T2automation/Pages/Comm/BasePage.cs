@@ -39,6 +39,21 @@ namespace T2automation.Pages.Comm
             }
         }
 
+        public void RightClick(IWebDriver driver, IWebElement element)
+        {
+            try
+            {
+                Actions action = new Actions(driver).ContextClick(element);
+                action.Build().Perform();
+
+            }
+
+            catch (Exception)
+            {
+                System.Console.WriteLine("Element " + element + " was not clickable ");
+            }
+        }
+
         public bool Click(IWebDriver driver, IWebElement element) {
             try
             {

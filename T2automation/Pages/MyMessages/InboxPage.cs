@@ -144,6 +144,12 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='cancel-a']")]
         private IWebElement _closeBtn;
 
+        [FindsBy(How = How.XPath, Using = ". //*[@id='main-parent']/div/div/div/div/div/div[9]/a/label/i[@class='fa fa-folder']")]
+        private IWebElement _movFoldBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div[8]/a/label/i[@class='fa fa-archive']")]
+        private IWebElement _archieveBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='rb-normal-view']")]
         private IWebElement _NormalViewBtn;
 
@@ -610,6 +616,15 @@ namespace T2automation.Pages.MyMessages
         {
             return driver.FindElement(By.Id("container_processing"));
         }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label/i")]
+        private IWebElement _inboxBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='context-menu']/ul/li[1]")]
+        private IWebElement _createFolder;
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div[8]/div[2]/div/div[3]/div/input")]
+        private IWebElement _folderName;
 
         private IWebElement _okBtn()
         {
@@ -1414,6 +1429,23 @@ namespace T2automation.Pages.MyMessages
             WaitTillProcessing();
             Click(_driver, _closeBtn);
             Thread.Sleep(2000);
+        }
+
+        public void clickArchieveBtn()
+        {
+            Click(_driver, _archieveBtn);
+            Thread.Sleep(1000);
+            Click(_driver, _okBtn());
+            Thread.Sleep(1000);
+        }
+        public void SelectFolder(IWebDriver driver, String folderName)
+        {
+            Click(_driver, _movFoldBtn);
+            Thread.Sleep(2000);
+            var option = driver.FindElement(By.Id("select-folder"));
+            var selectElement = new SelectElement(option);
+            selectElement.SelectByIndex(2);
+            Thread.Sleep(3000);
         }
 
         public void ClickOnActionsAndMovementsBtn()
@@ -2481,6 +2513,16 @@ namespace T2automation.Pages.MyMessages
                     return;
                 }
             }
+        }
+
+        public void createFolder(String name)
+        {
+            RightClick(_driver, _inboxBtn);
+            Click(_driver, _createFolder);
+            Thread.Sleep(3000);
+            SendKeys(_driver, _folderName, name);
+            Thread.Sleep(1000);
+            Click(_driver, _okBtn());
         }
 
         public void EditPersonFromTheList(IWebDriver driver, string name , string personName = "", string email = "", string mbl = "", string idNum = "", string idIssue = "", string issueDate = "", string idType = "", string saveStatus = "True")
