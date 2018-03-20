@@ -617,6 +617,9 @@ namespace T2automation.Pages.MyMessages
             return driver.FindElement(By.Id("container_processing"));
         }
 
+        [FindsBy(How = How.XPath, Using = "//*/a[@data-folder-flag='0'][@class='o-folder'][@data-orgid='3c76399d-2a03-4b67-9459-8a0925263d2e']/label[contains(text(),'Automation 111')]")]
+        private IWebElement _automation111DeptInbox;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label/i")]
         private IWebElement _inboxBtn;
 
@@ -1312,10 +1315,8 @@ namespace T2automation.Pages.MyMessages
 
         public void ClickOnPrintReferenceNumberBtnAndSaveAsBtn(string data, IWebDriver driver)
         {
+            Thread.Sleep(1500);
             Click(driver, _printRefNoBtnFromPopup);
-            //Thread.Sleep(1500);
-            //CancelFunctionForNewWindowPrint();
-            //clickOnPopupRefbtnJIC();
             Thread.Sleep(2000);
             SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
@@ -1389,7 +1390,22 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _retrieveBtn);
             Thread.Sleep(2000);
         }
-        
+
+        public bool CheckOnRetrieveBtn()
+        {
+            WaitTillProcessing();
+            if (_retrieveBtn.Displayed)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Retrieve button is not visible!!!");
+                return false;
+            }
+            Thread.Sleep(2000);
+        }
+
         public void ClickOnReplyAllBtn()
         {
             WaitTillMailsGetLoad();
@@ -2535,6 +2551,10 @@ namespace T2automation.Pages.MyMessages
 
         public void createFolder(String name)
         {
+            if (GetText(_driver, _automation111DeptInbox).Contains(name))
+            {
+                return;
+            }
             RightClick(_driver, _inboxBtn);
             Click(_driver, _createFolder);
             Thread.Sleep(3000);

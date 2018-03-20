@@ -297,12 +297,12 @@ namespace T2automation.Pages.Comm
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 Thread.Sleep(2000);
-                Click(driver, _departmentMessages);
+                ClickForNavigation(driver, _departmentMessages);
             }
             Thread.Sleep(2000);
-            Click(driver, _qaDept);
+            ClickForNavigation(driver, _qaDept);
             Thread.Sleep(2000);
-            Click(driver, _automation111DeptInbox);
+            ClickForNavigation(driver, _automation111DeptInbox);
             Thread.Sleep(1000);
         }
 

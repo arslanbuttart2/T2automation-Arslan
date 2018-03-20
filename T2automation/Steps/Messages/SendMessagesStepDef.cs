@@ -320,6 +320,10 @@ namespace T2automation.Steps.My_Messages
                 inboxPage.ClickOnRetrieveBtn();
                 inboxPage.clickOnYesbtn();
             }
+            else if (btnName.Equals("To check the Retrieve"))
+            {
+                Assert.IsTrue(inboxPage.CheckOnRetrieveBtn());
+            }
             else if (btnName.Equals("Export"))
             {
                 Thread.Sleep(1000);
