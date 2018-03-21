@@ -47,12 +47,8 @@ namespace T2automation.Util
                 int y = cal.GetYear(utc);
                 int m = cal.GetMonth(utc);
                 int d = cal.GetDayOfMonth(utc) - 1;
-
                 string temp = DateTime.Today.ToString("d");
-                string hijri_date = y + "/" + m + "/" + d;
-
-
-
+                string hijri_date = d + "/" + m + "/" + y;
                 return hijri_date;
             }
             if (option.Equals("yesterday"))
@@ -68,8 +64,8 @@ namespace T2automation.Util
             {
                 DateTime utc = DateTime.UtcNow;
                 Calendar cal = new HijriCalendar();
-                int d = cal.GetDayOfMonth(utc)-1;
-
+                int d = cal.GetDayOfMonth(utc);
+                d--;
                 return d;
             }
             if (option.Equals("yesterday"))

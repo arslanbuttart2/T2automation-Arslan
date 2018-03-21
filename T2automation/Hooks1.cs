@@ -24,7 +24,7 @@ namespace T2automation
             DriverFactory driverFactory = new DriverFactory("BaseUrl");
             IWebDriver driver = driverFactory.GetDriver();
             //driver.Navigate().GoToUrl("http://qa.ole5.sa");
-            driver.Navigate().GoToUrl("http://qa-stg.ole5.sa");
+            driver.Navigate().GoToUrl(readFromConfig.GetBaseUrl("BaseUrl"));
             Array.ForEach(Directory.GetFiles(path+"\\T2automation\\Downloads"), File.Delete);
             //string path1 = @"";
             //File.Delete(path1);

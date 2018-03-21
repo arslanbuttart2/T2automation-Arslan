@@ -208,9 +208,9 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElement(By.XPath(".//button[text() = 'Close']"));
         }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Reply All')]")]
         private IWebElement _replyAllBtn;
-        
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='back-button-a']")]
         private IWebElement _backBtn;
 
@@ -617,6 +617,9 @@ namespace T2automation.Pages.MyMessages
             return driver.FindElement(By.Id("container_processing"));
         }
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='conDocumentA']")]
+        private IWebElement _unexportedconnectedDocTab;
+
         [FindsBy(How = How.XPath, Using = "//*/a[@data-folder-flag='0'][@class='o-folder'][@data-orgid='3c76399d-2a03-4b67-9459-8a0925263d2e']/label[contains(text(),'Automation 111')]")]
         private IWebElement _automation111DeptInbox;
 
@@ -628,6 +631,12 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "./html/body/div[8]/div[2]/div/div[3]/div/input")]
         private IWebElement _folderName;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div[7]/a/label[contains(text(),'Return')]")]
+        private IWebElement _unexportedreturnBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='txtAdoptionComment']")]
+        private IWebElement _unexportedComment;
 
         private IWebElement _okBtn()
         {
@@ -1102,6 +1111,34 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
+        public void ClickOnUnexportedReturnBtn(string comment)
+        {
+            WaitTillProcessing();
+            Click(_driver, _unexportedreturnBtn);
+            Thread.Sleep(2000);
+            SendKeys(_driver, _unexportedComment, comment);
+            Thread.Sleep(2000);
+            ClickOkBtn();
+        }
+
+        public void ClickUnexportedConnectedDocTab(IWebDriver driver)
+        {
+            Click(driver, _unexportedconnectedDocTab);
+        }
+
+        public void clickOnUnexportedConnectedDocumentList(IWebDriver driver, string subject)
+        {
+            for (int index = 0; index < _connectedDocSubjectList().Count(); index++)
+            {
+                Click(driver, _connectedDocSubjectList().ElementAt(index));
+                Thread.Sleep(2000);
+
+            }
+            //Click(driver, _attributeTab);
+            //Click(driver, _documentFlowTab);
+            //Click(driver, _actionTab);
+        }
+
         public void clickBackBtn()
         {
             Click(_driver, _backBtn);
@@ -1408,7 +1445,7 @@ namespace T2automation.Pages.MyMessages
 
         public void ClickOnReplyAllBtn()
         {
-            WaitTillMailsGetLoad();
+            Thread.Sleep(1600);
             Click(_driver, _replyAllBtn);
             Thread.Sleep(2000);
         }
@@ -1534,6 +1571,32 @@ namespace T2automation.Pages.MyMessages
                     Thread.Sleep(5000);
                 }
                 return true;
+            }
+            Console.WriteLine("No such mail found!!!");
+            return false;
+        }
+
+        public bool OpenMailForSameRefNos(IWebDriver driver, string strData, string subject, bool withSubject = true)
+        {
+            string e1;
+            if (withSubject == true)
+            {
+                firstSearchFolderWithRefNo(strData);
+                WaitTillMailsGetLoad();
+            }
+            int searchResult = _subjectList.Count();
+            if (searchResult >= 1 && withSubject == true)
+            {
+                foreach (IWebElement elem in _subjectList)
+                {
+                    e1 = GetText(driver, elem);
+                    if (e1.Equals(subject))
+                    {
+                        Click(driver, elem);
+                        Thread.Sleep(1000);
+                        return true;
+                    }
+                }
             }
             Console.WriteLine("No such mail found!!!");
             return false;
@@ -1870,8 +1933,11 @@ namespace T2automation.Pages.MyMessages
             if (!messageHijriDate.Equals(""))
             {
                 SendKeys(_driver, _incommingHijriMessageDate, new DateTimeHelper().GetDateHijri(messageHijriDate));
+                _incommingHijriMessageDate.SendKeys(Keys.Enter);
                 var result = _daysOnCal();
-                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDayHijri(messageHijriDate) - 1));
+                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDayHijri(messageHijriDate)-1));
+                Click(_driver, _incommingHijriMessageDate);
+                //_incommingHijriMessageDate.SendKeys(Keys.Tab);
             }
         }
 
@@ -2551,10 +2617,6 @@ namespace T2automation.Pages.MyMessages
 
         public void createFolder(String name)
         {
-            if (GetText(_driver, _automation111DeptInbox).Contains(name))
-            {
-                return;
-            }
             RightClick(_driver, _inboxBtn);
             Click(_driver, _createFolder);
             Thread.Sleep(3000);

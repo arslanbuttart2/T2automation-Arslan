@@ -825,6 +825,21 @@ namespace T2automation.Steps.Messages
             }
         }
 
+        [When(@"user click on exported message return button and write comment ""(.*)""")]
+        public void WhenUserClickOnExportedMessageReturnButtonAndWriteComment(string comment)
+        {
+            inboxPage.ClickOnUnexportedReturnBtn(comment);
+        }
+
+        [When(@"user open connected document in dep for unexported message with subject ""(.*)""")]
+        public void WhenUserOpenConnectedDocumentInDepForUnexportedMessageWithSubject(string subject)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage.ClickUnexportedConnectedDocTab(driver);
+            inboxPage.clickOnUnexportedConnectedDocumentList(driver, subject);
+            inboxPage.ClickCancelBtn();
+        }
+
         [When(@"user opens inbox email with subject ""(.*)""")]
         public void WhenUserOpensInboxEmailWithSubject(string subject)
         {
@@ -855,6 +870,22 @@ namespace T2automation.Steps.Messages
                 return;
             }
             inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+        }
+
+        [When(@"user open inbox email with subject ""(.*)"" and reference no")]
+        public void WhenUserOpenInboxEmailWithSubjectAndReferenceNo(string subject)
+        {
+
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            inboxPage.NavigateToMyMessage(driver);
+            inboxPage.NavigateToMyMessageInbox(driver);
+            Thread.Sleep(3000);
+            inboxPage.WaitTillProcessing();
+            string refno = txtManager.readFromFile(subject);
+            // inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailForSameRefNos(driver, refno, subject);
         }
 
         [Then(@"the visibilty of button ""(.*)"" should be ""(.*)"" on connected person tab")]
