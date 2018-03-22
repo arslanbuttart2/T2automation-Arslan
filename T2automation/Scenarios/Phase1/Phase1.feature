@@ -189,7 +189,6 @@ Scenario:ph 3 Exporting Message -1
 	And user click on close button
 	When user open dept "qaDept" Outbox mail with subject"Reply : incoming message for indirect export 666"
 
-
 Scenario:ph 4 Exporting Message - 2
 	When user go to dept messages Internal Document
 	And search "Admin" "UserMainDepartmentAr" "Users"
