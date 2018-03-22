@@ -267,6 +267,9 @@ namespace T2automation.Pages.MyMessages
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[3]/a/label")]
         private IWebElement _printStickerBtnDept;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td/a[3]")]
+        private IWebElement _printBarcodeMailBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='printPageBtn']")]
         private IWebElement _printThisPageBtn;
@@ -517,6 +520,11 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedPersonCancelBtn;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='print-docment-div']/div/label[1]")]
+        private IList<IWebElement> _SelectiveCheckboxesForPrintPopup;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='print-docment-div']/div/label[2][contains(text(),'')]")]
+        private IList<IWebElement> _SelectiveLablesForPrintPopup;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='tbl_documentDocument']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _connectedDocSubjectListCheckBox;
@@ -1051,7 +1059,7 @@ namespace T2automation.Pages.MyMessages
 
         public void selectMailSearched()
         {
-            WaitForElement(_driver, _SearchedCheckBox);
+            Thread.Sleep(2000);
             Click(_driver, _SearchedCheckBox);
         }
 
@@ -1306,8 +1314,15 @@ namespace T2automation.Pages.MyMessages
 
         public void ClickOnPrintThisPageAndSaveAsBtn(string data, IWebDriver driver)
         {
-            WaitForElement(_driver, _printThisPageBtn);
             Click(_driver, _printThisPageBtn);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnPrintBarcodePageInboxAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printBarcodeMailBtn);
             Thread.Sleep(2000);
             SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
@@ -1385,6 +1400,33 @@ namespace T2automation.Pages.MyMessages
             //okarchivebtn act as print btn here! 
             Click(_driver, _okArchiveBtn);
             SaveAsFunctionForNewWindowPrint(data,driver);
+            Thread.Sleep(1000);
+        }
+
+
+        public void SelectivePopupCheckes(string opt)
+        {
+            string[] optData = opt.Split(',');
+            for(int i = 0; i < optData.Count(); i++)
+            {
+                for (int j = 0; j < _SelectiveLablesForPrintPopup.Count(); j++)
+                {
+                    if (GetText(_driver, _SelectiveLablesForPrintPopup.ElementAt(j)).Contains(optData[i]))
+                    {
+                        Click(_driver, _SelectiveCheckboxesForPrintPopup.ElementAt(j));
+                    }
+                }
+            }
+        }
+
+        public void ClickOnPrintSelectiveAndSaveAsBtn(string data,string opt, IWebDriver driver)
+        {
+            Click(driver, _printBtnDept);
+            Thread.Sleep(2000);
+            SelectivePopupCheckes(opt);
+            //okarchivebtn act as print btn here! 
+            Click(_driver, _okArchiveBtn);
+            SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
         }
 
@@ -1990,7 +2032,9 @@ namespace T2automation.Pages.MyMessages
                         AutoItX3 autoIt = new AutoItX3();
                         autoIt.WinActivate("Open");
                         readFromConfig = new ReadFromConfig();
+                        Thread.Sleep(2000);
                         var filePath = readFromConfig.GetValue("AttachementFolder") + type;
+                        Thread.Sleep(2000);
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();

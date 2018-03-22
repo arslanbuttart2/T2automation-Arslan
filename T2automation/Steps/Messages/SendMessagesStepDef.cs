@@ -286,10 +286,14 @@ namespace T2automation.Steps.My_Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
+
             if (btnName.Equals("Return"))
             {
                 inboxPage.ClickOnReturnBtn();
-                inboxPage.ClickOkBtn();
+            }
+            else if (btnName.Contains("Back"))
+            {
+                inboxPage.clickBackBtn();
             }
             else if (btnName.Contains("Print All,Save as PDF,"))
             {

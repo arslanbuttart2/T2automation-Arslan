@@ -135,14 +135,28 @@ namespace T2automation
                 }
                 if (p2.Contains("Print All,Save as PDF,"))
                 {
-                    //And this button is not showing pdf preview
-                    //myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
+                    myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
                 }
                 if(p3.Contains("Print Flow,Save as PDF,"))
                 {
                     myMessageInboxPage.ClickOnPrintFlowAndSaveAsBtn(p3, driver);
                 }
                 myMessageInboxPage.clickBackBtn();
+            }
+            else if (btnName.Equals("Barcode Mail Print"))
+            {
+                if (p1.Contains("Print Barcode unexported,Save as PDF,"))
+                {
+                    myMessageInboxPage.ClickOnPrintBarcodePageInboxAndSaveAsBtn(p1,driver);
+                }
+            }
+            else if (btnName.Equals("Print Selective"))
+            {
+                
+                if (!(p1.Equals("") && p2.Equals("")))
+                {
+                    myMessageInboxPage.ClickOnPrintSelectiveAndSaveAsBtn(p1, p2, driver);
+                }
             }
         }
 
