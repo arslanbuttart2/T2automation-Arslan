@@ -802,6 +802,12 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectConnectedPerson(driver,personName,email,mbl,idNum,idIssue,issueDate,idType,saveStatus);
         }
 
+        [When(@"user click on dept tabs in unexported")]
+        public void WhenUserClickOnDeptTabsInUnexported()
+        {
+            inboxPage.ClickExportedTabBtn();
+        }
+
         [Then(@"user click on ""(.*)"" button and set ""(.*)"" ""(.*)""")]
         public void ThenUserClickOnButtonAndSet(string btnName, string comment, string attachment="")
         {

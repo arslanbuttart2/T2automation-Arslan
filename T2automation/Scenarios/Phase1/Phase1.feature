@@ -243,11 +243,11 @@ Scenario:ph 4 Exporting Message - 2
 	And user compose mail "Outgoing message for direct export 444" "Outgoing message for direct export 444"
 	And user set properties "" "" "" "" "" "" "Direct Export Method"
 	And user attach attachments 1 "1.pdf"
-	And user select and save the reference no "CD1" of connected document with subject "Internal Message to Internal Department 111"
+	And user select and save the reference no "CD1" of connected document with subject "Any Doc"
 	And user send the email and click on Cancel button
 	Then save reference number from "my" in txt with subject "Outgoing message for direct export 444"
 	When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 444"
-	And user open connected document in dep for unexported message with subject "Internal Message to Internal Department 111"
+	And user open connected document in dep for unexported message with subject "Any Doc"
 	And user click on exported message return button and write comment "I am in unexported and writing comment"
 	When user opens department "internalDepartmentSameDep" mail with subject "Outgoing message for direct export 444" ""
 	And click on "Reply All" button
@@ -268,8 +268,8 @@ Scenario:ph 4 Exporting Message - 2
 	#####And user click on exported message return button and write comment
 	When user open inbox email with subject "Outgoing message for direct export 444" and reference no
 	And click on "Reply" button
-	And user delete the document with subject "Internal Message to Internal Department 111" from the list
-	And user select connected document with subject "Internal Message to Internal Department 111"
+	And user delete the document with subject "Any Doc" from the list
+	And user select connected document with subject "Any Doc"
 	And user send the email and click on Cancel button
 	Then save reference number from "my" in txt with subject "Outgoing message for direct export 444"
 	When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 444"
@@ -291,44 +291,39 @@ Scenario:ph 4 Exporting Message - 2
 
 
 Scenario: ph 6 Exporting Message - 4
-	When user go to dept "InternalDepartmentSameDep" messages Outgoing Document
-	And user compose mail "Outgoing message for direct export 555" "Outgoing message for direct export 555"
-	And user attach attachments 1 "1.pdf"
+	When user go to dept messages Outgoing Document  
 	And select the external department "ExternalEntitySameCountry"
 	And select the external cc department "ExternalEntitySameCountry2"
 	And user set properties "" "" "" "" "" "" "Indirect Export Method"
+	And user compose mail "Outgoing message for direct export 555" "Outgoing message for direct export 555"
+	And user attach attachments 1 "1.pdf"
 	And user send the email and click on Cancel button
 	Then save reference number from "dept" in txt with subject "Outgoing message for direct export 555"
 	When user go to dept "CommDepSameDep" messages Unexported folder
 	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
-	And click on export button
-	And click on cancel button on printing popup
+	And click on "Export" button
 	When user go to dept "CommDepSameDep" Exported
 	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
 	And click on "Undo Export" button
-	When user opens department "CommDepSameDep" mail with subject "Outgoing message for direct export 555" ""
-	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
-	And click on "Undo Export" button
+	When user open dept "qaDept" Outbox mail with subject"Outgoing message for direct export 555"
+	And user click on undo export button
 	And user delete the attachment "1.pdf" "1"
-	And user attach attachments 1 "1.png"
+	And user attach attachments 1 "1.jpg"
 	And user send the email and click on Cancel button
-	When user go to dept "CommDepSameDep" messages Unexported folder
-	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
-	And user click on Outgoing incoming date tab
-	And user click on Document tab
-	And click on edit button
-	And select the external department "ExternalEntitySameCountry"
-	And select the external cc department "ExternalEntitySameCountry2"
-	And click on Process Edit Changes and Export button
-	And click on Yes in Export pop-up
-	And click on cancel button on printing popup
+	When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 555"
+	And user click on dept tabs in unexported
+	And user click on edit button
+	And select the external department in root"ExternalEntitySameCountry2"
+	And user click ok button
+	And select the external cc department in root "ExternalEntitySameCountry"
+	And user click on process edit change and export button
 	When user go to dept "CommDepSameDep" Exported
-	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
-	And user click on "deptCommDept" button and set "Comment for archive" "1.jpg"
-	When user open "CommDepSameDep" archive message with suject "Outgoing message for direct export 555" and click on button "Rollback"
+	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
+	Then user click on "deptCommDept,Archive" button and set "Comment for archive" "1.png"
+	When user open "deptCommDept" archive message with suject "Outgoing message for direct export 555" and click on button "Rollback"
 	When user go to dept "CommDepSameDep" Exported
-	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export555"
-
+	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
+	
 Scenario:ph 7 Retrieve  Message - 1
 	When user go to my messages Internal Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"

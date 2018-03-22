@@ -319,6 +319,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='tabActions']")]
         private IWebElement _connectedTabAction;
 
+        [FindsBy(How = How.Id, Using = "OutInA")]
+        private IWebElement _outgoingIncomingDateTab;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='main-tabs']/div/a[@data-target='doc']")]
         private IWebElement _connectedTabDoc;
 
@@ -520,6 +523,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'Cancel']")]
         private IList<IWebElement> _connectedPersonCancelBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Undo export')]")]
+        private IWebElement _undoexportBtnInUnexportFolder;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='print-docment-div']/div/label[1]")]
         private IList<IWebElement> _SelectiveCheckboxesForPrintPopup;
 
@@ -660,6 +666,30 @@ namespace T2automation.Pages.MyMessages
         private void _ifOkBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Ok']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
+
+        private void _ifCancelBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Cancel']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
+
+        private void _ifYesBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Yes']"));
             foreach (IWebElement elem in elements)
             {
                 if (elem.Displayed)
@@ -816,6 +846,13 @@ namespace T2automation.Pages.MyMessages
             }
 
             return ElementIsDisplayed(driver, element) == value;
+        }
+
+        public void clickUndoExportBtnInCommDeptUnexportedF(bool checkPopup = false)
+        {
+            Thread.Sleep(1000);
+            Click(_driver, _undoexportBtnInUnexportFolder);
+            Thread.Sleep(1000);
         }
 
         public bool CheckButtonClickable(IWebDriver driver, string buttonName)
@@ -1155,6 +1192,8 @@ namespace T2automation.Pages.MyMessages
         public void clickProcessEditBtn()
         {
             Click(_driver, _processEditBtn);
+            ChkIfPopupThenOK();
+            _ifCancelBtn();
         }
 
         public void ClickCancelBtn()
@@ -1251,7 +1290,7 @@ namespace T2automation.Pages.MyMessages
 
         public void SaveAsFunctionForNewWindowPrint(string name, IWebDriver driver)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             // Choosing the second window which is the print dialog.
             // Switching to opened window of print dialog.
             driver.SwitchTo().Window(driver.WindowHandles.ToArray()[1].ToString());
@@ -1832,6 +1871,7 @@ namespace T2automation.Pages.MyMessages
                 DropdownSelectByText(_driver, _deptType(_driver), type);
             }
             Thread.Sleep(5000);
+            WaitForElement(_driver, _deptNames(_driver).ElementAt(0));
             var deptNames = _deptNames(_driver);
             for (int index = 0; index < deptNames.Count; index++) {
                 if (GetText(_driver, deptNames.ElementAt(index)).Equals(deptName)) {
@@ -2062,6 +2102,7 @@ namespace T2automation.Pages.MyMessages
 
         public void DeleteAttachments(string deleteAttachmentTypes, int deleteAttachmentNo)
         {
+            Click(_driver, _attachmentTab);
             if (!deleteAttachmentTypes.Equals(""))
             {
                 var fileNames = _attachedFileNames(_driver);
@@ -2163,6 +2204,13 @@ namespace T2automation.Pages.MyMessages
             SendKeys(_driver, _connectedDocSubject, subject);
             Click(_driver, _connectedDocSearchBtn);
             Thread.Sleep(2000);
+        }
+
+        public void SearchConnectedDocForAnyDoc()
+        {
+            Click(_driver, _connectedDocTab);
+            Click(_driver, _addNewBtn);
+            Thread.Sleep(1000);
         }
 
         public string addNumberInString(string refno, int add)
@@ -2445,9 +2493,35 @@ namespace T2automation.Pages.MyMessages
             return "No Connected Doc Found in List!!!";
         }
 
+        public string readRefNoFromListForAnyDoc()
+        {
+            if (_connectedDocList.Count() >= 1)
+            {
+                return GetText(_driver, _connectedDocList.ElementAt(0));
+            }
+            return "No Connected Doc Found in List!!!";
+        }
+
         public string SelectConnectedDocWithRefNoToSave(string subject)
         {
-            SearchConnectedDoc(subject);
+            if (subject.Equals("Any Doc"))
+            {
+                SearchConnectedDocForAnyDoc();
+                Thread.Sleep(3000);
+                int searchResults2 = _connectedDocSearchedReferenceNo().Count;
+                if (searchResults2 >= 1)
+                {
+                    Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
+                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return readRefNoFromListForAnyDoc();
+                }
+                Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                return "No Data Found for Connected Doc !!!";
+            }
+            else
+            {
+                SearchConnectedDoc(subject);
+            }
             Thread.Sleep(3000);
             int searchResults = _connectedDocSearchedReferenceNo().Count;
             if (searchResults >= 1)
@@ -2462,6 +2536,20 @@ namespace T2automation.Pages.MyMessages
 
         public int SelectConnectedDoc(string subject,bool statusSave= true)
         {
+            if(subject.Equals("Any Doc"))
+            {
+                SearchConnectedDocForAnyDoc();
+                Thread.Sleep(3000);
+                int searchResults2 = _connectedDocSearchedReferenceNo().Count;
+                if (searchResults2 >= 1)
+                {
+                    Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
+                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                    return searchResults2;
+                }
+                Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                return searchResults2;
+            }
             SearchConnectedDoc(subject);
             int searchResults = _connectedDocSearchedSubjects().Count;
             //SearchConnectedDocWithRefrenceNo(refno);
@@ -2512,6 +2600,13 @@ namespace T2automation.Pages.MyMessages
                 return ElementIsDisplayed(_driver, _connectedDocDeleteBtn) == value;
             }
             return false;
+        }
+
+        public void ClickExportedTabBtn()
+        {
+            Click(_driver, _outgoingIncomingDateTab);
+            Thread.Sleep(1000);
+            Click(_driver, _connectedTabDoc);
         }
 
         public bool CheckVisibiltyOfTab(string tab, bool value)

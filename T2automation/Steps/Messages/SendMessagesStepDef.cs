@@ -272,6 +272,7 @@ namespace T2automation.Steps.My_Messages
         }
 
         [Then(@"user search and open mail in dept ""(.*)"" with subject ""(.*)""")]
+        [When(@"user search and open mail in dept ""(.*)"" with subject ""(.*)""")]
         public void ThenUserSearchAndOpenMailInDeptWithSubject(string commDept, string subject)
         {
             driver = driverFactory.GetDriver();
@@ -333,6 +334,11 @@ namespace T2automation.Steps.My_Messages
                 Thread.Sleep(1000);
                 inboxPage.clickExportBtnInCommDeptUnexportedF();
             }
+            else if (btnName.Equals("Undo Export"))
+            {
+                Thread.Sleep(1000);
+                inboxPage.clickUndoExportBtnInCommDeptUnexportedF();
+            }
             else if (btnName.Equals("Confirm Receiving"))
             {
                 Thread.Sleep(1000);
@@ -381,6 +387,8 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnReplyAllBtn();
             }
+
+
         }
         [Then(@"write reference number of ""(.*)""")]
         public void ThenWriteReferenceNumberOf(string subject)
