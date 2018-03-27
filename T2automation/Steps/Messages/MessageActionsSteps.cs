@@ -133,6 +133,7 @@ namespace T2automation.Steps.Messages
             outboxPage = new OutboxPage(driver);
             readFromConfig = new ReadFromConfig();
             outboxPage.NavigateToQADeptOutbox(driver);
+            Thread.Sleep(2000);
             Assert.IsTrue(outboxPage.ValidateMail(driver,readFromConfig.GetValue(to), subject, content, attachmentNo: attachmentNo, attachment: attachmentType));
         }
 
@@ -162,12 +163,14 @@ namespace T2automation.Steps.Messages
         [Then(@"user delete the attachment ""(.*)"" ""(.*)""")]
         public void WhenUserDeleteTheAttachment(string deleteAttachmentTypes, int deleteAttachmentNo)
         {
+            Thread.Sleep(2000);
             inboxPage.DeleteAttachments(deleteAttachmentTypes, deleteAttachmentNo);
         }
 
         [Then(@"attachment should not appear ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenAttachmentShouldNotAppear(string attachmentType, int attachmentNo, int deleteAttachmentNo)
         {
+            Thread.Sleep(2000);
             Assert.IsTrue(inboxPage.ValidateAttachments(driver, attachmentNo, attachmentType, deleteAttachmentNo: deleteAttachmentNo));
         }
 
@@ -555,9 +558,71 @@ namespace T2automation.Steps.Messages
         [Then(@"user select files type in attachment ""(.*)"" ""(.*)""")]
         public void ThenUserSelectFilesTypeInAttachment(string fileType, int size)
         {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
             inboxPage.selectSpecificFileTypeAttachmentInMail(fileType,size);
         }
-        
+
+        [Then(@"user click on outbox ""(.*)"" button ""(.*)""")]
+        [When(@"user click on outbox ""(.*)"" button ""(.*)""")]
+        public void WhenUserClickOnOutboxButton(string btnName, string data)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            //These are in my->outbox
+            if (btnName.Contains("Simple Print"))
+            {
+                inboxPage.ClickOutboxPrintBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Print Sticker"))
+            {
+                inboxPage.ClickOutboxPrintStickerBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Pop Up Sticker,Save as PDF,"))
+            {
+                inboxPage.ClickPrintStickerPopUp(btnName, driver);
+            }
+
+            else if (btnName.Contains("Print 3 Messages"))
+            {
+                inboxPage.SaveAsFunctionForNewWindowPrint(data, driver);
+
+            }
+            else if (btnName.Contains("Print Delivery statement,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDeliveryStatementBtnAndSaveAsBtn2(btnName, driver);
+            }
+
+            else if (btnName.Contains("Print Document,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDocumentBtnAndSaveAsBtn(btnName, driver);
+            }
+
+        }
+
+        [When(@"user click on print delivery button")]
+        public void WhenUserClickOnPrintDeliveryButton()
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.clickPrintDeliveryBtn();
+            inboxPage.ClickOkBtn();
+        }
+
+        [When(@"user set print type ""(.*)""")]
+        public void WhenUserSelectPrintType(string printType = "")
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.SetPrintType(typeName: printType);
+        }
+
+        [When(@"click on print button")]
+        public void WhenClickOnPrintButton()
+        {
+            inboxPage.ClickPrintBtn();
+        }
+
         [When(@"user send the email")]
         public void WhenUserSendTheEmail()
         {

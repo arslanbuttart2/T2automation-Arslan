@@ -236,6 +236,30 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        public void SelectOutboxMail(IWebDriver driver, string refno1, string refno2, string refno3)
+        {
+            string e1;
+            int counter = 0;
+            Click(_driver, _outboxPageEraseButton);
+            WaitTillMailsGetLoad();
+            int searchResult = _referenceNoList.Count();
+            if (searchResult >= 1)
+            {
+                foreach (IWebElement elem in _referenceNoList)
+                {
+                    e1 = GetText(driver, elem);
+                    if (refno1.Contains(e1) || refno2.Contains(e1) || refno3.Contains(e1))
+                    {
+                        Click(_driver, _checkboxList.ElementAt(counter));
+                        Thread.Sleep(1000);
+                        counter++;
+                    }
+                }
+            }
+            Console.WriteLine("No such mail found!!!");
+        }
+
+
         public bool userClickUpperTabBtn(IWebDriver driver,string btnName)
         {
             try
@@ -321,6 +345,7 @@ namespace T2automation.Pages.MyMessages
         {
             if (OpenMailSpecial(driver, subject))
             {
+                Thread.Sleep(3000);
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body) && ValidateAttachments(driver, attachmentNo, attachment));
             }
             return false;

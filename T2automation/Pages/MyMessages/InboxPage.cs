@@ -66,9 +66,15 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "/html/body/div[20]/div[2]/div/div[4]/div[2]/button[1]")]
         private IWebElement yesBtnForDraftDelete;
         
-        [FindsBy(How = How.XPath, Using = "//*[@id='att-head-menu']/div[8]/a/label")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='att-head-menu']/div/a/label[contains(text(),'Print All')]")]
         private IWebElement _printAllBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='att-head-menu']/div/a/label[contains(text(),'Print')]")]
+        private IWebElement _printBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='ViewAllDocument']/label")] 
+        private IWebElement _showAllBtn;
+        
         [FindsBy(How = How.XPath, Using = "//*[@id='btnSelectTo']")]
         private IWebElement _toButton;
 
@@ -129,6 +135,12 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='AttachmentItemDiv']/div/div[1]/input")]
         private IWebElement _chk2;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='destinationsDiv']/input[1]")]
+        private IWebElement _chkDep1;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='destinationsDiv']/input[2]")]
+        private IWebElement _chkDep2;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[6]/a/label")]
         private IWebElement _returnBtn;
 
@@ -182,6 +194,19 @@ namespace T2automation.Pages.MyMessages
             return driver.FindElements(By.XPath(".//*[@id='externalDepartmentGrid']/tbody/tr/td[1]/label"));
         }
 
+        private IWebElement _print()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Print']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return _driver.FindElement(By.XPath(".//button[text() = 'Print']"));
+        }
+
         private IWebElement _cancel()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Cancel']"));
@@ -220,6 +245,15 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
         private IWebElement _rollBackBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='head-menu']/div/a/label[contains(text(),'Pring Delivery')]")]
+        private IWebElement _printDeliveryBtn;
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div/div/div/div/div/div/div/div[2]/button[contains(text(),'To')]")]
+        private IWebElement _toBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='DestinationToDeliveryTable']/thead/tr/th[1]/label")]
+        private IWebElement _selectAll;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='print-header']/div/button[2]")]
         private IWebElement _cancelBtnPrintPreview;
         
@@ -241,8 +275,11 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='print-docment-div']/div[1]/label[1]")]
         private IWebElement _selectAllCheck;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='print-attachment']/a/label")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='print-attachment']/a/label")] //*[@id="att-head-menu"]/div[3]/a/label
         private IWebElement _printBtnInboxCreatingMail;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divSendPrintParent']/div[1]/div[2]/input")]
+        private IWebElement _printDelieveryStatmentFromPopup;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divSendPrintParent']/div[2]/div[2]/input")]
         private IWebElement _printBarcodeBtnFromPopup;
@@ -252,7 +289,13 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divSendPrintParent']/div[4]/div[2]/input")]
         private IWebElement _printDeliveryStatementBtnFromPopup;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='print-delivery-statement-div']/div[2]/label[1]")]
+        private IWebElement _printDeliveryStatementChk1;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='print-delivery-statement-div']/div[3]/label[1]")]
+        private IWebElement _printDeliveryStatementChk2;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='divSendPrintParent']/div[5]/div[2]/input")]
         private IWebElement _printDocumentBtnFromPopup;
 
@@ -262,12 +305,24 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[1]/a/label")]
         private IWebElement _printBtnDept;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a[contains(@href,'javascript:documentsPrint()')]/label[contains(text(),'Print')]")]
+        private IWebElement _printBtnOutbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='rb-formal-print']")]
+        private IWebElement _printFormalBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='rb-normal-print']")]
+        private IWebElement _printNormalBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[2]/a/label")]
         private IWebElement _printDeliveryStatmentBtnDept;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[3]/a/label")]
         private IWebElement _printStickerBtnDept;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divOutgoingSticker']/div[2]/input[@value='Print Sticker']")]
+        private IWebElement _printStickerPopUpBtn;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td/a[3]")]
         private IWebElement _printBarcodeMailBtn;
 
@@ -663,7 +718,7 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElement(By.XPath(".//button[text() = 'Ok']"));
         }
 
-        private void _ifOkBtn()
+        public void _ifOkBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Ok']"));
             foreach (IWebElement elem in elements)
@@ -675,7 +730,7 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
-        private void _ifCancelBtn()
+        public void _ifCancelBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Cancel']"));
             foreach (IWebElement elem in elements)
@@ -687,7 +742,7 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
-        private void _ifYesBtn()
+        public void _ifYesBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Yes']"));
             foreach (IWebElement elem in elements)
@@ -762,6 +817,15 @@ namespace T2automation.Pages.MyMessages
             return driver.FindElements(By.XPath(".//*[@id='files-parent']/div/div[1]/label"));
         }
 
+        //If its not working try this!!!!
+        /*
+private IList<IWebElement> _daysOnCal() {
+        while (_driver.FindElements(By.XPath("html/body/div/div/div[2]/div/table/tbody/tr/td/a[text()=.]")).Count == 0) {
+                _incommingHijriMessageDate.SendKeys(Keys.Enter);
+            }
+            return _driver.FindElements(By.XPath("html/body/div/div/div[2]/div/table/tbody/tr/td/a[text()=.]"));
+           }
+           */
         private IList<IWebElement> _daysOnCal() {
             return _driver.FindElements(By.XPath("html/body/div/div/div[2]/div/table/tbody/tr/td/a[text()=.]"));
         }
@@ -1005,10 +1069,18 @@ namespace T2automation.Pages.MyMessages
         }
 
         public void EnterContentBody(string body) {
+            //_driver.SwitchTo().Frame(_contentBodyIFrame);
+            //SendKeys(_driver, _contentBody, body);
+            //_driver.SwitchTo().DefaultContent();
+            //Thread.Sleep(1000);
+            //updated for content click reasons!
+            Click(_driver, _contentTab);
             _driver.SwitchTo().Frame(_contentBodyIFrame);
             SendKeys(_driver, _contentBody, body);
             _driver.SwitchTo().DefaultContent();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
+            Click(_driver, _propertiesTab);
+            Thread.Sleep(3000);
         }
 
         public void clickOnSendBtnAndCancelForOutgoingMail()
@@ -1098,6 +1170,69 @@ namespace T2automation.Pages.MyMessages
         {
             Thread.Sleep(2000);
             Click(_driver, _SearchedCheckBox);
+        }
+
+        public void selectMailForMultipleSubjects(string subject)
+        {
+            fileManager = new TextFileManager();
+            string[] subjectlists = subject.Split(',');
+            int s = subjectlists.Length;
+            for (int i = 0; i < subjectlists.Length; i++)
+            {
+                string temp = fileManager.readFromFile(subjectlists[i]);
+                IWebElement tempEl = _referenceNoList.ElementAt(i);
+                if (GetText(_driver,tempEl).Contains(temp))
+                {
+                    Click(_driver, _checkboxList.ElementAt(i));
+                    Thread.Sleep(1000);
+                }
+            }
+        }
+
+        public void clickPrintDeliveryBtn()
+        {
+            Click(_driver, _printDeliveryBtn);
+            Thread.Sleep(1000);
+            Click(_driver, _toBtn);
+            Thread.Sleep(1000);
+            Click(_driver, _selectAll);
+        }
+
+        public void SetPrintType(string typeName = "")
+        {
+            if (!typeName.Equals(""))
+            {
+                if (typeName.Equals("ALL In One Dleveray State"))
+                {
+                    var chk1 = _driver.FindElement(By.XPath("//*[@id='PrintTypeOptions1']"));
+                    chk1.Click();
+                }
+            }
+
+            if (!typeName.Equals(""))
+            {
+                if (typeName.Equals("Every document in one  delivery statement"))
+                {
+                    var chk2 = _driver.FindElement(By.XPath("//*[@id='PrintTypeOptions2']"));
+                    chk2.Click();
+                }
+            }
+
+            if (!typeName.Equals(""))
+            {
+                if (typeName.Equals("Every destination in one delivery statement"))
+                {
+                    var chk3 = _driver.FindElement(By.XPath("//*[@id='PrintTypeOptions3']"));
+                    chk3.Click();
+                }
+            }
+
+        }
+
+        public void ClickPrintBtn()
+        {
+            Click(_driver, _print());
+            Thread.Sleep(1000);
         }
 
         public void clickOnSendBtnAndOkBtnForIncomingMail(bool checkPopup = false)
@@ -1366,6 +1501,14 @@ namespace T2automation.Pages.MyMessages
             SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
         }
+        
+        public void ClickOnDeleveryStatmentBtnAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printDelieveryStatmentFromPopup);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
 
         public void ClickOnPrintStickerAndSaveAsBtn(string data, IWebDriver driver)
         {
@@ -1458,6 +1601,71 @@ namespace T2automation.Pages.MyMessages
             }
         }
 
+        public void ClickOnAttachmentTabInMailAndClickShowAllAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _showAllBtn);
+            Thread.Sleep(2000);
+            driver.SwitchTo().Window(driver.WindowHandles[2]).Close(); // close the tab 2
+            driver.SwitchTo().Window(driver.WindowHandles[1]).Close(); // close the tab 1
+            driver.SwitchTo().Window(driver.WindowHandles[0]); // back to previouse tab Main
+            Thread.Sleep(3000);
+        }
+
+        public void ClickOutboxPrintStickerBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printStickerBtnDept);
+            Thread.Sleep(2000);
+            Click(_driver, _chkDep1);
+            Click(_driver, _chkDep2);
+            Thread.Sleep(2000);
+            Click(_driver, _okBtn());
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+            Click(_driver, _closeBtn);
+            Thread.Sleep(1000);
+            Click(_driver, _inboxPageEraseButton);
+
+        }
+
+        public void ClickOnAttachmentTabInMailAndClickPrintAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printBtn);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnAttachmentTabInMailAndPrintAllAndSaveAsBtn(string data, IWebDriver driver,string size="")
+        {
+            if (!size.Equals(""))
+            {
+                int sizeIn = Int16.Parse(size);
+                selectAllAttachmentInMail(sizeIn);
+            }
+            Thread.Sleep(3000);
+            Click(driver, _printAllBtn);
+            Thread.Sleep(2000);
+            _ifOkBtn();
+            //okarchivebtn act as print btn here! 
+            //Click(_driver, _okArchiveBtn);
+            Thread.Sleep(3000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnPrintFormalAndSaveAsBtn(string data, IWebDriver driver)
+        {
+            Click(driver, _printBtnDept);
+            Thread.Sleep(3000);
+            Click(driver, _printFormalBtn);
+            Thread.Sleep(2000);
+            //okarchivebtn act as print btn here! 
+            Click(_driver, _okArchiveBtn);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
         public void ClickOnPrintSelectiveAndSaveAsBtn(string data,string opt, IWebDriver driver)
         {
             Click(driver, _printBtnDept);
@@ -1465,6 +1673,43 @@ namespace T2automation.Pages.MyMessages
             SelectivePopupCheckes(opt);
             //okarchivebtn act as print btn here! 
             Click(_driver, _okArchiveBtn);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOutboxPrintBtn(string data, IWebDriver driver)
+        {
+            Click(_driver, _printBtnOutbox);
+            Thread.Sleep(2000);
+            Click(_driver, _selectAllCheck);
+            //okarchivebtn act as print btn here! 
+            Click(_driver, _okArchiveBtn);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickPrintStickerPopUp(string data, IWebDriver driver)
+        {
+            Click(_driver, _printStickerPopUpBtn);
+            Thread.Sleep(2000);
+            Click(_driver, _chkDep1);
+            Click(_driver, _chkDep2);
+            Thread.Sleep(2000);
+            Click(_driver, _okBtn());
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnPrintDeliveryStatementBtnAndSaveAsBtn2(string data, IWebDriver driver)
+        {
+            Click(_driver, _printDeliveryStatementBtnFromPopup);
+            Thread.Sleep(2000);
+            Click(_driver, _printDeliveryStatementChk1);
+            Click(_driver, _printDeliveryStatementChk2);
+            Thread.Sleep(2000);
+            Click(_driver, _okBtn());
             SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
         }
@@ -1727,6 +1972,7 @@ namespace T2automation.Pages.MyMessages
             Click(_driver, _exportBtnInUnexportFolder);
             Thread.Sleep(1000);
             Click(_driver, _exportCancelBtn);
+            //_ifCancelBtn();
             Thread.Sleep(2000);
         }
 
@@ -2016,9 +2262,9 @@ namespace T2automation.Pages.MyMessages
             {
                 SendKeys(_driver, _incommingHijriMessageDate, new DateTimeHelper().GetDateHijri(messageHijriDate));
                 _incommingHijriMessageDate.SendKeys(Keys.Enter);
-                var result = _daysOnCal();
-                Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDayHijri(messageHijriDate)-1));
-                Click(_driver, _incommingHijriMessageDate);
+                //var result = _daysOnCal();
+                //Click(_driver, _daysOnCal().ElementAt(new DateTimeHelper().GetDayHijri(messageHijriDate)-1));
+                //Click(_driver, _incommingHijriMessageDate);
                 //_incommingHijriMessageDate.SendKeys(Keys.Tab);
             }
         }

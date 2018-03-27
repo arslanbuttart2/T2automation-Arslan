@@ -188,6 +188,7 @@ namespace T2automation.Pages.Comm
         {
             try
             {
+                Thread.Sleep(1500);
                 select.SelectByText(text);
             }
             catch (Exception) {

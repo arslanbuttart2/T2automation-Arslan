@@ -428,7 +428,7 @@ Scenario:ph 11 Print message - 1
 	#When user go to dept messages Internal Document
 	#And search "Admin" "UserMainDepartmentAr" "Users"
 	#And user compose mail "Internal message for print 222" "Internal message for print 222"
-	#And user select and save the reference no "CD2" of connected document with subject "Incoming Message to Child Department 111"
+	#And user select and save the reference no "CD2" of connected document with subject "Any Doc"
 	#And user attach attachments 1 "1.pdf"
 	#And user send the email
 	#Then save reference number from "dept" in txt with subject "Internal message for print 222"
@@ -462,17 +462,71 @@ Scenario:ph 11 Print message - 1
 	#And click on "Print Document,Save as PDF,my,Export: Internal message for print 222,Print Document-On Sending-" button
 	#Then the file should appear in download "my,Export: Internal message for print 222,Print Document-On Sending-"
 	#And user click on cancel button
-	When user go to dept "CommDepSameDep" messages Unexported folder
-	Then user search and select mail in dept "CommDepSameDep" with subject "Export: Internal message for print 222" 
-	And click on "Follow-up Button" button and select "Normal View" "Formal View" ""
-	And click on "Actions And Movements" button and select "Print this page,Save as PDF,my,Export: Internal message for print 222,Print Action Page-Unexported Out-" "Print All,Save as PDF,my,Export: Internal message for print 222,Print All-Unexported Out-" "Print Flow,Save as PDF,my,Export: Internal message for print 222,Print Flow-Unexported Out-"
-	And click on "Back" button
-	#following one line is added because back button is not working correctly!
+	#When user go to dept "CommDepSameDep" messages Unexported folder
+	#Then user search and select mail in dept "CommDepSameDep" with subject "Export: Internal message for print 222" 
+	#And click on "Follow-up Button" button and select "Normal View" "Formal View" ""
+	#And click on "Actions And Movements" button and select "Print this page,Save as PDF,my,Export: Internal message for print 222,Print Action Page-Unexported Out-" "Print All,Save as PDF,my,Export: Internal message for print 222,Print All-Unexported Out-" "Print Flow,Save as PDF,my,Export: Internal message for print 222,Print Flow-Unexported Out-"
+	#And click on "Back" button
+	######following one line is added because back button is not working correctly!
 	When user go to dept "CommDepSameDep" messages Unexported folder
 	Then user search and select mail in dept "CommDepSameDep" with subject "Export: Internal message for print 222" 
 	And click on "Barcode Mail Print" button and select "Print Barcode unexported,Save as PDF,my,Export: Internal message for print 222,Print Action Page-Unexported Out-" "" ""
 	When user go to dept "CommDepSameDep" messages Unexported folder
 	Then user search and open mail in dept "CommDepSameDep" with subject "Export: Internal message for print 222" 
-	And click on "Print Selective" button and select "Print CD and Properties,Save as PDF,my,Export: Internal message for print 222,Print CD&Properties-Unexported Out-" "Connected Document,Properties" ""
+	And click on "Print Selective" button and select "Print CD and Properties,Save as PDF,my,Export: Internal message for print 222,Print CD&Properties-Unexported In-" "Connected Document,Properties" ""
+	And click on "Print Formal Radio btn" button and select "Print Formal Radio btn,Save as PDF,my,Export: Internal message for print 222,Print Formal-Unexported In-" "" ""
+	And click on "Open Attachment Tab,Select_All:2" button and select "Print All,Save as PDF,my,Export: Internal message for print 222,Print All Attachments-Unexported In-" "2" ""
+	And user select files type in attachment ".jpg" "2"
+	And click on "Open Attachment Tab,Select_Selective" button and select "Print,Save as PDF,my,Export: Internal message for print 222,Print Attachments-Unexported In-" "" ""
+	And click on "Open Attachment Tab,Show All" button and select "Print,Save as PDF,my,Export: Internal message for print 222,Print Attachments-Unexported In-" "" ""
+	And click on "Export" button
+	And click on "Delivery Statment button" button and select "Print All,Save as PDF,my,Export: Internal message for print 222,Print Delivery Statment-On exporting 2-" "" ""
+	And user click on outbox "Print Delivery statement,Save as PDF,my,Export: Internal message for print 222,Print Document-On exporting 2-" button ""
+	And user click on outbox "Print Document,Save as PDF,my,Export: Internal message for print 222,Print Sticker-On exporting 2-" button ""
+	
+Scenario:ph 12 Print message - 2
+
+	When user go to my messages Incomming Document
+	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	And user compose mail "Incoming message for printing 333" "Incoming message for printing 333"
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
+	And user select and save the reference no "CD3" of connected document with subject "Incoming message for Reteiving 444"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	Then user send the email and save refrence no from popup "my" "Incoming message for printing 333"
+	############################No Print Barcode button in popup
+	###And click on "Print Barcode,Save as PDF,my,Incoming message for printing 333,Print Barcode-On Sending-" button
+	###Then the file should appear in download "my,Incoming message for printing 333,Print Barcode-On Sending-"
+	###And click on "Print Reference Number,Save as PDF,my,Incoming message for printing 333,Print Reference Number-On Sending-" button
+	###Then the file should appear in download "my,Incoming message for printing 333,Print Reference Number-On Sending-"
+	And user click on outbox "Print Delivery statement,Save as PDF,my,Incoming message for printing 333,Delivery statement-On Sending-" button ""
+	And user click on outbox "Print Document,Save as PDF,my,Incoming message for printing 333,Document-On Sending-" button ""
+	And user click on outbox "Pop Up Sticker,Save as PDF,my,Incoming message for printing 333,Sticker-On Sending-" button ""
+	And user click on cancel button
+	When user go to my messages Internal Document
+	And search "User" "UserMainDepartmentAr" "Users"
+	And user compose mail "Internal message for printing 444" "Internal message for printing 444"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Internal message for printing 444"
+	When user go to my messages Outgoing Document
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "" "" "" "" "" "" "Direct Export Method"
+	And user compose mail "Outgoing message for printing 555" "Outgoing message for printing 555"
+	Then user send the email and save refrence no from popup "my" "Outgoing message for printing 555"
+	And click on "Print Barcode,Save as PDF,my,Outgoing message for printing 555,Print Barcode-On Sending-" button
+	And user click on cancel button
+	When user opens outbox email with subject "Incoming message for printing 333"
+	And user click on outbox "Simple Print,Save as PDF,my,Incoming message for printing 333,Print Message - Outbox - Out-" button ""
+	When user opens outbox email with subject "Incoming message for printing 333"
+	And user click on outbox "Print Sticker,Save as PDF,my,Incoming message for printing 333,Print Sticker - Outbox - In-" button ""
+	#Then user search and select mail in dept "myOutbox" with subject "Incoming message for printing 333,Internal message for printing 444,Outgoing message for printing 555"
+	When user search and select outbox mail with subject "Incoming message for printing 333" "Internal message for printing 444" "Outgoing message for printing 555"
+	When user click on print delivery button
+	And user set print type "Every destination in one delivery statement"
+	And click on print button
+	And user click on outbox "Print 3 Messages" button "Save as PDF,my,Incoming message for printing 333,Print 3 Messages-M3,M4,M5-"
+	########### In SN 50 to SN 55 not implemented as expected result is not visible aganist Outgoing message for printing 111
+	###When user opens root department "CommDepSameDep" mail with subject "Outgoing message for printing 111"
 
 

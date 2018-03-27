@@ -135,7 +135,8 @@ namespace T2automation
                 }
                 if (p2.Contains("Print All,Save as PDF,"))
                 {
-                    myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
+                    //Not Visible!!!
+                    //myMessageInboxPage.ClickOnPrintAllAndSaveAsBtn(p2,driver);
                 }
                 if(p3.Contains("Print Flow,Save as PDF,"))
                 {
@@ -152,12 +153,48 @@ namespace T2automation
             }
             else if (btnName.Equals("Print Selective"))
             {
-                
                 if (!(p1.Equals("") && p2.Equals("")))
                 {
                     myMessageInboxPage.ClickOnPrintSelectiveAndSaveAsBtn(p1, p2, driver);
                 }
             }
+            else if (btnName.Equals("Print Formal Radio btn"))
+            {
+                if (!p1.Equals(""))
+                {
+                    myMessageInboxPage.ClickOnPrintFormalAndSaveAsBtn(p1, driver);
+                }
+            }
+            else if (btnName.Equals("Open Attachment Tab,Select_All"))
+            {
+                if (!p1.Equals(""))
+                {
+                    myMessageInboxPage.ClickOnAttachmentTabInMailAndPrintAllAndSaveAsBtn(p1, driver, p2);
+                }
+            }
+            else if (btnName.Equals("Open Attachment Tab,Select_Selective"))
+            {
+                if (!p1.Equals(""))
+                {
+                    myMessageInboxPage.ClickOnAttachmentTabInMailAndClickPrintAndSaveAsBtn(p1, driver);
+                }
+            }
+            else if (btnName.Contains("Open Attachment Tab,Show All"))
+            {
+                if (!p1.Equals(""))
+                {
+                    myMessageInboxPage.ClickOnAttachmentTabInMailAndClickShowAllAndSaveAsBtn(p1, driver);
+                }
+            }
+            else if (btnName.Contains("Delivery Statment button"))
+            {
+                if (!p1.Equals(""))
+                {
+                    myMessageInboxPage.ClickOnDeleveryStatmentBtnAndSaveAsBtn(p1, driver);
+                    return;
+                }
+            }
+            myMessageInboxPage._ifCancelBtn();
         }
 
         [Then(@"""(.*)"" visibility should be ""(.*)"" on Department Messages inbox")]

@@ -261,14 +261,37 @@ namespace T2automation.Steps.My_Messages
         }
 
         [Then(@"user search and select mail in dept ""(.*)"" with subject ""(.*)""")]
-        public void ThenUserSearchAndSelectMailInDeptWithSubject(string commDept, string subject)
+        public void ThenUserSearchAndSelectMailInDeptWithSubject(string Dept, string subject)
         {
             driver = driverFactory.GetDriver();
             txtManager = new TextFileManager();
             inboxPage = new InboxPage(driver);
+            if (Dept.Equals("myOutbox"))
+            {
+                inboxPage.NavigateToMyMessageOutbox(driver);
+            }
+
+            if (subject.Contains(","))
+            {
+                inboxPage.selectMailForMultipleSubjects(subject);
+            }
             string refno = txtManager.readFromFile(subject);
             inboxPage.firstSearchFolderWithRefNo(refno);
             inboxPage.selectMailSearched();
+        }
+
+        [When(@"user search and select outbox mail with subject ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenUserSearchAndSelectOutboxMailWithSubject(string subject1, string subject2, string subject3 = "")
+        {
+
+            driver = driverFactory.GetDriver();
+            txtManager = new TextFileManager();
+            outboxPage = new OutboxPage(driver);
+            outboxPage.NavigateToMyMessageOutbox(driver);
+            string refno1 = txtManager.readFromFile(subject1);
+            string refno2 = txtManager.readFromFile(subject2);
+            string refno3 = txtManager.readFromFile(subject3);
+            outboxPage.SelectOutboxMail(driver, refno1, refno2, refno3);
         }
 
         [Then(@"user search and open mail in dept ""(.*)"" with subject ""(.*)""")]
