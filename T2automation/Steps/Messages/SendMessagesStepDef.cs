@@ -391,6 +391,11 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnPrintStickerBtn();
             }
+            else if (btnName.Equals("Print Sticker,Save As PDF,"))
+            {
+                inboxPage.ClickOnPrintStickerBtnAndSaveAs(btnName,driver);
+            }
+
             //These buttons are in dept outbox opened mail
             else if (btnName.Contains("Print outbox,Save as PDF,"))
             {

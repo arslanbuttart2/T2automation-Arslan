@@ -563,6 +563,14 @@ namespace T2automation.Steps.Messages
             inboxPage.selectSpecificFileTypeAttachmentInMail(fileType,size);
         }
 
+        [Then(@"user select files type in attachment- already unselected ""(.*)"" ""(.*)"""),When(@"user select files type in attachment- already unselected ""(.*)"" ""(.*)""")]
+        public void ThenUserSelectFilesTypeInAttachment_AlreadyUnselected(string fileType, int size)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.selectSpecificFileTypeAttachmentInMailAlreadyUnselected(fileType, size);
+        }
+
         [Then(@"user click on outbox ""(.*)"" button ""(.*)""")]
         [When(@"user click on outbox ""(.*)"" button ""(.*)""")]
         public void WhenUserClickOnOutboxButton(string btnName, string data)
@@ -570,13 +578,17 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             //These are in my->outbox
-            if (btnName.Contains("Simple Print"))
+            if (btnName.Contains("Simple Print,"))
             {
                 inboxPage.ClickOutboxPrintBtn(btnName, driver);
             }
-            else if (btnName.Contains("Print Sticker"))
+            else if (btnName.Contains("Print Sticker,"))
             {
                 inboxPage.ClickOutboxPrintStickerBtn(btnName, driver);
+            }
+            else if (btnName.Contains("Print Sticker again,Save as PDF,"))
+            {
+                inboxPage.ClickOutboxPrintStickerBtn2(btnName, driver);
             }
             else if (btnName.Contains("Pop Up Sticker,Save as PDF,"))
             {
@@ -592,7 +604,14 @@ namespace T2automation.Steps.Messages
             {
                 inboxPage.ClickOnPrintDeliveryStatementBtnAndSaveAsBtn2(btnName, driver);
             }
-
+            else if (btnName.Contains("Print Document again,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDeliveryStatementBtnAndSaveAsBtn3(btnName, driver);
+            }
+            else if (btnName.Contains("Print Document for creator,Save as PDF,"))
+            {
+                inboxPage.ClickOnPrintDeliveryStatementBtnAndSaveAsBtn4(btnName, driver);
+            }
             else if (btnName.Contains("Print Document,Save as PDF,"))
             {
                 inboxPage.ClickOnPrintDocumentBtnAndSaveAsBtn(btnName, driver);
@@ -617,7 +636,7 @@ namespace T2automation.Steps.Messages
             inboxPage.SetPrintType(typeName: printType);
         }
 
-        [When(@"click on print button")]
+        [When(@"click on print button"),Then(@"click on print button")]
         public void WhenClickOnPrintButton()
         {
             inboxPage.ClickPrintBtn();

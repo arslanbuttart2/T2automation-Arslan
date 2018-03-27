@@ -717,7 +717,17 @@ namespace T2automation.Pages.MyMessages
             }
             return _driver.FindElement(By.XPath(".//button[text() = 'Ok']"));
         }
-
+        private void _ifPrint()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Print']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
         public void _ifOkBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Ok']"));
@@ -1046,6 +1056,19 @@ private IList<IWebElement> _daysOnCal() {
             for (int index = 0; index < size; index++)
             {
                 if(GetText(_driver, _driver.FindElement(By.XPath("//*[@id='dlink" + index + "']"))).Contains(fileType))
+                {
+                    _driver.FindElement(By.XPath("//*[@id='file-cont" + index + "']/div[1]/label")).Click();
+                    return;
+                }
+            }
+        }
+
+        public void selectSpecificFileTypeAttachmentInMailAlreadyUnselected(string fileType, int size)
+        {
+            Click(_driver, _attachmentTab);
+            for (int index = 0; index < size; index++)
+            {
+                if (GetText(_driver, _driver.FindElement(By.XPath("//*[@id='dlink" + index + "']"))).Contains(fileType))
                 {
                     _driver.FindElement(By.XPath("//*[@id='file-cont" + index + "']/div[1]/label")).Click();
                     return;
@@ -1506,6 +1529,7 @@ private IList<IWebElement> _daysOnCal() {
         {
             Click(_driver, _printDelieveryStatmentFromPopup);
             Thread.Sleep(2000);
+            _ifPrint();
             SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
         }
@@ -1568,6 +1592,7 @@ private IList<IWebElement> _daysOnCal() {
         {
             Click(_driver, _printDeliveryStatmentBtnDept);
             Thread.Sleep(2000);
+            _ifPrint();
             SaveAsFunctionForNewWindowPrint(data,driver);
             Thread.Sleep(1000);
         }
@@ -1627,6 +1652,16 @@ private IList<IWebElement> _daysOnCal() {
             Click(_driver, _inboxPageEraseButton);
 
         }
+
+        public void ClickOutboxPrintStickerBtn2(string data, IWebDriver driver)
+        {
+            Click(_driver, _printStickerBtnDept);
+            Thread.Sleep(2000);
+            _ifOkBtn();
+            //SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
 
         public void ClickOnAttachmentTabInMailAndClickPrintAndSaveAsBtn(string data, IWebDriver driver)
         {
@@ -1714,6 +1749,22 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(1000);
         }
 
+        public void ClickOnPrintDeliveryStatementBtnAndSaveAsBtn3(string data, IWebDriver driver)
+        {
+            Click(_driver, _printDeliveryStatementBtnFromPopup);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnPrintDeliveryStatementBtnAndSaveAsBtn4(string data, IWebDriver driver)
+        {
+            Click(_driver, _printBtndept);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
+            Thread.Sleep(1000);
+        }
+
         public void ClickOnPrintBtn()
         {
             Click(_driver, _printBtndept);
@@ -1731,6 +1782,14 @@ private IList<IWebElement> _daysOnCal() {
             Click(_driver, _printStickerBtndept);
             Thread.Sleep(2000);
             CancelFunctionForNewWindowPrint();
+            Thread.Sleep(1000);
+        }
+
+        public void ClickOnPrintStickerBtnAndSaveAs(string data, IWebDriver driver)
+        {
+            Click(_driver, _printStickerBtndept);
+            Thread.Sleep(2000);
+            SaveAsFunctionForNewWindowPrint(data, driver);
             Thread.Sleep(1000);
         }
 

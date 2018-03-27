@@ -434,6 +434,7 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _commDept);
             }
+            Thread.Sleep(3000);
             ClickForNavigation(driver, _commDeptExported);
             Thread.Sleep(1000);
         }
