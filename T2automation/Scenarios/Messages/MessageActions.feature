@@ -143,37 +143,37 @@ Scenario Outline:24 message - attachment - security level with attachment requir
 		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | SecurityLevelRequiredAttach | SecurityLevelRequiredAttach | 1                     | 1.jpg                  | SecurityLevelRequiredAttach | internalDepartmentSameDepAr |
 
 Scenario:25 Message - Connected Documents - Test Case 1
-#	When user go to my messages Internal Document
-#	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-#	And user compose mail "Internal Message to Internal Department 111" "Internal Message to Internal Department 111"
-#	And user attach attachments 1 "1.png"
-#	And user send the email
-#	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
-#	When user go to my messages Internal Document
-#	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-#	And user compose mail "Internal Message to Outside Internal Department 111" "Internal Message to Outside Internal Department 111"
-#	And user attach attachments 1 "1.png"
-#	And user send the email
-#	Then save reference number from "my" in txt with subject "Internal Message to Outside Internal Department 111"
-#	When user go to my messages Internal Document
-#	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-#	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
-#	And user attach attachments 1 "1.png"
-#	And user send the email
-#	Then save reference number from "my" in txt with subject "Incoming Message to Child Department 111"
-#	When user go to my messages Internal Document
-#	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-#	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
-#	And user attach attachments 1 "1.png"
-#	And user send the email
-#	Then save reference number from "my" in txt with subject "Incoming Message to Outside Child Department 111"
-#	When user go to my messages Outgoing Document
-#	And select the external department "ExternalEntitySameCountry"   
-#	And select delivery type "Delivery by hand"
-#	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
-#	And user attach attachments 1 "1.png"
-#	And user send the email and click on Cancel button
-#	Then save reference number from "my" in txt with subject "Outgoing Message to Admin Communication department 111"
+	When user go to my messages Internal Document
+	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And user compose mail "Internal Message to Internal Department 111" "Internal Message to Internal Department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Internal Message to Internal Department 111"
+	When user go to my messages Internal Document
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	And user compose mail "Internal Message to Outside Internal Department 111" "Internal Message to Outside Internal Department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Internal Message to Outside Internal Department 111"
+	When user go to my messages Internal Document
+	And search "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And user compose mail "Incoming Message to Child Department 111" "Incoming Message to Child Department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Incoming Message to Child Department 111"
+	When user go to my messages Internal Document
+	And search "ChildDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	And user compose mail "Incoming Message to Outside Child Department 111" "Incoming Message to Outside Child Department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Incoming Message to Outside Child Department 111"
+	When user go to my messages Outgoing Document
+	And select the external department "ExternalEntitySameCountry"   
+	And select delivery type "Delivery by hand"
+	And user compose mail "Outgoing Message to Admin Communication department 111" "Outgoing Message to Admin Communication department 111"
+	And user attach attachments 1 "1.png"
+	And user send the email and click on Cancel button
+	Then save reference number from "my" in txt with subject "Outgoing Message to Admin Communication department 111"
 	When user go to my messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
@@ -208,7 +208,7 @@ Scenario:28 Message - View connected document - with permission -  department ma
 	When Admin set department message permissions for user "Open Related Messages" "False" "User" "internalDepartmentSameDep"
 	When Admin set department message permissions for user "Can Reply" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
-	And user opens department "internalDepartmentSameDep" mail with subject "Internal Message with Connected Documents 111"
+	And user opens department "internalDepartmentSameDep" mail with subject "Internal Message with Connected Documents 111" ""
 	And user click on reply button
 	Then the visibilty of tab "Connected Document" should be "True" on connected doc tab
 	Then the visibilty of button "Add" should be "False" on connected doc tab
@@ -220,7 +220,7 @@ Scenario:29 Message - View connected document - without permission -
 	When Admin set department message permissions for user "Can Reply" "False" "User" "internalDepartmentSameDep"
 	When Admin set department message permissions for user "Can Forward" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
-	And user opens department "internalDepartmentSameDep" mail with subject "Internal Message with Connected Documents 111"
+	And user opens department "internalDepartmentSameDep" mail with subject "Internal Message with Connected Documents 111" ""
 	And user click on forward button
 	Then the visibilty of tab "Connected Document" should be "False" on connected doc tab
 	When user deletes the draft
