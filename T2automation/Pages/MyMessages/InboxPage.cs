@@ -1019,13 +1019,25 @@ private IList<IWebElement> _daysOnCal() {
                 Thread.Sleep(4000);
                 for (int index = 0; index < _selectToNameForUsers().Count; index++)
                 {
-                    if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
+                    string temp = GetText(driver, _selectToNameForUsers().ElementAt(index));
+                    string[] aftersplit = temp.Split('-');
+                    aftersplit[1] = aftersplit[1].Replace(" ", string.Empty);
+                    if (aftersplit[1].Equals(user))
                     {
                         Click(driver, _selectToCheckForUser.ElementAt(index));
                         Click(driver, _selectToFrameToBtn);
                         Thread.Sleep(1000);
                         return;
                     }
+
+                    /*
+                    if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForUser.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }*/
                 }
             }
             else if (receiverType.Equals("Structural Hierarchy"))
@@ -1033,13 +1045,24 @@ private IList<IWebElement> _daysOnCal() {
                 Thread.Sleep(4000);
                 for (int index = 0; index < _selectToNameForStructuralHierarchy().Count; index++)
                 {
-                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
+                    string temp = GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index));
+                    string[] aftersplit = temp.Split('-');
+                    if (aftersplit[1].Contains(user))
                     {
                         Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
                         Click(driver, _selectToFrameToBtn);
                         Thread.Sleep(1000);
                         return;
                     }
+
+                    /*
+                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }*/
                 }
             }
         }
@@ -2364,12 +2387,14 @@ private IList<IWebElement> _daysOnCal() {
             }
         }
 
-        public void AddAttachments(string multipleAttachmentType, int multipleAttachementNo) {
+        public bool AddAttachments(string multipleAttachmentType, int multipleAttachementNo) {
+            bool validationForFileUploaded=false;
             if (!multipleAttachmentType.Equals(""))
             {
                 if (multipleAttachmentType.Contains(","))
                 {
                     string[] types = multipleAttachmentType.Split(',');
+                    int i = multipleAttachementNo -1;
                     foreach (string type in types)
                     {
                         Click(_driver, _attachmentTab);
@@ -2383,8 +2408,19 @@ private IList<IWebElement> _daysOnCal() {
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
-                        Thread.Sleep(1000);
+                        if(!(type.Contains(".mp3")|| type.Contains(".avi")))
+                        {
+                            validationForFileUploaded = ValidateAttachmentsForMoreThanOneFile(_driver, attachmentNo: multipleAttachementNo - i, attachment: type);
+                            i--;
+                        }
+                        
+                        if (validationForFileUploaded == false)
+                        {
+                            Console.WriteLine("File was unable to upload");
+                            Environment.Exit(0);
+                        }
                     }
+                    return validationForFileUploaded;
                 }
                 else
                 {
@@ -2398,11 +2434,19 @@ private IList<IWebElement> _daysOnCal() {
                         var filePath = readFromConfig.GetValue("AttachementFolder") + multipleAttachmentType;
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
-
                         WaitForUploading();
+                        validationForFileUploaded = ValidateAttachments(_driver, attachmentNo: multipleAttachementNo, attachment: multipleAttachmentType);
+                        if(validationForFileUploaded == false)
+                        {
+                            Console.WriteLine("File was unable to upload");
+                            Environment.Exit(0);
+                        }
                     }
+                    return validationForFileUploaded;
                 }
             }
+            Console.WriteLine("Attachment String is empty!!!");
+            return false;
         }
 
         public void DeleteAttachments(string deleteAttachmentTypes, int deleteAttachmentNo)
@@ -2437,6 +2481,23 @@ private IList<IWebElement> _daysOnCal() {
                 }
                 Click(_driver, _deleteBtn);
             }
+        }
+
+        public bool ValidateAttachmentsForMoreThanOneFile(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0, bool multifile = false)
+        {
+            var fileNames = _attachedFileNames(_driver);
+            if (fileNames.Count == attachmentNo - deleteAttachmentNo)
+            {
+                for (int index = 0; index < attachmentNo - deleteAttachmentNo; index++)
+                {
+                    if (attachment.Contains(GetAttribute(driver, fileNames.ElementAt(index), "title")))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
         }
 
         public bool ValidateAttachments(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0)

@@ -544,7 +544,7 @@ namespace T2automation.Steps.Messages
         [Then(@"user attach attachments (.*) ""(.*)""")]
         public void WhenUserAttachAttachments(int attachmentNo, string attachmentTypes)
         {
-            inboxPage.AddAttachments(attachmentTypes, attachmentNo);
+            Assert.IsTrue(inboxPage.AddAttachments(attachmentTypes, attachmentNo));
         }
 
         [When(@"user select all files in attachment ""(.*)""")]

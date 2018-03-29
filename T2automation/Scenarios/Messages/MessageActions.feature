@@ -417,12 +417,11 @@ Scenario:41 Message - open/add/delete connected document from reply messages - P
 	When user open connected document with subject "Internal Message to Internal Department 111"
 
 Scenario:42 Message - delete connected document from new message - department mail
-	When Admin set department message permissions for user "Create Internal Message" "True" "User" "internalDepartmentSameDep"
-	When Admin set department message permissions for user "View Related Messages" "True" "User" "internalDepartmentSameDep"
-	When Admin set department message permissions for user "Add Related Message" "True" "User" "internalDepartmentSameDep"
-	And Admin set department message permissions for user "Can Link with Message from Related Departments Messages" "False" "User" "internalDepartmentSameDep"
-	And Admin set department message permissions for user "Can Link it with Whole System Messages" "False" "User" "internalDepartmentSameDep"
-	And Admin set department message permissions for user "Can Link with Related Departments Messages and Below" "True" "User" "internalDepartmentSameDep"
+	When Admin set system message permissions for user "Remove Related Messages" "True" "User"
+	And User logs in "UserName" "Password"
+	And user go to dept messages Internal Document
+	And user select connected document with subject "Internal Message with Connected Documents 111"
+	And user delete the document with subject "Internal Message with Connected Documents 111" from the list
 
 Scenario:44 Message - add connected document - search - Personal mail
 	When Admin set department message permissions for user "Create Incoming Message" "True" "User" "internalDepartmentSameDep"

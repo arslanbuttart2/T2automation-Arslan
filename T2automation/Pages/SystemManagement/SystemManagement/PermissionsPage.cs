@@ -245,7 +245,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                 {
                     if (GetText(driver, _addRelatedMessagePermissions.ElementAt(index)).Equals(permissionName))
                     {
-                        if (GetAttribute(driver, _viewRelatedMessagePermissionsClass.ElementAt(index), "class").Contains("selected") != value)
+                        if (GetAttribute(driver, _addRelatedMessagePermissionsClass.ElementAt(index), "class").Contains("selected") != value)
                         {
                             Click(driver, _addRelatedMessagePermissionsCheckbox.ElementAt(index));
                             Click(driver, _okBtn);

@@ -248,12 +248,25 @@ namespace T2automation.Pages.MyMessages
                 foreach (IWebElement elem in _referenceNoList)
                 {
                     e1 = GetText(driver, elem);
-                    if (refno1.Contains(e1) || refno2.Contains(e1) || refno3.Contains(e1))
+
+                    if (refno1.Contains(e1))
                     {
                         Click(_driver, _checkboxList.ElementAt(counter));
                         Thread.Sleep(1000);
-                        counter++;
+
                     }
+                    else if (refno2.Contains(e1))
+                    {
+                        Click(_driver, _checkboxList.ElementAt(counter));
+                        Thread.Sleep(1000);
+                    }
+
+                    else if (refno3.Contains(e1))
+                    {
+                        Click(_driver, _checkboxList.ElementAt(counter));
+                        Thread.Sleep(1000);
+                    }
+                    counter++;
                 }
             }
             Console.WriteLine("No such mail found!!!");
