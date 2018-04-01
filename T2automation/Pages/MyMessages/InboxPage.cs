@@ -12,6 +12,7 @@ using T2automation.Pages.Comm;
 using T2automation.Util;
 using T2automation.Init;
 using AutoItX3Lib;
+using NUnit.Framework;
 
 namespace T2automation.Pages.MyMessages
 {
@@ -549,7 +550,7 @@ namespace T2automation.Pages.MyMessages
             return new SelectElement(driver.FindElement(By.XPath("//*[@id='DocumentTypeId']")));
         }
 
-        private SelectElement _connectedDocDeliveryType(IWebDriver driver)
+        private SelectElement _connectedDocDeliveryType(IWebDriver driver) 
         {
             return new SelectElement(driver.FindElement(By.XPath("//*[@id='DeliveryTypeId']")));
         }
@@ -599,7 +600,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.CssSelector, Using = ".fa.fa-mail-reply")]
         private IWebElement _replyBtn;
 
-        [FindsBy(How = How.CssSelector, Using = ".fa.fa-forward")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Forward')]")]
         private IWebElement _forwardBtn;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='txtRefernceNumber']")]
@@ -1149,10 +1150,6 @@ private IList<IWebElement> _daysOnCal() {
         {
             Click(_driver, _sendBtn);
             Thread.Sleep(2000);
-            if (checkPopup)
-            {
-                Click(_driver, _okBtn());
-            }
             ChkIfPopupThenOK();
             WaitForElement(_driver, _cancelBtnForIncomingMail);
             if (_cancelBtnForIncomingMail.Displayed)
@@ -2388,7 +2385,7 @@ private IList<IWebElement> _daysOnCal() {
         }
 
         public bool AddAttachments(string multipleAttachmentType, int multipleAttachementNo) {
-            bool validationForFileUploaded=false;
+            bool validationForFileUploaded= false;
             if (!multipleAttachmentType.Equals(""))
             {
                 if (multipleAttachmentType.Contains(","))
@@ -2413,17 +2410,17 @@ private IList<IWebElement> _daysOnCal() {
                             validationForFileUploaded = ValidateAttachmentsForMoreThanOneFile(_driver, attachmentNo: multipleAttachementNo - i, attachment: type);
                             i--;
                         }
-                        
                         if (validationForFileUploaded == false)
                         {
-                            Console.WriteLine("File was unable to upload");
-                            Environment.Exit(0);
+                            Console.WriteLine("File was unable to upload/multiple attachment");
+                            Assert.IsTrue(validationForFileUploaded,"File is not uploaded and Validation occures!!!");
                         }
                     }
                     return validationForFileUploaded;
                 }
                 else
                 {
+                    int attchNO = 1;
                     for (int i = 0; i < multipleAttachementNo; i++)
                     {
                         Click(_driver, _attachmentTab);
@@ -2435,12 +2432,21 @@ private IList<IWebElement> _daysOnCal() {
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
-                        validationForFileUploaded = ValidateAttachments(_driver, attachmentNo: multipleAttachementNo, attachment: multipleAttachmentType);
-                        if(validationForFileUploaded == false)
+                        if(multipleAttachementNo > 1 && attchNO <= multipleAttachementNo)
                         {
-                            Console.WriteLine("File was unable to upload");
-                            Environment.Exit(0);
+                            validationForFileUploaded = ValidateAttachments(_driver, attachmentNo: attchNO, attachment: multipleAttachmentType);
                         }
+                        if (multipleAttachementNo == 1)
+                        {
+                            validationForFileUploaded = ValidateAttachments(_driver, attachmentNo: multipleAttachementNo, attachment: multipleAttachmentType);
+                        }
+                        if (validationForFileUploaded == false)
+                        {
+                            Console.WriteLine("File was unable to upload/single attachment");
+                            Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
+                            Thread.Sleep(3000);
+                        }
+                        attchNO++;
                     }
                     return validationForFileUploaded;
                 }
@@ -2485,6 +2491,7 @@ private IList<IWebElement> _daysOnCal() {
 
         public bool ValidateAttachmentsForMoreThanOneFile(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0, bool multifile = false)
         {
+            Thread.Sleep(3000);
             var fileNames = _attachedFileNames(_driver);
             if (fileNames.Count == attachmentNo - deleteAttachmentNo)
             {
@@ -2502,6 +2509,7 @@ private IList<IWebElement> _daysOnCal() {
 
         public bool ValidateAttachments(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0)
         {
+            Thread.Sleep(3000);
             var fileNames = _attachedFileNames(_driver);
             if (fileNames.Count == attachmentNo - deleteAttachmentNo)
             {
@@ -2569,7 +2577,7 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(1000);
             SendKeys(_driver, _connectedDocSubject, subject);
             Click(_driver, _connectedDocSearchBtn);
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
         }
 
         public void SearchConnectedDocForAnyDoc()
@@ -2586,7 +2594,7 @@ private IList<IWebElement> _daysOnCal() {
             {
                 Console.WriteLine("I am in for loop index at " + i + " : " + strArray[i]);
             }
-            int numValOld = Int16.Parse(strArray[2]);
+            int numValOld = Int32.Parse(strArray[2]);
             int numValNew = numValOld + add;
             string numValOldStr = numValOld.ToString();
             string numValNewStr = numValNew.ToString();
@@ -2596,16 +2604,32 @@ private IList<IWebElement> _daysOnCal() {
             return newRefNo;
         }
 
-        public bool validateConnectedDocWithRefNoFoundOrNot(IWebDriver driver, string refno, string docType)
+        public bool validateConnectedDocWithRefNoFoundOrNot(IWebDriver driver, string refno, string docType,string subject="")
         {
             SearchConnectedDocWithRefrenceNo(refno, docType);
             int searchResults = _connectedDocSearchedReferenceNo().Count;
-            for (int i = 0; i <= searchResults && searchResults >= 1; i++)
+            if(!subject.Equals(""))
             {
-                if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
+                if(searchResults == 1)
                 {
-                    Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-                    return true;
+                    bool rfno = GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(0)).Equals(refno);
+                    bool subj = GetText(driver, _connectedDocSearchedSubjects().ElementAt(0)).Equals(subject);
+                    if (rfno==true && subj==true)
+                    {
+                        Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                        return true;
+                    }
+                }
+            }
+            else if (subject.Equals(""))
+            {
+                for (int i = 0; i <= searchResults && searchResults >= 1; i++)
+                {
+                    if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
+                    {
+                        Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                        return true;
+                    }
                 }
             }
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
@@ -2616,7 +2640,7 @@ private IList<IWebElement> _daysOnCal() {
         {
             SearchConnectedDocWithRefrenceNo(refno, docType);
             int searchResults = _connectedDocSearchedReferenceNo().Count;
-            for (int i = 0; i <= searchResults; i++)
+            for (int i = 0; i < searchResults; i++)
             {
                 if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
                 {
@@ -2636,7 +2660,7 @@ private IList<IWebElement> _daysOnCal() {
         {
             SearchConnectedDocWithRefrenceNo(refno, deliveryType: deliveryType);
             int searchResults = _connectedDocSearchedReferenceNo().Count;
-            for (int i = 0; i <= searchResults; i++)
+            for (int i = 0; i < searchResults; i++)
             {
                 if (GetText(driver, _connectedDocSearchedReferenceNo().ElementAt(i)).Equals(refno))
                 {
@@ -2663,11 +2687,12 @@ private IList<IWebElement> _daysOnCal() {
             }
             if (deliveryType != "")
             {
-                DropdownSelectByText(_driver, _connectedDocDeliveryType(_driver), docType);
+                DropdownSelectByText(_driver, _connectedDocDeliveryType(_driver), deliveryType);
             }
             SendKeys(_driver, _connectedDocRefNoField, refno);
             Click(_driver, _connectedDocSearchBtn);
             WaitTillProcessing();
+            Thread.Sleep(5000);
         }
 
         public string ReadReferenceNoOfConnectedDoc(IWebDriver driver, string subject)
@@ -2675,6 +2700,7 @@ private IList<IWebElement> _daysOnCal() {
             SearchConnectedDoc(subject);
             for (int index = 0; index <= _connectedDocSearchedReferenceNo().Count(); index++)
             {
+                Thread.Sleep(3000);
                 if (GetText(driver, _connectedDocSearchedSubjects().ElementAt(index)).Equals(subject))
                 {
                     WaitTillProcessing();
@@ -2918,9 +2944,11 @@ private IList<IWebElement> _daysOnCal() {
             }
             SearchConnectedDoc(subject);
             int searchResults = _connectedDocSearchedSubjects().Count;
+
+            string temp = GetText(_driver,_connectedDocSearchedSubjects().ElementAt(0));
             //SearchConnectedDocWithRefrenceNo(refno);
             //int searchResults = _connectedDocSearchedReferenceNo().Count;
-            if (searchResults >= 1) {
+            if (searchResults >= 1 && GetText(_driver, _connectedDocSearchedSubjects().ElementAt(0)).Equals(subject)) {
                 Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
                 if (statusSave == true)
                 { 
@@ -2932,6 +2960,10 @@ private IList<IWebElement> _daysOnCal() {
                     Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
                     return searchResults;
                 }
+            }
+            if (searchResults >= 1 && !(GetText(_driver, _connectedDocSearchedSubjects().ElementAt(0)).Equals(subject)))
+            {
+                searchResults = 0;
             }
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             return searchResults;
@@ -2979,11 +3011,15 @@ private IList<IWebElement> _daysOnCal() {
         {
             if (tab.Equals("Connected Document"))
             {
+                //WaitForElement(_driver, _connectedDocTab);
+                Thread.Sleep(5000);
                 bool chk = ElementIsDisplayed(_driver, _connectedDocTab) == value;
                 return chk;
             }
             if(tab.Equals("Connected Persons"))
             {
+                //WaitForElement(_driver, _connectedPersonTab);
+                Thread.Sleep(5000);
                 return ElementIsDisplayed(_driver, _connectedPersonTab) == value;
             }
             
@@ -2994,12 +3030,14 @@ private IList<IWebElement> _daysOnCal() {
         {
             Click(_driver, _replyBtn);
             Thread.Sleep(5000);
+            _ifOkBtn();
         }
 
         public void ClickOnForward()
         {
             Click(_driver, _forwardBtn);
             Thread.Sleep(5000);
+            _ifOkBtn();
         }
 
         public void clickOnYesbtn()
@@ -3223,6 +3261,7 @@ private IList<IWebElement> _daysOnCal() {
 
         public bool ValidateConnectedDocumentList(string subject)
         {
+            Thread.Sleep(4000);
             var subjects = _connectedDocSubjectList();
             foreach (IWebElement listSubject in subjects) {
                 if (GetText(_driver, listSubject).Equals(subject)) {
@@ -3232,7 +3271,7 @@ private IList<IWebElement> _daysOnCal() {
             return false;
         }
         
-        public void clickOnConnectedDocumentList(IWebDriver driver, string subject)
+        public bool clickOnConnectedDocumentList(IWebDriver driver, string subject)
         {
             for (int index = 0; index < _connectedDocSubjectList().Count(); index++)
             {
@@ -3240,9 +3279,10 @@ private IList<IWebElement> _daysOnCal() {
                 {
                     Click(driver, _connectedDocSubjectList().ElementAt(index));
                     Thread.Sleep(5000);
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
 
         public void connectedDocListPopupsTab(IWebDriver driver, string tabName)

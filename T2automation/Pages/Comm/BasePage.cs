@@ -85,7 +85,7 @@ namespace T2automation.Pages.Comm
                         }
                         catch (Exception) {
                             System.Console.WriteLine("Some issue on clicking element");
-                            Environment.Exit(0);
+                            //Environment.Exit(0);
                             return false;
                         }
                     }

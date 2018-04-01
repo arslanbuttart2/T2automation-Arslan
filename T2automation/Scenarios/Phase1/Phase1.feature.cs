@@ -1362,8 +1362,8 @@ this.FeatureBackground();
 #line 531
  testRunner.And("click on print button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 532
- testRunner.And("user click on outbox \"Print 3 Messages\" button \"Save as PDF,my,Incoming message f" +
-                    "or printing 333,Print 3 Messages-M3,M4,M5-\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user click on outbox \"Print 3 Messages\" button \"Print 3 Messages,Save as PDF,my,I" +
+                    "ncoming message for printing 333,Print 3 Messages-M3,M4,M5-\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -339,7 +339,9 @@ namespace T2automation.Pages.MyMessages
 
         public bool ValidateAttachments(IWebDriver driver, int attachmentNo, string attachment)
         {
+            Thread.Sleep(1000);
             Click(driver, _attachmentTab);
+            Thread.Sleep(1500);
             if (_attachments.Count == attachmentNo)
             {
                 for (int index = 0; index < attachmentNo; index++)

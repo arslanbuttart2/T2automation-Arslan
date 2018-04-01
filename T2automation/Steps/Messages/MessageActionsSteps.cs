@@ -846,26 +846,41 @@ namespace T2automation.Steps.Messages
             string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver,subject);
             Assert.IsTrue(inboxPage.validateConnectedDocWithRefNoFoundOrNot(driver, refNo, ""), refNo + " should be visible");
             string newRefNo = inboxPage.addNumberInString(refNo,add);
-            Assert.IsFalse(inboxPage.validateConnectedDocWithRefNoFoundOrNot(driver,newRefNo,""), newRefNo + " should not be visible");
+            Assert.IsFalse(inboxPage.validateConnectedDocWithRefNoFoundOrNot(driver,newRefNo,"",subject), newRefNo + " should not be visible");
         }
 
-        [When(@"user select document type as ""(.*)"" with subject ""(.*)""")]
-        public void WhenUserSelectDocumentTypeAsWithSubject(string docType, string subject)
+        [When(@"user select document type as ""(.*)"" with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserSelectDocumentTypeAsWithSubject(string docType, string subject, string valueExpected)
         {
             driver = driverFactory.GetDriver();
             string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver, subject);
-            Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDocType(driver, refNo, docType), docType + " Document must be saved!");
+            if (valueExpected.Equals("True"))
+            {
+                Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDocType(driver, refNo, docType), docType + " Document must be saved!");
+            }
+            else if (valueExpected.Equals("False"))
+            {
+                Assert.IsFalse(inboxPage.selectConnectedDocWithRefNoAndDocType(driver, refNo, docType), docType + " Document must Not be saved!");
+            }
         }
 
-        [When(@"user select delivery type as ""(.*)"" with subject ""(.*)""")]
-        public void WhenUserSelectDeliveryTypeAsWithSubject(string deliveryType, string subject)
+        [When(@"user select delivery type as ""(.*)"" with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserSelectDeliveryTypeAsWithSubject(string deliveryType, string subject, string valueExpected)
         {
             driver = driverFactory.GetDriver();
             readFromConfig = new ReadFromConfig();
             string refNo = inboxPage.ReadReferenceNoOfConnectedDoc(driver, subject);
-            Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo,readFromConfig.GetValue(deliveryType)), deliveryType + " Document must be saved!");
+            //Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo,readFromConfig.GetValue(deliveryType)), deliveryType + " Document must be saved!");
+            if (valueExpected.Equals("True"))
+            {
+                Assert.IsTrue(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo, readFromConfig.GetValue(deliveryType)), deliveryType + " Document must be saved!");
+            }
+            else if (valueExpected.Equals("False"))
+            {
+                Assert.IsFalse(inboxPage.selectConnectedDocWithRefNoAndDeliveryType(driver, refNo, readFromConfig.GetValue(deliveryType)), deliveryType+ " Document must Not be saved!");
+            }
         }
-        
+
         [When(@"user select connected document without saving it with subject ""(.*)"" ""(.*)""")]
         public void WhenUserSelectConnectedDocumentWithoutSavingItWithSubject(string subject, bool saveStatus)
         {
@@ -1110,7 +1125,6 @@ namespace T2automation.Steps.Messages
         public void WhenUserClickOnReplyButton()
         {
             inboxPage.ClickOnReply();
-            //inboxPage.ClickOkBtn();
         }
         
 
@@ -1119,7 +1133,7 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage.ClickConnectedDocTab(driver);
-            inboxPage.clickOnConnectedDocumentList(driver, subject);
+            Assert.IsTrue(inboxPage.clickOnConnectedDocumentList(driver, subject),"No connected Documnet Matched From List!!!");
         }
 
         [Then(@"Verify tab ""(.*)"" on connected document detail")]

@@ -529,7 +529,7 @@ Scenario:ph 12 Print message - 2
 	When user click on print delivery button
 	And user set print type "Every destination in one delivery statement"
 	And click on print button
-	And user click on outbox "Print 3 Messages" button "Save as PDF,my,Incoming message for printing 333,Print 3 Messages-M3,M4,M5-"
+	And user click on outbox "Print 3 Messages" button "Print 3 Messages,Save as PDF,my,Incoming message for printing 333,Print 3 Messages-M3,M4,M5-"
 	########### In SN 50 to SN 55 not implemented as expected result is not visible aganist Outgoing message for printing 111
 	###When user opens root department "CommDepSameDep" mail with subject "Outgoing message for printing 111"
 
