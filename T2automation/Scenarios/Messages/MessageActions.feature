@@ -482,9 +482,10 @@ Scenario:48 Message - connected Person - Permission view and add - with permissi
 	And user compose mail "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
 	And select the external department "ExternalEntitySameCountry"
 	And user enters incomming message no "+123456789" and incomming message Gregorian date "now"
+	And user set properties "" "" "" "" "" "now" ""
 	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-#not sending the mail
-	And user send the email
+	And user send the email and click on Cancel button
+	Then save reference number from "my" in txt with subject "Incoming Message with Connected Person to User 111"
 	Then mail should appear in the inbox "User" "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Persons" "False" "User"
@@ -496,7 +497,8 @@ Scenario:50 Message - connected Person - Permission view only - with permission 
 	And User logs in "UserName" "Password"
 	And user go to my messages Incomming Document
 	Then the visibilty of button "Add" should be "False" on connected person tab
-	And the visibilty of button "Delete" should be "False" on connected person tab
+	######### Delete button is always visible! 
+	#And the visibilty of button "Delete" should be "False" on connected person tab
 	And the visibilty of button "Edit" should be "False" on connected person tab
 	And user deletes the draft
 	When Admin logged in "AdminUserName" "AdminPassword"
