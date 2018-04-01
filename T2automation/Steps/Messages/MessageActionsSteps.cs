@@ -1002,7 +1002,15 @@ namespace T2automation.Steps.Messages
         [Then(@"the visibilty of button ""(.*)"" should be ""(.*)"" on connected doc tab")]
         public void ThenTheVisibiltyOfButtonShouldBeOnConnectedDocTab(string buttonName, bool value)
         {
-            Assert.IsTrue(inboxPage.CheckVisibiltyOnConnectedDoc(buttonName, value), buttonName + " should not be visible");
+            if (buttonName.Contains(","))
+            {
+                string[] Btnname = buttonName.Split(',');
+                Assert.IsTrue(inboxPage.CheckVisibiltyOnConnectedDoc(Btnname[0], value,Btnname[1]), buttonName + " should not be visible");
+            }
+            else
+            {
+                Assert.IsTrue(inboxPage.CheckVisibiltyOnConnectedDoc(buttonName, value), buttonName + " should not be visible");
+            }
         }
         
         [When(@"user update person with name ""(.*)"" from the list to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

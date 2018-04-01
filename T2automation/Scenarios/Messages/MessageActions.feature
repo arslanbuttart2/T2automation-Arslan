@@ -190,12 +190,12 @@ Scenario:26 Message - View connected document - with permission -  personal mail
 	And Admin set system message permissions for user "Add Related Message" "False" "User"
 	And Admin set system message permissions for user "Remove Related Messages" "False" "User"
 	And Admin set system message permissions for user "Open Related Messages" "False" "User"
-	And User logs in "UserName" "Password"
+	When User logs in "UserName" "Password"
 	And user opens inbox email with subject "Internal Message with Connected Documents 111"
-	Then the visibilty of tab "Connected Document" should be "True" on connected doc tab
-	Then the visibilty of button "Add" should be "False" on connected doc tab
-	And the visibilty of button "Delete" should be "False" on connected doc tab
-	#isske tab visibiility main error hai k connected tab ka elemanet nai milta isko
+	Then the visibilty of tab "Connected Document,In mail" should be "True" on connected doc tab
+	Then the visibilty of button "Add,In mail" should be "False" on connected doc tab
+	And the visibilty of button "Delete,In mail" should be "False" on connected doc tab
+
 Scenario:27 Message - View connected document - without permission -  personal mail
 	When Admin set system message permissions for user "View Related Messages" "False" "User"
 	And User logs in "UserName" "Password"

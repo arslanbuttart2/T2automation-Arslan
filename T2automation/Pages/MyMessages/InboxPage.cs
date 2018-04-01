@@ -2987,15 +2987,31 @@ private IList<IWebElement> _daysOnCal() {
             return false;
         }
 
-        public bool CheckVisibiltyOnConnectedDoc(string buttonName, bool value)
+        public bool CheckVisibiltyOnConnectedDoc(string buttonName, bool value, string tabInOpenMail = "")
         {
-            Click(_driver, _connectedDocTab);
-            if (buttonName.Equals("Add")) {
-                return ElementIsDisplayed(_driver, _addNewBtn) == value;
-            }
-            else if (buttonName.Equals("Delete"))
+            if (tabInOpenMail.Equals(""))
             {
-                return ElementIsDisplayed(_driver, _connectedDocDeleteBtn) == value;
+                Click(_driver, _connectedDocTab);
+                if (buttonName.Equals("Add"))
+                {
+                    return ElementIsDisplayed(_driver, _addNewBtn) == value;
+                }
+                else if (buttonName.Equals("Delete"))
+                {
+                    return ElementIsDisplayed(_driver, _connectedDocDeleteBtn) == value;
+                }
+            }
+            else if (tabInOpenMail.Equals("In mail"))
+            {
+                Click(_driver, _unexportedconnectedDocTab);
+                if (buttonName.Equals("Add"))
+                {
+                    return ElementIsDisplayed(_driver, _addNewBtn) == value;
+                }
+                else if (buttonName.Equals("Delete"))
+                {
+                    return ElementIsDisplayed(_driver, _connectedDocDeleteBtn) == value;
+                }
             }
             return false;
         }
@@ -3022,7 +3038,22 @@ private IList<IWebElement> _daysOnCal() {
                 Thread.Sleep(5000);
                 return ElementIsDisplayed(_driver, _connectedPersonTab) == value;
             }
+            if (tab.Equals("Connected Document,In mail"))
+            {
+                Thread.Sleep(5000);
+                bool chk = ElementIsDisplayed(_driver, _unexportedconnectedDocTab) == value;
+                return chk;
+            }
+            if (tab.Equals("Connected Persons,In mail"))
+            {
+                Thread.Sleep(5000);
+                return ElementIsDisplayed(_driver, _connectedPersonTab) == value;
+            }
             
+
+
+
+
             return false;
         }
 

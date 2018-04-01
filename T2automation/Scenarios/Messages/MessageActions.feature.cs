@@ -574,16 +574,17 @@ this.FeatureBackground();
  testRunner.And("Admin set system message permissions for user \"Open Related Messages\" \"False\" \"Us" +
                     "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 193
- testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 194
  testRunner.And("user opens inbox email with subject \"Internal Message with Connected Documents 11" +
                     "1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 195
- testRunner.Then("the visibilty of tab \"Connected Document\" should be \"True\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the visibilty of tab \"Connected Document,In mail\" should be \"True\" on connected d" +
+                    "oc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 196
- testRunner.Then("the visibilty of button \"Add\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the visibilty of button \"Add,In mail\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 197
- testRunner.And("the visibilty of button \"Delete\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the visibilty of button \"Delete,In mail\" should be \"False\" on connected doc tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
