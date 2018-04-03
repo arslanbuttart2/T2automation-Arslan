@@ -486,7 +486,7 @@ this.FeatureBackground();
  testRunner.And("user delete the document with subject \"Internal Message to Internal Department 11" +
                     "1\" from the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 179
- testRunner.And("user attach attachments 1 \"1.jpg\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user attach attachments 1 \"1.jpg\" and already Had Some Attachment \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 180
  testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 181
@@ -1152,7 +1152,7 @@ this.FeatureBackground();
 #line 447
  testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"indirectExport\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 448
- testRunner.And("user attach attachments 1 \"1.jpg\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user attach attachments 1 \"1.jpg\" and already Had Some Attachment \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 449
  testRunner.And("user select all files in attachment \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 450

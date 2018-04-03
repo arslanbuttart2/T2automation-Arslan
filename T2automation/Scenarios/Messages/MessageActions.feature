@@ -218,7 +218,6 @@ Scenario:28 Message - View connected document - with permission -  department ma
 
 Scenario:29 Message - View connected document - without permission -  
 	When Admin set department message permissions for user "View Related Messages" "False" "User" "internalDepartmentSameDep"
-	When Admin set department message permissions for user "Can Reply" "False" "User" "internalDepartmentSameDep"
 	When Admin set department message permissions for user "Can Forward" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
 	And user opens department "internalDepartmentSameDep" mail with subject "Internal Message with Connected Documents 111" ""
@@ -419,7 +418,10 @@ Scenario:41 Message - open/add/delete connected document from reply messages - P
 	When user open connected document with subject "Internal Message to Internal Department 111"
 
 Scenario:42 Message - delete connected document from new message - department mail
-	When Admin set system message permissions for user "Remove Related Messages" "True" "User"
+	When Admin set department message permissions for user "View Related Messages" "True" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Open Related Messages" "True" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Add Related Message" "True" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Remove Related Messages" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
 	And user go to dept messages Internal Document
 	And user select connected document with subject "Internal Message with Connected Documents 111"
@@ -427,8 +429,8 @@ Scenario:42 Message - delete connected document from new message - department ma
 
 Scenario:44 Message - add connected document - search - Personal mail
 	When Admin set department message permissions for user "Create Incoming Message" "True" "User" "internalDepartmentSameDep"
-	When Admin set system message permissions for user "Add Related Message" "True" "User"
-	And Admin set system message permissions for user "Can Link it with Whole System Messages" "True" "User"
+	When Admin set department message permissions for user "Add Related Message" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Can Link it with Whole System Messages" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password" 
 	And user go to dept messages Incoming Document 
 	And user read connected document reference with subject "Incoming Message to outside child department 111" add 100
@@ -526,7 +528,7 @@ Scenario:52 Message - Adding connected Person - Invalid / incomplete data - Pers
 	
 	Scenario:53 Message - Adding connected Person - Invalid / incomplete data - Department mail
 	When Admin set department message permissions for user "View Related Persons" "True" "User" "internalDepartmentSameDep"
-	When Admin set department message permissions for user "Add Related Persons" "True" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Add Related Person" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
 	And user go to dept messages Incoming Document
 	When user set connected person "Person Name1" "PersonEmail1mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
@@ -549,7 +551,7 @@ Scenario:52 Message - Adding connected Person - Invalid / incomplete data - Pers
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set department message permissions for user "View Related Persons" "False" "User" "internalDepartmentSameDep"
-	When Admin set department message permissions for user "Add Related Persons" "False" "User" "internalDepartmentSameDep"
+	When Admin set department message permissions for user "Add Related Person" "False" "User" "internalDepartmentSameDep"
 
 Scenario:54 Message - connected Person - no permission - Personal mail
 	When Admin set system message permissions for user "View Related Persons" "False" "User"

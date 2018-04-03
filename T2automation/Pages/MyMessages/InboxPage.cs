@@ -142,7 +142,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='destinationsDiv']/input[2]")]
         private IWebElement _chkDep2;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div[2]/div[2]/div[14]/div[1]/div[6]/a/label")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Return')]")]
         private IWebElement _returnBtn;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr[1]/td[7]/a[1]/i")]
@@ -2384,14 +2384,15 @@ private IList<IWebElement> _daysOnCal() {
             }
         }
 
-        public bool AddAttachments(string multipleAttachmentType, int multipleAttachementNo) {
-            bool validationForFileUploaded= false;
+        public bool AddAttachmentsForAlreadyAttachmentsFileExists(string multipleAttachmentType, int multipleAttachementNo, string noOFFileExistsAlready)
+        {
+            bool validationForFileUploaded = false;
             if (!multipleAttachmentType.Equals(""))
             {
                 if (multipleAttachmentType.Contains(","))
                 {
                     string[] types = multipleAttachmentType.Split(',');
-                    int i = multipleAttachementNo -1;
+                    int i = multipleAttachementNo - 1;
                     foreach (string type in types)
                     {
                         Click(_driver, _attachmentTab);
@@ -2405,7 +2406,7 @@ private IList<IWebElement> _daysOnCal() {
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
-                        if(!(type.Contains(".mp3")|| type.Contains(".avi")))
+                        if (!(type.Contains(".mp3") || type.Contains(".avi")))
                         {
                             validationForFileUploaded = ValidateAttachmentsForMoreThanOneFile(_driver, attachmentNo: multipleAttachementNo - i, attachment: type);
                             i--;
@@ -2413,7 +2414,7 @@ private IList<IWebElement> _daysOnCal() {
                         if (validationForFileUploaded == false)
                         {
                             Console.WriteLine("File was unable to upload/multiple attachment");
-                            Assert.IsTrue(validationForFileUploaded,"File is not uploaded and Validation occures!!!");
+                            Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
                         }
                     }
                     return validationForFileUploaded;
@@ -2432,7 +2433,78 @@ private IList<IWebElement> _daysOnCal() {
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
-                        if(multipleAttachementNo > 1 && attchNO <= multipleAttachementNo)
+                        if (multipleAttachementNo > 1 && attchNO <= multipleAttachementNo)
+                        {
+                            validationForFileUploaded = ValidateAttachmentsForAlreadyExistedFiles(_driver, attachmentNo: attchNO, attachment: multipleAttachmentType, noOFFileExistsAlready: noOFFileExistsAlready);
+                        }
+                        if (multipleAttachementNo == 1)
+                        {
+                            validationForFileUploaded = ValidateAttachmentsForAlreadyExistedFiles(_driver, attachmentNo: multipleAttachementNo, attachment: multipleAttachmentType, noOFFileExistsAlready: noOFFileExistsAlready);
+                        }
+                        if (validationForFileUploaded == false)
+                        {
+                            Console.WriteLine("File was unable to upload/single attachment/Alread Existing File Function");
+                            Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
+                            Thread.Sleep(3000);
+                        }
+                        attchNO++;
+                    }
+                    return validationForFileUploaded;
+                }
+            }
+            Console.WriteLine("Attachment String is empty!!!");
+            return false;
+        }
+
+        public bool AddAttachments(string multipleAttachmentType, int multipleAttachementNo) {
+            bool validationForFileUploaded= false;
+            if (!multipleAttachmentType.Equals(""))
+            {
+                if (multipleAttachmentType.Contains(","))
+                {
+                    string[] types = multipleAttachmentType.Split(',');
+                    int i = multipleAttachementNo - 1;
+                    foreach (string type in types)
+                    {
+                        Click(_driver, _attachmentTab);
+                        Click(_driver, _attacheBtn);
+                        AutoItX3 autoIt = new AutoItX3();
+                        autoIt.WinActivate("Open");
+                        readFromConfig = new ReadFromConfig();
+                        Thread.Sleep(2000);
+                        var filePath = readFromConfig.GetValue("AttachementFolder") + type;
+                        Thread.Sleep(2000);
+                        autoIt.Send(filePath);
+                        autoIt.Send("{ENTER}");
+                        WaitForUploading();
+                        if (!(type.Contains(".mp3") || type.Contains(".avi")))
+                        {
+                            validationForFileUploaded = ValidateAttachmentsForMoreThanOneFile(_driver, attachmentNo: multipleAttachementNo - i, attachment: type);
+                            i--;
+                        }
+                        if (validationForFileUploaded == false)
+                        {
+                            Console.WriteLine("File was unable to upload/multiple attachment");
+                            Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
+                        }
+                    }
+                    return validationForFileUploaded;
+                }
+                else
+                {
+                    int attchNO = 1;
+                    for (int i = 0; i < multipleAttachementNo; i++)
+                    {
+                        Click(_driver, _attachmentTab);
+                        Click(_driver, _attacheBtn);
+                        AutoItX3 autoIt = new AutoItX3();
+                        autoIt.WinActivate("Open");
+                        readFromConfig = new ReadFromConfig();
+                        var filePath = readFromConfig.GetValue("AttachementFolder") + multipleAttachmentType;
+                        autoIt.Send(filePath);
+                        autoIt.Send("{ENTER}");
+                        WaitForUploading();
+                        if (multipleAttachementNo > 1 && attchNO <= multipleAttachementNo)
                         {
                             validationForFileUploaded = ValidateAttachments(_driver, attachmentNo: attchNO, attachment: multipleAttachmentType);
                         }
@@ -2509,11 +2581,31 @@ private IList<IWebElement> _daysOnCal() {
 
         public bool ValidateAttachments(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0)
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             var fileNames = _attachedFileNames(_driver);
             if (fileNames.Count == attachmentNo - deleteAttachmentNo)
             {
                 for (int index = 0; index < attachmentNo - deleteAttachmentNo; index++)
+                {
+                    if (!attachment.Contains(GetAttribute(driver, fileNames.ElementAt(index), "title")))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool ValidateAttachmentsForAlreadyExistedFiles(IWebDriver driver, int attachmentNo, string attachment, int deleteAttachmentNo = 0, string noOFFileExistsAlready="")
+        {
+            int startIndex = Int32.Parse(noOFFileExistsAlready);
+            Thread.Sleep(5000);
+            attachmentNo += startIndex;
+            var fileNames = _attachedFileNames(_driver);
+            if (fileNames.Count == attachmentNo - deleteAttachmentNo)
+            {
+                for (int index = startIndex; index < attachmentNo - deleteAttachmentNo; index++)
                 {
                     if (!attachment.Contains(GetAttribute(driver, fileNames.ElementAt(index), "title")))
                     {
@@ -2943,9 +3035,10 @@ private IList<IWebElement> _daysOnCal() {
                 return searchResults2;
             }
             SearchConnectedDoc(subject);
+            Thread.Sleep(4000);
             int searchResults = _connectedDocSearchedSubjects().Count;
 
-            string temp = GetText(_driver,_connectedDocSearchedSubjects().ElementAt(0));
+            //string temp = GetText(_driver,_connectedDocSearchedSubjects().ElementAt(0));
             //SearchConnectedDocWithRefrenceNo(refno);
             //int searchResults = _connectedDocSearchedReferenceNo().Count;
             if (searchResults >= 1 && GetText(_driver, _connectedDocSearchedSubjects().ElementAt(0)).Equals(subject)) {
@@ -2966,6 +3059,7 @@ private IList<IWebElement> _daysOnCal() {
                 searchResults = 0;
             }
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            _ifCancelBtn();
             return searchResults;
         }
 
@@ -3106,7 +3200,8 @@ private IList<IWebElement> _daysOnCal() {
             SaveDraft();
             WaitTillProcessing();
             Click(_driver, _deleteDraftBtn);
-            Click(_driver, _yesBtn);
+            //Click(_driver, _yesBtn);
+            _ifYesBtn();
         }
 
         public void ClickOnArchive(string comnt, string attachmentFile="", string dept="")
@@ -3118,12 +3213,12 @@ private IList<IWebElement> _daysOnCal() {
             }
             else if (dept.Equals("dept"))
             {
-                Click(_driver, _inboxDeptArchiveBtn);
+                Click(_driver, _inboxArchiveBtn);
                 WaitTillProcessing();
             }
             else if(dept.Equals("deptOutgoing"))
             {
-                Click(_driver, _inboxDeptOutgoingArchiveBtn);
+                Click(_driver, _inboxArchiveBtn);
 
                 WaitTillProcessing();
             }
@@ -3279,6 +3374,7 @@ private IList<IWebElement> _daysOnCal() {
         
         public bool ValidateConnectedPersonList(string name)
         {
+            Thread.Sleep(3000);
             var names = _connectedPersonNameList();
             foreach (IWebElement listName in names)
             {

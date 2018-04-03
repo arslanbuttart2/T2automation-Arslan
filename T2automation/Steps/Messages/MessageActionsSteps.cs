@@ -547,6 +547,12 @@ namespace T2automation.Steps.Messages
             Assert.IsTrue(inboxPage.AddAttachments(attachmentTypes, attachmentNo));
         }
 
+        [When(@"user attach attachments (.*) ""(.*)"" and already Had Some Attachment ""(.*)""")]
+        public void WhenUserAttachAttachmentsAndAlreadyHadSomeAttachment(int attachmentNo, string attachmentTypes, string noOFFileExistsAlready)
+        {
+            Assert.IsTrue(inboxPage.AddAttachmentsForAlreadyAttachmentsFileExists(attachmentTypes, attachmentNo, noOFFileExistsAlready));
+        }
+
         [When(@"user select all files in attachment ""(.*)""")]
         [Then(@"user select all files in attachment ""(.*)""")]
         public void WhenUserSelectAllFilesInAttachment(int size)

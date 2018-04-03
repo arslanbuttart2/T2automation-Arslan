@@ -176,7 +176,7 @@ Scenario:ph 3 Exporting Message -1
 	And user click on reply button
 	And user compose mail "Reply : incoming message for indirect export 666" "Reply : incoming message for indirect export 666"
 	And user delete the document with subject "Internal Message to Internal Department 111" from the list
-	And user attach attachments 1 "1.jpg"
+	And user attach attachments 1 "1.jpg" and already Had Some Attachment "1"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
 	And user set properties "" "" "" "" "" "" "Indirect Export Method"
 	And user send the email and click on Cancel button
@@ -445,7 +445,7 @@ Scenario:ph 11 Print message - 1
 	And user compose mail "Export: Internal message for print 222" "Export: Internal message for print 222"
 	And select the external department "ExternalEntitySameCountry"
 	And user set properties "" "" "" "" "" "" "indirectExport"
-	And user attach attachments 1 "1.jpg"
+	And user attach attachments 1 "1.jpg" and already Had Some Attachment "1"
 	And user select all files in attachment "2"
 	And click on "Print All,Save as PDF,dept,Internal message for print 222,Print All Attachments-On Creating-" button
 	Then the file should appear in download "dept,Internal message for print 222,Print All Attachments-On Creating-"
