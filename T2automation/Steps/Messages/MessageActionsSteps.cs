@@ -901,6 +901,23 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectConnectedDoc(subject);   
         }
 
+        [When(@"user add signature ""(.*)""")]
+        public void WhenUserAddSignature(string sign)
+        {
+            Assert.IsTrue(inboxPage.AddSignature(sign));
+        }
+
+        [When(@"user go to dept ""(.*)"" messages Inbox folder")]
+        public void WhenUserGoToDeptMessagesInboxFolder(string dept)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            if (dept.Equals("QA"))
+            {
+                inboxPage.NavigateToQADeptInbox(driver);
+            }
+        }
+
         [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenUserSetConnectedPerson(string personName, string email, string mbl, string idNum, string idIssue, string issueDate, string idType, string saveStatus)
         {

@@ -134,9 +134,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Phase1.feature</DependentUpon>
     </Compile>
+    <Compile Include="Scenarios\Phase2\Phase2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Phase2.feature</DependentUpon>
+    </Compile>
     <Compile Include="Steps\Messages\MessageActionsSteps.cs" />
     <Compile Include="Steps\Messages\SendMessagesStepDef.cs" />
     <Compile Include="Steps\Permissions\PermissionsStepDef.cs" />
+    <Compile Include="Steps\Phase2\Phase2Steps.cs" />
     <Compile Include="Util\DateTimeHelper.cs" />
     <Compile Include="Util\GetDownloadFiles.cs" />
     <Compile Include="Util\RandomData.cs" />
@@ -165,6 +171,10 @@
     <None Include="Scenarios\Phase1\Phase1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Phase1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Scenarios\Phase2\Phase2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Phase2.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

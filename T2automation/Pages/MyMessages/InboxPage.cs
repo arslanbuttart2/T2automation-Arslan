@@ -353,6 +353,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='cke_1_contents']/iframe")]
         private IWebElement _contentBodyIFrame;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='cke_68']")]
+        private IWebElement _addSignature;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='doc-tabs']/div[2]/a")]
         private IWebElement _connectedTabAttribute;
@@ -739,6 +742,20 @@ namespace T2automation.Pages.MyMessages
                     elem.Click();
                 }
             }
+        }
+
+        public bool _ifAddBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Add']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void _ifCancelBtn()
@@ -1521,6 +1538,13 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(1000);
         }
 
+        public void ClickOnMessageFlowTab(IWebDriver driver)
+        {
+            Click(_driver, _printDocFlowTabUnExported);
+            Thread.Sleep(2000);
+            Thread.Sleep(1000);
+        }
+
         public void ClickOnPrintAllAndSaveAsBtn(string data, IWebDriver driver)
         {
             Click(_driver, _printAllBtnUnExported);
@@ -2277,6 +2301,51 @@ private IList<IWebElement> _daysOnCal() {
             EnterContentBody(contentBody);
         }
 
+        public bool AddSignature(string sign)
+        {
+            try
+            {
+                Click(_driver, _documentTab);
+                Click(_driver, _contentTab);
+                _driver.SwitchTo().Frame(_contentBodyIFrame);
+                _driver.SwitchTo().DefaultContent();
+                Thread.Sleep(3000);
+                Click(_driver, _addSignature);
+                Thread.Sleep(3000);
+                /*
+                IWebElement element = _driver.FindElement(By.XPath("xpath of canvas"));
+
+                Action builder = new Action(_driver);
+                Action drawAction = builder.MoveToElement(element, 135, 15) //start points x axis and y axis. 
+                          .Click()
+                          .MoveByOffset(200, 60) // 2nd points (x1,y1)
+                          .Click()
+                          .MoveByOffset(100, 70)// 3rd points (x2,y2)
+                          .DoubleClick()
+                          .Build();
+                drawAction.Perform();
+                */
+
+                bool status = _ifAddBtn();
+                if(status == true)
+                {
+                    Console.WriteLine("Signature Added!!!");
+                    _ifCancelBtn();
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Signature is not Added! As Add button is not visible!!!");
+                    return false;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Signature is not Added For some reasone!!!");
+            }
+            return false;
+        }
+
         public void SetProperties(string deliveryType = "", string securityLevel = "", string messageNo = "", string messageHijriDate = "", string messageGreorianDate = "", string messageType = "", string tengibleNo = "", string tengibleDesc = "", string exportMethod = "")
         {
             Click(_driver, _documentTab);
@@ -2288,6 +2357,7 @@ private IList<IWebElement> _daysOnCal() {
 
             if (!tengibleNo.Equals(""))
             {
+                tengibleNo = getRandomNo();
                 SendKeys(_driver, _tengibleNo, tengibleNo);
             }
 
@@ -2351,8 +2421,8 @@ private IList<IWebElement> _daysOnCal() {
         public string getRandomNo()
         {
             Random r = new Random();
-            var x = r.Next(0, 1000000);
-            string s = x.ToString("000000");
+            var x = r.Next(0, 100000);
+            string s = x.ToString("00000");
             return s;
         }
 

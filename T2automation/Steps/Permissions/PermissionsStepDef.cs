@@ -142,6 +142,10 @@ namespace T2automation
                 {
                     myMessageInboxPage.ClickOnPrintFlowAndSaveAsBtn(p3, driver);
                 }
+                if (p3.Equals("Just open Messaage Flow Tab"))
+                {
+                    myMessageInboxPage.ClickOnMessageFlowTab(driver);
+                }
                 myMessageInboxPage.clickBackBtn();
             }
             else if (btnName.Equals("Barcode Mail Print"))
