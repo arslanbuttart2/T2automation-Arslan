@@ -291,6 +291,30 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='divSendPrintParent']/div[4]/div[2]/input")]
         private IWebElement _printDeliveryStatementBtnFromPopup;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='print-delivery-parent']/a")]
+        private IWebElement _deliveryStatReportTab;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div/a[contains(text(),'Document Flow')]")]
+        private IWebElement _docFlowTab;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div/a[contains(text(),'Actions')]")]
+        private IWebElement _actionTab;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Change Status to Unread')]")]
+        private IWebElement _changeStatusBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Link')]")]
+        private IWebElement _linkBtn;
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div[14]/div[2]/div/div[3]/div/div/div/a/label[contains(text(),'Internal Document')]")]
+        private IWebElement _popUpInternalDocument;
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div[14]/div[2]/div/div[3]/div/div/div/a/label[contains(text(),'Incoming Document')]")]
+        private IWebElement _popUpIncomingDocument;
+
+        [FindsBy(How = How.XPath, Using = "./html/body/div[14]/div[2]/div/div[3]/div/div/div/a/label[contains(text(),'Outgoing Document')]")]
+        private IWebElement _popUpOutgoingDocument;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='print-delivery-statement-div']/div[2]/label[1]")]
         private IWebElement _printDeliveryStatementChk1;
 
@@ -1082,6 +1106,74 @@ private IList<IWebElement> _daysOnCal() {
                         return;
                     }*/
                 }
+            }
+        }
+
+
+        public bool CheckOnDeliveryStatementReportsTab()
+        {
+            WaitTillProcessing();
+            if (_deliveryStatReportTab.Displayed)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Delivery Statement Report Tab is not visible!!!");
+                return false;
+            }
+        }
+        
+        public void ClickOnActionTab()
+        {
+            WaitTillProcessing();
+            Click(_driver, _actionTab);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickOnDocFlowTab()
+        {
+            WaitTillProcessing();
+            Click(_driver, _docFlowTab);
+            Thread.Sleep(2000);
+        }
+
+        public void ClickLink(string data, IWebDriver driver)
+        {
+            WaitTillProcessing();
+            Click(_driver, _linkBtn);
+            TypeOfDocToLinkWith(data, driver);
+            Thread.Sleep(2000);
+        }
+
+        public void ChangeStatustoUnread()
+        {
+            WaitTillProcessing();
+            Click(_driver, _changeStatusBtn);
+            Thread.Sleep(2000);
+        }
+
+        public void TypeOfDocToLinkWith(string name, IWebDriver driver)
+        {
+            string[] nameOfDoc = name.Split(',');
+            var type = nameOfDoc[1];
+
+            if (type.Equals("InternalDocument"))
+            {
+                Thread.Sleep(1000);
+                Click(_driver, _popUpInternalDocument);
+            }
+
+            else if (type.Equals("IncomingDocument"))
+            {
+                Thread.Sleep(1000);
+                Click(_driver, _popUpIncomingDocument);
+            }
+
+            else if (type.Equals("OutgoingDocument"))
+            {
+                Thread.Sleep(1000);
+                Click(_driver, _popUpOutgoingDocument);
             }
         }
 
@@ -2554,6 +2646,7 @@ private IList<IWebElement> _daysOnCal() {
                         }
                         if (validationForFileUploaded == false)
                         {
+                            //autoIt.WinKill("Open");
                             Console.WriteLine("File was unable to upload/multiple attachment");
                             Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
                         }
@@ -3028,6 +3121,8 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(3000);
             String refno = GetText(_driver, _PopupRefnoLable);
             fileManager = new TextFileManager();
+            fileManager.writeToFile(type, subject, refno);
+            //Doing It Again JIC New Data Added!
             fileManager.writeToFile(type, subject, refno);
         }
 

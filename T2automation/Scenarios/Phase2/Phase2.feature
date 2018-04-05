@@ -3,7 +3,7 @@
 Background: 
 	Given Admin logged in "AdminUserName" "AdminPassword"
 
-Scenario: ph2.1 Message Actions
+Scenario:ph2_1 Message Actions
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Incoming message for various actions 111" "Incoming message for various actions 111"
@@ -18,4 +18,28 @@ Scenario: ph2.1 Message Actions
 	Then user search and select mail in dept "QA" with subject "Incoming message for various actions 111" 
 	And click on "Follow-up Button" button and select "" "Formal View" ""
 	And click on "Actions And Movements" button and select "" "" "Just open Messaage Flow Tab"
-	And click on "Back" button
+	###Some times back btn redirect us to the unwanted place!!! Here it redirect to outbox!!! -_-
+	When user go to dept "QA" messages Inbox folder
+	Then user search and open mail in dept "QA" with subject "Incoming message for various actions 111"
+	When user go to dept "QA" messages Inbox folder
+	Then user search and open mail in dept "QA" with subject "Incoming message for various actions 111"
+	And click on "Confirm Receiving" button
+	Then user search and open mail in dept "QA" with subject "Incoming message for various actions 111"
+	
+	######Onward Starting from 59
+	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for various actions 111" ""
+	And user click on "Delivery statement reports" tab
+	And user click on "Message Flow" tab
+	And user click on "Actions" tab
+	And user click on "Change Status to Unread" upper bar button
+	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for various actions 111" ""
+	And user click on "Link,InternalDocument" upper bar button
+	And search "Admin" "UserMainDepartmentAr" "Users"
+	And user compose mail "Internal message for various actions 222" "Internal message for various actions 222"
+	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
+	And user send the email
+	Then save reference number from "dept" in txt with subject "Internal message for various actions 222"
+	When user opens outbox email with subject "Incoming message for various actions 111"
+	And click on "Retrieve" button
+	When user opens inbox email with subject "Internal message for various actions 222"
+

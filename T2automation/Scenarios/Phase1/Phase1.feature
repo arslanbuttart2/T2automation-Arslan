@@ -3,7 +3,7 @@
 Background: 
 	Given Admin logged in "AdminUserName" "AdminPassword"
 
-Scenario:ph 1 Message Actions - Deleting Message
+Scenario:ph1_1 Message Actions - Deleting Message
 	When Admin set system message permissions for user "Delete Messages from Inbox" "True" "User"
 	And Admin set system message permissions for user "Rollback Messages from Deleted Items" "True" "User"
 	And Admin set department message permissions for user "Delete Messages from Inbox" "True" "User" "internalDepartmentSameDep"
@@ -55,7 +55,7 @@ Scenario:ph 1 Message Actions - Deleting Message
 	And Admin set department message permissions for user "Delete Messages from Inbox" "False" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDep"
 
-Scenario:ph 2 Message Actions - Archiving Message
+Scenario:ph1_2 Message Actions - Archiving Message
 	When Admin set system message permissions for user "Archive Messages" "True" "User"
 	And Admin set system message permissions for user "Rollback from Archive" "True" "User"
 	And Admin set department message permissions for user "Archive Messages" "True" "User" "internalDepartmentSameDep"
@@ -140,7 +140,7 @@ Scenario:ph 2 Message Actions - Archiving Message
 	And Admin set department message permissions for user "Archive Messages" "False" "User" "CommDepSameDep"
 	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "CommDepSameDep"
 
-Scenario:ph 3 Exporting Message -1
+Scenario:ph1_3 Exporting Message -1
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
@@ -189,7 +189,7 @@ Scenario:ph 3 Exporting Message -1
 	And user click on close button
 	When user open dept "qaDept" Outbox mail with subject"Reply : incoming message for indirect export 666"
 
-Scenario:ph 4 Exporting Message - 2
+Scenario:ph1_4 Exporting Message - 2
 	When user go to dept messages Internal Document
 	And search "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for direct export 222" "Internal message for direct export 222"
@@ -232,7 +232,7 @@ Scenario:ph 4 Exporting Message - 2
 	Then click on "Search" button
 	Then Check the advance searched results with subject "Internal message for direct export 888" 
 
-	Scenario: ph 5 Exporting Message - 3
+Scenario:ph1_5 Exporting Message - 3
 	When user go to my messages Outgoing Document
 	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
 	######This data is not available to arslan admin neither for danish against Saudi Affairs
@@ -289,7 +289,7 @@ Scenario:ph 4 Exporting Message - 2
 	#####And user click on undo export button
 
 
-Scenario: ph 6 Exporting Message - 4
+Scenario:ph1_6 Exporting Message - 4
 	When user go to dept messages Outgoing Document  
 	And select the external department "ExternalEntitySameCountry"
 	And select the external cc department "ExternalEntitySameCountry2"
@@ -323,7 +323,7 @@ Scenario: ph 6 Exporting Message - 4
 	When user go to dept "CommDepSameDep" Exported
 	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
 	
-Scenario:ph 7 Retrieve  Message - 1
+Scenario:ph1_7 Retrieve  Message - 1
 	When user go to my messages Internal Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
@@ -342,7 +342,7 @@ Scenario:ph 7 Retrieve  Message - 1
 	When user opens outbox email with subject "Internal message for Retreiving 111"
 	And click on "Retrieve" button
 
-Scenario:ph 8 Retrieve  Message - 2
+Scenario:ph1_8 Retrieve  Message - 2
 	When Admin set department message permissions for user "Retreive Message" "True" "Admin" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Retreive Message after Reading" "False" "Admin" "internalDepartmentSameDep"
 	When Admin logged in "AdminUserName" "AdminPassword"
@@ -371,7 +371,7 @@ Scenario:ph 8 Retrieve  Message - 2
 	Then user search and open mail in dept "qaDept" with subject "Internal message for Retreiving 222"
 	And click on "Retrieve" button
 		
-Scenario:ph 9 Retrieve  Message - 3	
+Scenario:ph1_9 Retrieve  Message - 3	
 	When user go to "my" encrypted message 
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
@@ -395,8 +395,8 @@ Scenario:ph 9 Retrieve  Message - 3
 	When user opens outbox email with subject "Encrypted message for Reteiving 333"
 	And user click on retrive button
 
-Scenario:ph 10 Retrieve  Message - 4
-When user go to dept messages Incoming Document
+Scenario:ph1_10 Retrieve  Message - 4
+	When user go to dept messages Incoming Document
 	And search "AdminUserName" "UserMainDepartmentAr" "Users"
 	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
 	And user set properties "" "" "" "12345" "now" "now" ""
@@ -424,7 +424,7 @@ When user go to dept messages Incoming Document
 	####following step is not working
 	And user click on retrive button
 
-Scenario:ph 11 Print message - 1
+Scenario:ph1_11 Print message - 1
 	When user go to dept messages Internal Document
 	And search "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for print 222" "Internal message for print 222"
@@ -489,7 +489,7 @@ Scenario:ph 11 Print message - 1
 	And user click on outbox "Print Document for creator,Save as PDF,my,Export: Internal message for print 222,Print Delivery Int-Exported -In-" button ""
 	And click on "Print Sticker,Save As PDF,my,Export: Internal message for print 222,Print Sticker-Exported-In-" button
 
-Scenario:ph 12 Print message - 2
+Scenario:ph1_12 Print message - 2
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
@@ -533,7 +533,7 @@ Scenario:ph 12 Print message - 2
 	########### In SN 50 to SN 55 not implemented as expected result is not visible aganist Outgoing message for printing 111
 	###When user opens root department "CommDepSameDep" mail with subject "Outgoing message for printing 111"
 
-#Scenario: ph 13 Message Actions
+#Scenario:ph1_13 Message Actions
 #	When user go to my messages Incomming Document
 #	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 #	And user compose mail "Incoming message for various actions 111" "Incoming message for various actions 111"

@@ -94,6 +94,8 @@ namespace T2automation.Steps.Messages
                 outboxPage.OpenMail(driver, enc, "P@ssw0rd!@#");
                 string refno2 = outboxPage.readRefNoFromMail(driver, subject);
                 Assert.IsTrue(txtManager.writeToFile(type, subject, refno2), " this must be written in the txt file!!");
+                //Doing IT Again JIC New Data Added!  
+                txtManager.writeToFile(type, subject, refno2);
                 return;
             }
             outboxPage.OpenMailSpecialForTxtFile(driver, subject,withSubject: false);
@@ -101,6 +103,8 @@ namespace T2automation.Steps.Messages
             if(!refno.Equals("Subjects not matched in mail!!!"))
             {
                 Assert.IsTrue(txtManager.writeToFile(type, subject, refno), " this must be written in the txt file!!");
+                //Doing It Again JIC New Data Added!
+                txtManager.writeToFile(type, subject, refno);
             }
             else
             {

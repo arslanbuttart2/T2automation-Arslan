@@ -72,10 +72,10 @@ namespace T2automation.Scenarios.Phase2
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph2.1 Message Actions")]
+        [NUnit.Framework.DescriptionAttribute("ph2_1 Message Actions")]
         public virtual void Ph2_1MessageActions()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2.1 Message Actions", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_1 Message Actions", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -113,8 +113,55 @@ this.FeatureBackground();
 #line 20
  testRunner.And("click on \"Actions And Movements\" button and select \"\" \"\" \"Just open Messaage Flow" +
                     " Tab\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
- testRunner.And("click on \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.When("user go to dept \"QA\" messages Inbox folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.Then("user search and open mail in dept \"QA\" with subject \"Incoming message for various" +
+                    " actions 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.When("user go to dept \"QA\" messages Inbox folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
+ testRunner.Then("user search and open mail in dept \"QA\" with subject \"Incoming message for various" +
+                    " actions 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.And("click on \"Confirm Receiving\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.Then("user search and open mail in dept \"QA\" with subject \"Incoming message for various" +
+                    " actions 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 30
+ testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Incoming mes" +
+                    "sage for various actions 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+ testRunner.And("user click on \"Delivery statement reports\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+ testRunner.And("user click on \"Message Flow\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+ testRunner.And("user click on \"Actions\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+ testRunner.And("user click on \"Change Status to Unread\" upper bar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+ testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Incoming mes" +
+                    "sage for various actions 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.And("user click on \"Link,InternalDocument\" upper bar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+ testRunner.And("search \"Admin\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.And("user compose mail \"Internal message for various actions 222\" \"Internal message fo" +
+                    "r various actions 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("user set properties \"Paper\" \"12345\" \"Parcels\" \"\" \"\" \"\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+ testRunner.Then("save reference number from \"dept\" in txt with subject \"Internal message for vario" +
+                    "us actions 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+ testRunner.When("user opens outbox email with subject \"Incoming message for various actions 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
+ testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+ testRunner.When("user opens inbox email with subject \"Internal message for various actions 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }

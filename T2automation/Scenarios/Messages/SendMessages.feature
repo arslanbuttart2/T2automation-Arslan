@@ -57,7 +57,7 @@ Scenario:sm 26 Sending incoming message - Department mail
 	And user compose mail "Sending Incoming Message 111" "Sending Incoming Message 111"
 	And user send the email and click on Cancel button
 	Then mail should appear in my message out box "internalDepartmentSameDepAr" "Sending Incoming Message 111" "Sending Incoming Message 111" "0" ""
-	When user opens department "internalDepartmentSameDep" mail with subject "Sending Incoming Message 111"
+	When user opens department "internalDepartmentSameDep" mail with subject "Sending Incoming Message 111" ""
 	Then mail should appear in dept inbox "internalDepartmentSameDepAr" "Sending Incoming Message 111" "Sending Incoming Message 111"
 
 Scenario:sm 27 Sending outgoing message - Department  mail

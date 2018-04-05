@@ -72,10 +72,10 @@ namespace T2automation.Scenarios.Phase1
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 1 Message Actions - Deleting Message")]
-        public virtual void Ph1MessageActions_DeletingMessage()
+        [NUnit.Framework.DescriptionAttribute("ph1_1 Message Actions - Deleting Message")]
+        public virtual void Ph1_1MessageActions_DeletingMessage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 1 Message Actions - Deleting Message", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_1 Message Actions - Deleting Message", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -216,10 +216,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 2 Message Actions - Archiving Message")]
-        public virtual void Ph2MessageActions_ArchivingMessage()
+        [NUnit.Framework.DescriptionAttribute("ph1_2 Message Actions - Archiving Message")]
+        public virtual void Ph1_2MessageActions_ArchivingMessage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 2 Message Actions - Archiving Message", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_2 Message Actions - Archiving Message", ((string[])(null)));
 #line 58
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -393,10 +393,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 3 Exporting Message -1")]
-        public virtual void Ph3ExportingMessage_1()
+        [NUnit.Framework.DescriptionAttribute("ph1_3 Exporting Message -1")]
+        public virtual void Ph1_3ExportingMessage_1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 3 Exporting Message -1", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_3 Exporting Message -1", ((string[])(null)));
 #line 143
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -519,10 +519,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 4 Exporting Message - 2")]
-        public virtual void Ph4ExportingMessage_2()
+        [NUnit.Framework.DescriptionAttribute("ph1_4 Exporting Message - 2")]
+        public virtual void Ph1_4ExportingMessage_2()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 4 Exporting Message - 2", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_4 Exporting Message - 2", ((string[])(null)));
 #line 192
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -627,12 +627,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 5 Exporting Message - 3")]
-        public virtual void Ph5ExportingMessage_3()
+        [NUnit.Framework.DescriptionAttribute("ph1_5 Exporting Message - 3")]
+        public virtual void Ph1_5ExportingMessage_3()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 5 Exporting Message - 3", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_5 Exporting Message - 3", ((string[])(null)));
 #line 235
- this.ScenarioSetup(scenarioInfo);
+this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 236
@@ -738,10 +738,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 6 Exporting Message - 4")]
-        public virtual void Ph6ExportingMessage_4()
+        [NUnit.Framework.DescriptionAttribute("ph1_6 Exporting Message - 4")]
+        public virtual void Ph1_6ExportingMessage_4()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 6 Exporting Message - 4", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_6 Exporting Message - 4", ((string[])(null)));
 #line 292
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -825,10 +825,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 7 Retrieve  Message - 1")]
-        public virtual void Ph7RetrieveMessage_1()
+        [NUnit.Framework.DescriptionAttribute("ph1_7 Retrieve  Message - 1")]
+        public virtual void Ph1_7RetrieveMessage_1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 7 Retrieve  Message - 1", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_7 Retrieve  Message - 1", ((string[])(null)));
 #line 326
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -878,10 +878,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 8 Retrieve  Message - 2")]
-        public virtual void Ph8RetrieveMessage_2()
+        [NUnit.Framework.DescriptionAttribute("ph1_8 Retrieve  Message - 2")]
+        public virtual void Ph1_8RetrieveMessage_2()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 8 Retrieve  Message - 2", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_8 Retrieve  Message - 2", ((string[])(null)));
 #line 345
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -956,10 +956,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 9 Retrieve  Message - 3")]
-        public virtual void Ph9RetrieveMessage_3()
+        [NUnit.Framework.DescriptionAttribute("ph1_9 Retrieve  Message - 3")]
+        public virtual void Ph1_9RetrieveMessage_3()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 9 Retrieve  Message - 3", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_9 Retrieve  Message - 3", ((string[])(null)));
 #line 374
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1020,16 +1020,16 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 10 Retrieve  Message - 4")]
-        public virtual void Ph10RetrieveMessage_4()
+        [NUnit.Framework.DescriptionAttribute("ph1_10 Retrieve  Message - 4")]
+        public virtual void Ph1_10RetrieveMessage_4()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 10 Retrieve  Message - 4", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_10 Retrieve  Message - 4", ((string[])(null)));
 #line 398
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 399
-testRunner.When("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 400
  testRunner.And("search \"AdminUserName\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 401
@@ -1092,10 +1092,10 @@ testRunner.When("user go to dept messages Incoming Document", ((string)(null)), 
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 11 Print message - 1")]
-        public virtual void Ph11PrintMessage_1()
+        [NUnit.Framework.DescriptionAttribute("ph1_11 Print message - 1")]
+        public virtual void Ph1_11PrintMessage_1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 11 Print message - 1", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_11 Print message - 1", ((string[])(null)));
 #line 427
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1270,10 +1270,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph 12 Print message - 2")]
-        public virtual void Ph12PrintMessage_2()
+        [NUnit.Framework.DescriptionAttribute("ph1_12 Print message - 2")]
+        public virtual void Ph1_12PrintMessage_2()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph 12 Print message - 2", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph1_12 Print message - 2", ((string[])(null)));
 #line 492
 this.ScenarioSetup(scenarioInfo);
 #line 3

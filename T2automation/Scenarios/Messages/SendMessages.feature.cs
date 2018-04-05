@@ -196,7 +196,7 @@ this.ScenarioSetup(scenarioInfo);
                     "ncoming Message 111\" \"Sending Incoming Message 111\" \"0\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 60
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Sending Inco" +
-                    "ming Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                    "ming Message 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 61
  testRunner.Then("mail should appear in dept inbox \"internalDepartmentSameDepAr\" \"Sending Incoming " +
                     "Message 111\" \"Sending Incoming Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
