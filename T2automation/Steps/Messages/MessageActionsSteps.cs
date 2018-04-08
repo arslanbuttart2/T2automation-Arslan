@@ -920,6 +920,10 @@ namespace T2automation.Steps.Messages
             {
                 inboxPage.NavigateToQADeptInbox(driver);
             }
+            if (dept.Equals("my"))
+            {
+                inboxPage.NavigateToMyMessageInbox(driver);
+            }
         }
 
         [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

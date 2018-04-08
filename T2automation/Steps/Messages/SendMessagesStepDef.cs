@@ -339,6 +339,7 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnPrintDeliveryStatementBtnAndSaveAsBtn(btnName, driver);
             }
+            
             else if (btnName.Contains("Print Document,Save as PDF,"))
             {
                 inboxPage.ClickOnPrintDocumentBtnAndSaveAsBtn(btnName, driver);
@@ -409,15 +410,34 @@ namespace T2automation.Steps.My_Messages
             {
                 inboxPage.ClickOnPrintStickerAndSaveAsBtn(btnName, driver);
             }
-
+            else if (btnName.Contains("Print Delivery statement,And read D1 and Cancel,"))
+            {
+                inboxPage.ClickOnPrintDeliveryStatementBtnAndReadD1AndClickCancelBtn();
+            }
             //Extras
             else if (btnName.Equals("Reply All"))
             {
                 inboxPage.ClickOnReplyAllBtn();
             }
-
-
+            else if (btnName.Contains("Upload Delivery Statment,"))
+            {
+                inboxPage.ClickOnUploadDeliveryStatmentBtn(btnName);
+            }
+            else if (btnName.Equals("Manual Insert"))
+            {
+                inboxPage.ClickOnManualInsertBtn();
+            }
+            else if (btnName.Contains("Attachment print button,"))
+            {
+                inboxPage.ClickOnPrintAttachmnetPopupBtnAndSave(btnName);
+                //inboxPage._ifOkBtn();
+            }
+            else if (btnName.Equals("Delete Attachment button Popup"))
+            {
+                inboxPage.ClickOnDeleteAttachmnetPopupBtnAndYes();
+            }
         }
+
         [Then(@"write reference number of ""(.*)""")]
         public void ThenWriteReferenceNumberOf(string subject)
         {

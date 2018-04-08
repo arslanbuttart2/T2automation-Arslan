@@ -91,6 +91,10 @@ namespace T2automation.Util
         {
             string[] temp;
             temp = refno.Split('\r');
+            if(temp.Count() == 2)
+            {
+                return temp[0];
+            }
             for (int i = 0; i < temp.Count() ; i++)
             {
                 if (!(temp[i].Contains("\r") && temp[i].Contains("\n") && temp[i].Contains("")))

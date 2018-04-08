@@ -106,6 +106,9 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDiv']")]
         private IWebElement _departmentMessagesMenuDiv;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[4]")]
+        private IWebElement _MessagesMenuDiv;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']")]
         private IWebElement _departmentQAMenuDiv;
@@ -118,6 +121,9 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDiv']/a/label")]
         private IWebElement _departmentMessages;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[4]/a/label")]
+        private IWebElement _MessagesTab;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[6]/a/lable")]
         private IWebElement _Search;
@@ -148,6 +154,9 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDept;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[4]/div[3]/a/label")]
+        private IWebElement _DeliveryStatementReportTab;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptInbox;
@@ -332,6 +341,18 @@ namespace T2automation.Pages.Comm
             }
             ClickForNavigation(driver, _accountingDeptOutbox);
             Thread.Sleep(1000);
+        }
+
+        public void NavigateToMessageDeliveryStatementReport(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _MessagesMenuDiv, "class").Contains("active"))
+            {
+                Thread.Sleep(2000);
+                ClickForNavigation(driver, _MessagesTab);
+            }
+            Thread.Sleep(2000);
+            ClickForNavigation(driver, _DeliveryStatementReportTab);
+            Thread.Sleep(2000);
         }
 
         public void NavigateToQADeptInbox(IWebDriver driver)
