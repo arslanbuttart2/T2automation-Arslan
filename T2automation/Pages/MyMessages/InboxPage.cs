@@ -1156,16 +1156,27 @@ private IList<IWebElement> _daysOnCal() {
             WaitTillProcessing();
             Thread.Sleep(2000);
 
+
             if (receiverType.Equals("Users"))
             {
                 Thread.Sleep(4000);
                 for (int index = 0; index < _selectToNameForUsers().Count; index++)
                 {
                     string temp = GetText(driver, _selectToNameForUsers().ElementAt(index));
-                    string[] aftersplit = temp.Split('-');
+                    string[] aftersplit;
+                    if (temp.Contains("-"))
+                    {
+                        aftersplit = temp.Split('-');
+                    }
+                    else
+                    {
+                        string temp2 = temp.Trim();
+                        aftersplit = temp2.Split('-');
+                    }
+
                     if (aftersplit.Count() == 1)
                     {
-                        aftersplit[0] = aftersplit[1].Replace(" ", string.Empty);
+                        aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
                         if (aftersplit[0].Equals(user))
                         {
                             Click(driver, _selectToCheckForUser.ElementAt(index));
@@ -1187,7 +1198,7 @@ private IList<IWebElement> _daysOnCal() {
                     }
                     if (aftersplit.Count() == 3)
                     {
-                        aftersplit[2] = aftersplit[1].Replace(" ", string.Empty);
+                        aftersplit[2] = aftersplit[2].Replace(" ", string.Empty);
                         if (aftersplit[2].Equals(user))
                         {
                             Click(driver, _selectToCheckForUser.ElementAt(index));
@@ -1196,8 +1207,6 @@ private IList<IWebElement> _daysOnCal() {
                             return;
                         }
                     }
-                    
-
                     /*
                     if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
                     {

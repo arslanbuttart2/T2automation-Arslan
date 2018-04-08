@@ -42,8 +42,6 @@ Scenario:ph2_1 Message Actions
 	And user search and open Delivery Statment Report with "D1"
 	And user click on "Attachment,popup" tab
 	And click on "Delete Attachment button Popup" button
-	
-	######Onward Starting from 59
 	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for various actions 111" ""
 	And user click on "Delivery statement reports" tab
 	And user click on "Message Flow" tab
