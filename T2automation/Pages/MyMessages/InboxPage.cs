@@ -1174,39 +1174,49 @@ private IList<IWebElement> _daysOnCal() {
                         string temp2 = temp.Trim();
                         aftersplit = temp2.Split('-');
                     }
-                    if (aftersplit.Count() == 1)
+                    //if (aftersplit.Count() == 1)
+                    //{
+                    //    aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
+                    //    if (aftersplit[0].Equals(user))
+                    //    {
+                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
+                    //        Click(driver, _selectToFrameToBtn);
+                    //        Thread.Sleep(1000);
+                    //        return;
+                    //    }
+                    //}
+                    //if (aftersplit.Count() == 2)
+                    //{
+                    //    aftersplit[1] = aftersplit[1].Replace(" ", string.Empty);
+                    //    if (aftersplit[1].Equals(user))
+                    //    {
+                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
+                    //        Click(driver, _selectToFrameToBtn);
+                    //        Thread.Sleep(1000);
+                    //        return;
+                    //    }
+                    //}
+                    //if (aftersplit.Count() == 3)
+                    //{
+                    //    aftersplit[2] = aftersplit[2].Replace(" ", string.Empty);
+                    //    if (aftersplit[2].Equals(user))
+                    //    {
+                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
+                    //        Click(driver, _selectToFrameToBtn);
+                    //        Thread.Sleep(1000);
+                    //        return;
+                    //    }
+                    //}
+                    //Trying It
+                    aftersplit[aftersplit.Count()-1] = aftersplit[aftersplit.Count() - 1].Replace(" ", string.Empty);
+                    if (aftersplit[aftersplit.Count() - 1].Equals(user))
                     {
-                        aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
-                        if (aftersplit[0].Equals(user))
-                        {
-                            Click(driver, _selectToCheckForUser.ElementAt(index));
-                            Click(driver, _selectToFrameToBtn);
-                            Thread.Sleep(1000);
-                            return;
-                        }
+                        Click(driver, _selectToCheckForUser.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
                     }
-                    if (aftersplit.Count() == 2)
-                    {
-                        aftersplit[1] = aftersplit[1].Replace(" ", string.Empty);
-                        if (aftersplit[1].Equals(user))
-                        {
-                            Click(driver, _selectToCheckForUser.ElementAt(index));
-                            Click(driver, _selectToFrameToBtn);
-                            Thread.Sleep(1000);
-                            return;
-                        }
-                    }
-                    if (aftersplit.Count() == 3)
-                    {
-                        aftersplit[2] = aftersplit[2].Replace(" ", string.Empty);
-                        if (aftersplit[2].Equals(user))
-                        {
-                            Click(driver, _selectToCheckForUser.ElementAt(index));
-                            Click(driver, _selectToFrameToBtn);
-                            Thread.Sleep(1000);
-                            return;
-                        }
-                    }
+
                     /*
                     if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
                     {
