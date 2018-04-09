@@ -1173,8 +1173,8 @@ private IList<IWebElement> _daysOnCal() {
                         string temp2 = temp.Trim();
                         aftersplit = temp2.Split('-');
                     }
-
-                    if (aftersplit.Count() == 1)
+                    ////Check this for Danish & Danish Admin
+                    if (aftersplit.Count() == 1 && aftersplit[1] == "")
                     {
                         aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
                         if (aftersplit[0].Equals(user))
