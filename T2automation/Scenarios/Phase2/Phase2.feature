@@ -68,7 +68,6 @@ Scenario:ph2_1 Message Actions
 	And user click on "Message Flow" tab
 	And user click on "Actions" tab
 	And user click on "Connected Message" tab
-	###Here facing issues on click due to errors in click. I have commented it for now..see ActionsNewWindowPrint()
 	And open connected document in "my" with subject "Incoming message for various actions 111"
 	And user click on "Document" tab
 	And user click on "Attribute" tab

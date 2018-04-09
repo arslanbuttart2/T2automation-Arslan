@@ -327,9 +327,12 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/ul/li/a[contains(@href,'javascript:ViewOrgComGroup')]")]
         private IWebElement _recieverName; 
-
-         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/ul/li/a[contains(@href,'javascript:ViewUserInfo')]")]
+        
+        [FindsBy(How = How.XPath, Using = "./html/body/div[10]/div[1]/div[3]/a")]
         private IWebElement _senderName;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='iDocView']")]
+        private IWebElement _connectedDocIFrame;
 
         [FindsBy(How = How.XPath, Using = "./html/body/div[10][@class='cd-main']/div/div[@class='cd-tab-parent']/div/a[contains(text(),'Attributes')]")]
         private IWebElement _connectedDocAttributeTab;
@@ -340,7 +343,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "./html/body/div[10][@class='cd-main']/div[@class='cd-tab-parent']/div/a[contains(text(),'Connected Documents (1)')]")]
         private IWebElement _connectedDocTab2;
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[10][@class='cd-main']/div[@class='cd-tab-parent']/div/a[contains(text(),'Document')][@class='active']")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[10][@class='cd-main']/div[@class='cd-tab-parent']/div/a[contains(text(),'Document Flow')]")]
         private IWebElement _docFlowTab2;
 
         [FindsBy(How = How.XPath, Using = "./html/body/div[10][@class='cd-main']/div[@class='cd-tab-parent']/div/a[contains(text(),'Actions')]")]
@@ -1335,25 +1338,26 @@ private IList<IWebElement> _daysOnCal() {
 
         public void ActionsNewWindowPrint()
         {
-            ////Unable to click on sender due to issue in click
-            //Click(_driver, _senderName);
-            //ClickCloseBtn();
-
-            //Click(_driver, _recieverName);
-            //ClickCloseBtn();
-
-            //Click(_driver, _connectedDocAttributeTab);
-
-            //Click(_driver, _connectedDocAttachmentTab);
-
-            //Click(_driver, _connectedDocTab2);
-            //// No Message Flow tab is available in connectd document so for now clicking on document tab
-            //Click(_driver, _docFlowTab2);
-
-            //Click(_driver, _connectedDocActionTab);
-
+            _driver.SwitchTo().Frame(_connectedDocIFrame);
+            Click(_driver, _senderName);
+            ClickCloseBtn();
+            Thread.Sleep(2000);
+            Click(_driver, _recieverName);
+            ClickCloseBtn();
+            Thread.Sleep(2000);
+            Click(_driver, _connectedDocAttributeTab);
+            Thread.Sleep(2000);
+            Click(_driver, _connectedDocAttachmentTab);
+            Thread.Sleep(2000);
+            Click(_driver, _connectedDocTab2);
+            Thread.Sleep(2000);
+            Click(_driver, _connectedDocActionTab);
+            Thread.Sleep(2000);
+            Click(_driver, _docFlowTab2);
+            Thread.Sleep(3000);
+            _driver.SwitchTo().DefaultContent();
+            Thread.Sleep(2000);
             Click(_driver, _cancel());
-
         }
 
         public void ClickOnPopupAttachmentTab()
@@ -1723,12 +1727,14 @@ private IList<IWebElement> _daysOnCal() {
 
         public void ClickCancelBtn()
         {
+            Thread.Sleep(3000);
             Click(_driver, _cancel());
             Thread.Sleep(1000);
         }
 
         public void ClickCloseBtn()
         {
+            Thread.Sleep(3000);
             Click(_driver, _close());
             Thread.Sleep(1000);
         }
@@ -2928,6 +2934,12 @@ private IList<IWebElement> _daysOnCal() {
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
+                        int chk = autoIt.WinActive("Open");
+                        if (chk == 1)
+                        {
+                            tryAttachmentAgain(filePath, "Open");
+                        }
+
                         if (!(type.Contains(".mp3") || type.Contains(".avi")))
                         {
                             validationForFileUploaded = ValidateAttachmentsForMoreThanOneFile(_driver, attachmentNo: multipleAttachementNo - i, attachment: type);
@@ -2935,7 +2947,8 @@ private IList<IWebElement> _daysOnCal() {
                         }
                         if (validationForFileUploaded == false)
                         {
-                            //autoIt.WinKill("Open");
+                            autoIt.WinKill("Open");
+                            autoIt.WinKill("Open");
                             Console.WriteLine("File was unable to upload/multiple attachment");
                             Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
                         }
@@ -2956,6 +2969,13 @@ private IList<IWebElement> _daysOnCal() {
                         autoIt.Send(filePath);
                         autoIt.Send("{ENTER}");
                         WaitForUploading();
+                        int chk = autoIt.WinActive("Open");
+
+                        if (chk == 1)
+                        {
+                            tryAttachmentAgain(filePath, "Open");
+                        }
+
                         if (multipleAttachementNo > 1 && attchNO <= multipleAttachementNo)
                         {
                             validationForFileUploaded = ValidateAttachments(_driver, attachmentNo: attchNO, attachment: multipleAttachmentType);
@@ -2967,6 +2987,8 @@ private IList<IWebElement> _daysOnCal() {
                         if (validationForFileUploaded == false)
                         {
                             Console.WriteLine("File was unable to upload/single attachment");
+                            autoIt.WinKill("Open");
+                            autoIt.WinKill("Open");
                             Assert.IsTrue(validationForFileUploaded, "File is not uploaded and Validation occures!!!");
                             Thread.Sleep(3000);
                         }
@@ -2977,6 +2999,30 @@ private IList<IWebElement> _daysOnCal() {
             }
             Console.WriteLine("Attachment String is empty!!!");
             return false;
+        }
+
+        public void tryAttachmentAgain(string filePath,string titleOfWin)
+        {
+            try
+            {
+                Console.WriteLine("Retrying To attach file");
+                AutoItX3 autoIt = new AutoItX3();
+                autoIt.WinKill(titleOfWin);
+                autoIt.WinKill(titleOfWin);
+                Click(_driver, _attacheBtn);
+                autoIt.WinActivate(titleOfWin);
+                readFromConfig = new ReadFromConfig();
+                Thread.Sleep(2000);
+                autoIt.Send(filePath);
+                Thread.Sleep(1000);
+                autoIt.Send("{ENTER}");
+                WaitForUploading();
+                Thread.Sleep(3000);
+            }
+            catch
+            {
+                Console.WriteLine("Resetting Path of attachment fails!!!");
+            }
         }
 
         public void DeleteAttachments(string deleteAttachmentTypes, int deleteAttachmentNo)
