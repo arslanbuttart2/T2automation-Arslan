@@ -853,6 +853,7 @@ namespace T2automation.Pages.MyMessages
 
         public bool _ifAddBtn()
         {
+            Thread.Sleep(3000);
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Add']"));
             foreach (IWebElement elem in elements)
             {
@@ -1173,8 +1174,7 @@ private IList<IWebElement> _daysOnCal() {
                         string temp2 = temp.Trim();
                         aftersplit = temp2.Split('-');
                     }
-                    ////Check this for Danish & Danish Admin
-                    if (aftersplit.Count() == 1 && aftersplit[1] == "")
+                    if (aftersplit.Count() == 1)
                     {
                         aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
                         if (aftersplit[0].Equals(user))
