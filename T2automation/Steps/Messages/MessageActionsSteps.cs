@@ -655,6 +655,8 @@ namespace T2automation.Steps.Messages
         [When(@"user send the email")]
         public void WhenUserSendTheEmail()
         {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
             inboxPage.clickOnSendBtn();
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
@@ -774,6 +776,8 @@ namespace T2automation.Steps.Messages
         [Then(@"select the external department ""(.*)""")]
         public void WhenSelectTheExternalDepartment(string to)
         {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
             readFromConfig = new ReadFromConfig();
             inboxPage.SelectExternalDeptTo(deptName: readFromConfig.GetValue(to));
         }

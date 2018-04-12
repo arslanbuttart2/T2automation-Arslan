@@ -3,50 +3,61 @@
 Scenario Outline:sm 21 Sending internal message - personal mail
 	Given Admin logged in "<adminUserName>" "<adminPassword>"
 	When user sends an internal message to "<level>" "<receiverType>" "<to>" "<subject>" "<content>"
-	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "0" ""
+	Then save reference number from "<type>" in txt with subject "<subject>"
+	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "0" ""	
 	When User logs in "<userName>" "<password>"
 	Then mail should appear in the inbox "<to>" "<subject>" "<content>"
 	
 	Examples:
-		| adminUserName | adminPassword | level			  | receiverType | to		| subject		   | content	  | userName		   | password					|
-		| AdminUserName | AdminPassword | UserMainDepartmentAr | Users		 |UserSameDepartment	| Internal Message | Test content | UserSameDepartment | PasswordUserSameDepartment |
+		| adminUserName | adminPassword | level                | receiverType | to                 | subject          | content      | userName           | password                   | type |
+		| AdminUserName | AdminPassword | UserMainDepartmentAr | Users        | UserSameDepartment | Internal Message | Test content | UserSameDepartment | PasswordUserSameDepartment | my|
 
 Scenario Outline:sm 22 Sending encrypted message - personal mail
 	Given Admin logged in "<adminUserName>" "<adminPassword>"
 	When user sends an encrypted message to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<encryptedPass>"
+	Then save reference number from "<type>" in txt with subject "<subject>"
 	Then encrypted mail should appear in the out box "<to>" "<subject>" "<content>" "<listSubject>" "<encryptedPass>"
 	When User logs in "<userName>" "<password>"
 	Then encrypted mail should appear in the inbox "<to>" "<subject>" "<content>" "<listSubject>" "<encryptedPass>"
 	
 	Examples:
-		| adminUserName | adminPassword | level          | receiverType | encryptedPass		 | listSubject					| to		| subject			| content | userName | password |
-		| AdminUserName | AdminPassword | UserMainDepartmentAr | Users       | EncryptedMessagePW | This message need a password	|UserSameDepartment	| Encrypted Message | Test content | UserSameDepartment | PasswordUserSameDepartment |
+		| adminUserName | adminPassword | level                | receiverType | encryptedPass      | listSubject                  | to                 | subject           | content      | userName           | password                   | type |
+		| AdminUserName | AdminPassword | UserMainDepartmentAr | Users        | EncryptedMessagePW | Encrypted message | UserSameDepartment | Encrypted message | Test content | UserSameDepartment | PasswordUserSameDepartment | my  |
 
 Scenario Outline:sm 23 Sending incoming message - personal mail
 	Given Admin logged in "<adminUserName>" "<adminPassword>"
 	When user sends an incoming message to "<level>" "<receiverType>" "<to>" "<subject>" "<content>"
-	Then mail should appear in my message out box "<to>" "<subject>" "<content>" "" ""
+	And user set properties "" "" "" "+123456789" "now" "now" ""
+	And select the external department "ExternalEntitySameCountry"
+	And user send the email and click on Cancel button
+	Then save reference number from "<type>" in txt with subject "<subject>"
+	Then mail should appear in my message out box2 "<to>" "<subject>" "<content>"
 	When User logs in "<userName>" "<password>"
 	Then mail should appear in the inbox "<to>" "<subject>" "<content>"
 	
 	Examples:
-		| adminUserName | adminPassword | level			  | receiverType | to		| subject		   | content	  | userName		   | password					|
-		| AdminUserName | AdminPassword | UserMainDepartmentAr | Users		 |UserSameDepartment	| Incomming Message | Test content | UserSameDepartment | PasswordUserSameDepartment |
+		| adminUserName | adminPassword | level                | receiverType | to                 | subject           | content      | userName           | password                   | type |
+		| AdminUserName | AdminPassword | UserMainDepartmentAr | Users        | UserSameDepartment | Incomming Message | Test content | UserSameDepartment | PasswordUserSameDepartment |  my    |
 
 Scenario Outline:sm 24 Sending outgoing message - personal mail
 	Given Admin logged in "<adminUserName>" "<adminPassword>"
 	When user sends an outgoing message to "<name>" "<subject>" "<content>" "<deliveryType>"
-	Then mail should appear in my message out box "<CommDept>" "<subject>" "<content>" "" ""
-	Then mail should appear in Department Message with Root "<CommDept>" "<subject>" "<content>"
+	And user set properties "" "" "" "" "" "" "Indirect Export Method"
+	And user send the email and click on Cancel button
+	Then save reference number from "<type>" in txt with subject "<subject>"
+	Then mail should appear in my message out box2 "<CommDept>" "<subject>" "<content>"
 	
 	Examples:
-		| adminUserName | adminPassword | deliveryType | name                      | subject         | content      | CommDept		 |
-		| AdminUserName | AdminPassword | DeliveryType | ExternalEntitySameCountry | Outgoig Message | Test content | CommDepSameDep |
+		| adminUserName | adminPassword | deliveryType | name                      | subject         | content      | CommDept       | type |
+		| AdminUserName | AdminPassword | DeliveryType | ExternalEntitySameCountry | Outgoig Message | Test content | CommDepSameDep |  my    |
 
 Scenario:sm 25 Sending internal message - Department mail
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When user sends an internal message to "UserMainDepartmentAr" "Users" "UserSameDepartment" "Sending Internal Message 111" "Sending Internal Message 111"
-	Then mail should appear in my message out box "UserSameDepartment" "Sending Internal Message 111" "Sending Internal Message 111" "0" ""
+	#No notification is appearing so failing!!!
+	And user send the email
+	Then save reference number from "my" in txt with subject "Sending Internal Message 111"
+	Then mail should appear in my message out box2 "UserSameDepartment" "Sending Internal Message 111" "Sending Internal Message 111"
 	When User logs in "UserSameDepartment" "PasswordUserSameDepartment"
 	Then mail should appear in the inbox "UserSameDepartment" "Sending Internal Message 111" "Sending Internal Message 111"
 
@@ -55,7 +66,10 @@ Scenario:sm 26 Sending incoming message - Department mail
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Sending Incoming Message 111" "Sending Incoming Message 111"
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "" "" "" "+123456789" "now" "now" ""
 	And user send the email and click on Cancel button
+	Then save reference number from "my" in txt with subject "Sending Incoming Message 111"
 	Then mail should appear in my message out box "internalDepartmentSameDepAr" "Sending Incoming Message 111" "Sending Incoming Message 111" "0" ""
 	When user opens department "internalDepartmentSameDep" mail with subject "Sending Incoming Message 111" ""
 	Then mail should appear in dept inbox "internalDepartmentSameDepAr" "Sending Incoming Message 111" "Sending Incoming Message 111"
@@ -66,15 +80,18 @@ Scenario:sm 27 Sending outgoing message - Department  mail
 	And select the external department "ExternalEntitySameCountry"   
 	And select delivery type "Delivery by hand"
 	And user compose mail "Sending Outgoing Message 111" "Sending Outgoing Message 111"
+	And user set properties "" "" "" "" "" "" "Indirect Export Method"	
 	And user send the email and click on Cancel button
 	Then mail should appear in my message out box "CommDepSameDep" "Sending Outgoing Message 111" "Sending Outgoing Message 111" "0" ""
 	Then mail should appear in Department Message with Root "CommDepSameDep" "Sending Outgoing Message 111" "Sending Outgoing Message 111"
 
 Scenario:sm 28 Sending Permissions -  send to all users - Personal mail
 	Given Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set system message permissions for user "Create Internal Message" "True" "User"
 	When Admin set system message sending permissions for user "User" "Send All Users"
 	Then Admin logged in "UserName" "Password"
 	Then user sends an internal message to and cc "UserMainDepartmentAr" "Users" "UserSameDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "OtherMainDepartmentAr" "Users" "UserOtherDepartment"
+	Then save reference number from "my" in txt with subject "Sending Permission to All Users 111"
 	Then Admin logged in "AdminUserName" "AdminPassword"
 	Then Admin unset system message sending permissions for user "User" "Send All Users"
 	Then Admin logged in "UserOtherDepartment" "UserOtherDepartmentPassword"
@@ -82,9 +99,10 @@ Scenario:sm 28 Sending Permissions -  send to all users - Personal mail
 
 Scenario:sm 29 Sending Permissions -  send to all departments - Personal mail
 	Given Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set system message permissions for user "Create Internal Message" "True" "User"
 	When Admin set system message sending permissions for user "User" "Send All Departments"
 	Then Admin logged in "UserName" "Password"
-	Then user sends an internal message to and cc "UserMainDepartmentAr" "Structural Hierarchy" "UserSameDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "OtherMainDepartmentAr" "Users" "UserOtherDepartment"
+	Then user sends an internal message to and cc "UserMainDepartmentAr" "Users" "UserSameDepartment" "Sending Permission to All Users 111" "Sending Permission to All Users 111" "OtherMainDepartmentAr" "Users" "UserOtherDepartment"
 	Then Admin logged in "AdminUserName" "AdminPassword"
 	Then Admin unset system message sending permissions for user "User" "Send All Departments"
 	Then Admin logged in "UserOtherDepartment" "UserOtherDepartmentPassword"

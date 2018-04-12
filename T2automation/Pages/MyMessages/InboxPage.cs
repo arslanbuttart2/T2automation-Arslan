@@ -1492,9 +1492,11 @@ private IList<IWebElement> _daysOnCal() {
         public void clickOnSendBtnAndCancelForMyInboxMail()
         {
             Click(_driver, _sendBtn);
-            Thread.Sleep(2000);
-            WaitForElement(_driver, _cancelBtnInMyInboxMail);
-            Click(_driver, _cancelBtnInMyInboxMail);
+            Thread.Sleep(3000);
+            _ifCancelBtn();
+
+            //WaitForElement(_driver, _cancelBtnInMyInboxMail);
+            //Click(_driver, _cancelBtnInMyInboxMail);
         }
 
         public void clickOnSendBtnAndCancelBtnForIncomingMail(bool checkPopup = false)
@@ -2547,10 +2549,11 @@ private IList<IWebElement> _daysOnCal() {
             return false;
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass)
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass ,string refno, bool subjectOrRef = false)
         {
-            if (OpenMail(driver, listSubject, encryptPass))
+            if (OpenMailSpecial(driver, refno, encryptPass,subjectOrRef))
             {
+                Thread.Sleep(3000);
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
             }
             return false;
@@ -2819,7 +2822,8 @@ private IList<IWebElement> _daysOnCal() {
             SelectExternalDeptTo(deptName, deptCode, type);
             SetProperties(deliveryType);
             Click(_driver, _contentTab);
-            SendMail(subject, contentBody, checkPopup: true);
+            ComposeMail(subject, contentBody);
+            //SendMail(subject, contentBody, checkPopup: true);
         }
 
         public void WaitForUploading()
@@ -3382,15 +3386,77 @@ private IList<IWebElement> _daysOnCal() {
 
             if (receiverType.Equals("Users"))
             {
+                Thread.Sleep(4000);
                 for (int index = 0; index < _selectToNameForUsers().Count; index++)
                 {
-                    if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
+                    string temp = GetText(driver, _selectToNameForUsers().ElementAt(index));
+                    string[] aftersplit;
+                    if (temp.Contains("-"))
+                    {
+                        aftersplit = temp.Split('-');
+                    }
+                    else
+                    {
+                        string temp2 = temp.Trim();
+                        aftersplit = temp2.Split('-');
+                    }
+                    //if (aftersplit.Count() == 1)
+                    //{
+                    //    aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
+                    //    if (aftersplit[0].Equals(user))
+                    //    {
+                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
+                    //        Click(driver, _selectToFrameToBtn);
+                    //        Thread.Sleep(1000);
+                    //        return;
+                    //    }
+                    //}
+                    //if (aftersplit.Count() == 2)
+                    //{
+                    //    aftersplit[1] = aftersplit[1].Replace(" ", string.Empty);
+                    //    if (aftersplit[1].Equals(user))
+                    //    {
+                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
+                    //        Click(driver, _selectToFrameToBtn);
+                    //        Thread.Sleep(1000);
+                    //        return;
+                    //    }
+                    //}
+                    //if (aftersplit.Count() == 3)
+                    //{
+                    //    aftersplit[2] = aftersplit[2].Replace(" ", string.Empty);
+                    //    if (aftersplit[2].Equals(user))
+                    //    {
+                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
+                    //        Click(driver, _selectToFrameToBtn);
+                    //        Thread.Sleep(1000);
+                    //        return;
+                    //    }
+                    //}
+                    //Trying It
+                    aftersplit[aftersplit.Count() - 1] = aftersplit[aftersplit.Count() - 1].Replace(" ", string.Empty);
+                    if (aftersplit[aftersplit.Count() - 1].Equals(user))
                     {
                         Click(driver, _selectToCheckForUser.ElementAt(index));
                         Click(driver, _selectToFrameCCBtn);
                         Thread.Sleep(1000);
                         return;
                     }
+
+                    /*
+                    if (receiverType.Equals("Users"))
+                    {
+                        for (int index = 0; index < _selectToNameForUsers().Count; index++)
+                        {
+                            if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
+                            {
+                                Click(driver, _selectToCheckForUser.ElementAt(index));
+                                Click(driver, _selectToFrameCCBtn);
+                                Thread.Sleep(1000);
+                                return;
+                            }
+                        }
+                    }*/
                 }
             }
             else if (receiverType.Equals("Structural Hierarchy"))

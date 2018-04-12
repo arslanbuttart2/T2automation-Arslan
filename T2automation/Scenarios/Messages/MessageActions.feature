@@ -216,6 +216,7 @@ Scenario:28 Message - View connected document - with permission -  department ma
 	And the visibilty of button "Delete" should be "False" on connected doc tab
 	When user deletes the draft
 
+	#error will fail!!!
 Scenario:29 Message - View connected document - without permission -  
 	When Admin set department message permissions for user "View Related Messages" "False" "User" "internalDepartmentSameDep"
 	When Admin set department message permissions for user "Can Forward" "True" "User" "internalDepartmentSameDep"
@@ -366,6 +367,7 @@ Scenario:38 Message - add connected document - Related departments only - Depart
 	When Admin set department message permissions for user "Add Related Message" "False" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Can Link with Message from Related Departments Messages" "False" "User" "internalDepartmentSameDep"
 	
+	#error will fail!!!
 Scenario:39 Message - add connected document - Related departments and below  - Department mail
 	When Admin set system message permissions for user "Create Outing Message" "True" "User"
 	When Admin set system message permissions for user "View Related Messages" "True" "User"
@@ -397,6 +399,7 @@ Scenario:40 Message - delete connected document from new message - Personal mail
 	And user select connected document with subject "Internal Message with Connected Documents 111"
 	And user delete the document with subject "Internal Message with Connected Documents 111" from the list
 	
+	#error will fail!!!
 Scenario:41 Message - open/add/delete connected document from reply messages - Personal mail
 	When Admin set system message permissions for user "View Related Messages" "True" "User"
 	And Admin set system message permissions for user "Can Reply" "True" "User"
@@ -467,6 +470,7 @@ Scenario:46 Message - add connected document - Cancel button - Personal mail
 	When Admin set system message permissions for user "Add Related Message" "False" "User"
 	
 Scenario:47 Message - add connected document - Cancel button - department mail
+	When Admin set department message permissions for user "Create Internal Message" "True" "User" "internalDepartmentSameDep"
 	When Admin set department message permissions for user "Add Related Message" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password" 
 	And user go to dept messages Internal Document
@@ -476,6 +480,7 @@ Scenario:47 Message - add connected document - Cancel button - department mail
 	When Admin set department message permissions for user "Add Related Message" "False" "User" "internalDepartmentSameDep"
 	
 Scenario:48 Message - connected Person - Permission view and add - with permission - Personal mail
+	When Admin set system message permissions for user "Create Incoming Message" "True" "User"
 	When Admin set system message permissions for user "View Related Persons" "True" "User"
 	When Admin set system message permissions for user "Add Related Person" "True" "User"
 	And User logs in "UserName" "Password"
@@ -547,7 +552,6 @@ Scenario:52 Message - Adding connected Person - Invalid / incomplete data - Pers
 	Then Error is shown as "Required Field" "ID"
 	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "" "" "هوية" "True"
 	Then the connected person with name "Person Name1" should appear in the list
-	###check error for adding person with same name and id number
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set department message permissions for user "View Related Persons" "False" "User" "internalDepartmentSameDep"

@@ -155,7 +155,10 @@ namespace T2automation.Steps.My_Messages
             outboxPage = new OutboxPage(driver);
             outboxPage.NavigateToMyMessageOutbox(driver);
             readFromConfig = new ReadFromConfig();
-            Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass)));
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            refno = txtManager.refnoPure(refno);
+            Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass),refno,false));
         }
 
         [Then(@"mail should appear in dept inbox ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -188,7 +191,10 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage = new InboxPage(driver);
             myMessageInboxPage.NavigateToMyMessageInbox(driver);
             readFromConfig = new ReadFromConfig();
-            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass)));
+            txtManager = new TextFileManager();
+            string refno = txtManager.readFromFile(subject);
+            refno = txtManager.refnoPure(refno);
+            Assert.IsTrue(myMessageInboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass),refno: refno,subjectOrRef:false));
         }
 
         [When(@"user sends an incoming message to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -205,7 +211,20 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.SearchNameCode = readFromConfig.GetValue(to);
             myMessageInboxPage.SelectToUser(driver, readFromConfig.GetValue(to),receiverType);
             myMessageInboxPage.ClickOkBtn();
-            myMessageInboxPage.SendMail(subject, content);
+            myMessageInboxPage.ComposeMail(subject, content);
+        }
+
+        [Then(@"mail should appear in my message out box2 ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenMailShouldAppearInMyMessageOutBox2(string to, string subject, string content)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            outboxPage = new OutboxPage(driver);
+            inboxPage = new InboxPage(driver);
+            txtManager = new TextFileManager();
+            outboxPage.NavigateToMyMessageOutbox(driver);
+            string refno = txtManager.readFromFile(subject);
+            Assert.IsTrue(inboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, refno: refno));
         }
 
         [When(@"user sends an outgoing message to ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

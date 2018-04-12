@@ -107,6 +107,7 @@ namespace T2automation.Pages.MyMessages
 
         public void firstSearchOutbox(string subject)
         {
+            Thread.Sleep(2000);
             Click(_driver, _outboxPageEraseButton);
             WaitTillProcessing();
             SendKeys(_driver, _outboxSearchField, subject);
@@ -366,10 +367,11 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass)
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass,string refno,bool subjectOrRef=false)
         {
-            if (OpenMailSpecial(driver, listSubject, encryptPass))
+            if (OpenMailSpecial(driver, refno, encryptPass,subjectOrRef))
             {
+                Thread.Sleep(3000);
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));
             }
             return false;

@@ -65,8 +65,8 @@ namespace T2automation.Scenarios.Messages
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("sm 21 Sending internal message - personal mail")]
-        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "UserMainDepartmentAr", "Users", "UserSameDepartment", "Internal Message", "Test content", "UserSameDepartment", "PasswordUserSameDepartment", null)]
-        public virtual void Sm21SendingInternalMessage_PersonalMail(string adminUserName, string adminPassword, string level, string receiverType, string to, string subject, string content, string userName, string password, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "UserMainDepartmentAr", "Users", "UserSameDepartment", "Internal Message", "Test content", "UserSameDepartment", "PasswordUserSameDepartment", "my", null)]
+        public virtual void Sm21SendingInternalMessage_PersonalMail(string adminUserName, string adminPassword, string level, string receiverType, string to, string subject, string content, string userName, string password, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 21 Sending internal message - personal mail", exampleTags);
 #line 3
@@ -76,10 +76,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 5
  testRunner.When(string.Format("user sends an internal message to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", level, receiverType, to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
- testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"0\" \"\"", to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("save reference number from \"{0}\" in txt with subject \"{1}\"", type, subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 7
- testRunner.When(string.Format("User logs in \"{0}\" \"{1}\"", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"0\" \"\"", to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
+ testRunner.When(string.Format("User logs in \"{0}\" \"{1}\"", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
  testRunner.Then(string.Format("mail should appear in the inbox \"{0}\" \"{1}\" \"{2}\"", to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -87,21 +89,23 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("sm 22 Sending encrypted message - personal mail")]
-        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "UserMainDepartmentAr", "Users", "EncryptedMessagePW", "This message need a password", "UserSameDepartment", "Encrypted Message", "Test content", "UserSameDepartment", "PasswordUserSameDepartment", null)]
-        public virtual void Sm22SendingEncryptedMessage_PersonalMail(string adminUserName, string adminPassword, string level, string receiverType, string encryptedPass, string listSubject, string to, string subject, string content, string userName, string password, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "UserMainDepartmentAr", "Users", "EncryptedMessagePW", "Encrypted message", "UserSameDepartment", "Encrypted message", "Test content", "UserSameDepartment", "PasswordUserSameDepartment", "my", null)]
+        public virtual void Sm22SendingEncryptedMessage_PersonalMail(string adminUserName, string adminPassword, string level, string receiverType, string encryptedPass, string listSubject, string to, string subject, string content, string userName, string password, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 22 Sending encrypted message - personal mail", exampleTags);
-#line 14
-this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.Given(string.Format("Admin logged in \"{0}\" \"{1}\"", adminUserName, adminPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.When(string.Format("user sends an encrypted message to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\"", level, receiverType, to, subject, content, encryptedPass), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given(string.Format("Admin logged in \"{0}\" \"{1}\"", adminUserName, adminPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
- testRunner.Then(string.Format("encrypted mail should appear in the out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, listSubject, encryptedPass), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When(string.Format("user sends an encrypted message to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\"", level, receiverType, to, subject, content, encryptedPass), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.When(string.Format("User logs in \"{0}\" \"{1}\"", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then(string.Format("save reference number from \"{0}\" in txt with subject \"{1}\"", type, subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
+ testRunner.Then(string.Format("encrypted mail should appear in the out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, listSubject, encryptedPass), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+ testRunner.When(string.Format("User logs in \"{0}\" \"{1}\"", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
  testRunner.Then(string.Format("encrypted mail should appear in the inbox \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, listSubject, encryptedPass), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -109,21 +113,29 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("sm 23 Sending incoming message - personal mail")]
-        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "UserMainDepartmentAr", "Users", "UserSameDepartment", "Incomming Message", "Test content", "UserSameDepartment", "PasswordUserSameDepartment", null)]
-        public virtual void Sm23SendingIncomingMessage_PersonalMail(string adminUserName, string adminPassword, string level, string receiverType, string to, string subject, string content, string userName, string password, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "UserMainDepartmentAr", "Users", "UserSameDepartment", "Incomming Message", "Test content", "UserSameDepartment", "PasswordUserSameDepartment", "my", null)]
+        public virtual void Sm23SendingIncomingMessage_PersonalMail(string adminUserName, string adminPassword, string level, string receiverType, string to, string subject, string content, string userName, string password, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 23 Sending incoming message - personal mail", exampleTags);
-#line 25
-this.ScenarioSetup(scenarioInfo);
-#line 26
- testRunner.Given(string.Format("Admin logged in \"{0}\" \"{1}\"", adminUserName, adminPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
- testRunner.When(string.Format("user sends an incoming message to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", level, receiverType, to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 28
- testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"\" \"\"", to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("Admin logged in \"{0}\" \"{1}\"", adminUserName, adminPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 29
- testRunner.When(string.Format("User logs in \"{0}\" \"{1}\"", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("user sends an incoming message to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", level, receiverType, to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
+ testRunner.And("user set properties \"\" \"\" \"\" \"+123456789\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+ testRunner.Then(string.Format("save reference number from \"{0}\" in txt with subject \"{1}\"", type, subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 34
+ testRunner.Then(string.Format("mail should appear in my message out box2 \"{0}\" \"{1}\" \"{2}\"", to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
+ testRunner.When(string.Format("User logs in \"{0}\" \"{1}\"", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
  testRunner.Then(string.Format("mail should appear in the inbox \"{0}\" \"{1}\" \"{2}\"", to, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -131,20 +143,24 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("sm 24 Sending outgoing message - personal mail")]
-        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "DeliveryType", "ExternalEntitySameCountry", "Outgoig Message", "Test content", "CommDepSameDep", null)]
-        public virtual void Sm24SendingOutgoingMessage_PersonalMail(string adminUserName, string adminPassword, string deliveryType, string name, string subject, string content, string commDept, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("AdminUserName", "AdminPassword", "DeliveryType", "ExternalEntitySameCountry", "Outgoig Message", "Test content", "CommDepSameDep", "my", null)]
+        public virtual void Sm24SendingOutgoingMessage_PersonalMail(string adminUserName, string adminPassword, string deliveryType, string name, string subject, string content, string commDept, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 24 Sending outgoing message - personal mail", exampleTags);
-#line 36
+#line 42
 this.ScenarioSetup(scenarioInfo);
-#line 37
+#line 43
  testRunner.Given(string.Format("Admin logged in \"{0}\" \"{1}\"", adminUserName, adminPassword), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 38
+#line 44
  testRunner.When(string.Format("user sends an outgoing message to \"{0}\" \"{1}\" \"{2}\" \"{3}\"", name, subject, content, deliveryType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
- testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"\" \"\"", commDept, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 40
- testRunner.Then(string.Format("mail should appear in Department Message with Root \"{0}\" \"{1}\" \"{2}\"", commDept, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 45
+ testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+ testRunner.Then(string.Format("save reference number from \"{0}\" in txt with subject \"{1}\"", type, subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 48
+ testRunner.Then(string.Format("mail should appear in my message out box2 \"{0}\" \"{1}\" \"{2}\"", commDept, subject, content), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -154,19 +170,24 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm25SendingInternalMessage_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 25 Sending internal message - Department mail", ((string[])(null)));
-#line 46
+#line 54
 this.ScenarioSetup(scenarioInfo);
-#line 47
+#line 55
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 48
+#line 56
  testRunner.When("user sends an internal message to \"UserMainDepartmentAr\" \"Users\" \"UserSameDepartm" +
                     "ent\" \"Sending Internal Message 111\" \"Sending Internal Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 49
- testRunner.Then("mail should appear in my message out box \"UserSameDepartment\" \"Sending Internal M" +
-                    "essage 111\" \"Sending Internal Message 111\" \"0\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 50
+#line 58
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Sending Internal Message 111" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 60
+ testRunner.Then("mail should appear in my message out box2 \"UserSameDepartment\" \"Sending Internal " +
+                    "Message 111\" \"Sending Internal Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 61
  testRunner.When("User logs in \"UserSameDepartment\" \"PasswordUserSameDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 51
+#line 62
  testRunner.Then("mail should appear in the inbox \"UserSameDepartment\" \"Sending Internal Message 11" +
                     "1\" \"Sending Internal Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -178,26 +199,33 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm26SendingIncomingMessage_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 26 Sending incoming message - Department mail", ((string[])(null)));
-#line 53
+#line 64
 this.ScenarioSetup(scenarioInfo);
-#line 54
+#line 65
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 55
+#line 66
  testRunner.When("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 56
+#line 67
  testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
                     "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
+#line 68
  testRunner.And("user compose mail \"Sending Incoming Message 111\" \"Sending Incoming Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 58
+#line 69
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.And("user set properties \"\" \"\" \"\" \"+123456789\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 59
+#line 72
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Sending Incoming Message 111" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 73
  testRunner.Then("mail should appear in my message out box \"internalDepartmentSameDepAr\" \"Sending I" +
                     "ncoming Message 111\" \"Sending Incoming Message 111\" \"0\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 60
+#line 74
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Sending Inco" +
                     "ming Message 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 61
+#line 75
  testRunner.Then("mail should appear in dept inbox \"internalDepartmentSameDepAr\" \"Sending Incoming " +
                     "Message 111\" \"Sending Incoming Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -209,24 +237,26 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm27SendingOutgoingMessage_DepartmentMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 27 Sending outgoing message - Department  mail", ((string[])(null)));
-#line 63
+#line 77
 this.ScenarioSetup(scenarioInfo);
-#line 64
+#line 78
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 65
+#line 79
  testRunner.When("user go to my messages Outgoing Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 66
+#line 80
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 81
  testRunner.And("select delivery type \"Delivery by hand\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
+#line 82
  testRunner.And("user compose mail \"Sending Outgoing Message 111\" \"Sending Outgoing Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 69
+#line 83
+ testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 70
+#line 85
  testRunner.Then("mail should appear in my message out box \"CommDepSameDep\" \"Sending Outgoing Messa" +
                     "ge 111\" \"Sending Outgoing Message 111\" \"0\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 71
+#line 86
  testRunner.Then("mail should appear in Department Message with Root \"CommDepSameDep\" \"Sending Outg" +
                     "oing Message 111\" \"Sending Outgoing Message 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -238,25 +268,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm28SendingPermissions_SendToAllUsers_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 28 Sending Permissions -  send to all users - Personal mail", ((string[])(null)));
-#line 73
+#line 88
 this.ScenarioSetup(scenarioInfo);
-#line 74
+#line 89
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 75
+#line 90
+ testRunner.When("Admin set system message permissions for user \"Create Internal Message\" \"True\" \"U" +
+                    "ser\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 91
  testRunner.When("Admin set system message sending permissions for user \"User\" \"Send All Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 76
+#line 92
  testRunner.Then("Admin logged in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 77
+#line 93
  testRunner.Then("user sends an internal message to and cc \"UserMainDepartmentAr\" \"Users\" \"UserSame" +
                     "Department\" \"Sending Permission to All Users 111\" \"Sending Permission to All Use" +
                     "rs 111\" \"OtherMainDepartmentAr\" \"Users\" \"UserOtherDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 78
+#line 94
+ testRunner.Then("save reference number from \"my\" in txt with subject \"Sending Permission to All Us" +
+                    "ers 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 95
  testRunner.Then("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 79
+#line 96
  testRunner.Then("Admin unset system message sending permissions for user \"User\" \"Send All Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 80
+#line 97
  testRunner.Then("Admin logged in \"UserOtherDepartment\" \"UserOtherDepartmentPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 81
+#line 98
  testRunner.Then("mail should appear in the inbox read CC too \"UserMainDepartment\" \"Sending Permiss" +
                     "ion to All Users 111\" \"Sending Permission to All Users 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -268,27 +304,30 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Sm29SendingPermissions_SendToAllDepartments_PersonalMail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("sm 29 Sending Permissions -  send to all departments - Personal mail", ((string[])(null)));
-#line 83
+#line 100
 this.ScenarioSetup(scenarioInfo);
-#line 84
+#line 101
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 85
+#line 102
+ testRunner.When("Admin set system message permissions for user \"Create Internal Message\" \"True\" \"U" +
+                    "ser\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 103
  testRunner.When("Admin set system message sending permissions for user \"User\" \"Send All Department" +
                     "s\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 86
+#line 104
  testRunner.Then("Admin logged in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 87
- testRunner.Then("user sends an internal message to and cc \"UserMainDepartmentAr\" \"Structural Hiera" +
-                    "rchy\" \"UserSameDepartment\" \"Sending Permission to All Users 111\" \"Sending Permis" +
-                    "sion to All Users 111\" \"OtherMainDepartmentAr\" \"Users\" \"UserOtherDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 88
+#line 105
+ testRunner.Then("user sends an internal message to and cc \"UserMainDepartmentAr\" \"Users\" \"UserSame" +
+                    "Department\" \"Sending Permission to All Users 111\" \"Sending Permission to All Use" +
+                    "rs 111\" \"OtherMainDepartmentAr\" \"Users\" \"UserOtherDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 106
  testRunner.Then("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 89
+#line 107
  testRunner.Then("Admin unset system message sending permissions for user \"User\" \"Send All Departme" +
                     "nts\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 90
+#line 108
  testRunner.Then("Admin logged in \"UserOtherDepartment\" \"UserOtherDepartmentPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 91
+#line 109
  testRunner.Then("mail should appear in the inbox read CC too \"UserMainDepartment\" \"Sending Permiss" +
                     "ion to All Users 111\" \"Sending Permission to All Users 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
