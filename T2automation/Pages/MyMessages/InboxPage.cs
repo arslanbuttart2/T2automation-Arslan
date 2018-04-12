@@ -811,6 +811,21 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "./html/body/div[8]/div[2]/div/div[3]/div/input")]
         private IWebElement _folderName;
+        
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/div[contains(@id,'folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e')]/div/a/label[contains(text(),'Automation 111')]")]
+        private IWebElement _automation111;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Move To Folder')]")]
+        private IWebElement _movFoldBtn2;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='context-menu']/ul/li[@id='cm-delete-folder']")]
+        private IWebElement _deleteFolder;
+
+        [FindsBy(How = How.XPath, Using = "//*/a[@data-folder-flag='0'][@class='o-folder'][@data-orgid='3c76399d-2a03-4b67-9459-8a0925263d2e']/label[contains(text(),'Automation 222')]")]
+        private IWebElement _automation222;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='select-folder']/option")]
+        private IList<IWebElement> _folderList;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div[7]/a/label[contains(text(),'Return')]")]
         private IWebElement _unexportedreturnBtn;
@@ -3488,6 +3503,57 @@ private IList<IWebElement> _daysOnCal() {
                 }
             }
         }*/
+
+        public void createFolder2(string element, string folderName)
+        {
+
+            RightClick(_driver, _automation111);
+            Click(_driver, _createFolder);
+            Thread.Sleep(3000);
+            SendKeys(_driver, _folderName, folderName);
+            Thread.Sleep(1000);
+            Click(_driver, _okBtn());
+        }
+        
+        public void ClickOnMoveToFolder()
+        {
+            Click(_driver, _movFoldBtn2);
+            Thread.Sleep(5000);
+        }
+
+        public bool SelectFolderToMove(IWebDriver driver, string folderName)
+        {
+            string e1;
+            int searchResult = _folderList.Count();
+            if (searchResult >= 1)
+            {
+                foreach (IWebElement elem in _folderList)
+                {
+                    e1 = GetText(driver, elem);
+                    if (e1.Contains(folderName))
+                    {
+                        Click(driver, elem);
+                        Thread.Sleep(1000);
+                        return true;
+                    }
+                }
+            }
+
+            else
+                Console.WriteLine("No folder found in the list!!!");
+            return false;
+        }
+
+        public void deleteFolder(string folderName)
+        {
+            if (folderName.Equals("Automation 222"))
+            {
+                RightClick(_driver, _automation222);
+                Click(_driver, _deleteFolder);
+                Click(_driver, _okBtn());
+
+            }
+        }
 
         public void ClickCCbutton(IWebDriver driver)
         {

@@ -259,14 +259,71 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph2_2 Message Actions")]
-        public virtual void Ph2_2MessageActions()
+        [NUnit.Framework.DescriptionAttribute("ph2_2 Folders - 1 - inbox")]
+        public virtual void Ph2_2Folders_1_Inbox()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_2 Message Actions", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_2 Folders - 1 - inbox", ((string[])(null)));
 #line 86
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
+#line 87
+ testRunner.When("user open department \"internalDepartmentSameDep\" inbox and create new folder \"Aut" +
+                    "omation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 88
+ testRunner.And("right click on \"Automation 111\" and create \"Automation 222\" folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
+ testRunner.When("user go to my messages Incomming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 90
+ testRunner.And("search \"internalDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structural Hierarchy" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 91
+ testRunner.And("user compose mail \"Internal message folders 111\" \"Internal message folders 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 92
+ testRunner.And("user set properties \"\" \"\" \"\" \"+123456789\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.Then("user send the email and save refrence no from popup \"my\" \"Internal message folder" +
+                    "s 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 98
+ testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
+                    "sage folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 99
+ testRunner.And("user move mail to new folder \"Automation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 100
+ testRunner.And("user opens Automation department \"internalDepartmentSameDep\" mail with subject \"I" +
+                    "nternal message folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 101
+ testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 102
+ testRunner.When("user open \"dept\" deleted message with suject \"Internal message folders 111\" and c" +
+                    "lick on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 103
+ testRunner.And("user opens Automation department \"internalDepartmentSameDep\" mail with subject \"I" +
+                    "nternal message folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 104
+ testRunner.And("user move mail to new folder \"Automation 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 105
+ testRunner.And("user open \"Automation 222\" in department \"internalDepartmentSameDep\" mail with su" +
+                    "bject \"Internal message folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 106
+ testRunner.And("user click on archieve button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.When("user open \"dept\" archive message with suject \"Internal message folders 111\" and c" +
+                    "lick on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 108
+ testRunner.And("user open \"Automation 222\" in department \"internalDepartmentSameDep\" mail with su" +
+                    "bject \"Internal message folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 109
+ testRunner.And("right click on \"Automation 222\" folder and delete it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 111
+ testRunner.And("user move mail to new folder \"Inbox\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 112
+ testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
+                    "sage folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 113
+ testRunner.And("right click on \"Automation 222\" folder and delete it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -490,22 +490,11 @@ namespace T2automation.Steps.Messages
             inboxPage.createFolder(name);
         }
 
-        [When(@"user opens Automation department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
-        public void WhenUserOpensAutomationDepartmentMailWithSubject(string dept, string subject, string encryptedPassword = "")
-        {
-            driver = driverFactory.GetDriver();
-            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
-            txtManager = new TextFileManager();
-            inboxPage = new InboxPage(driver);
-
-            deptMessageInboxPage.NavigateToQAAutomation111DeptInbox(driver);
-            string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
-        }
-
         [When(@"user click on archieve button")]
         public void WhenUserClickOnArchieveButton()
         {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
             inboxPage.clickArchieveBtn();
         }
 

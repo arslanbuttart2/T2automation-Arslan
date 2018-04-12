@@ -178,6 +178,88 @@ namespace T2automation.Steps.Phase2
             }
         }
 
+        [When(@"right click on ""(.*)"" and create ""(.*)"" folder")]
+        public void WhenRightClickOnAndCreateFolder(string element, string folderName)
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            inboxPage = new InboxPage(driver);
+
+            if (element.Equals("Automation 111") && folderName.Equals("Automation 222"))
+            {
+                inboxPage.NavigateToQADeptInbox(driver);
+                Thread.Sleep(2000);
+                inboxPage.createFolder2(element, folderName);
+            }
+        }
+
+        [When(@"user move mail to new folder ""(.*)""")]
+        public void WhenUserMoveMailToNewFolder(string folderName)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+
+            inboxPage.ClickOnMoveToFolder();
+
+            if (folderName.Equals("Automation 111"))
+            {
+                inboxPage.SelectFolderToMove(driver, folderName);
+            }
+            else if (folderName.Equals("Automation 222"))
+            {
+                inboxPage.SelectFolderToMove(driver, folderName);
+            }
+            else if (folderName.Equals("Inbox"))
+            {
+                inboxPage.SelectFolderToMove(driver, folderName);
+            }
+
+            inboxPage.ClickOkBtn();
+        }
+
+        [When(@"user opens Automation department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpensAutomationDepartmentMailWithSubject(string dept, string subject, string encryptedPassword = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage.NavigateToQAAutomation111DeptInbox(driver);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
+        }
+
+        [When(@"user open ""(.*)"" in department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpenInDepartmentMailWithSubject(string folderName, string deptName, string subject, string encryptedPassword = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+
+            if (folderName.Equals("Automation 222"))
+            {
+                deptMessageInboxPage.NavigateToQAAutomation222DeptInbox(driver);
+            }
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
+
+        }
+
+        [When(@"right click on ""(.*)"" folder and delete it")]
+        public void WhenRightClickOnFolderAndDeleteIt(string folderName)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+
+            if (folderName.Equals("Automation 222"))
+            {
+                Thread.Sleep(3000);
+                inboxPage.deleteFolder(folderName);
+            }
+
+        }
+
 
 
 
