@@ -83,3 +83,7 @@ Scenario:ph2_1 Message Actions
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for various actions 333"
 
+Scenario:ph2_2 Message Actions
+	
+
+
