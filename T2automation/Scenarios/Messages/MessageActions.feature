@@ -18,7 +18,7 @@ Scenario Outline:02 message - Add attachement to message - 1 file - department m
 	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType | dept                      |
-		| UserMainDepartmentAr | Users        | AdminUserName | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                  | internalDepartmentSameDepAr |
+		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | Message with attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 1                    | 1.jpg                  | internalDepartmentSameDepAr |
 
 Scenario Outline:03 Message- Add attachement (multiple files)- personal mail
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
@@ -34,7 +34,7 @@ Scenario Outline:04 Message- Add attachement (multiple files)- Department mail
 	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType | dept                      |
-		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple attachement 111 | Message with attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 10                    | 1.jpg                  | internalDepartmentSameDep |
+		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | Message with multiple attachement 111 | Message with multiple attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 10                    | 1.jpg                  | internalDepartmentSameDepAr |
 
 Scenario Outline:05 Message- Add attachement (multiple file types)- personal mail
 	When user sends an internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>"
@@ -42,7 +42,7 @@ Scenario Outline:05 Message- Add attachement (multiple file types)- personal mai
 	Then save reference number from "my" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType |
-		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple type attachement 111 | Message with multiple attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 3                   | 1.png,1.mp3,1.avi,1.pdf,1.xlsx |
+		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple type attachement 111 | Message with multiple type attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 3                   | 1.png,1.mp3,1.avi,1.pdf,1.xlsx |
 
 Scenario Outline:06 Message- Add attachement (multiple file types)- department mail
 	When user sends an departmental internal message with attachment to "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<multipleAttachementNo>" "<multipleAttachmentType>" "<dept>"
@@ -50,7 +50,7 @@ Scenario Outline:06 Message- Add attachement (multiple file types)- department m
 	Then save reference number from "dept" in txt with subject "<subject>"
 	Examples:
 		| level         | receiverType | to      | subject                      | content                      | userName           | password                   | multipleAttachementNo | multipleAttachmentType		  | dept                      |
-		| UserMainDepartmentAr | Users        | AdminUserName | Message with multiple type attachement 111 |Message with multiple attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 3                  | 1.png,1.mp3,1.avi,1.pdf,1.xlsx | internalDepartmentSameDepAr |
+		| UserMainDepartmentAr | Structural Hierarchy        | internalDepartmentSameDepAr | Message with multiple type attachement 111 |Message with multiple type attachement 111 | UserSameDepartment | PasswordUserSameDepartment | 3                  | 1.png,1.mp3,1.avi,1.pdf,1.xlsx | internalDepartmentSameDepAr |
 
 Scenario Outline:07 Message- Delete attachement from message - personal mail
 	When user attach attachment to internal message "<multipleAttachmentType>" "<multipleAttachementNo>"

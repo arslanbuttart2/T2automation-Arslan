@@ -50,10 +50,13 @@ namespace T2automation.Util
                 string[] strArray;
                 for (int i = 0; i < lines.Count() && !(lines[i].Equals("\n") || lines[i].Equals("\r") || lines[i].Equals("")); i++)
                 {
-                    strArray = lines[i].Split(',');
-                    if (subject.Equals(strArray[1]) && type.Equals(strArray[0]))
+                    if (lines[i].Contains(","))
                     {
-                        return strArray[2];
+                        strArray = lines[i].Split(',');
+                        if (subject.Equals(strArray[1]) && type.Equals(strArray[0]))
+                        {
+                            return strArray[2];
+                        }
                     }
                 }
                 return "No Data Found From File!!!";
@@ -76,11 +79,45 @@ namespace T2automation.Util
                 string[] strArray;
                 for (int i = 0; i < lines.Count() && !(lines[i].Equals("\n") || lines[i].Equals("\r") || lines[i].Equals("")); i++)
                 {
-                    strArray = lines[i].Split(',');
-                    if (subject.Equals(strArray[1]))
+                    if(lines[i].Contains(","))
                     {
-                        return strArray[2];
+                        strArray = lines[i].Split(',');
+                        if (subject.Equals(strArray[1]))
+                        {
+                            return strArray[2];
+                        }
                     }
+                    
+                }
+                return "No Data Found From File!!!";
+            }
+            return null;
+        }
+
+        public string readFromFileWithType(string subject,string type)
+        {
+            if (!File.Exists(path))
+            {
+                creatTxtFile();
+            }
+            else if (File.Exists(path))
+            {
+                StreamReader reader = new StreamReader(path);
+                string data = reader.ReadToEnd();
+                reader.Close();
+                string[] lines = data.Split('\n');
+                string[] strArray;
+                for (int i = 0; i < lines.Count() && !(lines[i].Equals("\n") || lines[i].Equals("\r") || lines[i].Equals("")); i++)
+                {
+                    if (lines[i].Contains(","))
+                    {
+                        strArray = lines[i].Split(',');
+                        if (subject.Equals(strArray[1]) && type.Equals(strArray[0]))
+                        {
+                            return strArray[2];
+                        }
+                    }
+
                 }
                 return "No Data Found From File!!!";
             }

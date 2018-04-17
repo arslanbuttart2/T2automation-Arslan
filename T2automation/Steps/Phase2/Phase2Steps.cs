@@ -40,6 +40,7 @@ namespace T2automation.Steps.Phase2
             {
                 inboxPage.clickOnConnectedDocument(driver, subject);
                 Thread.Sleep(1000);
+                //Clicks are not working because xpath could not be define differently!!!
                 inboxPage.ActionsNewWindowPrint();
             }
         }
@@ -260,6 +261,15 @@ namespace T2automation.Steps.Phase2
 
         }
 
+        [When(@"user select To for outgoing ""(.*)""")]
+        public void WhenUserSelectToForOutgoing(string toSelect)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            inboxPage.WaitTillProcessing();
+            inboxPage.ClickToButton(driver);
+            inboxPage.selectToFromPopupOutgoing(toSelect);
+        }
 
 
 

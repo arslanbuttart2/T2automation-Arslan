@@ -142,7 +142,7 @@ namespace T2automation.Pages.MyMessages
         
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             //firstSearchOutbox(strData);
 
             Click(_driver, _outboxPageEraseButton);
@@ -330,17 +330,19 @@ namespace T2automation.Pages.MyMessages
 
         public bool ValidateSubject(IWebDriver driver, string subject)
         {
+            Thread.Sleep(2000);
             return GetText(driver, _subject).Equals(subject);
         }
         
         public bool ValidateContentBody(IWebDriver driver, string contentBody)
         {
+            Thread.Sleep(2000);
             return GetText(driver, _contentBody).Equals(contentBody);
         }
 
         public bool ValidateAttachments(IWebDriver driver, int attachmentNo, string attachment)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Click(driver, _attachmentTab);
             Thread.Sleep(1500);
             if (_attachments.Count == attachmentNo)

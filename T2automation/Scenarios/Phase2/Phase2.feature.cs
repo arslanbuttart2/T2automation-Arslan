@@ -285,7 +285,7 @@ this.FeatureBackground();
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 94
  testRunner.Then("user send the email and save refrence no from popup \"my\" \"Internal message folder" +
-                    "s 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "s 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 98
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
                     "sage folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

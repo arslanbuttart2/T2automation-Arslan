@@ -79,18 +79,22 @@ namespace T2automation.Steps.Messages
             string enc = "This message need a password";
             if (type.Equals("my"))
             {
+                Thread.Sleep(3000);
                 outboxPage.NavigateToMyMessageOutbox(driver);
             }
             else if (type.Equals("dept"))
             {
+                Thread.Sleep(3000);
                 outboxPage.NavigateToQADeptOutbox(driver);
             }
             else if (type.Equals("deptAcc"))
             {
+                Thread.Sleep(3000);
                 outboxPage.NavigateToAccountingDeptOutbox(driver);
             }
             if(subject.Contains("Encrypted message"))
             {
+                Thread.Sleep(3000);
                 outboxPage.OpenMail(driver, enc, "P@ssw0rd!@#");
                 string refno2 = outboxPage.readRefNoFromMail(driver, subject);
                 Assert.IsTrue(txtManager.writeToFile(type, subject, refno2), " this must be written in the txt file!!");
@@ -108,7 +112,7 @@ namespace T2automation.Steps.Messages
             }
             else
             {
-                Environment.Exit(0);
+                Assert.IsTrue(false, "There is some issues in save Reference Number in text file with subject function");
             }
         }
         
@@ -137,7 +141,7 @@ namespace T2automation.Steps.Messages
             outboxPage = new OutboxPage(driver);
             readFromConfig = new ReadFromConfig();
             outboxPage.NavigateToQADeptOutbox(driver);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             Assert.IsTrue(outboxPage.ValidateMail(driver,readFromConfig.GetValue(to), subject, content, attachmentNo: attachmentNo, attachment: attachmentType));
         }
 
@@ -184,7 +188,7 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             inboxPage.NavigateToMyMessageInbox(driver);
-            inboxPage.DownloadFile(subject, downloadFileName, downloadFileNo);
+            inboxPage.DownloadFile(subject, downloadFileName, downloadFileNo,"my");
         }
 
         [When(@"user download the attachment from department inbox mail ""(.*)"" ""(.*)"" ""(.*)""")]
@@ -193,7 +197,7 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             inboxPage.NavigateToQADeptInbox(driver);
-            inboxPage.DownloadFile(subject, downloadFileName, downloadFileNo);
+            inboxPage.DownloadFile(subject, downloadFileName, downloadFileNo,"dept");
         }
 
         [Then(@"the file should appear in downloads ""(.*)"" ""(.*)""")]
@@ -271,6 +275,7 @@ namespace T2automation.Steps.Messages
         [When(@"search ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenSearch(string to, string level, string receiverType)
         {
+            Thread.Sleep(3000);
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             readFromConfig = new ReadFromConfig();
@@ -650,11 +655,15 @@ namespace T2automation.Steps.Messages
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
-        [Then(@"user send the email and save refrence no from popup ""(.*)"" ""(.*)""")]
-        public void ThenUserSendTheEmailAndSaveRefrenceNoFromPopup(string type, string subject)
+        [Then(@"user send the email and save refrence no from popup ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void ThenUserSendTheEmailAndSaveRefrenceNoFromPopup(string type, string subject, string ststus="True")
         {
             inboxPage.clickOnSendBtn();
             inboxPage.readRefNoFromPopupAndSaveItInTxtFile(type, subject);
+            if (ststus.Equals("True"))
+            {
+                inboxPage._ifCancelBtn();
+            }
             //Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 
@@ -834,6 +843,9 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             inboxPage.NavigateToMyMessageInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
+            inboxPage.WaitTillProcessing();
+            inboxPage.ClickToButton(driver);
+            inboxPage.selectToFromPopupOutgoing("Administrative Communication Department");
         }
 
         [When(@"select delivery type ""(.*)""")]
@@ -981,6 +993,7 @@ namespace T2automation.Steps.Messages
             inboxPage.WaitTillProcessing();
             string refno = txtManager.readFromFile(subject);
             inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            Thread.Sleep(4000);
         }
 
         [When(@"user opens outbox email with subject ""(.*)""")]
@@ -1263,6 +1276,7 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Internal Document");
+            Thread.Sleep(3000);
         }
 
         [When(@"user go to dept ""(.*)"" messages Internal Document")]
@@ -1293,6 +1307,9 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
+            inboxPage.WaitTillProcessing();
+            inboxPage.ClickToButton(driver);
+            inboxPage.selectToFromPopupOutgoing("Administrative Communication Department");
         }
 
         [When(@"user go to dept messages Outgoing Document")]
@@ -1303,6 +1320,9 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
+            inboxPage.WaitTillProcessing();
+            inboxPage.ClickToButton(driver);
+            inboxPage.selectToFromPopupOutgoing("Administrative Communication Department");
         }
 
         [Then(@"verify that connected document with subject ""(.*)"" should not appear in while adding new")]

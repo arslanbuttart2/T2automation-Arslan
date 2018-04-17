@@ -94,7 +94,7 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("02 message - Add attachement to message - 1 file - department mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with attachement 111", "Message with attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "1", "1.jpg", "internalDepartmentSameDepAr", null)]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with attachement 111", "Message with attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "1", "1.jpg", "internalDepartmentSameDepAr", null)]
         public virtual void _02Message_AddAttachementToMessage_1File_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 message - Add attachement to message - 1 file - department mail", exampleTags);
@@ -137,7 +137,7 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("04 Message- Add attachement (multiple files)- Department mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple attachement 111", "Message with attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "10", "1.jpg", "internalDepartmentSameDep", null)]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with multiple attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "10", "1.jpg", "internalDepartmentSameDepAr", null)]
         public virtual void _04Message_AddAttachementMultipleFiles_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 Message- Add attachement (multiple files)- Department mail", exampleTags);
@@ -159,7 +159,7 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("05 Message- Add attachement (multiple file types)- personal mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple type attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", null)]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple type attachement 111", "Message with multiple type attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", null)]
         public virtual void _05Message_AddAttachementMultipleFileTypes_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05 Message- Add attachement (multiple file types)- personal mail", exampleTags);
@@ -180,7 +180,7 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("06 Message- Add attachement (multiple file types)- department mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple type attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", "internalDepartmentSameDepAr", null)]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with multiple type attachement 111", "Message with multiple type attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", "internalDepartmentSameDepAr", null)]
         public virtual void _06Message_AddAttachementMultipleFileTypes_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06 Message- Add attachement (multiple file types)- department mail", exampleTags);

@@ -82,7 +82,7 @@ Scenario:ph2_1 Message Actions
 	And user compose mail "Internal message for various actions 333" "Internal message for various actions 333"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for various actions 333"
-
+	
 Scenario:ph2_2 Folders - 1 - inbox
 	When user open department "internalDepartmentSameDep" inbox and create new folder "Automation 111"
 	And right click on "Automation 111" and create "Automation 222" folder
@@ -91,7 +91,7 @@ Scenario:ph2_2 Folders - 1 - inbox
 	And user compose mail "Internal message folders 111" "Internal message folders 111"
 	And user set properties "" "" "" "+123456789" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
-	Then user send the email and save refrence no from popup "my" "Internal message folders 111"
+	Then user send the email and save refrence no from popup "my" "Internal message folders 111" ""
 	#######As notification on sending email is not appearing so saving refernce number from popup
 	#######And user send the email and click on Cancel button
 	#######Then save reference number from "my" in txt with subject "Internal message folders 111"

@@ -82,7 +82,7 @@ Scenario:ph1_2 Message Actions - Archiving Message
 	And user set properties "" "" "" "12345" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
 	And user compose mail "Incoming message for archiving 333" "Incoming message for archiving 333"
-	###docx file ko pdf se replace kiya hai ku k docx upload nai ho rai
+	###docx file is replaced by pdf because docx is not uploading
 	And user attach attachments 1 "1.pdf"
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	When user set connected person "PersonName1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
@@ -152,6 +152,7 @@ Scenario:ph1_3 Exporting Message -1
 	Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
 	When user opens department "internalDepartmentSameDep" mail with subject "Incoming message for indirect export 111" ""
 	And click export
+	And user select To for outgoing "Administrative Communication Department"
 	And select the external department "ExternalEntitySameCountry"
 	And select the external cc department "ExternalEntitySameCountry2"
 	And user set properties "" "" "" "" "" "" "Indirect Export Method"
@@ -194,11 +195,13 @@ Scenario:ph1_4 Exporting Message - 2
 	And search "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for direct export 222" "Internal message for direct export 222"
 	And user attach attachments 1 "1.pdf"
-	And user select and save the reference no "CD2" of connected document with subject "Internal Message to Internal Department 111"
+	#No data available for the following search!
+	#And user select and save the reference no "CD2" of connected document with subject "Internal Message to Internal Department 111"
 	And user send the email
 	Then save reference number from "dept" in txt with subject "Internal message for direct export 222"
 	When user opens inbox email with subject "Internal message for direct export 222"
 	And click on export button
+	And user select To for outgoing "Administrative Communication Department"
 	And user compose mail "Internal message for direct export 888" "Internal message for direct export 888"
 	And user set properties "" "" "" "" "" "" "Direct Export Method"
 	And select the external department "ExternalEntitySameCountry"
@@ -233,6 +236,7 @@ Scenario:ph1_4 Exporting Message - 2
 	Then Check the advance searched results with subject "Internal message for direct export 888" 
 
 Scenario:ph1_5 Exporting Message - 3
+	#When user open outgoing The "To" field is empty by default! and no instruction are given to select the option in excel file
 	When user go to my messages Outgoing Document
 	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
 	######This data is not available to arslan admin neither for danish against Saudi Affairs
@@ -347,6 +351,7 @@ Scenario:ph1_8 Retrieve  Message - 2
 	And Admin set department message permissions for user "Retreive Message after Reading" "False" "Admin" "internalDepartmentSameDep"
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When user go to dept messages Internal Document
+	###Saudi Affairs is not viible in this case so it is failing
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
 	And search CC "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for Retreiving 222" "Internal message for Retreiving 222"
@@ -415,6 +420,7 @@ Scenario:ph1_10 Retrieve  Message - 4
 	And user click on retrive button
 	When user opens inbox email with subject "Incoming message for Reteiving 444"
 	And click on export button
+	And user select To for outgoing "Administrative Communication Department"
 	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
 	And select the external department "ExternalEntitySameCountry"
 	And user set properties "" "" "" "" "" "" "Indirect Export Method"
@@ -442,6 +448,7 @@ Scenario:ph1_11 Print message - 1
 	Then the file should appear in download "dept,Internal message for print 222,Print Sticker-Outbox-In-"
 	When user opens inbox email with subject "Internal message for print 222"
 	And click on export button
+	And user select To for outgoing "Administrative Communication Department"
 	And user compose mail "Export: Internal message for print 222" "Export: Internal message for print 222"
 	And select the external department "ExternalEntitySameCountry"
 	And user set properties "" "" "" "" "" "" "indirectExport"
@@ -452,7 +459,7 @@ Scenario:ph1_11 Print message - 1
 	And user select files type in attachment ".jpg" "2"
 	And click on "Print,Save as PDF,dept,Internal message for print 222,Print Attachments-On Creating-" button
 	Then the file should appear in download "dept,Internal message for print 222,Print Attachments-On Creating-"
-	And user send the email and save refrence no from popup "my" "Export: Internal message for print 222"
+	And user send the email and save refrence no from popup "my" "Export: Internal message for print 222" "Fasle"
 	And click on "Print Barcode,Save as PDF,my,Export: Internal message for print 222,Print Barcode-On Sending-" button
 	Then the file should appear in download "my,Export: Internal message for print 222,Print Barcode-On Sending-"
 	###And click on "Print Reference Number,Save as PDF,my,Export: Internal message for print 222,Print Reference Number-On Sending-" button
@@ -498,7 +505,7 @@ Scenario:ph1_12 Print message - 2
 	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
 	And user select and save the reference no "CD3" of connected document with subject "Incoming message for Reteiving 444"
 	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-	Then user send the email and save refrence no from popup "my" "Incoming message for printing 333"
+	Then user send the email and save refrence no from popup "my" "Incoming message for printing 333" "Fasle"
 	############################No Print Barcode button in popup
 	###And click on "Print Barcode,Save as PDF,my,Incoming message for printing 333,Print Barcode-On Sending-" button
 	###Then the file should appear in download "my,Incoming message for printing 333,Print Barcode-On Sending-"
@@ -517,7 +524,7 @@ Scenario:ph1_12 Print message - 2
 	And select the external department "ExternalEntitySameCountry"
 	And user set properties "" "" "" "" "" "" "Direct Export Method"
 	And user compose mail "Outgoing message for printing 555" "Outgoing message for printing 555"
-	Then user send the email and save refrence no from popup "my" "Outgoing message for printing 555"
+	Then user send the email and save refrence no from popup "my" "Outgoing message for printing 555" "False"
 	And click on "Print Barcode,Save as PDF,my,Outgoing message for printing 555,Print Barcode-On Sending-" button
 	And user click on cancel button
 	When user opens outbox email with subject "Incoming message for printing 333"

@@ -332,7 +332,7 @@ namespace T2automation.Pages.MyMessages
         private IWebElement _senderName;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='iDocView']")]
-        private IWebElement _connectedDocIFrame;
+        private IList<IWebElement> _connectedDocIFrame;
 
         [FindsBy(How = How.XPath, Using = "./html/body/div[10][@class='cd-main']/div/div[@class='cd-tab-parent']/div/a[contains(text(),'Attributes')]")]
         private IWebElement _connectedDocAttributeTab;
@@ -561,7 +561,12 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='searchEndDate']")]
         private IWebElement _messageTabDateToH;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divOutgoingOrg']/tbody/tr/td[2]")]
+        private IList<IWebElement> _selectingToFromPopup;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divOutgoingOrg']/tbody/tr/td[1]")]
+        private IList<IWebElement> _selectingToFromPopupRB;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='txtExportDate2']")]
         private IWebElement _searchTabExportedDateFrom;
@@ -1353,24 +1358,36 @@ private IList<IWebElement> _daysOnCal() {
 
         public void ActionsNewWindowPrint()
         {
-            _driver.SwitchTo().Frame(_connectedDocIFrame);
-            Click(_driver, _senderName);
-            ClickCloseBtn();
-            Thread.Sleep(2000);
-            Click(_driver, _recieverName);
-            ClickCloseBtn();
-            Thread.Sleep(2000);
-            Click(_driver, _connectedDocAttributeTab);
-            Thread.Sleep(2000);
-            Click(_driver, _connectedDocAttachmentTab);
-            Thread.Sleep(2000);
-            Click(_driver, _connectedDocTab2);
-            Thread.Sleep(2000);
-            Click(_driver, _connectedDocActionTab);
-            Thread.Sleep(2000);
-            Click(_driver, _docFlowTab2);
-            Thread.Sleep(3000);
-            _driver.SwitchTo().DefaultContent();
+            for(int i = 0;i < _connectedDocIFrame.Count; i++)
+            {
+                if (_connectedDocIFrame.ElementAt(i).Displayed)
+                {
+                    string chk= GetAttribute(_driver, _connectedDocIFrame.ElementAt(i), "src");
+                    if (!chk.Equals(""))
+                    {
+                        _driver.SwitchTo().Frame(_connectedDocIFrame.ElementAt(i));
+                        break;
+                    }
+                    
+                }
+            }
+            //Click(_driver, _senderName);
+            //ClickCloseBtn();
+            //Thread.Sleep(2000);
+            //Click(_driver, _recieverName);
+            //ClickCloseBtn();
+            //Thread.Sleep(2000);
+            //Click(_driver, _connectedDocAttributeTab);
+            //Thread.Sleep(2000);
+            //Click(_driver, _connectedDocAttachmentTab);
+            //Thread.Sleep(2000);
+            //Click(_driver, _connectedDocTab2);
+            //Thread.Sleep(2000);
+            //Click(_driver, _connectedDocActionTab);
+            //Thread.Sleep(2000);
+            //Click(_driver, _docFlowTab2);
+            //Thread.Sleep(3000);
+            //_driver.SwitchTo().DefaultContent();
             Thread.Sleep(2000);
             Click(_driver, _cancel());
         }
@@ -1659,6 +1676,20 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(2000);
             Click(_driver, _cancelBtnForIncomingMail2);
 
+        }
+
+        public void selectToFromPopupOutgoing(string toSelect)
+        {
+            for(int i=0;i < _selectingToFromPopup.Count;i++)
+            {
+                if (GetText(_driver, _selectingToFromPopup.ElementAt(i)).Equals(toSelect))
+                {
+                    Click(_driver, _selectingToFromPopupRB.ElementAt(i));
+                }
+            }
+            Thread.Sleep(2000);
+            _ifOkBtn();
+            
         }
 
         public void clickEditBtn()
@@ -2317,7 +2348,7 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(2000);
             var option = driver.FindElement(By.Id("select-folder"));
             var selectElement = new SelectElement(option);
-            selectElement.SelectByIndex(2);
+            selectElement.SelectByIndex(3);
             Thread.Sleep(3000);
         }
 
@@ -3134,9 +3165,13 @@ private IList<IWebElement> _daysOnCal() {
             return false;
         }
 
-        public void DownloadFile(string subject, string downloadFileName, int downloadFileNo)
+        public void DownloadFile(string subject, string downloadFileName, int downloadFileNo , string typeOfData)
         {
-            OpenMail(_driver, subject);
+            Thread.Sleep(3000);
+            fileManager = new TextFileManager();
+            string refno = fileManager.readFromFileWithType(subject, typeOfData);
+            refno = fileManager.refnoPure(refno);
+            OpenMailSpecial(_driver, refno,withSubject:false);
             Click(_driver, _attachmentTab);
             if (!(downloadFileName.Equals("All") && downloadFileName.Equals("")))
             {
@@ -3706,6 +3741,7 @@ private IList<IWebElement> _daysOnCal() {
                 return readRefNoFromList(subject);
             }
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            _ifCancelBtn();
             return "No Data Found for Connected Doc !!!";
         }
 
@@ -3732,23 +3768,30 @@ private IList<IWebElement> _daysOnCal() {
             //string temp = GetText(_driver,_connectedDocSearchedSubjects().ElementAt(0));
             //SearchConnectedDocWithRefrenceNo(refno);
             //int searchResults = _connectedDocSearchedReferenceNo().Count;
-            if (searchResults >= 1 && GetText(_driver, _connectedDocSearchedSubjects().ElementAt(0)).Equals(subject)) {
-                Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(0));
-                if (statusSave == true)
-                { 
-                    Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-                    return searchResults;
-                }
-                else if(statusSave == false)
-                {
-                    Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
-                    return searchResults;
-                }
-            }
-            if (searchResults >= 1 && !(GetText(_driver, _connectedDocSearchedSubjects().ElementAt(0)).Equals(subject)))
+            for(int i = 0; i < _connectedDocSearchedSubjects().Count; i++)
             {
-                searchResults = 0;
+                if (GetText(_driver, _connectedDocSearchedSubjects().ElementAt(i)).Equals(subject))
+                {
+                    Click(_driver, _connectedDocSearchedCheckBoxes().ElementAt(i));
+                    if (statusSave == true)
+                    {
+                        Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                        searchResults = _connectedDocSearchedSubjects().Count;
+                        return searchResults;
+                    }
+                    else if (statusSave == false)
+                    {
+                        Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+                        searchResults = _connectedDocSearchedSubjects().Count;
+                        return searchResults;
+                    }
+                }
+                if (!(GetText(_driver, _connectedDocSearchedSubjects().ElementAt(i)).Equals(subject)))
+                {
+                    searchResults = 0;
+                }
             }
+            
             Click(_driver, _connectedDocCancelBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             _ifCancelBtn();
             return searchResults;
