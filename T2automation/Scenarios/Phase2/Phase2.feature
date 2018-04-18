@@ -111,4 +111,8 @@ Scenario:ph2_2 Folders - 1 - inbox
 	And user move mail to new folder "Inbox"
 	When user opens department "internalDepartmentSameDep" mail with subject "Internal message folders 111" ""
 	And right click on "Automation 222" folder and delete it
+	
+Scenario:ph2_3 Department FavGroups - 1
+	
+	
 

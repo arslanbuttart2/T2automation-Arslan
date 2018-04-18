@@ -135,8 +135,8 @@ Scenario:ph1_2 Message Actions - Archiving Message
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "Archive Messages" "False" "User"
 	And Admin set system message permissions for user "Rollback from Archive" "False" "User"
-	And Admin set department message permissions for user "Archive Messages" "False" "User" "internalDepartmentSameDepAr"
-	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "internalDepartmentSameDepAr"
+	And Admin set department message permissions for user "Archive Messages" "False" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Archive Messages" "False" "User" "CommDepSameDep"
 	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "CommDepSameDep"
 

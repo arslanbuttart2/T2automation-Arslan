@@ -872,12 +872,12 @@ this.FeatureBackground();
 #line 282
  testRunner.And("user go to my messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 283
- testRunner.And("user select connected document with subject \"Incoming Message to outside child de" +
+ testRunner.And("user select connected document with subject \"Incoming Message to Outside Child De" +
                     "partment 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 284
  testRunner.And("user clicks on save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 285
- testRunner.Then("the connected document with subject \"Incoming Message to outside child department" +
+ testRunner.Then("the connected document with subject \"Incoming Message to Outside Child Department" +
                     " 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 286
  testRunner.When("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1062,10 +1062,10 @@ this.FeatureBackground();
 #line 342
  testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 343
- testRunner.And("user select connected document with subject \"Incoming Message to outside child de" +
+ testRunner.And("user select connected document with subject \"Incoming Message to Outside Child De" +
                     "partment 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 344
- testRunner.Then("the connected document with subject \"Incoming Message to outside child department" +
+ testRunner.Then("the connected document with subject \"Incoming Message to Outside Child Department" +
                     " 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 345
  testRunner.Then("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1122,7 +1122,7 @@ this.FeatureBackground();
  testRunner.Then("the connected document with subject \"Internal Message to Internal Department 111\"" +
                     " should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 362
- testRunner.Then("verify that connected document with subject \"Incoming Message to child department" +
+ testRunner.Then("verify that connected document with subject \"Incoming Message to Child Department" +
                     " 111\" should not appear in while adding new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 363
  testRunner.Then("verify that connected document with subject \"Incoming Message to outside internal" +
@@ -1184,10 +1184,10 @@ this.FeatureBackground();
  testRunner.Then("the connected document with subject \"Internal Message to Internal Department 111\"" +
                     " should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 382
- testRunner.When("user select connected document with subject \"Incoming Message to child department" +
+ testRunner.When("user select connected document with subject \"Incoming Message to Child Department" +
                     " 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 383
- testRunner.Then("the connected document with subject \"Incoming Message to child department 111\" sh" +
+ testRunner.Then("the connected document with subject \"Incoming Message to Child Department 111\" sh" +
                     "ould appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 384
  testRunner.Then("verify that connected document with subject \"Incoming Message to outside internal" +
@@ -1198,13 +1198,13 @@ this.FeatureBackground();
  testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 387
  testRunner.When("Admin set system message permissions for user \"View Related Messages\" \"False\" \"Us" +
-                    "er\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                    "er\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 388
  testRunner.When("Admin set system message permissions for user \"Add Related Message\" \"False\" \"User" +
-                    "\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 389
  testRunner.And("Admin set system message permissions for user \"Can Link with Related Departments " +
-                    "Messages and Below\" \"False\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "Messages and Below\" \"False\" \"User\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -1362,19 +1362,19 @@ this.FeatureBackground();
 #line 438
  testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 439
- testRunner.And("user read connected document reference with subject \"Incoming Message to outside " +
-                    "child department 111\" add 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user read connected document reference with subject \"Incoming Message to Outside " +
+                    "Child Department 111\" add 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 440
- testRunner.And("user select document type as \"\" with subject \"Incoming Message to outside child d" +
+ testRunner.And("user select document type as \"\" with subject \"Incoming Message to Outside Child D" +
                     "epartment 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 441
  testRunner.And("user select document type as \"Outgoing Document\" with subject \"Incoming Message t" +
-                    "o outside child department 111\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "o Outside Child Department 111\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 442
  testRunner.And("user select document type as \"Internal Document\" with subject \"Incoming Message t" +
-                    "o outside child department 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    "o Outside Child Department 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 443
- testRunner.Then("the connected document with subject \"Incoming Message to outside child department" +
+ testRunner.Then("the connected document with subject \"Incoming Message to Outside Child Department" +
                     " 111\" should appear in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -59,6 +59,9 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[3]/div[1]/div[10]/a/label")]
         private IWebElement _announcementGroup;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-c80eed64-3638-4901-99ed-491e98d32411']/div[1]")]
+        private IWebElement _expandFolder111;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[3]/div[2]/a/label")]
         private IWebElement _lookUps;
 
@@ -339,6 +342,7 @@ namespace T2automation.Pages.Comm
             }
             if (!GetAttribute(driver, _departmentInboxMenuDiv, "class").Contains("active"))
             {
+                ClickForNavigation(driver, _expandFolder111);
                 ClickForNavigation(driver, _automation111Dropdown);
             }
             ClickForNavigation(driver, _automation222DeptInbox);

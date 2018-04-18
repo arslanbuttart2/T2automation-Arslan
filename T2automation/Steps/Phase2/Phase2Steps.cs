@@ -41,7 +41,7 @@ namespace T2automation.Steps.Phase2
                 inboxPage.clickOnConnectedDocument(driver, subject);
                 Thread.Sleep(1000);
                 //Clicks are not working because xpath could not be define differently!!!
-                inboxPage.ActionsNewWindowPrint();
+                //inboxPage.ActionsNewWindowPrint();
             }
         }
 

@@ -3323,6 +3323,7 @@ private IList<IWebElement> _daysOnCal() {
         public void SearchConnectedDocWithRefrenceNo(string refno, string docType = "", string deliveryType = "")
         {
             Click(_driver, _connectedDocTab);
+            _ifCancelBtn();
             Click(_driver, _addNewBtn);
             WaitTillProcessing();
             if (docType != "")

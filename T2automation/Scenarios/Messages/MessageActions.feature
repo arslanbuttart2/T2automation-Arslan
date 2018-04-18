@@ -280,9 +280,9 @@ Scenario:34 Message - add connected document - system level - with permission - 
 	And Admin set system message permissions for user "Can Link with Related Departments Messages and Below" "False" "User"
 	And User logs in "UserName" "Password"
 	And user go to my messages Internal Document
-	And user select connected document with subject "Incoming Message to outside child department 111"
+	And user select connected document with subject "Incoming Message to Outside Child Department 111"
 	And user clicks on save draft
-	Then the connected document with subject "Incoming Message to outside child department 111" should appear in the list
+	Then the connected document with subject "Incoming Message to Outside Child Department 111" should appear in the list
 	When user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Messages" "False" "User"
@@ -340,8 +340,8 @@ Scenario:37 Message - add connected document - system level - Department mail
 	And Admin set department message permissions for user "Can Link with Related Departments Messages and Below" "False" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
 	And user go to dept messages Internal Document 
-	And user select connected document with subject "Incoming Message to outside child department 111"
-	Then the connected document with subject "Incoming Message to outside child department 111" should appear in the list
+	And user select connected document with subject "Incoming Message to Outside Child Department 111"
+	Then the connected document with subject "Incoming Message to Outside Child Department 111" should appear in the list
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set department message permissions for user "View Related Messages" "False" "User" "internalDepartmentSameDep"
@@ -359,7 +359,7 @@ Scenario:38 Message - add connected document - Related departments only - Depart
 	And user go to dept messages Internal Document 
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	Then the connected document with subject "Internal Message to Internal Department 111" should appear in the list
-	Then verify that connected document with subject "Incoming Message to child department 111" should not appear in while adding new
+	Then verify that connected document with subject "Incoming Message to Child Department 111" should not appear in while adding new
 	Then verify that connected document with subject "Incoming Message to outside internal department 111" should not appear in while adding new
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
@@ -379,14 +379,14 @@ Scenario:39 Message - add connected document - Related departments and below  - 
 	And user go to my messages Outgoing Document
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	Then the connected document with subject "Internal Message to Internal Department 111" should appear in the list
-	When user select connected document with subject "Incoming Message to child department 111"
-	Then the connected document with subject "Incoming Message to child department 111" should appear in the list
+	When user select connected document with subject "Incoming Message to Child Department 111"
+	Then the connected document with subject "Incoming Message to Child Department 111" should appear in the list
 	Then verify that connected document with subject "Incoming Message to outside internal department 111" should not appear in while adding new
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
-	When Admin set system message permissions for user "View Related Messages" "False" "User" "internalDepartmentSameDep"
-	When Admin set system message permissions for user "Add Related Message" "False" "User" "internalDepartmentSameDep"
-	And Admin set system message permissions for user "Can Link with Related Departments Messages and Below" "False" "User" "internalDepartmentSameDep"
+	When Admin set system message permissions for user "View Related Messages" "False" "User"
+	When Admin set system message permissions for user "Add Related Message" "False" "User"
+	And Admin set system message permissions for user "Can Link with Related Departments Messages and Below" "False" "User"
 
 Scenario:40 Message - delete connected document from new message - Personal mail
 	When Admin set system message permissions for user "Create Internal Message" "True" "User"
@@ -436,11 +436,11 @@ Scenario:44 Message - add connected document - search - Personal mail
 	And Admin set department message permissions for user "Can Link it with Whole System Messages" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password" 
 	And user go to dept messages Incoming Document 
-	And user read connected document reference with subject "Incoming Message to outside child department 111" add 100
-	And user select document type as "" with subject "Incoming Message to outside child department 111" "True"
-	And user select document type as "Outgoing Document" with subject "Incoming Message to outside child department 111" "False"
-	And user select document type as "Internal Document" with subject "Incoming Message to outside child department 111" "True"
-	Then the connected document with subject "Incoming Message to outside child department 111" should appear in the list
+	And user read connected document reference with subject "Incoming Message to Outside Child Department 111" add 100
+	And user select document type as "" with subject "Incoming Message to Outside Child Department 111" "True"
+	And user select document type as "Outgoing Document" with subject "Incoming Message to Outside Child Department 111" "False"
+	And user select document type as "Internal Document" with subject "Incoming Message to Outside Child Department 111" "True"
+	Then the connected document with subject "Incoming Message to Outside Child Department 111" should appear in the list
 
 Scenario:45 Message - add connected document - search - Department mail
 	When Admin set department message permissions for user "Create Outing Message" "True" "User" "internalDepartmentSameDep"
