@@ -847,8 +847,7 @@ namespace T2automation.Steps.Messages
             inboxPage.NavigateToMyMessageInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
             inboxPage.WaitTillProcessing();
-            inboxPage.ClickToButton(driver);
-            inboxPage.selectToFromPopupOutgoing("Administrative Communication Department");
+            inboxPage.checkForOutgoingAndSetIt(driver,"Administrative Communication Department");
         }
 
         [When(@"select delivery type ""(.*)""")]
@@ -1312,8 +1311,7 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
             inboxPage.WaitTillProcessing();
-            inboxPage.ClickToButton(driver);
-            inboxPage.selectToFromPopupOutgoing("Administrative Communication Department");
+            inboxPage.checkForOutgoingAndSetIt(driver, "Administrative Communication Department");
         }
 
         [When(@"user go to dept messages Outgoing Document")]
@@ -1325,8 +1323,7 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             inboxPage.CheckButtonClickable(driver, "Outgoing Document");
             inboxPage.WaitTillProcessing();
-            inboxPage.ClickToButton(driver);
-            inboxPage.selectToFromPopupOutgoing("Administrative Communication Department");
+            inboxPage.checkForOutgoingAndSetIt(driver, "Administrative Communication Department");
         }
 
         [Then(@"verify that connected document with subject ""(.*)"" should not appear in while adding new")]

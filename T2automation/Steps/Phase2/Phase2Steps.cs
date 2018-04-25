@@ -267,8 +267,7 @@ namespace T2automation.Steps.Phase2
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             inboxPage.WaitTillProcessing();
-            inboxPage.ClickToButton(driver);
-            inboxPage.selectToFromPopupOutgoing(toSelect);
+            inboxPage.checkForOutgoingAndSetIt(driver,toSelect);
         }
 
 

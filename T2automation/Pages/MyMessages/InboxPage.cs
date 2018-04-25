@@ -1706,6 +1706,21 @@ private IList<IWebElement> _daysOnCal() {
 
         }
 
+        public void checkForOutgoingAndSetIt(IWebDriver driver, string toSelect)
+        {
+            var elm = driver.FindElement(By.XPath("//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul"));
+            string st = GetText(driver, elm);
+            if (st.Equals(""))
+            {
+                ClickToButton(driver);
+                selectToFromPopupOutgoing(toSelect);
+            }
+            else
+            {
+                Console.WriteLine("To's Value is already set!!!");
+            }
+        }
+
         public void selectToFromPopupOutgoing(string toSelect)
         {
             for (int i = 0; i < _selectingToFromPopup.Count; i++)
@@ -2906,8 +2921,7 @@ private IList<IWebElement> _daysOnCal() {
             NavigateToMyMessageInbox(_driver);
             CheckButtonClickable(_driver, "Outgoing Document");
             WaitTillProcessing();
-            ClickToButton(_driver);
-            selectToFromPopupOutgoing("Administrative Communication Department");
+            checkForOutgoingAndSetIt(_driver, "Administrative Communication Department");
             SelectExternalDeptTo(deptName, deptCode, type);
             SetProperties(deliveryType);
             Click(_driver, _contentTab);
