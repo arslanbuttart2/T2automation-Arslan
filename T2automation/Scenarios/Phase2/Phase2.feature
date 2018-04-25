@@ -3,7 +3,7 @@
 Background: 
 	Given Admin logged in "AdminUserName" "AdminPassword"
 
-Scenario:ph2_1 Message Actions
+Scenario:ph2_001 Message Actions
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user compose mail "Incoming message for various actions 111" "Incoming message for various actions 111"
@@ -83,7 +83,7 @@ Scenario:ph2_1 Message Actions
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for various actions 333"
 	
-Scenario:ph2_2 Folders - 1 - inbox
+Scenario:ph2_002 Folders - 1 - inbox
 	When user open department "internalDepartmentSameDep" inbox and create new folder "Automation 111"
 	And right click on "Automation 111" and create "Automation 222" folder
 	When user go to my messages Incomming Document
@@ -91,7 +91,7 @@ Scenario:ph2_2 Folders - 1 - inbox
 	And user compose mail "Internal message folders 111" "Internal message folders 111"
 	And user set properties "" "" "" "+123456789" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
-	Then user send the email and save refrence no from popup "my" "Internal message folders 111" ""
+	Then user send the email and save refrence no from popup "my" "Internal message folders 111" "True"
 	#######As notification on sending email is not appearing so saving refernce number from popup
 	#######And user send the email and click on Cancel button
 	#######Then save reference number from "my" in txt with subject "Internal message folders 111"
@@ -107,11 +107,11 @@ Scenario:ph2_2 Folders - 1 - inbox
 	When user open "dept" archive message with suject "Internal message folders 111" and click on button "Rollback"
 	And user open "Automation 222" in department "internalDepartmentSameDep" mail with subject "Internal message folders 111" ""
 	And right click on "Automation 222" folder and delete it
-	# dont need of step 41 and 42 as it is already opened
+	#dont need of step 41 and 42 as it is already opened
 	And user move mail to new folder "Inbox"
 	When user opens department "internalDepartmentSameDep" mail with subject "Internal message folders 111" ""
 	And right click on "Automation 222" folder and delete it
-	
+
 Scenario:ph2_3 Department FavGroups - 1
 	
 	

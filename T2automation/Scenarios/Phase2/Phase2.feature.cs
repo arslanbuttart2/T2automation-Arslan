@@ -72,10 +72,10 @@ namespace T2automation.Scenarios.Phase2
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph2_1 Message Actions")]
-        public virtual void Ph2_1MessageActions()
+        [NUnit.Framework.DescriptionAttribute("ph2_001 Message Actions")]
+        public virtual void Ph2_001MessageActions()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_1 Message Actions", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_001 Message Actions", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -259,10 +259,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph2_2 Folders - 1 - inbox")]
-        public virtual void Ph2_2Folders_1_Inbox()
+        [NUnit.Framework.DescriptionAttribute("ph2_002 Folders - 1 - inbox")]
+        public virtual void Ph2_002Folders_1_Inbox()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_2 Folders - 1 - inbox", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_002 Folders - 1 - inbox", ((string[])(null)));
 #line 86
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -285,7 +285,7 @@ this.FeatureBackground();
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 94
  testRunner.Then("user send the email and save refrence no from popup \"my\" \"Internal message folder" +
-                    "s 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "s 111\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 98
  testRunner.When("user opens department \"internalDepartmentSameDep\" mail with subject \"Internal mes" +
                     "sage folders 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

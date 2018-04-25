@@ -3,7 +3,7 @@
 Background: 
 	Given Admin logged in "AdminUserName" "AdminPassword"
 
-Scenario:ph1_1 Message Actions - Deleting Message
+Scenario:ph1_001 Message Actions - Deleting Message
 	When Admin set system message permissions for user "Delete Messages from Inbox" "True" "User"
 	And Admin set system message permissions for user "Rollback Messages from Deleted Items" "True" "User"
 	And Admin set department message permissions for user "Delete Messages from Inbox" "True" "User" "internalDepartmentSameDep"
@@ -55,7 +55,7 @@ Scenario:ph1_1 Message Actions - Deleting Message
 	And Admin set department message permissions for user "Delete Messages from Inbox" "False" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDep"
 
-Scenario:ph1_2 Message Actions - Archiving Message
+Scenario:ph1_002 Message Actions - Archiving Message
 	When Admin set system message permissions for user "Archive Messages" "True" "User"
 	And Admin set system message permissions for user "Rollback from Archive" "True" "User"
 	And Admin set department message permissions for user "Archive Messages" "True" "User" "internalDepartmentSameDep"
@@ -137,10 +137,10 @@ Scenario:ph1_2 Message Actions - Archiving Message
 	And Admin set system message permissions for user "Rollback from Archive" "False" "User"
 	And Admin set department message permissions for user "Archive Messages" "False" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "internalDepartmentSameDep"
-	And Admin set department message permissions for user "Archive Messages" "False" "User" "CommDepSameDep"
-	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "CommDepSameDep"
+	And Admin set department message permissions for user "Archive Messages" "False" "User" "CommDepSameDepEn"
+	And Admin set department message permissions for user "Rollback from Archive" "False" "User" "CommDepSameDepEn"
 
-Scenario:ph1_3 Exporting Message -1
+Scenario:ph1_003 Exporting Message -1
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
@@ -190,7 +190,9 @@ Scenario:ph1_3 Exporting Message -1
 	And user click on close button
 	When user open dept "qaDept" Outbox mail with subject"Reply : incoming message for indirect export 666"
 
-Scenario:ph1_4 Exporting Message - 2
+Scenario:ph1_004 Exporting Message - 2
+	When Admin set system message permissions for user "Create Internal Message" "True" "Admin"
+	And Admin logged in "AdminUserName" "AdminPassword"
 	When user go to dept messages Internal Document
 	And search "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for direct export 222" "Internal message for direct export 222"
@@ -235,7 +237,7 @@ Scenario:ph1_4 Exporting Message - 2
 	Then click on "Search" button
 	Then Check the advance searched results with subject "Internal message for direct export 888" 
 
-Scenario:ph1_5 Exporting Message - 3
+Scenario:ph1_005 Exporting Message - 3
 	#When user open outgoing The "To" field is empty by default! and no instruction are given to select the option in excel file
 	When user go to my messages Outgoing Document
 	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
@@ -293,7 +295,7 @@ Scenario:ph1_5 Exporting Message - 3
 	#####And user click on undo export button
 
 
-Scenario:ph1_6 Exporting Message - 4
+Scenario:ph1_006 Exporting Message - 4
 	When user go to dept messages Outgoing Document  
 	And select the external department "ExternalEntitySameCountry"
 	And select the external cc department "ExternalEntitySameCountry2"
@@ -327,7 +329,7 @@ Scenario:ph1_6 Exporting Message - 4
 	When user go to dept "CommDepSameDep" Exported
 	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
 	
-Scenario:ph1_7 Retrieve  Message - 1
+Scenario:ph1_007 Retrieve  Message - 1
 	When user go to my messages Internal Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
@@ -346,7 +348,7 @@ Scenario:ph1_7 Retrieve  Message - 1
 	When user opens outbox email with subject "Internal message for Retreiving 111"
 	And click on "Retrieve" button
 
-Scenario:ph1_8 Retrieve  Message - 2
+Scenario:ph1_008 Retrieve  Message - 2
 	When Admin set department message permissions for user "Retreive Message" "True" "Admin" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Retreive Message after Reading" "False" "Admin" "internalDepartmentSameDep"
 	When Admin logged in "AdminUserName" "AdminPassword"
@@ -376,7 +378,7 @@ Scenario:ph1_8 Retrieve  Message - 2
 	Then user search and open mail in dept "qaDept" with subject "Internal message for Retreiving 222"
 	And click on "Retrieve" button
 		
-Scenario:ph1_9 Retrieve  Message - 3	
+Scenario:ph1_009 Retrieve  Message - 3	
 	When user go to "my" encrypted message 
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
@@ -400,7 +402,7 @@ Scenario:ph1_9 Retrieve  Message - 3
 	When user opens outbox email with subject "Encrypted message for Reteiving 333"
 	And user click on retrive button
 
-Scenario:ph1_10 Retrieve  Message - 4
+Scenario:ph1_010 Retrieve  Message - 4
 	When user go to dept messages Incoming Document
 	And search "AdminUserName" "UserMainDepartmentAr" "Users"
 	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
@@ -416,7 +418,6 @@ Scenario:ph1_10 Retrieve  Message - 4
 	When user open "my" archive message with suject "Incoming message for Reteiving 444" and click on button "Rollback"
 	Then mail with subject "Incoming message for Reteiving 444" should not appear in "my" archive message
 	When user open dept "qaDept" Outbox mail with subject"Incoming message for Reteiving 444"
-	####following step is not working
 	And user click on retrive button
 	When user opens inbox email with subject "Incoming message for Reteiving 444"
 	And click on export button
@@ -427,10 +428,9 @@ Scenario:ph1_10 Retrieve  Message - 4
 	And user send the email and click on Cancel button
 	Then save reference number from "dept" in txt with subject "Incoming message for Reteiving 444"
 	When user open dept "qaDept" Outbox mail with subject"Incoming message for Reteiving 444"
-	####following step is not working
 	And user click on retrive button
 
-Scenario:ph1_11 Print message - 1
+Scenario:ph1_011 Print message - 1
 	When user go to dept messages Internal Document
 	And search "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for print 222" "Internal message for print 222"
@@ -451,7 +451,7 @@ Scenario:ph1_11 Print message - 1
 	And user select To for outgoing "Administrative Communication Department"
 	And user compose mail "Export: Internal message for print 222" "Export: Internal message for print 222"
 	And select the external department "ExternalEntitySameCountry"
-	And user set properties "" "" "" "" "" "" "indirectExport"
+	And user set properties "" "" "" "" "" "" "Indirect Export Method"
 	And user attach attachments 1 "1.jpg" and already Had Some Attachment "1"
 	And user select all files in attachment "2"
 	And click on "Print All,Save as PDF,dept,Internal message for print 222,Print All Attachments-On Creating-" button
@@ -472,7 +472,8 @@ Scenario:ph1_11 Print message - 1
 	When user go to dept "CommDepSameDep" messages Unexported folder
 	Then user search and select mail in dept "CommDepSameDep" with subject "Export: Internal message for print 222" 
 	And click on "Follow-up Button" button and select "Normal View" "Formal View" ""
-	And click on "Actions And Movements" button and select "Print this page,Save as PDF,my,Export: Internal message for print 222,Print Action Page-Unexported Out-" "Print All,Save as PDF,my,Export: Internal message for print 222,Print All-Unexported Out-" "Print Flow,Save as PDF,my,Export: Internal message for print 222,Print Flow-Unexported Out-"
+	###This step is updated!!!
+	###And click on "Actions And Movements" button and select "Print this page,Save as PDF,my,Export: Internal message for print 222,Print Action Page-Unexported Out-" "Print All,Save as PDF,my,Export: Internal message for print 222,Print All-Unexported Out-" "Print Flow,Save as PDF,my,Export: Internal message for print 222,Print Flow-Unexported Out-"
 	And click on "Back" button
 	######following one line is added because back button is not working correctly!
 	When user go to dept "CommDepSameDep" messages Unexported folder
@@ -496,7 +497,7 @@ Scenario:ph1_11 Print message - 1
 	And user click on outbox "Print Document for creator,Save as PDF,my,Export: Internal message for print 222,Print Delivery Int-Exported -In-" button ""
 	And click on "Print Sticker,Save As PDF,my,Export: Internal message for print 222,Print Sticker-Exported-In-" button
 
-Scenario:ph1_12 Print message - 2
+Scenario:ph1_012 Print message - 2
 	When user go to my messages Incomming Document
 	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
@@ -540,7 +541,7 @@ Scenario:ph1_12 Print message - 2
 	########### In SN 50 to SN 55 not implemented as expected result is not visible aganist Outgoing message for printing 111
 	###When user opens root department "CommDepSameDep" mail with subject "Outgoing message for printing 111"
 
-#Scenario:ph1_13 Message Actions
+#Scenario:ph1_013 Message Actions
 #	When user go to my messages Incomming Document
 #	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
 #	And user compose mail "Incoming message for various actions 111" "Incoming message for various actions 111"

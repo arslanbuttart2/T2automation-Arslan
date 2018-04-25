@@ -95,7 +95,7 @@ namespace T2automation.Pages.MyMessages
             _driver = driver;
             PageFactory.InitElements(_driver, this);
         }
-        
+
         public void firstSearchFolderWithRefNo(string refno)
         {
             Click(_driver, _outboxPageEraseButton);
@@ -139,7 +139,7 @@ namespace T2automation.Pages.MyMessages
                 continue;
             }
         }
-        
+
         public bool OpenMailSpecialForTxtFile(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
         {
             Thread.Sleep(4000);
@@ -147,7 +147,7 @@ namespace T2automation.Pages.MyMessages
 
             Click(_driver, _outboxPageEraseButton);
             WaitTillMailsGetLoad();
-           
+
             int searchResult = _subjectList.Count();
 
             if (searchResult >= 1 && withSubject == true)
@@ -274,7 +274,7 @@ namespace T2automation.Pages.MyMessages
         }
 
 
-        public bool userClickUpperTabBtn(IWebDriver driver,string btnName)
+        public bool userClickUpperTabBtn(IWebDriver driver, string btnName)
         {
             try
             {
@@ -309,11 +309,11 @@ namespace T2automation.Pages.MyMessages
             }
             return false;
         }
-        
-        public string readRefNoFromMail(IWebDriver driver,string subject)
+
+        public string readRefNoFromMail(IWebDriver driver, string subject)
         {
             WaitForElement(driver, _referenceNo);
-            if(GetText(driver, _subject).Equals(subject))
+            if (GetText(driver, _subject).Equals(subject))
             {
                 return GetText(driver, _referenceNo);
             }
@@ -333,7 +333,7 @@ namespace T2automation.Pages.MyMessages
             Thread.Sleep(2000);
             return GetText(driver, _subject).Equals(subject);
         }
-        
+
         public bool ValidateContentBody(IWebDriver driver, string contentBody)
         {
             Thread.Sleep(2000);
@@ -349,19 +349,19 @@ namespace T2automation.Pages.MyMessages
             {
                 for (int index = 0; index < attachmentNo; index++)
                 {
-                   if (!attachment.Contains(GetAttribute(driver, _attachments.ElementAt(index), "title")))
-                   {
+                    if (!attachment.Contains(GetAttribute(driver, _attachments.ElementAt(index), "title")))
+                    {
                         return false;
-                   }
+                    }
                 }
                 return true;
             }
             return false;
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, int attachmentNo = 1, string attachment = null)
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, int attachmentNo = 1, string attachment = null, string refno = "")
         {
-            if (OpenMailSpecial(driver, subject))
+            if (OpenMailSpecial(driver, refno, withSubject: false))
             {
                 Thread.Sleep(3000);
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body) && ValidateAttachments(driver, attachmentNo, attachment));
@@ -369,9 +369,9 @@ namespace T2automation.Pages.MyMessages
             return false;
         }
 
-        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass,string refno,bool subjectOrRef=false)
+        public bool ValidateMail(IWebDriver driver, string to, string subject, string body, string listSubject, string encryptPass, string refno, bool subjectOrRef = false)
         {
-            if (OpenMailSpecial(driver, refno, encryptPass,subjectOrRef))
+            if (OpenMailSpecial(driver, refno, encryptPass, subjectOrRef))
             {
                 Thread.Sleep(3000);
                 return (ValidateTo(driver, to) && ValidateSubject(driver, subject) && ValidateContentBody(driver, body));

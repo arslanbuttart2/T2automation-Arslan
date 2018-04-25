@@ -72,11 +72,11 @@ namespace T2automation.Scenarios.Messages
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 message - Add attachement to message - 1 file - personal mail")]
+        [NUnit.Framework.DescriptionAttribute("001 message - Add attachement to message - 1 file - personal mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with attachement 111", "Message with attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "1", "1.jpg", null)]
-        public virtual void _01Message_AddAttachementToMessage_1File_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
+        public virtual void _001Message_AddAttachementToMessage_1File_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 message - Add attachement to message - 1 file - personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("001 message - Add attachement to message - 1 file - personal mail", exampleTags);
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -85,19 +85,19 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an internal message with attachment to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"" +
                         "{5}\" \"{6}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
  testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02 message - Add attachement to message - 1 file - department mail")]
+        [NUnit.Framework.DescriptionAttribute("002 message - Add attachement to message - 1 file - department mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with attachement 111", "Message with attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "1", "1.jpg", "internalDepartmentSameDepAr", null)]
-        public virtual void _02Message_AddAttachementToMessage_1File_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
+        public virtual void _002Message_AddAttachementToMessage_1File_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 message - Add attachement to message - 1 file - department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("002 message - Add attachement to message - 1 file - department mail", exampleTags);
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -106,20 +106,20 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an departmental internal message with attachment to \"{0}\" \"{1}\" \"{2}\" " +
                         "\"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 18
- testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03 Message- Add attachement (multiple files)- personal mail")]
+        [NUnit.Framework.DescriptionAttribute("003 Message- Add attachement (multiple files)- personal mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "10", "1.jpg", null)]
-        public virtual void _03Message_AddAttachementMultipleFiles_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
+        public virtual void _003Message_AddAttachementMultipleFiles_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 Message- Add attachement (multiple files)- personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("003 Message- Add attachement (multiple files)- personal mail", exampleTags);
 #line 23
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -128,19 +128,19 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an internal message with attachment to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"" +
                         "{5}\" \"{6}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
- testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 26
  testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("04 Message- Add attachement (multiple files)- Department mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with multiple attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "10", "1.jpg", "internalDepartmentSameDepAr", null)]
-        public virtual void _04Message_AddAttachementMultipleFiles_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("004 Message- Add attachement (multiple files)- Department mail")]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with multiple attachement 111", "Message with attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "10", "1.jpg", "internalDepartmentSameDep", null)]
+        public virtual void _004Message_AddAttachementMultipleFiles_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 Message- Add attachement (multiple files)- Department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("004 Message- Add attachement (multiple files)- Department mail", exampleTags);
 #line 31
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -149,20 +149,20 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an departmental internal message with attachment to \"{0}\" \"{1}\" \"{2}\" " +
                         "\"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 34
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 34
- testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("05 Message- Add attachement (multiple file types)- personal mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple type attachement 111", "Message with multiple type attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", null)]
-        public virtual void _05Message_AddAttachementMultipleFileTypes_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("005 Message- Add attachement (multiple file types)- personal mail")]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "AdminUserName", "Message with multiple type attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", null)]
+        public virtual void _005Message_AddAttachementMultipleFileTypes_PersonalMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05 Message- Add attachement (multiple file types)- personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("005 Message- Add attachement (multiple file types)- personal mail", exampleTags);
 #line 39
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -171,19 +171,19 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an internal message with attachment to \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"" +
                         "{5}\" \"{6}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 41
- testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
  testRunner.Then(string.Format("save reference number from \"my\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+ testRunner.Then(string.Format("mail should appear in my message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("06 Message- Add attachement (multiple file types)- department mail")]
-        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with multiple type attachement 111", "Message with multiple type attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", "internalDepartmentSameDepAr", null)]
-        public virtual void _06Message_AddAttachementMultipleFileTypes_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("006 Message- Add attachement (multiple file types)- department mail")]
+        [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "Message with multiple type attachement 111", "Message with multiple attachement 111", "UserSameDepartment", "PasswordUserSameDepartment", "3", "1.png,1.mp3,1.avi,1.pdf,1.xlsx", "internalDepartmentSameDepAr", null)]
+        public virtual void _006Message_AddAttachementMultipleFileTypes_DepartmentMail(string level, string receiverType, string to, string subject, string content, string userName, string password, string multipleAttachementNo, string multipleAttachmentType, string dept, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("06 Message- Add attachement (multiple file types)- department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("006 Message- Add attachement (multiple file types)- department mail", exampleTags);
 #line 47
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -192,20 +192,20 @@ this.FeatureBackground();
  testRunner.When(string.Format("user sends an departmental internal message with attachment to \"{0}\" \"{1}\" \"{2}\" " +
                         "\"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\"", level, receiverType, to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 49
+ testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
  testRunner.Then(string.Format("mail should appear in department message out box \"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{" +
                         "5}\"", to, subject, content, multipleAttachementNo, multipleAttachmentType, dept), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 50
- testRunner.Then(string.Format("save reference number from \"dept\" in txt with subject \"{0}\"", subject), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("07 Message- Delete attachement from message - personal mail")]
+        [NUnit.Framework.DescriptionAttribute("007 Message- Delete attachement from message - personal mail")]
         [NUnit.Framework.TestCaseAttribute("1.jpg", "1", "1", "1.jpg", null)]
-        public virtual void _07Message_DeleteAttachementFromMessage_PersonalMail(string multipleAttachmentType, string multipleAttachementNo, string deleteAttachmentNo, string deleteAttachmentTypes, string[] exampleTags)
+        public virtual void _007Message_DeleteAttachementFromMessage_PersonalMail(string multipleAttachmentType, string multipleAttachementNo, string deleteAttachmentNo, string deleteAttachmentTypes, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("07 Message- Delete attachement from message - personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("007 Message- Delete attachement from message - personal mail", exampleTags);
 #line 55
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -221,11 +221,11 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("08 Message- Delete multiple attachements from message - department mail")]
+        [NUnit.Framework.DescriptionAttribute("008 Message- Delete multiple attachements from message - department mail")]
         [NUnit.Framework.TestCaseAttribute("1.jpg", "3", "2", "1.jpg", null)]
-        public virtual void _08Message_DeleteMultipleAttachementsFromMessage_DepartmentMail(string multipleAttachmentType, string multipleAttachementNo, string deleteAttachmentNo, string deleteAttachmentTypes, string[] exampleTags)
+        public virtual void _008Message_DeleteMultipleAttachementsFromMessage_DepartmentMail(string multipleAttachmentType, string multipleAttachementNo, string deleteAttachmentNo, string deleteAttachmentTypes, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("08 Message- Delete multiple attachements from message - department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("008 Message- Delete multiple attachements from message - department mail", exampleTags);
 #line 63
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -241,11 +241,11 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("09 Download attachement. - personal mail")]
+        [NUnit.Framework.DescriptionAttribute("009 Download attachement. - personal mail")]
         [NUnit.Framework.TestCaseAttribute("Message with multiple attachement 111", "1.jpg", "1", null)]
-        public virtual void _09DownloadAttachement__PersonalMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
+        public virtual void _009DownloadAttachement__PersonalMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("09 Download attachement. - personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("009 Download attachement. - personal mail", exampleTags);
 #line 71
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -259,11 +259,11 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("10 Download attachement - department mail")]
+        [NUnit.Framework.DescriptionAttribute("010 Download attachement - department mail")]
         [NUnit.Framework.TestCaseAttribute("Message with multiple attachement 111", "1.jpg", "1", null)]
-        public virtual void _10DownloadAttachement_DepartmentMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
+        public virtual void _010DownloadAttachement_DepartmentMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10 Download attachement - department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("010 Download attachement - department mail", exampleTags);
 #line 79
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -277,11 +277,11 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("11 download all attachment - personal mail")]
+        [NUnit.Framework.DescriptionAttribute("011 download all attachment - personal mail")]
         [NUnit.Framework.TestCaseAttribute("Message with multiple attachement 111", "All", "1", null)]
-        public virtual void _11DownloadAllAttachment_PersonalMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
+        public virtual void _011DownloadAllAttachment_PersonalMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11 download all attachment - personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("011 download all attachment - personal mail", exampleTags);
 #line 87
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -295,11 +295,11 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("12 download all attachment - department mail")]
+        [NUnit.Framework.DescriptionAttribute("012 download all attachment - department mail")]
         [NUnit.Framework.TestCaseAttribute("Message with multiple attachement 111", "All", "1", null)]
-        public virtual void _12DownloadAllAttachment_DepartmentMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
+        public virtual void _012DownloadAllAttachment_DepartmentMail(string subject, string downloadFileName, string downloadFileNo, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12 download all attachment - department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("012 download all attachment - department mail", exampleTags);
 #line 95
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -313,13 +313,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("19 message -  attachement - security level with optional attachment - with attach" +
-            "ement -  personal mail")]
+        [NUnit.Framework.DescriptionAttribute("019 message -  attachement - security level with optional attachment - with attac" +
+            "hement -  personal mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "UserSameDepartment", "SecurityLevelOptionalAttach", "SecurityLevelOptionalAttacht", "1", "1.jpg", "SecurityLevelOptionalAttach", null)]
-        public virtual void _19Message_Attachement_SecurityLevelWithOptionalAttachment_WithAttachement_PersonalMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string[] exampleTags)
+        public virtual void _019Message_Attachement_SecurityLevelWithOptionalAttachment_WithAttachement_PersonalMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("19 message -  attachement - security level with optional attachment - with attach" +
-                    "ement -  personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("019 message -  attachement - security level with optional attachment - with attac" +
+                    "hement -  personal mail", exampleTags);
 #line 103
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -334,13 +334,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("20 message -  attachement - security level with optional attachment adding -  wit" +
-            "hout attachement -  department mail")]
+        [NUnit.Framework.DescriptionAttribute("020 message -  attachement - security level with optional attachment adding -  wi" +
+            "thout attachement -  department mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "SecurityLevelOptionalAttach", "SecurityLevelOptionalAttacht", "1", "1.jpg", "SecurityLevelOptionalAttach", "internalDepartmentSameDepAr", null)]
-        public virtual void _20Message_Attachement_SecurityLevelWithOptionalAttachmentAdding_WithoutAttachement_DepartmentMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string dept, string[] exampleTags)
+        public virtual void _020Message_Attachement_SecurityLevelWithOptionalAttachmentAdding_WithoutAttachement_DepartmentMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string dept, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("20 message -  attachement - security level with optional attachment adding -  wit" +
-                    "hout attachement -  department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("020 message -  attachement - security level with optional attachment adding -  wi" +
+                    "thout attachement -  department mail", exampleTags);
 #line 110
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -355,13 +355,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("21 message - attachment - security level with attachment forbidden - personal mai" +
-            "l")]
+        [NUnit.Framework.DescriptionAttribute("021 message - attachment - security level with attachment forbidden - personal ma" +
+            "il")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "UserSameDepartment", "SecurityLevelForbidAttach", "SecurityLevelForbidAttach", "1", "1.jpg", "SecurityLevelForbidAttach", null)]
-        public virtual void _21Message_Attachment_SecurityLevelWithAttachmentForbidden_PersonalMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string[] exampleTags)
+        public virtual void _021Message_Attachment_SecurityLevelWithAttachmentForbidden_PersonalMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21 message - attachment - security level with attachment forbidden - personal mai" +
-                    "l", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("021 message - attachment - security level with attachment forbidden - personal ma" +
+                    "il", exampleTags);
 #line 117
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -376,13 +376,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("22 message - attachment - security level with attachment forbidden - department m" +
-            "ail")]
+        [NUnit.Framework.DescriptionAttribute("022 message - attachment - security level with attachment forbidden - department " +
+            "mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "SecurityLevelForbidAttach", "SecurityLevelForbidAttach", "1", "1.jpg", "SecurityLevelForbidAttach", "internalDepartmentSameDepAr", null)]
-        public virtual void _22Message_Attachment_SecurityLevelWithAttachmentForbidden_DepartmentMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string dept, string[] exampleTags)
+        public virtual void _022Message_Attachment_SecurityLevelWithAttachmentForbidden_DepartmentMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string dept, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("22 message - attachment - security level with attachment forbidden - department m" +
-                    "ail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("022 message - attachment - security level with attachment forbidden - department " +
+                    "mail", exampleTags);
 #line 124
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -397,13 +397,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("23 message - attachment - security level with attachment required - with attachem" +
-            "ent - personal mail")]
+        [NUnit.Framework.DescriptionAttribute("023 message - attachment - security level with attachment required - with attache" +
+            "ment - personal mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Users", "UserSameDepartment", "SecurityLevelRequiredAttach", "SecurityLevelRequiredAttach", "1", "1.jpg", "SecurityLevelRequiredAttach", null)]
-        public virtual void _23Message_Attachment_SecurityLevelWithAttachmentRequired_WithAttachement_PersonalMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string[] exampleTags)
+        public virtual void _023Message_Attachment_SecurityLevelWithAttachmentRequired_WithAttachement_PersonalMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("23 message - attachment - security level with attachment required - with attachem" +
-                    "ent - personal mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("023 message - attachment - security level with attachment required - with attache" +
+                    "ment - personal mail", exampleTags);
 #line 131
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -418,13 +418,13 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("24 message - attachment - security level with attachment required - without attac" +
-            "hement - department mail")]
+        [NUnit.Framework.DescriptionAttribute("024 message - attachment - security level with attachment required - without atta" +
+            "chement - department mail")]
         [NUnit.Framework.TestCaseAttribute("UserMainDepartmentAr", "Structural Hierarchy", "internalDepartmentSameDepAr", "SecurityLevelRequiredAttach", "SecurityLevelRequiredAttach", "1", "1.jpg", "SecurityLevelRequiredAttach", "internalDepartmentSameDepAr", null)]
-        public virtual void _24Message_Attachment_SecurityLevelWithAttachmentRequired_WithoutAttachement_DepartmentMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string dept, string[] exampleTags)
+        public virtual void _024Message_Attachment_SecurityLevelWithAttachmentRequired_WithoutAttachement_DepartmentMail(string level, string receiverType, string to, string subject, string content, string multipleAttachementNo, string multipleAttachmentType, string securitylevel, string dept, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("24 message - attachment - security level with attachment required - without attac" +
-                    "hement - department mail", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("024 message - attachment - security level with attachment required - without atta" +
+                    "chement - department mail", exampleTags);
 #line 138
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -439,10 +439,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("25 Message - Connected Documents - Test Case 1")]
-        public virtual void _25Message_ConnectedDocuments_TestCase1()
+        [NUnit.Framework.DescriptionAttribute("025 Message - Connected Documents - Test Case 1")]
+        public virtual void _025Message_ConnectedDocuments_TestCase1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("25 Message - Connected Documents - Test Case 1", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("025 Message - Connected Documents - Test Case 1", ((string[])(null)));
 #line 145
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -553,10 +553,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("26 Message - View connected document - with permission -  personal mail")]
-        public virtual void _26Message_ViewConnectedDocument_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("026 Message - View connected document - with permission -  personal mail")]
+        public virtual void _026Message_ViewConnectedDocument_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("26 Message - View connected document - with permission -  personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("026 Message - View connected document - with permission -  personal mail", ((string[])(null)));
 #line 188
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -590,10 +590,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("27 Message - View connected document - without permission -  personal mail")]
-        public virtual void _27Message_ViewConnectedDocument_WithoutPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("027 Message - View connected document - without permission -  personal mail")]
+        public virtual void _027Message_ViewConnectedDocument_WithoutPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("27 Message - View connected document - without permission -  personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("027 Message - View connected document - without permission -  personal mail", ((string[])(null)));
 #line 199
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -613,10 +613,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("28 Message - View connected document - with permission -  department mail")]
-        public virtual void _28Message_ViewConnectedDocument_WithPermission_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("028 Message - View connected document - with permission -  department mail")]
+        public virtual void _028Message_ViewConnectedDocument_WithPermission_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("28 Message - View connected document - with permission -  department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("028 Message - View connected document - with permission -  department mail", ((string[])(null)));
 #line 205
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -656,10 +656,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("29 Message - View connected document - without permission -")]
-        public virtual void _29Message_ViewConnectedDocument_WithoutPermission_()
+        [NUnit.Framework.DescriptionAttribute("029 Message - View connected document - without permission -")]
+        public virtual void _029Message_ViewConnectedDocument_WithoutPermission_()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("29 Message - View connected document - without permission -", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("029 Message - View connected document - without permission -", ((string[])(null)));
 #line 220
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -686,10 +686,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("30 Message - add connected document - with permission -  personal mail")]
-        public virtual void _30Message_AddConnectedDocument_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("030 Message - add connected document - with permission -  personal mail")]
+        public virtual void _030Message_AddConnectedDocument_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("30 Message - add connected document - with permission -  personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("030 Message - add connected document - with permission -  personal mail", ((string[])(null)));
 #line 229
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -726,10 +726,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("31 Message - add/delete connected document - no permission -  personal mail")]
-        public virtual void _31Message_AddDeleteConnectedDocument_NoPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("031 Message - add/delete connected document - no permission -  personal mail")]
+        public virtual void _031Message_AddDeleteConnectedDocument_NoPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("31 Message - add/delete connected document - no permission -  personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("031 Message - add/delete connected document - no permission -  personal mail", ((string[])(null)));
 #line 241
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -762,12 +762,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("32 Message Permission - add connected document - with permission - department mai" +
-            "l")]
-        public virtual void _32MessagePermission_AddConnectedDocument_WithPermission_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("032 Message Permission - add connected document - with permission - department ma" +
+            "il")]
+        public virtual void _032MessagePermission_AddConnectedDocument_WithPermission_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("32 Message Permission - add connected document - with permission - department mai" +
-                    "l", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("032 Message Permission - add connected document - with permission - department ma" +
+                    "il", ((string[])(null)));
 #line 252
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -804,12 +804,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("33 Message Permission - add/delete connected document - no permission - departmen" +
-            "t mail")]
-        public virtual void _33MessagePermission_AddDeleteConnectedDocument_NoPermission_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("033 Message Permission - add/delete connected document - no permission - departme" +
+            "nt mail")]
+        public virtual void _033MessagePermission_AddDeleteConnectedDocument_NoPermission_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("33 Message Permission - add/delete connected document - no permission - departmen" +
-                    "t mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("033 Message Permission - add/delete connected document - no permission - departme" +
+                    "nt mail", ((string[])(null)));
 #line 264
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -842,12 +842,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("34 Message - add connected document - system level - with permission -  personal " +
-            "mail")]
-        public virtual void _34Message_AddConnectedDocument_SystemLevel_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("034 Message - add connected document - system level - with permission -  personal" +
+            " mail")]
+        public virtual void _034Message_AddConnectedDocument_SystemLevel_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("34 Message - add connected document - system level - with permission -  personal " +
-                    "mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("034 Message - add connected document - system level - with permission -  personal" +
+                    " mail", ((string[])(null)));
 #line 275
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -894,12 +894,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("35 Message - add connected document - Related departments only - with permission " +
-            "-  personal mail")]
-        public virtual void _35Message_AddConnectedDocument_RelatedDepartmentsOnly_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("035 Message - add connected document - Related departments only - with permission" +
+            " -  personal mail")]
+        public virtual void _035Message_AddConnectedDocument_RelatedDepartmentsOnly_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("35 Message - add connected document - Related departments only - with permission " +
-                    "-  personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("035 Message - add connected document - Related departments only - with permission" +
+                    " -  personal mail", ((string[])(null)));
 #line 291
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -961,12 +961,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("36 Message - add connected document - Related departments and below - with permis" +
-            "sion -  personal mail")]
-        public virtual void _36Message_AddConnectedDocument_RelatedDepartmentsAndBelow_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("036 Message - add connected document - Related departments and below - with permi" +
+            "ssion -  personal mail")]
+        public virtual void _036Message_AddConnectedDocument_RelatedDepartmentsAndBelow_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("36 Message - add connected document - Related departments and below - with permis" +
-                    "sion -  personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("036 Message - add connected document - Related departments and below - with permi" +
+                    "ssion -  personal mail", ((string[])(null)));
 #line 312
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1031,10 +1031,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("37 Message - add connected document - system level - Department mail")]
-        public virtual void _37Message_AddConnectedDocument_SystemLevel_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("037 Message - add connected document - system level - Department mail")]
+        public virtual void _037Message_AddConnectedDocument_SystemLevel_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("37 Message - add connected document - system level - Department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("037 Message - add connected document - system level - Department mail", ((string[])(null)));
 #line 334
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1085,10 +1085,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("38 Message - add connected document - Related departments only - Department mail")]
-        public virtual void _38Message_AddConnectedDocument_RelatedDepartmentsOnly_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("038 Message - add connected document - Related departments only - Department mail" +
+            "")]
+        public virtual void _038Message_AddConnectedDocument_RelatedDepartmentsOnly_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("38 Message - add connected document - Related departments only - Department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("038 Message - add connected document - Related departments only - Department mail" +
+                    "", ((string[])(null)));
 #line 351
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1145,12 +1147,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("39 Message - add connected document - Related departments and below  - Department" +
-            " mail")]
-        public virtual void _39Message_AddConnectedDocument_RelatedDepartmentsAndBelow_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("039 Message - add connected document - Related departments and below  - Departmen" +
+            "t mail")]
+        public virtual void _039Message_AddConnectedDocument_RelatedDepartmentsAndBelow_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("39 Message - add connected document - Related departments and below  - Department" +
-                    " mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("039 Message - add connected document - Related departments and below  - Departmen" +
+                    "t mail", ((string[])(null)));
 #line 371
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1210,10 +1212,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("40 Message - delete connected document from new message - Personal mail")]
-        public virtual void _40Message_DeleteConnectedDocumentFromNewMessage_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("040 Message - delete connected document from new message - Personal mail")]
+        public virtual void _040Message_DeleteConnectedDocumentFromNewMessage_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("40 Message - delete connected document from new message - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("040 Message - delete connected document from new message - Personal mail", ((string[])(null)));
 #line 391
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1248,12 +1250,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("41 Message - open/add/delete connected document from reply messages - Personal ma" +
-            "il")]
-        public virtual void _41Message_OpenAddDeleteConnectedDocumentFromReplyMessages_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("041 Message - open/add/delete connected document from reply messages - Personal m" +
+            "ail")]
+        public virtual void _041Message_OpenAddDeleteConnectedDocumentFromReplyMessages_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("41 Message - open/add/delete connected document from reply messages - Personal ma" +
-                    "il", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("041 Message - open/add/delete connected document from reply messages - Personal m" +
+                    "ail", ((string[])(null)));
 #line 403
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1305,10 +1307,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("42 Message - delete connected document from new message - department mail")]
-        public virtual void _42Message_DeleteConnectedDocumentFromNewMessage_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("042 Message - delete connected document from new message - department mail")]
+        public virtual void _042Message_DeleteConnectedDocumentFromNewMessage_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("42 Message - delete connected document from new message - department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("042 Message - delete connected document from new message - department mail", ((string[])(null)));
 #line 423
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1340,10 +1342,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("44 Message - add connected document - search - Personal mail")]
-        public virtual void _44Message_AddConnectedDocument_Search_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("044 Message - add connected document - search - Personal mail")]
+        public virtual void _044Message_AddConnectedDocument_Search_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("44 Message - add connected document - search - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("044 Message - add connected document - search - Personal mail", ((string[])(null)));
 #line 433
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1381,10 +1383,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("45 Message - add connected document - search - Department mail")]
-        public virtual void _45Message_AddConnectedDocument_Search_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("045 Message - add connected document - search - Department mail")]
+        public virtual void _045Message_AddConnectedDocument_Search_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("45 Message - add connected document - search - Department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("045 Message - add connected document - search - Department mail", ((string[])(null)));
 #line 445
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1431,10 +1433,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("46 Message - add connected document - Cancel button - Personal mail")]
-        public virtual void _46Message_AddConnectedDocument_CancelButton_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("046 Message - add connected document - Cancel button - Personal mail")]
+        public virtual void _046Message_AddConnectedDocument_CancelButton_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("46 Message - add connected document - Cancel button - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("046 Message - add connected document - Cancel button - Personal mail", ((string[])(null)));
 #line 460
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1471,10 +1473,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("47 Message - add connected document - Cancel button - department mail")]
-        public virtual void _47Message_AddConnectedDocument_CancelButton_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("047 Message - add connected document - Cancel button - department mail")]
+        public virtual void _047Message_AddConnectedDocument_CancelButton_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("47 Message - add connected document - Cancel button - department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("047 Message - add connected document - Cancel button - department mail", ((string[])(null)));
 #line 472
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1505,12 +1507,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("48 Message - connected Person - Permission view and add - with permission - Perso" +
-            "nal mail")]
-        public virtual void _48Message_ConnectedPerson_PermissionViewAndAdd_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("048 Message - connected Person - Permission view and add - with permission - Pers" +
+            "onal mail")]
+        public virtual void _048Message_ConnectedPerson_PermissionViewAndAdd_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("48 Message - connected Person - Permission view and add - with permission - Perso" +
-                    "nal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("048 Message - connected Person - Permission view and add - with permission - Pers" +
+                    "onal mail", ((string[])(null)));
 #line 482
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1563,12 +1565,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("50 Message - connected Person - Permission view only - with permission - Personal" +
-            " mail")]
-        public virtual void _50Message_ConnectedPerson_PermissionViewOnly_WithPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("050 Message - connected Person - Permission view only - with permission - Persona" +
+            "l mail")]
+        public virtual void _050Message_ConnectedPerson_PermissionViewOnly_WithPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("50 Message - connected Person - Permission view only - with permission - Personal" +
-                    " mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("050 Message - connected Person - Permission view only - with permission - Persona" +
+                    "l mail", ((string[])(null)));
 #line 501
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1599,10 +1601,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("52 Message - Adding connected Person - Invalid / incomplete data - Personal mail")]
-        public virtual void _52Message_AddingConnectedPerson_InvalidIncompleteData_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("052 Message - Adding connected Person - Invalid / incomplete data - Personal mail" +
+            "")]
+        public virtual void _052Message_AddingConnectedPerson_InvalidIncompleteData_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("52 Message - Adding connected Person - Invalid / incomplete data - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("052 Message - Adding connected Person - Invalid / incomplete data - Personal mail" +
+                    "", ((string[])(null)));
 #line 514
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1659,12 +1663,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("53 Message - Adding connected Person - Invalid / incomplete data - Department mai" +
-            "l")]
-        public virtual void _53Message_AddingConnectedPerson_InvalidIncompleteData_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("053 Message - Adding connected Person - Invalid / incomplete data - Department ma" +
+            "il")]
+        public virtual void _053Message_AddingConnectedPerson_InvalidIncompleteData_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("53 Message - Adding connected Person - Invalid / incomplete data - Department mai" +
-                    "l", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("053 Message - Adding connected Person - Invalid / incomplete data - Department ma" +
+                    "il", ((string[])(null)));
 #line 534
  this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1734,10 +1738,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("54 Message - connected Person - no permission - Personal mail")]
-        public virtual void _54Message_ConnectedPerson_NoPermission_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("054 Message - connected Person - no permission - Personal mail")]
+        public virtual void _054Message_ConnectedPerson_NoPermission_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("54 Message - connected Person - no permission - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("054 Message - connected Person - no permission - Personal mail", ((string[])(null)));
 #line 560
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1768,10 +1772,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("56 Message - Connected Person - Edit/Delete - Personal mail")]
-        public virtual void _56Message_ConnectedPerson_EditDelete_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("056 Message - Connected Person - Edit/Delete - Personal mail")]
+        public virtual void _056Message_ConnectedPerson_EditDelete_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("56 Message - Connected Person - Edit/Delete - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("056 Message - Connected Person - Edit/Delete - Personal mail", ((string[])(null)));
 #line 571
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1813,10 +1817,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("58 Message - Connected Persons - Add Connected Person - Cancel - Personal mail")]
-        public virtual void _58Message_ConnectedPersons_AddConnectedPerson_Cancel_PersonalMail()
+        [NUnit.Framework.DescriptionAttribute("058 Message - Connected Persons - Add Connected Person - Cancel - Personal mail")]
+        public virtual void _058Message_ConnectedPersons_AddConnectedPerson_Cancel_PersonalMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("58 Message - Connected Persons - Add Connected Person - Cancel - Personal mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("058 Message - Connected Persons - Add Connected Person - Cancel - Personal mail", ((string[])(null)));
 #line 586
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -1853,38 +1857,43 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("59 Message - Connected Persons - Add Connected Person - Cancel - Department mail")]
-        public virtual void _59Message_ConnectedPersons_AddConnectedPerson_Cancel_DepartmentMail()
+        [NUnit.Framework.DescriptionAttribute("059 Message - Connected Persons - Add Connected Person - Cancel - Department mail" +
+            "")]
+        public virtual void _059Message_ConnectedPersons_AddConnectedPerson_Cancel_DepartmentMail()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("59 Message - Connected Persons - Add Connected Person - Cancel - Department mail", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("059 Message - Connected Persons - Add Connected Person - Cancel - Department mail" +
+                    "", ((string[])(null)));
 #line 599
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 600
+ testRunner.When("Admin set department message permissions for user \"Create Incoming Message\" \"True" +
+                    "\" \"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 601
  testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"True\" \"" +
                     "User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 601
+#line 602
  testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"True\" \"Us" +
                     "er\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 602
- testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 603
- testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 604
+ testRunner.And("user go to dept messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 605
  testRunner.When("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"هوية\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 605
+#line 606
  testRunner.Then("verify the connected person with name \"Person Name1\" should not appear in the lis" +
                     "t", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 606
- testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 607
- testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("user deletes the draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 608
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 609
  testRunner.When("Admin set department message permissions for user \"View Related Persons\" \"False\" " +
                     "\"User\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 609
+#line 610
  testRunner.And("Admin set department message permissions for user \"Add Related Person\" \"False\" \"U" +
                     "ser\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
