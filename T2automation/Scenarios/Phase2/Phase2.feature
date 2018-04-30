@@ -112,7 +112,20 @@ Scenario:ph2_002 Folders - 1 - inbox
 	When user opens department "internalDepartmentSameDep" mail with subject "Internal message folders 111" ""
 	And right click on "Automation 222" folder and delete it
 
-Scenario:ph2_3 Department FavGroups - 1
-	
-	
+Scenario: ph2_5 Department FavGroups - 1
+	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
+	And added new user group "Department Group for Automation 111"
+	And open members popup for "Department Group for Automation 111"
+	And click on add new member
+	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "useradmin" "" "Users"
+	And click on add new member
+	And search in user group "InternalDepartmentOtherDep" "OtherMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "ChildDepartmentOtherDep" "OtherMainDepartment" "Structural Hierarchy"
+	#When Admin set department sending message permissions for user "User Groups" "True" "useradmin" "internalDepartmentSameDep"
+	#And search and add "Department Group for Automation"
 

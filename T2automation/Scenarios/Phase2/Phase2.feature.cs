@@ -329,14 +329,45 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("ph2_3 Department FavGroups - 1")]
-        public virtual void Ph2_3DepartmentFavGroups_1()
+        [NUnit.Framework.DescriptionAttribute("ph2_5 Department FavGroups - 1")]
+        public virtual void Ph2_5DepartmentFavGroups_1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_3 Department FavGroups - 1", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_5 Department FavGroups - 1", ((string[])(null)));
 #line 115
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
+#line 116
+ testRunner.When("user search and open settings for \"InternalDepartmentSameDep\" in Lookups and open" +
+                    " User Group tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 117
+ testRunner.And("added new user group \"Department Group for Automation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 118
+ testRunner.And("open members popup for \"Department Group for Automation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 119
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 120
+ testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartment\" \"Structural " +
+                    "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 121
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 122
+ testRunner.And("search in user group \"InternalDepartmentSameDepartment2Ar\" \"UserMainDepartment\" \"" +
+                    "Structural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 123
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 124
+ testRunner.And("search in user group \"useradmin\" \"\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 125
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 126
+ testRunner.And("search in user group \"InternalDepartmentOtherDep\" \"OtherMainDepartment\" \"Structur" +
+                    "al Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 127
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 128
+ testRunner.And("search in user group \"ChildDepartmentOtherDep\" \"OtherMainDepartment\" \"Structural " +
+                    "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

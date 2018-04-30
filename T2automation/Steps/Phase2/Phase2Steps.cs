@@ -25,6 +25,7 @@ namespace T2automation.Steps.Phase2
         private ReadFromConfig readFromConfig;
         private PermissionsPage permissionsPage;
         private LoginPage loginPage;
+        private Pages.SystemManagement.LookUps.DepartmentSettingsPage departmentSettingsPage;
         private Pages.MyMessages.InboxPage myMessageInboxPage;
         private Pages.DeptMessages.InboxPage deptMessageInboxPage;
         private TextFileManager txtManager;
@@ -270,7 +271,55 @@ namespace T2automation.Steps.Phase2
             inboxPage.checkForOutgoingAndSetIt(driver,toSelect);
         }
 
+        [When(@"user search and open settings for ""(.*)"" in Lookups and open User Group tab")]
+        public void WhenUserSearchAndOpenSettingsForInLookupsAndOpenUserGroupTab(string dept)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            departmentSettingsPage = new Pages.SystemManagement.LookUps.DepartmentSettingsPage(driver);
+            departmentSettingsPage.NavigateToDepartmentSettings(driver);
+            departmentSettingsPage.SearchOrganizationAndClickSettings(driver, readFromConfig.GetValue(dept));
+        }
 
+        [When(@"added new user group ""(.*)""")]
+        public void WhenAddedNewUserGroup(string userGroupName)
+        {
+            driver = driverFactory.GetDriver();
+            departmentSettingsPage = new Pages.SystemManagement.LookUps.DepartmentSettingsPage(driver);
+            departmentSettingsPage.ClickUserGroupTab(driver);
+            departmentSettingsPage.AddNewUserGroup(driver, userGroupName);
+        }
+
+        [When(@"open members popup for ""(.*)""")]
+        public void WhenOpenMembersPopupFor(string userGroupName)
+        {
+            driver = driverFactory.GetDriver();
+            departmentSettingsPage = new Pages.SystemManagement.LookUps.DepartmentSettingsPage(driver);
+            departmentSettingsPage.SearchUserGroupAndOpenMembersDialogue(driver, userGroupName);
+        }
+
+        [When(@"click on add new member")]
+        public void WhenClickOnAddNewMember()
+        {
+            driver = driverFactory.GetDriver();
+            departmentSettingsPage = new Pages.SystemManagement.LookUps.DepartmentSettingsPage(driver);
+            departmentSettingsPage.ClickAddNewMember(driver);
+        }
+
+        [When(@"search in user group ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenSearchInUserGroup(string to, string level, string receiverType)
+        {
+            Thread.Sleep(3000);
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
+            inboxPage.SelectLevelInUserGroup(driver, readFromConfig.GetValue(level));
+            inboxPage.SelectReceiverTypeInUserGroup(driver, receiverType);
+            inboxPage.SearchNameCodeInUserGroup = readFromConfig.GetValue(to);
+            inboxPage.WaitTillProcessing();
+            inboxPage.SelectToUserInUserGroup(driver, readFromConfig.GetValue(to), receiverType);
+            inboxPage.ClickOkBtn();
+        }
 
     }
 }

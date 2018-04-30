@@ -300,22 +300,22 @@ Scenario:ph1_006 Exporting Message - 4
 	And select the external department "ExternalEntitySameCountry"
 	And select the external cc department "ExternalEntitySameCountry2"
 	And user set properties "" "" "" "" "" "" "Indirect Export Method"
-	And user compose mail "Outgoing message for direct export 555" "Outgoing message for direct export 555"
+	And user compose mail "Outgoing message for indirect export 555" "Outgoing message for indirect export 555"
 	And user attach attachments 1 "1.pdf"
 	And user send the email and click on Cancel button
-	Then save reference number from "dept" in txt with subject "Outgoing message for direct export 555"
+	Then save reference number from "dept" in txt with subject "Outgoing message for indirect export 555"
 	When user go to dept "CommDepSameDep" messages Unexported folder
-	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
+	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for indirect export 555"
 	And click on "Export" button
 	When user go to dept "CommDepSameDep" Exported
-	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
+	Then user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for indirect export 555"
 	And click on "Undo Export" button
-	When user open dept "qaDept" Outbox mail with subject"Outgoing message for direct export 555"
+	When user open dept "qaDept" Outbox mail with subject"Outgoing message for indirect export 555"
 	And user click on undo export button
 	And user delete the attachment "1.pdf" "1"
 	And user attach attachments 1 "1.jpg"
 	And user send the email and click on Cancel button
-	When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 555"
+	When user opens root department "CommDepSameDep" mail with subject "Outgoing message for indirect export 555"
 	And user click on dept tabs in unexported
 	And user click on edit button
 	And select the external department in root"ExternalEntitySameCountry2"
@@ -323,11 +323,11 @@ Scenario:ph1_006 Exporting Message - 4
 	And select the external cc department in root "ExternalEntitySameCountry"
 	And user click on process edit change and export button
 	When user go to dept "CommDepSameDep" Exported
-	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
+	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for indirect export 555"
 	Then user click on "deptCommDept,Archive" button and set "Comment for archive" "1.png"
-	When user open "deptCommDept" archive message with suject "Outgoing message for direct export 555" and click on button "Rollback"
+	When user open "deptCommDept" archive message with suject "Outgoing message for indirect export 555" and click on button "Rollback"
 	When user go to dept "CommDepSameDep" Exported
-	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for direct export 555"
+	And user search and open mail in dept "CommDepSameDep" with subject "Outgoing message for indirect export 555"
 	
 Scenario:ph1_007 Retrieve  Message - 1
 	When user go to my messages Internal Document

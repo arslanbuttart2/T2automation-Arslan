@@ -378,7 +378,6 @@ namespace T2automation.Pages.MyMessages
             }
             return false;
         }
-
     }
 }
 

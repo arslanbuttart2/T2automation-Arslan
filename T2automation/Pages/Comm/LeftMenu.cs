@@ -251,6 +251,12 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//button[text() = 'No']")]
         private IWebElement _noBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div/div[2]/a")]
+        private IWebElement _lookups;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div/div[2]/div[2]/a")]
+        private IWebElement _departmentSettings;
+
         public IList<IWebElement> _deptNames() {
             return _driver.FindElements(By.XPath(".//*[@id='organizationDocumentsDiv']/div/a/label"));
         }
@@ -551,6 +557,17 @@ namespace T2automation.Pages.Comm
             }
             Thread.Sleep(1000);
             ClickForNavigation(driver, _inquerySearch);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToDepartmentSettings(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _systemManagementMainDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _systemManagementMain);
+                ClickForNavigation(driver, _lookups);
+            }
+            ClickForNavigation(driver, _departmentSettings);
             Thread.Sleep(1000);
         }
     }

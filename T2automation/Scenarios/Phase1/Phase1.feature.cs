@@ -761,32 +761,32 @@ this.FeatureBackground();
 #line 302
  testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 303
- testRunner.And("user compose mail \"Outgoing message for direct export 555\" \"Outgoing message for " +
-                    "direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user compose mail \"Outgoing message for indirect export 555\" \"Outgoing message fo" +
+                    "r indirect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 304
  testRunner.And("user attach attachments 1 \"1.pdf\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 305
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 306
- testRunner.Then("save reference number from \"dept\" in txt with subject \"Outgoing message for direc" +
-                    "t export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("save reference number from \"dept\" in txt with subject \"Outgoing message for indir" +
+                    "ect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 307
  testRunner.When("user go to dept \"CommDepSameDep\" messages Unexported folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 308
  testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
-                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    " for indirect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 309
  testRunner.And("click on \"Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 310
  testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 311
  testRunner.Then("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
-                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    " for indirect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 312
  testRunner.And("click on \"Undo Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 313
- testRunner.When("user open dept \"qaDept\" Outbox mail with subject\"Outgoing message for direct expo" +
-                    "rt 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user open dept \"qaDept\" Outbox mail with subject\"Outgoing message for indirect ex" +
+                    "port 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 314
  testRunner.And("user click on undo export button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 315
@@ -797,7 +797,7 @@ this.FeatureBackground();
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 318
  testRunner.When("user opens root department \"CommDepSameDep\" mail with subject \"Outgoing message f" +
-                    "or direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                    "or indirect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 319
  testRunner.And("user click on dept tabs in unexported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 320
@@ -814,18 +814,18 @@ this.FeatureBackground();
  testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 326
  testRunner.And("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
-                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    " for indirect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 327
  testRunner.Then("user click on \"deptCommDept,Archive\" button and set \"Comment for archive\" \"1.png\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 328
- testRunner.When("user open \"deptCommDept\" archive message with suject \"Outgoing message for direct" +
-                    " export 555\" and click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user open \"deptCommDept\" archive message with suject \"Outgoing message for indire" +
+                    "ct export 555\" and click on button \"Rollback\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 329
  testRunner.When("user go to dept \"CommDepSameDep\" Exported", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 330
  testRunner.And("user search and open mail in dept \"CommDepSameDep\" with subject \"Outgoing message" +
-                    " for direct export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                    " for indirect export 555\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

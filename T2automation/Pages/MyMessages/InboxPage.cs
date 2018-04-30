@@ -234,6 +234,35 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElement(By.XPath(".//button[text() = 'Close']"));
         }
 
+        private SelectElement _levelSelectInUserGroup(IWebDriver driver)
+        {
+            return new SelectElement(driver.FindElement(By.XPath("//*[@id='slctDestinationLevel0']")));
+        }
+
+        private SelectElement _receiverTypeInUserGroup(IWebDriver driver)
+        {
+            return new SelectElement(driver.FindElement(By.XPath("//*[@id='slctDestinationType']")));
+        }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='txtSearchDestinationName']")]
+        private IWebElement _searchNameCodeInUserGroup;
+
+        private IList<IWebElement> _selectToNameForUsersInUserGroup()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='userDestinationSearchGrid']/tbody/tr/td[2]"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='userDestinationSearchGrid']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _selectToCheckForUserInUserGroup;
+
+        private IList<IWebElement> _selectToNameForStructuralHierarchyInUserGroup()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='organizationDestinationSearchGrid']/tbody/tr/td[2]"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDestinationSearchGrid']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _selectToCheckForStructuralHierarchyInUserGroup;
+
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Reply All')]")]
         private IWebElement _replyAllBtn;
 
@@ -2363,6 +2392,76 @@ private IList<IWebElement> _daysOnCal() {
             }
 
             Thread.Sleep(2000);
+        }
+
+        public void SelectLevelInUserGroup(IWebDriver driver, string level)
+        {
+            Thread.Sleep(3000);
+            DropdownSelectByText(driver, _levelSelectInUserGroup(driver), level);
+            Thread.Sleep(1000);
+        }
+
+        public void SelectReceiverTypeInUserGroup(IWebDriver driver, string type)
+        {
+            Thread.Sleep(3000);
+            DropdownSelectByText(driver, _receiverTypeInUserGroup(driver), type);
+            Thread.Sleep(1000);
+        }
+
+        public string SearchNameCodeInUserGroup
+        {
+            set
+            {
+                SendKeys(_driver, _searchNameCodeInUserGroup, value);
+            }
+        }
+
+        public void SelectToUserInUserGroup(IWebDriver driver, string user, string receiverType)
+        {
+            WaitTillProcessing();
+            Thread.Sleep(2000);
+            
+            if (receiverType.Equals("Users"))
+            {
+                Thread.Sleep(4000);
+                for (int index = 0; index < _selectToNameForUsersInUserGroup().Count; index++)
+                {
+                    string temp = GetText(driver, _selectToNameForUsersInUserGroup().ElementAt(index));
+                    string[] aftersplit;
+                    if (temp.Contains("-"))
+                    {
+                        aftersplit = temp.Split('-');
+                    }
+                    else
+                    {
+                        string temp2 = temp.Trim();
+                        aftersplit = temp2.Split('-');
+                    }
+                    aftersplit[aftersplit.Count() - 1] = aftersplit[aftersplit.Count() - 1].Replace(" ", string.Empty);
+                    if (aftersplit[aftersplit.Count() - 1].Equals(user))
+                    {
+                        Click(driver, _selectToCheckForUserInUserGroup.ElementAt(index));
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                    
+                }
+            }
+            else if (receiverType.Equals("Structural Hierarchy"))
+            {
+                Thread.Sleep(4000);
+                for (int index = 0; index < _selectToNameForStructuralHierarchyInUserGroup().Count; index++)
+                {
+                    string temp = GetText(driver, _selectToNameForStructuralHierarchyInUserGroup().ElementAt(index));
+                    string[] aftersplit = temp.Split('-');
+                    if (aftersplit[1].Contains(user))
+                    {
+                        Click(driver, _selectToCheckForStructuralHierarchyInUserGroup.ElementAt(index));
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                }
+            }
         }
 
         public void ClickOnExportBtn2()
