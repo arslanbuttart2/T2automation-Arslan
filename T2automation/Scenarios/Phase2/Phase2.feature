@@ -121,7 +121,7 @@ Scenario: ph2_5 Department FavGroups - 1
 	And click on add new member
 	And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartment" "Structural Hierarchy"
 	And click on add new member
-	And search in user group "useradmin" "" "Users"
+	And search in user group "Admin" "UserMainDepartment" "Users"
 	And click on add new member
 	And search in user group "InternalDepartmentOtherDep" "OtherMainDepartment" "Structural Hierarchy"
 	And click on add new member
@@ -129,3 +129,5 @@ Scenario: ph2_5 Department FavGroups - 1
 	#When Admin set department sending message permissions for user "User Groups" "True" "useradmin" "internalDepartmentSameDep"
 	#And search and add "Department Group for Automation"
 
+	And user go to dept messages Internal Document
+	And search "Admin" "UserMainDepartmentAr" "User Groups"

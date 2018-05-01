@@ -357,7 +357,7 @@ this.FeatureBackground();
 #line 123
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 124
- testRunner.And("search in user group \"useradmin\" \"\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"Admin\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 125
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 126
@@ -368,6 +368,10 @@ this.FeatureBackground();
 #line 128
  testRunner.And("search in user group \"ChildDepartmentOtherDep\" \"OtherMainDepartment\" \"Structural " +
                     "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 132
+ testRunner.And("user go to dept messages Internal Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 133
+ testRunner.And("search \"Admin\" \"UserMainDepartmentAr\" \"User Groups\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

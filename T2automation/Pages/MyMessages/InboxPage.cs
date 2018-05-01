@@ -1737,7 +1737,9 @@ private IList<IWebElement> _daysOnCal() {
 
         public void checkForOutgoingAndSetIt(IWebDriver driver, string toSelect)
         {
+            Thread.Sleep(8000);
             var elm = driver.FindElement(By.XPath("//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul"));
+            WaitForElement(driver, elm);
             string st = GetText(driver, elm);
             if (st.Equals(""))
             {
