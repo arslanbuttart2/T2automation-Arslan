@@ -1314,6 +1314,34 @@ private IList<IWebElement> _daysOnCal() {
                     }*/
                 }
             }
+            else if (receiverType.Equals("User Groups"))
+            {
+                Thread.Sleep(4000);
+                for (int index = 0; index < _selectToNameForStructuralHierarchy().Count; index++)
+                {
+                    string temp = GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index));
+                    string[] aftersplit = temp.Split('-');
+                    if (aftersplit[1].Contains(user))
+                    {
+                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }
+
+                    /*
+                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
+                    {
+                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }*/
+                }
+            }
+
+
+
         }
 
 
@@ -2487,15 +2515,15 @@ private IList<IWebElement> _daysOnCal() {
             Click(_driver, _okBtn());
             Thread.Sleep(1000);
         }
-        public void SelectFolder(IWebDriver driver, String folderName)
-        {
-            Click(_driver, _movFoldBtn);
-            Thread.Sleep(2000);
-            var option = driver.FindElement(By.Id("select-folder"));
-            var selectElement = new SelectElement(option);
-            selectElement.SelectByIndex(3);
-            Thread.Sleep(3000);
-        }
+        //public void SelectFolder(IWebDriver driver, String folderName)
+        //{
+        //    Click(_driver, _movFoldBtn);
+        //    Thread.Sleep(2000);
+        //    var option = driver.FindElement(By.Id("select-folder"));
+        //    var selectElement = new SelectElement(option);
+        //    selectElement.SelectByIndex(3);
+        //    Thread.Sleep(3000);
+        //}
 
         public void ClickOnActionsAndMovementsBtn()
         {
@@ -4187,12 +4215,23 @@ private IList<IWebElement> _daysOnCal() {
 
         public void createFolder(String name)
         {
-            RightClick(_driver, _inboxBtn);
-            Click(_driver, _createFolder);
-            Thread.Sleep(3000);
-            SendKeys(_driver, _folderName, name);
-            Thread.Sleep(1000);
-            Click(_driver, _okBtn());
+            try
+            {
+                if (_automation111.Displayed)
+                {
+                    Console.WriteLine("Folder Existed Already!");
+                    return;
+                }
+            }
+            catch
+            {
+                RightClick(_driver, _inboxBtn);
+                Click(_driver, _createFolder);
+                Thread.Sleep(3000);
+                SendKeys(_driver, _folderName, name);
+                Thread.Sleep(1000);
+                Click(_driver, _okBtn());
+            }
         }
 
         public void EditPersonFromTheList(IWebDriver driver, string name, string personName = "", string email = "", string mbl = "", string idNum = "", string idIssue = "", string issueDate = "", string idType = "", string saveStatus = "True")

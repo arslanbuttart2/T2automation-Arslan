@@ -231,6 +231,14 @@ namespace T2automation.Steps.Phase2
             inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
         }
 
+        [When(@"search and add ""(.*)""")]
+        public void WhenSearchAndAdd(string dataToSearch)
+        {
+            driver = driverFactory.GetDriver();
+            permissionsPage = new PermissionsPage(driver);
+            permissionsPage.SearchDataForUserGroup(dataToSearch);
+        }
+
         [When(@"user open ""(.*)"" in department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
         public void WhenUserOpenInDepartmentMailWithSubject(string folderName, string deptName, string subject, string encryptedPassword = "")
         {

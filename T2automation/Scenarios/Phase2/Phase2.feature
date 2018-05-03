@@ -84,6 +84,8 @@ Scenario:ph2_001 Message Actions
 	Then save reference number from "my" in txt with subject "Internal message for various actions 333"
 	
 Scenario:ph2_002 Folders - 1 - inbox
+	When Admin set department message permissions for user "Delete Messages from Inbox" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "True" "User" "internalDepartmentSameDep"
 	When user open department "internalDepartmentSameDep" inbox and create new folder "Automation 111"
 	And right click on "Automation 111" and create "Automation 222" folder
 	When user go to my messages Incomming Document
@@ -123,11 +125,32 @@ Scenario: ph2_5 Department FavGroups - 1
 	And click on add new member
 	And search in user group "Admin" "UserMainDepartment" "Users"
 	And click on add new member
-	And search in user group "InternalDepartmentOtherDep" "OtherMainDepartment" "Structural Hierarchy"
+	And search in user group "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
 	And click on add new member
-	And search in user group "ChildDepartmentOtherDep" "OtherMainDepartment" "Structural Hierarchy"
-	#When Admin set department sending message permissions for user "User Groups" "True" "useradmin" "internalDepartmentSameDep"
-	#And search and add "Department Group for Automation"
-
+	And search in user group "ChildDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	When Admin set department sending message permissions for user "User Groups" "True" "User" "internalDepartmentSameDep"
+	And search and add "Department Group for Automation 111"
 	And user go to dept messages Internal Document
-	And search "Admin" "UserMainDepartmentAr" "User Groups"
+	###No data is Visible here!
+	And search "UserGroups" "UserMainDepartmentAr" "User Groups"
+	And user compose mail "Internal message for department groups 111" "Internal message for department groups 111"
+	And user select connected document with subject "Any Doc"
+	And user attach attachments 1 "1.pdf"
+	And user send the email
+	Then save reference number from "dept" in txt with subject "Internal message for department groups 111"
+	When user go to dept "Audit" messages Inbox folder
+	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
+	And user click on "Attachment" tab
+	And user click on "Connected Message" tab
+	And user go to dept "qaDept" Outbox
+	And user search and open mail in dept "qaOut" with subject "Internal message for department groups 111"
+	And click on "Retrieve" button
+	#A setp may need to be added here!
+	And user send the email
+	And user go to dept "my" messages Inbox folder
+	And user search and open mail in dept "my" with subject "Internal message for department groups 111"
+	When user go to dept "Saudi Affair" messages Inbox folder
+	And user search and open mail in dept "Saudi Affair" with subject "Internal message for department groups 111"
+	And user go to dept "Audit" messages Inbox folder
+	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
+	

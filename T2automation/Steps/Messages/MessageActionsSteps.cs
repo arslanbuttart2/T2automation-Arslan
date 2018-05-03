@@ -92,6 +92,12 @@ namespace T2automation.Steps.Messages
                 Thread.Sleep(3000);
                 outboxPage.NavigateToAccountingDeptOutbox(driver);
             }
+            else if (type.Equals("Audit"))
+            {
+                Thread.Sleep(3000);
+                outboxPage.NavigateToAuditDeptOutbox(driver);
+            }
+
             if (subject.Contains("Encrypted message"))
             {
                 Thread.Sleep(3000);
@@ -505,14 +511,7 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             inboxPage.clickArchieveBtn();
         }
-
-        [When(@"user move mail to folder ""(.*)""")]
-        public void WhenUserMoveMailToFolder(string folder)
-        {
-            inboxPage.SelectFolder(driver, folder);
-            inboxPage.ClickOkBtn();
-        }
-
+        
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" deleted message")]
         public void ThenMailWithSubjectShouldNotAppearInDeletedMessage(string subject, string dept)
         {
@@ -780,7 +779,15 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             readFromConfig = new ReadFromConfig();
-            inboxPage.SelectExternalDeptTo(deptName: readFromConfig.GetValue(to));
+            try
+            {
+                inboxPage.SelectExternalDeptTo(deptName: readFromConfig.GetValue(to));
+            }
+            catch
+            {
+                inboxPage._ifCancelBtn();
+                Console.WriteLine("----->>>>> No Data Found For The External Department: " + readFromConfig.GetValue(to));
+            }
         }
 
         [When(@"select the external cc department ""(.*)""")]
@@ -931,6 +938,14 @@ namespace T2automation.Steps.Messages
             if (dept.Equals("my"))
             {
                 inboxPage.NavigateToMyMessageInbox(driver);
+            }
+            if (dept.Equals("Audit"))
+            {
+                inboxPage.NavigateToAuditDeptInbox(driver);
+            }
+            if(dept.Equals("Saudi Affair"))
+            {
+                inboxPage.NavigateToSaudiAffairsDeptInbox(driver);
             }
         }
 
@@ -1287,8 +1302,15 @@ namespace T2automation.Steps.Messages
         {
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
-            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
-            deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
+            if (deptName.Equals("Accounting"))
+            {
+                inboxPage.NavigateToAccountingDeptInbox(driver);
+            }
+            else if (deptName.Equals("Audit"))
+            {
+                inboxPage.NavigateToAuditDeptInbox(driver);
+            }
+
             inboxPage.CheckButtonClickable(driver, "Internal Document");
         }
 

@@ -106,6 +106,16 @@ namespace T2automation
             permissionsPage.IncludeDeptMessagePermissions(driver, readFromConfig.GetDeptName(dept), permissionName, value);
         }
 
+        [When(@"Admin set department sending message permissions for user ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenAdminSetDepartmentSendingMessagePermissionsForUser(string permissionName, bool value, string user, string dept)
+        {
+            userManagerPage = new UserManagerPage(driver);
+            userManagerPage.NavigateToUserManager(driver);
+            Assert.IsTrue(userManagerPage.IsAt(driver, userManagerPage.title));
+            permissionsPage = userManagerPage.OpenPermissions(driver, new ReadFromConfig().GetValue(user));
+            permissionsPage.IncludeDeptSendingMessagePermissions(driver, readFromConfig.GetDeptName(dept), permissionName, value);
+        }
+
         [Then(@"click on ""(.*)"" button and select ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenClickOnButtonAndSelect(string btnName, string p1="" , string p2="", string p3="")
         {
