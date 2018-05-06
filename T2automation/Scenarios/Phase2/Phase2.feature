@@ -114,7 +114,7 @@ Scenario:ph2_002 Folders - 1 - inbox
 	When user opens department "internalDepartmentSameDep" mail with subject "Internal message folders 111" ""
 	And right click on "Automation 222" folder and delete it
 
-Scenario: ph2_5 Department FavGroups - 1
+Scenario:ph2_005 Department FavGroups - 1
 	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
 	And added new user group "Department Group for Automation 111"
 	And open members popup for "Department Group for Automation 111"
@@ -153,4 +153,26 @@ Scenario: ph2_5 Department FavGroups - 1
 	And user search and open mail in dept "Saudi Affair" with subject "Internal message for department groups 111"
 	And user go to dept "Audit" messages Inbox folder
 	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
+	
+Scenario:ph2_006 Department FavGroups - 2
+	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
+	And added new user group "Department Group for Automation 222"
+	And open members popup for "Department Group for Automation 222"
+	And click on add new member
+	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "Admin" "UserMainDepartment" "Users"
+	And click on add new member
+	And search in user group "InternalMailChild" "InternalMailMain" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentDisabled" "AutomationDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepForbidden" "AutomationDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepNoMembers" "AutomationDepartment" "Structural Hierarchy"
+	When Admin set department sending message permissions for user "Send All Departments" "False" "Admin" "internalDepartmentSameDep"
+	When Admin set department sending message permissions for user "Send to all organizations except" "True" "Admin" "internalDepartmentSameDep"
+	And search and add "Department Group for Automation 111"
 	

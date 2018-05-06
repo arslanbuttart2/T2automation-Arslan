@@ -422,9 +422,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
 
                     Thread.Sleep(5000);
                     //var elm = _deptSendingMessagePermissions();
-                    //if (GetText(driver, elm.ElementAt(index)).Equals(permissionName))
-                    //{
-                    //}
+                    
                     if(permissionName.Equals("User Groups"))
                     {
                         if (value == true)
@@ -466,6 +464,91 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                             }
                         }
                     }
+
+                    if (permissionName.Equals("Send All Departments"))
+                    {
+                        if (value == true)
+                        {
+                            try
+                            {
+                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                {
+                                    return;
+                                }
+                                else
+                                {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    return;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Exception ouccers: " + e);
+                            }
+                        }
+                        else if (value == false)
+                        {
+                            try
+                            {
+                                if (!_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                {
+                                    return;
+                                }
+                                else
+                                {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    return;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Exception ouccers: " + e);
+                            }
+                        }
+                    }
+
+                    if (permissionName.Equals("Send to all organizations except"))
+                    {
+                        if (value == true)
+                        {
+                            try
+                            {
+                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                {
+                                    return;
+                                }
+                                else
+                                {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    return;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Exception ouccers: " + e);
+                            }
+                        }
+                        else if (value == false)
+                        {
+                            try
+                            {
+                                if (!_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                {
+                                    return;
+                                }
+                                else
+                                {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    return;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Exception ouccers: " + e);
+                            }
+                        }
+                    }
+
                 }
             }
         }
