@@ -947,6 +947,10 @@ namespace T2automation.Steps.Messages
             {
                 inboxPage.NavigateToSaudiAffairsDeptInbox(driver);
             }
+            if (dept.Equals("Accounting"))
+            {
+                inboxPage.NavigateToAccountingDeptInbox(driver);
+            }
         }
 
         [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]

@@ -501,6 +501,9 @@ namespace T2automation.Steps.My_Messages
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
             //string refno = txtManager.readFromFile(subject);
+            Thread.Sleep(1500);
+            inboxPage._ifCancelBtn();
+            Thread.Sleep(2000);
             string refno = inboxPage.SelectConnectedDocWithRefNoToSave(subject);
             Assert.IsTrue(txtManager.writeToFile(type,subject, refno));
         }

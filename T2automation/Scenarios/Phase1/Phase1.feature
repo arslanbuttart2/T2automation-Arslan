@@ -14,14 +14,14 @@ Scenario:ph1_001 Message Actions - Deleting Message
 	And user attach attachments 1 "1.pdf"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for deletion 111"
-	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Internal Document
+	When user go to dept "Accounting" messages Internal Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for deletion 222" "Internal message for deletion 222"
 	And user attach attachments 1 "1.pdf"
 	And user select connected document with subject "Incoming Message to Outside Child Department 111"
 	And user send the email
 	Then save reference number from "deptAcc" in txt with subject "Internal message for deletion 222"
-	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Incoming Document
+	When user go to dept "Accounting" messages Incoming Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user compose mail "Incoming message for deletion 333" "Incoming message for deletion 333"
 	And select the external department "ExternalEntitySameCountry"
@@ -77,7 +77,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	And user send the email  
 	Then save reference number from "my" in txt with subject "Encrypted message for archiving 222"
-	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Incoming Document
+	When user go to dept "Accounting" messages Incoming Document
 	And search "User" "UserMainDepartmentAr" "Users"
 	And user set properties "" "" "" "12345" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
@@ -88,7 +88,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	When user set connected person "PersonName1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
 	And user send the email and click on Cancel button
 	Then save reference number from "deptAcc" in txt with subject "Incoming message for archiving 333"
-	When user go to dept "InternalDepartmentSameDepartment2Ar" messages Outgoing Document
+	When user go to dept "Accounting" messages Outgoing Document
 	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
 	And user compose mail "Outgoing message for archiving 444" "Outgoing message for archiving 444"   
 	And user set properties "Paper" "12345" "Parcels" "" "" "" "Indirect Export Method"
