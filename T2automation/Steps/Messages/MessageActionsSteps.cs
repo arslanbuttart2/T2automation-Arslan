@@ -295,6 +295,9 @@ namespace T2automation.Steps.Messages
             inboxPage.WaitTillProcessing();
             inboxPage.SelectToUser(driver, readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
+            inboxPage._ifCloseBtn();
+            inboxPage._ifCancelBtn();
+            
         }
 
         [When(@"user open ""(.*)"" archive message with suject ""(.*)"" and click on button ""(.*)""")]
@@ -1293,6 +1296,7 @@ namespace T2automation.Steps.Messages
         [When(@"user go to dept messages Internal Document")]
         public void WhenUserGoToDeptMessagesInternalDocument()
         {
+            Thread.Sleep(3000);
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);

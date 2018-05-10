@@ -563,9 +563,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             {
                 Thread.Sleep(3000);
                 Click(_driver,_userGroupsAddBtnDeptSendingPermissions);
-                Thread.Sleep(3000);
+                Thread.Sleep(4000);
                 SendKeys(_driver, _userGroupSearchTab, data);
-                Thread.Sleep(3000);
+                Thread.Sleep(9000);
                 if(_userGroupSearchResult.Count >= 1)
                 {
                     for (int i = 0; i < _userGroupSearchResult.Count;i++)
@@ -577,7 +577,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         }
                     }
                     Click(_driver, _okBtn);
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2500);
                     Click(_driver, _saveBtnDeptSendingPermissions);
                 }
                 else

@@ -91,6 +91,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationSearchGridTemp']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _selectToCheckForStructuralHierarchy;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='userSearchGridTemp']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _selectToCheckForUserGroups;
+
         //[FindsBy(How = How.XPath, Using = ".//tbody/tr/td[2]")]
         //private IList<IWebElement> _selectToName;
 
@@ -801,6 +804,11 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElements(By.XPath(".//*[@id='organizationSearchGridTemp']/tbody/tr/td[2]"));
         }
 
+        private IList<IWebElement> _selectToNameForUserGroups()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='userSearchGridTemp']/tbody/tr/td[2]"));
+        }
+
         private IList<IWebElement> _connectedDocSearchedCheckBoxes()
         {
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[1]/label"));
@@ -1317,13 +1325,13 @@ private IList<IWebElement> _daysOnCal() {
             else if (receiverType.Equals("User Groups"))
             {
                 Thread.Sleep(4000);
-                for (int index = 0; index < _selectToNameForStructuralHierarchy().Count; index++)
+                for (int index = 0; index < _selectToNameForUserGroups().Count; index++)
                 {
-                    string temp = GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index));
-                    string[] aftersplit = temp.Split('-');
-                    if (aftersplit[1].Contains(user))
+                    string temp = GetText(driver, _selectToNameForUserGroups().ElementAt(index));
+                    
+                    if (temp.Contains(user))
                     {
-                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToCheckForUserGroups.ElementAt(index));
                         Click(driver, _selectToFrameToBtn);
                         Thread.Sleep(1000);
                         return;
