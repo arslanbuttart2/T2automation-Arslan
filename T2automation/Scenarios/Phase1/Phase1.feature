@@ -353,7 +353,7 @@ Scenario:ph1_008 Retrieve  Message - 2
 	And Admin set department message permissions for user "Retreive Message after Reading" "False" "Admin" "internalDepartmentSameDep"
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When user go to dept messages Internal Document
-	###Saudi Affairs is not viible in this case so it is failing
+	###Saudi Affairs is not visible in this case so it is failing
 	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
 	And search CC "Admin" "UserMainDepartmentAr" "Users"
 	And user compose mail "Internal message for Retreiving 222" "Internal message for Retreiving 222"
