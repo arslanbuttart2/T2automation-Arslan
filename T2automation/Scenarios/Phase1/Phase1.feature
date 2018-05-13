@@ -209,8 +209,7 @@ Scenario:ph1_004 Exporting Message - 2
 	And select the external department "ExternalEntitySameCountry"
 	####following step is not the working!!!
 	And user delete the document with subject "Internal Message to Internal Department 111" from the list
-	And user send the email in "my" and click on Cancel button
-	Then save reference number from "my" in txt with subject "Internal message for direct export 888"
+	Then user send the email and save refrence no from popup "my" "Internal message for direct export 888" "True"
 	When user go to dept "CommDepSameDep" messages Unexported folder 
 	Then user search and open mail in dept "CommDepSameDep" with subject "Internal message for direct export 888"
 	And click on "Return" button

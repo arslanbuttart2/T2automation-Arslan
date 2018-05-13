@@ -491,6 +491,7 @@ namespace T2automation.Steps.My_Messages
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
             refno = txtManager.refnoPure(refno);
+            Thread.Sleep(3000);
             Assert.IsTrue(inboxPage.ValidateMailAppearInAdvanceSearch(driver,refno));
         }
 
