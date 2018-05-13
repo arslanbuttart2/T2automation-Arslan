@@ -100,6 +100,13 @@ Scenario Outline:012 download all attachment - department mail
 		|				subject					| downloadFileName| downloadFileNo |
 		| Message with multiple attachement 111 |      All        |		1		   |
 
+Scenario:015 message- print single attachement - personal mail 
+	#When user go to dept "my" messages Inbox folder
+	#And user search and open mail in dept "my" with subject "Message with multiple attachement 111"
+	#And user click on "Attachment" tab
+	#And user click on outbox "Print Sticker,Save as PDF,my,Incoming message for printing 333,Print Sticker - Outbox - In-" button ""
+	#Then click on "Open Attachment Tab,Select_Selective" button and select "Print,Save as PDF,my,Message with multiple attachement 111,Print Attachments-my InBox-" "" ""
+
 Scenario Outline:019 message -  attachement - security level with optional attachment - with attachement -  personal mail
 	When user sends an internal message with properties with attachments "<level>" "<receiverType>" "<to>" "<subject>" "<content>" "<securitylevel>" "<multipleAttachementNo>" "<multipleAttachmentType>"
 	Then save reference number from "my" in txt with subject "<subject>"

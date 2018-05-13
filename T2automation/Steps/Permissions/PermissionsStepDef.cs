@@ -32,7 +32,7 @@ namespace T2automation
             driver = driverFactory.GetDriver();
             loginPage = new LoginPage(driver);
             readFromConfig = new ReadFromConfig();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             loginPage.CheckLogin(driver);
             loginPage.SelectEnglish(driver);
             loginPage.UserName = readFromConfig.GetUserName(username);

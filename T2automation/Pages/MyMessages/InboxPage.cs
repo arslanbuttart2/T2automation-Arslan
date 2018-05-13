@@ -597,7 +597,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='divOutgoingOrg']/tbody/tr/td[2]")]
         private IList<IWebElement> _selectingToFromPopup;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='divOutgoingOrg']/tbody/tr/td[1]")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divOutgoingOrg']/tbody/tr/td[1]/input")]
         private IList<IWebElement> _selectingToFromPopupRB;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='txtExportDate2']")]
