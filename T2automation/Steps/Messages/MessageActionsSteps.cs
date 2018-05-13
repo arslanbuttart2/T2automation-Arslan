@@ -308,6 +308,7 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             outboxPage = new OutboxPage(driver);
             txtManager = new TextFileManager();
+            Thread.Sleep(2000);
             if (dept.Equals("my"))
             {
                 outboxPage.NavigateToMyMessageArchiveF(driver);
@@ -331,7 +332,7 @@ namespace T2automation.Steps.Messages
                 string refno = txtManager.readFromFile(subject);
                 outboxPage.OpenMailSpecial(driver, refno, withSubject: false);
             }
-
+            Thread.Sleep(5000);
             if (btnName.Equals("Rollback"))
             {
                 Assert.IsTrue(outboxPage.userClickRollbackBtn(driver));
