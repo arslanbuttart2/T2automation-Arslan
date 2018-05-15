@@ -890,6 +890,7 @@ namespace T2automation.Pages.MyMessages
             }
             return _driver.FindElement(By.XPath(".//button[text() = 'Ok']"));
         }
+
         private void _ifPrint()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Print']"));
@@ -1060,6 +1061,22 @@ private IList<IWebElement> _daysOnCal() {
         private IList<IWebElement> _connectedPersonNameList()
         {
             return _driver.FindElements(By.XPath("//*[@id='tbl_documentPerson']/tbody/tr/td[2]"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divGroupMemebersGrid']/tbody/tr/td[2]")]
+        private IList<IWebElement> _userFromUserGroupPopup;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divGroupMemebersGrid']/tbody/tr/td[1]")]
+        private IList<IWebElement> _userFromUserGroupPopupCheckBox;
+
+        private void _to_userCheckAndSelect(IWebDriver driver,string to_user)
+        {
+            Thread.Sleep(9000);
+            IWebElement temp = driver.FindElement(By.XPath(".//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul/li[1]"));
+            if (GetText(driver, temp).Equals(to_user))
+            {
+                Click(driver, temp);
+            }
         }
 
         public string title = "Inbox - Ole5.1";
@@ -1773,7 +1790,7 @@ private IList<IWebElement> _daysOnCal() {
 
         public void checkForOutgoingAndSetIt(IWebDriver driver, string toSelect)
         {
-            Thread.Sleep(8000);
+            Thread.Sleep(9000);
             var elm = driver.FindElement(By.XPath("//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul"));
             WaitForElement(driver, elm);
             string st = GetText(driver, elm);
@@ -1799,7 +1816,21 @@ private IList<IWebElement> _daysOnCal() {
             }
             Thread.Sleep(2000);
             _ifOkBtn();
+        }
 
+        public void CheckUserFromPopup(IWebDriver driver, string to_user, string to_check)
+        {
+            _to_userCheckAndSelect(driver, to_user);
+            
+            Thread.Sleep(3000);
+            for (int i = 0; i < _userFromUserGroupPopup.Count; i++)
+            {
+                if (GetText(driver, _userFromUserGroupPopup.ElementAt(i)).Contains(to_check))
+                {
+                    Click(driver, _userFromUserGroupPopupCheckBox.ElementAt(i));
+                }
+            }
+            _ifOkBtn();
         }
 
         public void clickEditBtn()

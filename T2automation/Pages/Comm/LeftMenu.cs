@@ -534,6 +534,7 @@ namespace T2automation.Pages.Comm
 
         public void NavigateToMessageRoot(IWebDriver driver, string CommDept="")
         {
+            Thread.Sleep(2000);
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _departmentMessages);
@@ -543,6 +544,7 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _commDept);
             }
+            Thread.Sleep(2000);
             ClickForNavigation(driver, _inboxMessageWithRoot);
             Thread.Sleep(1000);
         }

@@ -448,13 +448,13 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (!_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
                                 {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
                                     return;
                                 }
                                 else
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
                                     return;
                                 }
                             }
@@ -490,13 +490,13 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (!_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
                                 {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
                                     return;
                                 }
                                 else
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
                                     return;
                                 }
                             }
@@ -532,13 +532,13 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (!_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
                                 {
+                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
                                     return;
                                 }
                                 else
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
                                     return;
                                 }
                             }

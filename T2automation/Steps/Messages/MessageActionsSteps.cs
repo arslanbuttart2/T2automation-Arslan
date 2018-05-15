@@ -658,6 +658,7 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             inboxPage.clickOnSendBtn();
+            inboxPage._ifOkBtn();
             Assert.IsTrue(inboxPage.WaitTillMailSent(), "Unable to send mail");
         }
 

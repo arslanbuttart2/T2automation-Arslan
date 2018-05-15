@@ -270,6 +270,15 @@ namespace T2automation.Steps.Phase2
 
         }
 
+        [When(@"user press To_user ""(.*)"" and uncheck ""(.*)"" from popup")]
+        public void WhenUserPressTo_UserFromPopup(string to_user, string to_check)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            readFromConfig = new ReadFromConfig();
+            inboxPage.CheckUserFromPopup(driver,to_user, readFromConfig.GetValue(to_check));
+        }
+
         [When(@"user select To for outgoing ""(.*)""")]
         public void WhenUserSelectToForOutgoing(string toSelect)
         {
@@ -288,6 +297,18 @@ namespace T2automation.Steps.Phase2
             departmentSettingsPage.NavigateToDepartmentSettings(driver);
             departmentSettingsPage.SearchOrganizationAndClickSettings(driver, readFromConfig.GetValue(dept));
         }
+
+        [When(@"user delete user_group ""(.*)""")]
+        public void WhenUserDeleteUser_Group(string data)
+        {
+            driver = driverFactory.GetDriver();
+            departmentSettingsPage = new Pages.SystemManagement.LookUps.DepartmentSettingsPage(driver);
+            departmentSettingsPage.ClickUserGroupTab(driver);
+            departmentSettingsPage.SearchUserGroup(driver,data);
+            departmentSettingsPage.SearchAndDeleteUserGroup(driver, data);
+            
+        }
+
 
         [When(@"added new user group ""(.*)""")]
         public void WhenAddedNewUserGroup(string userGroupName)

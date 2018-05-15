@@ -142,10 +142,10 @@ Scenario:ph2_005 Department FavGroups - 1
 	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
 	And user click on "Attachment" tab
 	And user click on "Connected Message" tab
-	And user go to dept "qaDept" Outbox
+	When user go to dept "qaDept" Outbox
 	And user search and open mail in dept "qaOut" with subject "Internal message for department groups 111"
 	And click on "Retrieve" button
-	###A setp may need to be added here!
+	And user press To_user "Department Group For Automation 111" and uncheck "InternalDepartmentOtherDep" from popup
 	And user send the email
 	And user go to dept "my" messages Inbox folder
 	And user search and open mail in dept "my" with subject "Internal message for department groups 111"
@@ -154,7 +154,9 @@ Scenario:ph2_005 Department FavGroups - 1
 	And user go to dept "Audit" messages Inbox folder
 	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
 	When Admin set department sending message permissions for user "User Groups" "False" "Admin" "internalDepartmentSameDep"
-	
+	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
+	And user delete user_group "Department Group for Automation 111"
+
 Scenario:ph2_006 Department FavGroups - 2
 	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
 	And added new user group "Department Group for Automation 222"

@@ -407,12 +407,15 @@ this.FeatureBackground();
 #line 144
  testRunner.And("user click on \"Connected Message\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 145
- testRunner.And("user go to dept \"qaDept\" Outbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user go to dept \"qaDept\" Outbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 146
  testRunner.And("user search and open mail in dept \"qaOut\" with subject \"Internal message for depa" +
                     "rtment groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 147
  testRunner.And("click on \"Retrieve\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 148
+ testRunner.And("user press To_user \"Department Group For Automation 111\" and uncheck \"InternalDep" +
+                    "artmentOtherDep\" from popup", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 149
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 150
@@ -433,6 +436,11 @@ this.FeatureBackground();
 #line 156
  testRunner.When("Admin set department sending message permissions for user \"User Groups\" \"False\" \"" +
                     "Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 157
+ testRunner.When("user search and open settings for \"InternalDepartmentSameDep\" in Lookups and open" +
+                    " User Group tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 158
+ testRunner.And("user delete user_group \"Department Group for Automation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -442,60 +450,60 @@ this.FeatureBackground();
         public virtual void Ph2_006DepartmentFavGroups_2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_006 Department FavGroups - 2", ((string[])(null)));
-#line 158
+#line 160
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 159
+#line 161
  testRunner.When("user search and open settings for \"InternalDepartmentSameDep\" in Lookups and open" +
                     " User Group tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 160
- testRunner.And("added new user group \"Department Group for Automation 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 161
- testRunner.And("open members popup for \"Department Group for Automation 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 162
- testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("added new user group \"Department Group for Automation 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 163
- testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structura" +
-                    "l Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("open members popup for \"Department Group for Automation 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 164
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 165
- testRunner.And("search in user group \"InternalDepartmentSameDepartment2Ar\" \"UserMainDepartmentAr\"" +
-                    " \"Structural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartmentAr\" \"Structura" +
+                    "l Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 166
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 167
- testRunner.And("search in user group \"Admin\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"InternalDepartmentSameDepartment2Ar\" \"UserMainDepartmentAr\"" +
+                    " \"Structural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 168
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 169
- testRunner.And("search in user group \"InternalMailChild\" \"InternalMailMain\" \"Structural Hierarchy" +
-                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"Admin\" \"UserMainDepartmentAr\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 170
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 171
- testRunner.And("search in user group \"InternalDepartmentDisabled\" \"AutomationDepartment\" \"Structu" +
-                    "ral Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"InternalMailChild\" \"InternalMailMain\" \"Structural Hierarchy" +
+                    "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 172
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 173
- testRunner.And("search in user group \"InternalDepForbidden\" \"AutomationDepartment\" \"Structural Hi" +
-                    "erarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"InternalDepartmentDisabled\" \"AutomationDepartment\" \"Structu" +
+                    "ral Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 174
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 175
- testRunner.And("search in user group \"InternalDepNoMembers\" \"AutomationDepartment\" \"Structural Hi" +
+ testRunner.And("search in user group \"InternalDepForbidden\" \"AutomationDepartment\" \"Structural Hi" +
                     "erarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 176
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 177
+ testRunner.And("search in user group \"InternalDepNoMembers\" \"AutomationDepartment\" \"Structural Hi" +
+                    "erarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 178
  testRunner.When("Admin set department sending message permissions for user \"Send All Departments\" " +
                     "\"False\" \"Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 177
+#line 179
  testRunner.When("Admin set department sending message permissions for user \"Send to all organizati" +
                     "ons except\" \"True\" \"Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 178
+#line 180
  testRunner.And("search and add \"Department Group for Automation 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 179
+#line 181
  testRunner.And("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
