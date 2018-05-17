@@ -321,7 +321,7 @@ namespace T2automation.Steps.My_Messages
             txtManager = new TextFileManager();
             inboxPage = new InboxPage(driver);
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
         }
 
         [Then(@"click on ""(.*)"" button"), When(@"click on ""(.*)"" button")]

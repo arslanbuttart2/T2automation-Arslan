@@ -240,8 +240,6 @@ Scenario:ph1_005 Exporting Message - 3
 	#When user open outgoing The "To" field is empty by default! and no instruction are given to select the option in excel file
 	When user go to my messages Outgoing Document
 	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
-	######This data is not available to arslan admin neither for danish against Saudi Affairs
-	#####And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "InternalDepartmentOtherDepAr"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
 	And select the external department "ExternalEntitySameCountry"
 	And user compose mail "Outgoing message for direct export 444" "Outgoing message for direct export 444"
@@ -257,19 +255,22 @@ Scenario:ph1_005 Exporting Message - 3
 	And click on "Reply All" button
 	And user compose mail "Reply All: Outgoing message for direct export 444" "Reply All: Outgoing message for direct export 444"
 	And user set properties "Paper" "67890" "Parcels" "" "" "" ""
-	##### Getting error while adding another connected document that  Index was outside the bounds of the array. 
 	And user select connected document with subject "Internal Message to Outside Internal Department 111"
 	And user delete the attachment "1.pdf" "1"
-	And user send the email and click on Cancel button
-##		###### Need to test manually from here the email does not appear in deleted folder replace the subject with Internal Message to Outside Internal Department
-##		#####When user opens department delete "internalDepartmentSameDep" mail with subject "Reply All: Outgoing message for direct export 444" ""
-##		#####And user deletes the mail
-##		#####Then mail with subject "Reply All: Outgoing message for direct export 444" should not appear in "InternalDepartmentSameDep" deleted message
-	When user open dept "CommDepSameDep" Outbox mail with subject"Outgoing message for direct export 444"
+	Then user send the email and save refrence no from popup "dept" "Reply All: Outgoing message for direct export 444" "True"
+######Need to test manually from here the email does not appear in deleted folder replace the subject with Internal Message to Outside Internal Department
+#####When user opens department delete "internalDepartmentSameDep" mail with subject "Reply All: Outgoing message for direct export 444" ""
+#####And user deletes the mail
+#####Then mail with subject "Reply All: Outgoing message for direct export 444" should not appear in "InternalDepartmentSameDep" deleted message
+	When user go to dept "my" messages Inbox folder
+	And user search and open mail in dept "my" with subject "Reply All: Outgoing message for direct export 444"
+	And user deletes the mail
+	Then mail with subject "Reply All: Outgoing message for direct export 444" should not appear in "my" inbox
+	When user open dept "AdministrativeComm" Outbox mail with subject"Outgoing message for direct export 444"
 	And click on "Retrieve" button
 	#####Following is not working due to reterive button issue
-	#####When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 444"
-	#####And user click on exported message return button and write comment
+	####When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 444"
+	####And user click on exported message return button and write comment
 	When user open inbox email with subject "Outgoing message for direct export 444" and reference no
 	And click on "Reply" button
 	And user delete the document with subject "Any Doc" from the list

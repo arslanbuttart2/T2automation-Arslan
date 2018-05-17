@@ -1066,16 +1066,20 @@ private IList<IWebElement> _daysOnCal() {
         [FindsBy(How = How.XPath, Using = ".//*[@id='divGroupMemebersGrid']/tbody/tr/td[2]")]
         private IList<IWebElement> _userFromUserGroupPopup;
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='divGroupMemebersGrid']/tbody/tr/td[1]")]
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divGroupMemebersGrid']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _userFromUserGroupPopupCheckBox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul/li[1]")]
+        private IWebElement _userFromUserGroupfield;
+
 
         private void _to_userCheckAndSelect(IWebDriver driver,string to_user)
         {
             Thread.Sleep(9000);
-            IWebElement temp = driver.FindElement(By.XPath(".//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul/li[1]"));
-            if (GetText(driver, temp).Equals(to_user))
+            //IWebElement temp = driver.FindElement(By.XPath(".//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul/li[1]"));
+            if (GetText(driver, _userFromUserGroupfield).Contains(to_user))
             {
-                Click(driver, temp);
+                Click(driver, _userFromUserGroupfield);
             }
         }
 
@@ -1828,6 +1832,7 @@ private IList<IWebElement> _daysOnCal() {
                 if (GetText(driver, _userFromUserGroupPopup.ElementAt(i)).Contains(to_check))
                 {
                     Click(driver, _userFromUserGroupPopupCheckBox.ElementAt(i));
+                    break;
                 }
             }
             _ifOkBtn();
@@ -2585,8 +2590,9 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(2000);
         }
 
-        public bool OpenMailSpecial(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true)
+        public bool OpenMailSpecial(IWebDriver driver, string strData, string encryptPass = "", bool withSubject = true, string text="")
         {
+            bool flag = false;
             if (withSubject == false)
             {
                 firstSearchFolderWithRefNo(strData);
@@ -2603,17 +2609,18 @@ private IList<IWebElement> _daysOnCal() {
 
             if (searchResult >= 1 && withSubject == true)
             {
-                Click(driver, _subjectList.ElementAt(0));
-                if (!encryptPass.Equals(""))
+                if(searchResult > 1)
                 {
-                    EncryptedPassword = encryptPass;
-                    Click(driver, _encryptedPasswordOkBtn);
-                    Thread.Sleep(5000);
+                    for (int i = 0; i < searchResult; i++)
+                    {
+                        if (GetText(_driver, _subjectList.ElementAt(i)).Equals(text))
+                        {
+                            //Click(driver, _referenceNoList.ElementAt(i));
+                            flag = true;
+                        }
+                    }
                 }
-                return true;
-            }
-            else if (searchResult >= 1 && withSubject == false)
-            {
+
                 Click(driver, _referenceNoList.ElementAt(0));
                 if (!encryptPass.Equals(""))
                 {
@@ -2621,10 +2628,33 @@ private IList<IWebElement> _daysOnCal() {
                     Click(driver, _encryptedPasswordOkBtn);
                     Thread.Sleep(5000);
                 }
-                return true;
+                return flag;
+            }
+            else if (searchResult >= 1 && withSubject == false)
+            {
+                string temp = "";
+                for (int i = 0; i < searchResult; i++)
+                {
+                    temp = GetText(_driver, _subjectList.ElementAt(i));
+                    if (GetText(_driver, _subjectList.ElementAt(i)).Equals(text))
+                    {
+                        //Click(driver, _referenceNoList.ElementAt(i));
+                        flag = true;
+                    }
+                }
+
+                Click(driver, _referenceNoList.ElementAt(0));
+
+                if (!encryptPass.Equals(""))
+                {
+                    EncryptedPassword = encryptPass;
+                    Click(driver, _encryptedPasswordOkBtn);
+                    Thread.Sleep(5000);
+                }
+                return flag;
             }
             Console.WriteLine("No such mail found!!!");
-            return false;
+            return flag;
         }
 
         public bool OpenMailForSameRefNos(IWebDriver driver, string strData, string subject, bool withSubject = true)

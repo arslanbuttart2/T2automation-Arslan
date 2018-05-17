@@ -145,7 +145,8 @@ Scenario:ph2_005 Department FavGroups - 1
 	When user go to dept "qaDept" Outbox
 	And user search and open mail in dept "qaOut" with subject "Internal message for department groups 111"
 	And click on "Retrieve" button
-	And user press To_user "Department Group For Automation 111" and uncheck "InternalDepartmentOtherDep" from popup
+	And user press To_user "Department Group for Automation 111" and uncheck "InternalDepartmentOtherDep" from popup
+	###Unable to send mail because accounting department!
 	And user send the email
 	And user go to dept "my" messages Inbox folder
 	And user search and open mail in dept "my" with subject "Internal message for department groups 111"

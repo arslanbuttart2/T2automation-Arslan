@@ -443,7 +443,7 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false,text:subject);
         }
 
         [When(@"user click on close button")]
@@ -463,8 +463,12 @@ namespace T2automation.Steps.Messages
             {
                 deptMessageInboxPage.NavigateToQADeptOutbox(driver);
             }
+            if (Dept.Equals("AdministrativeComm"))
+            {
+                deptMessageInboxPage.NavigateToMessageRoot(driver);
+            }
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
         }
 
         [When(@"user click on undo export button")]
@@ -703,7 +707,7 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
         }
 
         [When(@"user click on edit button")]
@@ -1019,7 +1023,7 @@ namespace T2automation.Steps.Messages
             Thread.Sleep(3000);
             inboxPage.WaitTillProcessing();
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false,text: subject);
             Thread.Sleep(4000);
         }
 
@@ -1038,7 +1042,7 @@ namespace T2automation.Steps.Messages
                 inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: "P@ssw0rd!@#");
                 return;
             }
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false,text: subject);
         }
 
         [When(@"user open inbox email with subject ""(.*)"" and reference no")]
@@ -1135,7 +1139,7 @@ namespace T2automation.Steps.Messages
                 inboxPage.NavigateToQADeptInbox(driver);
             }
             string refno = txtManager.readFromFile(subject);
-            Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false));
+            Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false,text: subject));
         }
 
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" Exported")]
@@ -1157,7 +1161,7 @@ namespace T2automation.Steps.Messages
                 inboxPage.NavigateToCommDeptExportF(driver);
             }
             string refno = txtManager.readFromFile(subject);
-            Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false));
+            Assert.IsFalse(inboxPage.OpenMailSpecial(driver, refno, withSubject: false,text:subject));
         }
 
 
@@ -1180,7 +1184,7 @@ namespace T2automation.Steps.Messages
                 inboxPage.NavigateToCommDeptDeleteF(driver, dept);
             }
             string refno = txtManager.readFromFile(subject);
-            Assert.IsTrue(inboxPage.OpenMailSpecial(driver, refno, withSubject: false));
+            Assert.IsTrue(inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject));
         }
 
         [When(@"user go to department ""(.*)"" inbox")]
