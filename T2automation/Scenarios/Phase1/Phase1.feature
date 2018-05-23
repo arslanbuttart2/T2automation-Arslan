@@ -403,6 +403,8 @@ Scenario:ph1_009 Retrieve  Message - 3
 	And user click on retrive button
 
 Scenario:ph1_010 Retrieve  Message - 4
+	When Admin set system message permissions for user "Rollback Messages from Deleted Items" "True" "User"
+	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "True" "User" "internalDepartmentSameDep"
 	When user go to dept messages Incoming Document
 	And search "AdminUserName" "UserMainDepartmentAr" "Users"
 	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"

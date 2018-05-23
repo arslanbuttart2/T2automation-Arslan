@@ -120,8 +120,8 @@ Scenario:ph2_005 Department FavGroups - 1
 	And open members popup for "Department Group for Automation 111"
 	And click on add new member
 	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And click on add new member
-	And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartmentAr" "Structural Hierarchy"
+	#And click on add new member
+	#And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartmentAr" "Structural Hierarchy"
 	And click on add new member
 	And search in user group "Admin" "UserMainDepartmentAr" "Users"
 	And click on add new member
@@ -155,6 +155,8 @@ Scenario:ph2_005 Department FavGroups - 1
 	And user go to dept "Audit" messages Inbox folder
 	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
 	When Admin set department sending message permissions for user "User Groups" "False" "Admin" "internalDepartmentSameDep"
+	###Need to updadate this!!!
+
 	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
 	And user delete user_group "Department Group for Automation 111"
 

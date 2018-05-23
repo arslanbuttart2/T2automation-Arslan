@@ -964,6 +964,19 @@ namespace T2automation.Pages.MyMessages
                 }
             }
         }
+
+        public void _ifSaveBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Save']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
+
         private SelectElement _receiverType(IWebDriver driver)
         {
             return new SelectElement(driver.FindElement(By.Id("slctRecieverTypeTemp")));
@@ -1302,6 +1315,7 @@ private IList<IWebElement> _daysOnCal() {
                     aftersplit[aftersplit.Count() - 1] = aftersplit[aftersplit.Count() - 1].Replace(" ", string.Empty);
                     if (aftersplit[aftersplit.Count() - 1].Equals(user))
                     {
+                        Thread.Sleep(3000);
                         Click(driver, _selectToCheckForUser.ElementAt(index));
                         Click(driver, _selectToFrameToBtn);
                         Thread.Sleep(1000);
@@ -2703,7 +2717,8 @@ private IList<IWebElement> _daysOnCal() {
             Thread.Sleep(2000);
             Click(_driver, _chk1);
             Click(_driver, _chk2);
-            Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
+            _ifSaveBtn();
+            //Click(_driver, _connectedDocSaveBtn.ElementAt(_connectedDocSaveBtn.Count - 1));
             WaitTillProcessing();
         }
 
