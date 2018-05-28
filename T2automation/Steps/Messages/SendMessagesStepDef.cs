@@ -170,6 +170,7 @@ namespace T2automation.Steps.My_Messages
             myMessageInboxPage.NavigateToQADeptInbox(driver);
             txtManager = new TextFileManager();
             string refno = txtManager.readFromFile(subject:subject);
+            refno = txtManager.refnoPure(refno);
             if (subject.Contains("Encrypted message"))
             {
                 Assert.IsTrue(myMessageInboxPage.ValidateMailEncrypted(driver, readFromConfig.GetValue(to), subject, content, refno: refno,encryptPass:"P@ssw0rd!@#"));

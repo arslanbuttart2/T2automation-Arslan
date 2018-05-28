@@ -162,6 +162,12 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.XPath, Using = ".//*[@id='divAddFavGroupGrid']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _userGroupSearchResultChkBox;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='favGroupList']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _sendndingPermissionAllPermissionListChkBox;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='btnDeleteSendFavGroup']")]
+        private IWebElement _sendndingPermissionAllPermissionListDeleteBtn;
+
         [FindsBy(How = How.Id, Using = "btnViewResult")]
         private IWebElement _viewSystemPermissionResult;
 
@@ -250,6 +256,18 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         public void _ifOkBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Ok']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
+
+        public void _ifSaveBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Save']"));
             foreach (IWebElement elem in elements)
             {
                 if (elem.Displayed)
@@ -561,6 +579,15 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             }
             else if(!data.Equals(""))
             {
+                Thread.Sleep(3000);
+                for (int i = 0; i < _sendndingPermissionAllPermissionListChkBox.Count; i++)
+                {
+                    Click(_driver, _sendndingPermissionAllPermissionListChkBox.ElementAt(i));
+                }
+                Thread.Sleep(2000);
+                Click(_driver, _sendndingPermissionAllPermissionListDeleteBtn);
+                Thread.Sleep(2000);
+                _ifSaveBtn();
                 Thread.Sleep(3000);
                 Click(_driver,_userGroupsAddBtnDeptSendingPermissions);
                 Thread.Sleep(4000);

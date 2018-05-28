@@ -1248,7 +1248,7 @@ namespace T2automation.Steps.Messages
         [Then(@"user deletes the mail"), When(@"user deletes the mail")]
         public void ThenUserDeletesTheMail()
         {
-            inboxPage.DeleteMail();
+            Assert.IsTrue(inboxPage.DeleteMail(),"Delete Button is not working!!!");
         }
 
         [When(@"user click on forward button")]

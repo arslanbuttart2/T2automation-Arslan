@@ -94,6 +94,10 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = ".//*[@id='userSearchGridTemp']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _selectToCheckForUserGroups;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDestinationSearchGrid']/tbody/tr/td[1]/lable")]
+        private IList<IWebElement> _selectToCheckForOrgDestinationGroup;
+        
+
         //[FindsBy(How = How.XPath, Using = ".//tbody/tr/td[2]")]
         //private IList<IWebElement> _selectToName;
 
@@ -809,6 +813,11 @@ namespace T2automation.Pages.MyMessages
             return _driver.FindElements(By.XPath(".//*[@id='userSearchGridTemp']/tbody/tr/td[2]"));
         }
 
+        private IList<IWebElement> _selectToNameForOrgDestinationGroup()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='organizationDestinationSearchGrid']/tbody/tr/td[2]"));
+        }
+
         private IList<IWebElement> _connectedDocSearchedCheckBoxes()
         {
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentFilter']/tbody/tr/td[1]/label"));
@@ -1371,20 +1380,28 @@ private IList<IWebElement> _daysOnCal() {
                         Thread.Sleep(1000);
                         return;
                     }
+                }
+            }
+            else if (receiverType.Equals("Destination Groups"))
+            {
+                Thread.Sleep(4000);
+                for (int index = 0; index < _selectToNameForOrgDestinationGroup().Count; index++)
+                {
+                    string temp = GetText(driver, _selectToNameForOrgDestinationGroup().ElementAt(index));
 
-                    /*
-                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
+                    if (temp.Contains(user))
                     {
-                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
+                        Click(driver, _selectToCheckForOrgDestinationGroup.ElementAt(index));
                         Click(driver, _selectToFrameToBtn);
                         Thread.Sleep(1000);
                         return;
-                    }*/
+                    }
                 }
             }
 
 
 
+            //*[@id='organizationDestinationSearchGrid']/tbody/tr[1]/td[2]
         }
 
 

@@ -156,7 +156,6 @@ Scenario:ph2_005 Department FavGroups - 1
 	And user search and open mail in dept "Audit" with subject "Internal message for department groups 111"
 	When Admin set department sending message permissions for user "User Groups" "False" "Admin" "internalDepartmentSameDep"
 	###Need to updadate this!!!
-
 	When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
 	And user delete user_group "Department Group for Automation 111"
 
@@ -173,11 +172,11 @@ Scenario:ph2_006 Department FavGroups - 2
 	And click on add new member
 	And search in user group "InternalMailChild" "InternalMailMain" "Structural Hierarchy"
 	And click on add new member
-	And search in user group "InternalDepartmentDisabled" "AutomationDepartment" "Structural Hierarchy"
+	And search in user group "InternalDepartmentDisabledAr" "AutomationDepartment" "Structural Hierarchy"
 	And click on add new member
-	And search in user group "InternalDepForbidden" "AutomationDepartment" "Structural Hierarchy"
+	And search in user group "InternalDepForbiddenAr" "AutomationDepartment" "Structural Hierarchy"
 	And click on add new member
-	And search in user group "InternalDepNoMembers" "AutomationDepartment" "Structural Hierarchy"
+	And search in user group "InternalDepNoMembersAr" "AutomationDepartment" "Structural Hierarchy"
 	When Admin set department sending message permissions for user "Send All Departments" "False" "Admin" "internalDepartmentSameDep"
 	When Admin set department sending message permissions for user "Send to all organizations except" "True" "Admin" "internalDepartmentSameDep"
 	And search and add "Department Group for Automation 222"
@@ -198,5 +197,20 @@ Scenario:ph2_006 Department FavGroups - 2
 	#And user go to dept "Audit" messages Inbox folder
 	#And user search and open mail in dept "Audit" with subject "Incoming message for department groups 222"
 	
-
-
+Scenario:ph2_007 Announcement Groups 1
+When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
+	And added new user group "Announcement Group 1"
+	And open members popup for "Announcement Group 1"
+	And click on add new member
+	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartmentAr" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "Admin" "UserMainDepartmentAr" "Users"
+	And click on add new member
+	And search in user group "InternalMailChild" "InternalMailMain" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentDisabledAr" "AutomationDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepForbiddenAr" "AutomationDepartment" "Structural Hierarchy"
+	
