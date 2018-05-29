@@ -239,6 +239,22 @@ namespace T2automation.Steps.Phase2
             permissionsPage.SearchDataForUserGroup(dataToSearch);
         }
 
+        [When(@"Search and add ""(.*)"" for ""(.*)""")]
+        public void WhenSearchAndAddFor(string dataToSearch, string block)
+        {
+            driver = driverFactory.GetDriver();
+            permissionsPage = new PermissionsPage(driver);
+            if (block.Equals("User Groups"))
+            {
+                permissionsPage.SearchDataForUserGroup(dataToSearch);
+            }
+            if (block.Equals("All Organization Except"))
+            {
+                permissionsPage.SearchDataForAllOrgExcept(dataToSearch);
+            }
+        }
+
+
         [When(@"user open ""(.*)"" in department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
         public void WhenUserOpenInDepartmentMailWithSubject(string folderName, string deptName, string subject, string encryptedPassword = "")
         {

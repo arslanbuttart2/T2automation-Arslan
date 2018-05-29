@@ -179,23 +179,23 @@ Scenario:ph2_006 Department FavGroups - 2
 	And search in user group "InternalDepNoMembersAr" "AutomationDepartment" "Structural Hierarchy"
 	When Admin set department sending message permissions for user "Send All Departments" "False" "Admin" "internalDepartmentSameDep"
 	When Admin set department sending message permissions for user "Send to all organizations except" "True" "Admin" "internalDepartmentSameDep"
-	And search and add "Department Group for Automation 222"
+	And Search and add "audit" for "All Organization Except" 
 	And Admin logged in "AdminUserName" "AdminPassword"
-	#And user go to dept messages Incoming Document
-	####No Data available
-	#And search "UserGroups2" "UserMainDepartmentAr" "User Groups"
-	#And user compose mail "Incoming message for department groups 222" "Incoming message for department groups 222"
-	#And user set properties "" "" "" "12345" "now" "now" ""
-	#And select the external department "ExternalEntitySameCountry"
-	#And user attach attachments 1 "1.jpg"
-	#And user send the email and click on Cancel button
-	#Then save reference number from "dept" in txt with subject "Incoming message for department groups 222"
-	#When user go to dept "Accounting" messages Inbox folder
-	#And user search and open mail in dept "Accounting" with subject "Incoming message for department groups 222"
-	#And user go to dept "my" messages Inbox folder
-	#And user search and open mail in dept "my" with subject "Incoming message for department groups 222"
-	#And user go to dept "Audit" messages Inbox folder
-	#And user search and open mail in dept "Audit" with subject "Incoming message for department groups 222"
+	And user go to dept messages Incoming Document
+	###No Data available
+	And search "UserGroups2" "UserMainDepartmentAr" "User Groups"
+	And user compose mail "Incoming message for department groups 222" "Incoming message for department groups 222"
+	And user set properties "" "" "" "12345" "now" "now" ""
+	And select the external department "ExternalEntitySameCountry"
+	And user attach attachments 1 "1.jpg"
+	And user send the email and click on Cancel button
+	Then save reference number from "dept" in txt with subject "Incoming message for department groups 222"
+	When user go to dept "Accounting" messages Inbox folder
+	And user search and open mail in dept "Accounting" with subject "Incoming message for department groups 222"
+	And user go to dept "my" messages Inbox folder
+	And user search and open mail in dept "my" with subject "Incoming message for department groups 222"
+	And user go to dept "Audit" messages Inbox folder
+	And user search and open mail in dept "Audit" with subject "Incoming message for department groups 222"
 	
 Scenario:ph2_007 Announcement Groups 1
 When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab

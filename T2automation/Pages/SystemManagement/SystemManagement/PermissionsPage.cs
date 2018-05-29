@@ -155,18 +155,37 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='txtSearchFavGroup']")]
         private IWebElement _userGroupSearchTab;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='searchTextOrganization']")]
+        private IWebElement _organizationSearchTab;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divAddFavGroupGrid']/tbody/tr/td[2]")]
         private IList<IWebElement> _userGroupSearchResult;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationListGrid']/tbody/tr/td[2]")]
+        private IList<IWebElement> _organizationSearchResult;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divAddFavGroupGrid']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _userGroupSearchResultChkBox;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationListGrid']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _organizationSearchResultChkBox;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='selectedOrganizationDivBtn']/input")]
+        private IWebElement _organizationAddBtnSearchResult;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='favGroupList']/tbody/tr/td[1]/label")]
         private IList<IWebElement> _sendndingPermissionAllPermissionListChkBox;
         
+        [FindsBy(How = How.XPath, Using = ".//*[@id='departmentsExcludeList']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _sendndingPermissionAllOrgExceptListChkBox;
+
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='btnDeleteSendFavGroup']")]
         private IWebElement _sendndingPermissionAllPermissionListDeleteBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='btnDeleteExcludedDepartments']")]
+        private IWebElement _sendndingPermissionAllOrgExceptListDeleteBtn;
 
         [FindsBy(How = How.Id, Using = "btnViewResult")]
         private IWebElement _viewSystemPermissionResult;
@@ -209,10 +228,19 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='chkbxSendFavGroup']")]
         private IWebElement _userGroupsDeptSendingPermissionsChkbox;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='chkbxSendExceptDepartments']")]
+        private IWebElement _allOrgExceptDeptSendingPermissionsChkbox;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='btnAddSendFavGroup']")]
         private IWebElement _userGroupsAddBtnDeptSendingPermissions;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='btnExcludeDepartment']")]
+        private IWebElement _allOrgExceptAddBtnDeptSendingPermissions;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='chkbxSendAllDepartments']")]
+        private IWebElement _sendAllDeptSendingPermissions;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='btnSave']")]
         private IWebElement _saveBtnDeptSendingPermissions;
 
@@ -489,14 +517,15 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_sendAllDeptSendingPermissions.Displayed)
                                 {
+                                    Click(driver, _sendAllDeptSendingPermissions);
+                                    Click(_driver, _saveBtnDeptSendingPermissions);
                                     return;
                                 }
                                 else
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
-                                    return;
+                                    Console.WriteLine("Send All Department Is not visible");
                                 }
                             }
                             catch (Exception e)
@@ -508,14 +537,15 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_sendAllDeptSendingPermissions.Displayed)
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    Click(driver, _sendAllDeptSendingPermissions);
+                                    Click(_driver, _saveBtnDeptSendingPermissions);
                                     return;
                                 }
                                 else
                                 {
-                                    return;
+                                    Console.WriteLine("Send All Department is not visible");
                                 }
                             }
                             catch (Exception e)
@@ -531,13 +561,13 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_allOrgExceptAddBtnDeptSendingPermissions.Displayed)
                                 {
                                     return;
                                 }
                                 else
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    Click(driver, _allOrgExceptDeptSendingPermissionsChkbox);
                                     return;
                                 }
                             }
@@ -550,9 +580,9 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_allOrgExceptAddBtnDeptSendingPermissions.Displayed)
                                 {
-                                    Click(driver, _userGroupsDeptSendingPermissionsChkbox);
+                                    Click(driver, _allOrgExceptDeptSendingPermissionsChkbox);
                                     return;
                                 }
                                 else
@@ -614,7 +644,54 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             }
         }
 
-
+        public void SearchDataForAllOrgExcept(string data)
+        {
+            if (data.Equals(""))
+            {
+                Console.WriteLine("No Data To search!!!");
+            }
+            else if (!data.Equals(""))
+            {
+                Thread.Sleep(3000);
+                _ifOkBtn();
+                Thread.Sleep(3000);
+                for (int i = 0; i < _sendndingPermissionAllOrgExceptListChkBox.Count; i++)
+                {
+                    Click(_driver, _sendndingPermissionAllOrgExceptListChkBox.ElementAt(i));
+                }
+                Thread.Sleep(2000);
+                Click(_driver, _sendndingPermissionAllOrgExceptListDeleteBtn);
+                Thread.Sleep(2000);
+                _ifSaveBtn();
+                Thread.Sleep(3000);
+                Click(_driver, _allOrgExceptAddBtnDeptSendingPermissions);
+                Thread.Sleep(3000);
+                _ifOkBtn();
+                Thread.Sleep(3000);
+                Thread.Sleep(4000);
+                SendKeys(_driver, _organizationSearchTab, data);
+                Thread.Sleep(9000);
+                if (_organizationSearchResult.Count >= 1)
+                {
+                    for (int i = 0; i < _organizationSearchResult.Count; i++)
+                    {
+                        if (GetText(_driver, _organizationSearchResult.ElementAt(i)).Contains(data))
+                        {
+                            Click(_driver, _organizationSearchResultChkBox.ElementAt(i));
+                            Click(_driver, _organizationAddBtnSearchResult);
+                            break;
+                        }
+                    }
+                    Click(_driver, _okBtn);
+                    Thread.Sleep(2500);
+                    Click(_driver, _saveBtnDeptSendingPermissions);
+                }
+                else
+                {
+                    Console.WriteLine("No data Found For User Group");
+                }
+            }
+        }
 
         public void IncludeDeptMessagePermissions(IWebDriver driver, string dept, string permissionName, bool value)
         {

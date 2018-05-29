@@ -294,7 +294,6 @@ Scenario:ph1_005 Exporting Message - 3
 	#####When user opens inbox email with subject "Outgoing message for direct export 444"
 	#####And user click on undo export button
 
-
 Scenario:ph1_006 Exporting Message - 4
 	When user go to dept messages Outgoing Document  
 	And select the external department "ExternalEntitySameCountry"
