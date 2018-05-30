@@ -653,8 +653,6 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             else if (!data.Equals(""))
             {
                 Thread.Sleep(3000);
-                _ifOkBtn();
-                Thread.Sleep(3000);
                 for (int i = 0; i < _sendndingPermissionAllOrgExceptListChkBox.Count; i++)
                 {
                     Click(_driver, _sendndingPermissionAllOrgExceptListChkBox.ElementAt(i));
@@ -662,12 +660,10 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                 Thread.Sleep(2000);
                 Click(_driver, _sendndingPermissionAllOrgExceptListDeleteBtn);
                 Thread.Sleep(2000);
-                _ifSaveBtn();
-                Thread.Sleep(3000);
-                Click(_driver, _allOrgExceptAddBtnDeptSendingPermissions);
-                Thread.Sleep(3000);
                 _ifOkBtn();
                 Thread.Sleep(3000);
+                Click(_driver, _allOrgExceptAddBtnDeptSendingPermissions);
+                
                 Thread.Sleep(4000);
                 SendKeys(_driver, _organizationSearchTab, data);
                 Thread.Sleep(9000);
