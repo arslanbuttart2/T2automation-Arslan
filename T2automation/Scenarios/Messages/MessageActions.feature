@@ -497,7 +497,7 @@ Scenario:048 Message - connected Person - Permission view and add - with permiss
 	And select the external department "ExternalEntitySameCountry"
 	And user enters incomming message no "+123456789" and incomming message Gregorian date "now"
 	And user set properties "" "" "" "" "" "now" ""
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
 	And user send the email and click on Cancel button
 	Then save reference number from "my" in txt with subject "Incoming Message with Connected Person to User 111"
 	Then mail should appear in the inbox "User" "Incoming Message with Connected Person to User 111" "Incoming Message with Connected Person to User 111"	
@@ -523,16 +523,16 @@ Scenario:052 Message - Adding connected Person - Invalid / incomplete data - Per
 	When Admin set system message permissions for user "Add Related Person" "True" "User"
 	And User logs in "UserName" "Password"
 	And user go to my messages Incomming Document
-	And user set connected person "Person Name1" "PersonEmail1mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "abcd" "12345" "Riyadh" "now" "هوية" "True"
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "abcd" "Riyadh" "now" "هوية" "True"
-	And user set connected person "" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "" "12345" "Riyadh" "now" "هوية" "True"
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "" "Riyadh" "now" "هوية" "True"
+	And user set connected person "Person Name1" "PersonEmail1mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "abcd" "12345" "Riyadh" "now" "ID" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "abcd" "Riyadh" "now" "ID" "True"
+	And user set connected person "" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "" "12345" "Riyadh" "now" "ID" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "" "Riyadh" "now" "ID" "True"
 	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "" "True"
-	And user set connected person "Person Name1" "" "12345" "12345" "" "" "هوية" "True"
+	And user set connected person "Person Name1" "" "12345" "12345" "" "" "ID" "True"
 	Then the connected person with name "Person Name1" should appear in the list
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "False"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "False"
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
 	When Admin set system message permissions for user "View Related Persons" "False" "User"
@@ -543,21 +543,21 @@ Scenario:052 Message - Adding connected Person - Invalid / incomplete data - Per
 	When Admin set department message permissions for user "Add Related Person" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
 	And user go to dept messages Incoming Document
-	When user set connected person "Person Name1" "PersonEmail1mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
 	Then Error is shown as "Invalid Email Address" "Email"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "abcd" "12345" "Riyadh" "now" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "abcd" "12345" "Riyadh" "now" "ID" "True"
 	Then Error is shown as "Invalid number format" "Mobile"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "abcd" "Riyadh" "now" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "abcd" "Riyadh" "now" "ID" "True"
 	Then Error is shown as "Invalid number format" "IDNumber"
-	When user set connected person "" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	When user set connected person "" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
 	Then Error is shown as "Required Field" "Name"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "" "12345" "Riyadh" "now" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "" "12345" "Riyadh" "now" "ID" "True"
 	Then Error is shown as "Required Field" "Mobile"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "" "Riyadh" "now" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "" "Riyadh" "now" "ID" "True"
 	Then Error is shown as "Required Field" "IDNumber"
 	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "" "True"
 	Then Error is shown as "Required Field" "ID"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "" "" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "" "" "ID" "True"
 	Then the connected person with name "Person Name1" should appear in the list
 	Then user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
@@ -580,8 +580,8 @@ Scenario:056 Message - Connected Person - Edit/Delete - Personal mail
 	When Admin set system message permissions for user "Add Related Person" "True" "User"
 	And User logs in "UserName" "Password"
 	And user go to my messages Incomming Document
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
-	And user update person with name "Person Name1" from the list to "Person Name2" "PersonEmail2@mail.com" "12345" "12345" "Riyadh" "yesterday" "هوية" "True"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
+	And user update person with name "Person Name1" from the list to "Person Name2" "PersonEmail2@mail.com" "12345" "12345" "Riyadh" "yesterday" "ID" "True"
 	Then the connected person with name "Person Name2" should appear in the list
 	When user delete the person with name "Person Name2" from the list
 	Then verify the connected person with name "Person Name2" should not appear in the list
@@ -596,7 +596,7 @@ Scenario:058 Message - Connected Persons - Add Connected Person - Cancel - Perso
 	And User logs in "UserName" "Password"
 	And user go to my messages Incomming Document
 	And user send incoming message to "UserMainDepartmentAr" "Users" "User"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "False"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "False"
 	Then verify the connected person with name "Person Name1" should not appear in the list
 	And user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"
@@ -609,7 +609,7 @@ Scenario:059 Message - Connected Persons - Add Connected Person - Cancel - Depar
 	And Admin set department message permissions for user "Add Related Person" "True" "User" "internalDepartmentSameDep"
 	And User logs in "UserName" "Password"
 	And user go to dept messages Incoming Document
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "False"
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "False"
 	Then verify the connected person with name "Person Name1" should not appear in the list
 	And user deletes the draft
 	Given Admin logged in "AdminUserName" "AdminPassword"

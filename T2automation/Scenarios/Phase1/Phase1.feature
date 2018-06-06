@@ -27,7 +27,7 @@ Scenario:ph1_001 Message Actions - Deleting Message
 	And select the external department "ExternalEntitySameCountry"
 	And user enters incomming message no "+123456789" and incomming message Gregorian date "now"
 	And user set properties "" "" "" "" "" "now" ""
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
 	And user send the email and click on Cancel button
 	Then save reference number from "deptAcc" in txt with subject "Incoming message for deletion 333"
 	When User logs in "UserName" "Password"
@@ -85,7 +85,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	###docx file is replaced by pdf because docx is not uploading
 	And user attach attachments 1 "1.pdf"
 	And user select connected document with subject "Internal Message to Internal Department 111"
-	When user set connected person "PersonName1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	When user set connected person "PersonName1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
 	And user send the email and click on Cancel button
 	Then save reference number from "deptAcc" in txt with subject "Incoming message for archiving 333"
 	When user go to dept "Accounting" messages Outgoing Document
@@ -147,7 +147,7 @@ Scenario:ph1_003 Exporting Message -1
 	And select the external department "ExternalEntitySameCountry"
 	And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
 	And user attach attachments 1 "1.pdf"
-	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"	
+	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"	
 	And user send the email and click on Cancel button	
 	Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
 	When user opens department "QA" mail with subject "Incoming message for indirect export 111" ""
@@ -506,7 +506,7 @@ Scenario:ph1_012 Print message - 2
 	And select the external department "ExternalEntitySameCountry"
 	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
 	And user select and save the reference no "CD3" of connected document with subject "Incoming message for Reteiving 444"
-	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "هوية" "True"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
 	Then user send the email and save refrence no from popup "my" "Incoming message for printing 333" "Fasle"
 	############################No Print Barcode button in popup
 	###And click on "Print Barcode,Save as PDF,my,Incoming message for printing 333,Print Barcode-On Sending-" button
