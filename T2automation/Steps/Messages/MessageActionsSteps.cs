@@ -1112,8 +1112,9 @@ namespace T2automation.Steps.Messages
             Assert.True(inboxPage.CheckVisibiltyOfTab(tab, value), tab + " visibilty should be " + value.ToString());
         }
 
-        [When(@"user opens department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
-        public void WhenUserOpensDepartmentMailWithSubject(string dept, string subject, string encryptedPassword = "")
+
+        [When(@"user opens department mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpensDepartmentMailWithSubject(string subject, string encryptedPassword = "")
         {
             driver = driverFactory.GetDriver();
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);

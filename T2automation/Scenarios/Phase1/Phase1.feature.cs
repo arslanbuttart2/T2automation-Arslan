@@ -149,8 +149,7 @@ this.FeatureBackground();
 #line 33
  testRunner.When("User logs in \"UserName\" \"Password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 34
- testRunner.And("user opens department \"QA\" mail with subject \"Internal message for deletion 111\" " +
-                    "\"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user opens department mail with subject \"Internal message for deletion 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
  testRunner.Then("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 36
@@ -351,16 +350,15 @@ this.FeatureBackground();
  testRunner.Then("mail with subject \"Incoming message for archiving 333\" should not appear in \"my\" " +
                     "archive message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 112
- testRunner.When("user opens department \"QA\" mail with subject \"Encrypted message for archiving 222" +
-                    "\" \"P@ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Encrypted message for archiving 222\" \"P@" +
+                    "ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 113
  testRunner.Then("user click on \"dept,Archive\" button and set \"Comment for archive\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 114
  testRunner.And("mail with subject \"Encrypted message for archiving 222\" should not appear in \"dep" +
                     "t\" inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 115
- testRunner.When("user opens department \"QA\" mail with subject \"Outgoing message for archiving 444\"" +
-                    " \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Outgoing message for archiving 444\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 116
  testRunner.Then("user click on \"deptOutgoing,Archive\" button and set \"Comment for archive\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 117
@@ -424,8 +422,8 @@ this.FeatureBackground();
  testRunner.Then("save reference number from \"my\" in txt with subject \"Incoming message for indirec" +
                     "t export 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 153
- testRunner.When("user opens department \"QA\" mail with subject \"Incoming message for indirect expor" +
-                    "t 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Incoming message for indirect export 111" +
+                    "\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 154
  testRunner.And("click export", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 155
@@ -477,8 +475,8 @@ this.FeatureBackground();
 #line 175
  testRunner.And("user click ok button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 176
- testRunner.When("user opens department \"QA\" mail with subject \"Incoming message for indirect expor" +
-                    "t 666\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Incoming message for indirect export 666" +
+                    "\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 177
  testRunner.And("user click on reply button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 178
@@ -673,8 +671,8 @@ this.FeatureBackground();
  testRunner.And("user click on exported message return button and write comment \"I am in unexporte" +
                     "d and writing comment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 254
- testRunner.When("user opens department \"QA\" mail with subject \"Outgoing message for direct export " +
-                    "444\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Outgoing message for direct export 444\" " +
+                    "\"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 255
  testRunner.And("click on \"Reply All\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 256
@@ -864,8 +862,7 @@ this.FeatureBackground();
  testRunner.Then("save reference number from \"my\" in txt with subject \"Internal message for Retreiv" +
                     "ing 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 338
- testRunner.When("user opens department \"QA\" mail with subject \"Internal message for Retreiving 111" +
-                    "\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Internal message for Retreiving 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 339
  testRunner.And("click on \"Print\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 340
@@ -880,8 +877,7 @@ this.FeatureBackground();
  testRunner.Then("save reference number from \"my\" in txt with subject \"Internal message for Retreiv" +
                     "ing 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 345
- testRunner.When("user opens department \"QA\" mail with subject \"Internal message for Retreiving 111" +
-                    "\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Internal message for Retreiving 111\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 346
  testRunner.And("click on \"Confirm Receiving\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 347
@@ -996,8 +992,8 @@ this.FeatureBackground();
  testRunner.Then("save reference number from \"my\" in txt with subject \"Encrypted message for Reteiv" +
                     "ing 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 387
- testRunner.When("user opens department \"QA\" mail with subject \"Encrypted message for Reteiving 333" +
-                    "\" \"P@ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Encrypted message for Reteiving 333\" \"P@" +
+                    "ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 388
  testRunner.And("user deletes the mail", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 389
@@ -1017,8 +1013,8 @@ this.FeatureBackground();
  testRunner.When("user open department \"internalDepartmentSameDep\" inbox and create new folder \"Aut" +
                     "omation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 397
- testRunner.When("user opens department \"QA\" mail with subject \"Encrypted message for Reteiving 333" +
-                    "\" \"P@ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user opens department mail with subject \"Encrypted message for Reteiving 333\" \"P@" +
+                    "ssw0rd!@#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 398
  testRunner.And("user move mail to new folder \"Automation 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 399

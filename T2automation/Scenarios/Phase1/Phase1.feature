@@ -31,7 +31,7 @@ Scenario:ph1_001 Message Actions - Deleting Message
 	And user send the email and click on Cancel button
 	Then save reference number from "deptAcc" in txt with subject "Incoming message for deletion 333"
 	When User logs in "UserName" "Password"
-	And user opens department "QA" mail with subject "Internal message for deletion 111" ""
+	And user opens department mail with subject "Internal message for deletion 111" ""
 	Then user deletes the mail
 	Then mail with subject "Internal message for deletion 111" should not appear in "dept" inbox
 	When user open "dept" deleted message with suject "Internal message for deletion 111" and click on button "Rollback"
@@ -109,10 +109,10 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	Then mail with subject "Internal message for archiving 111" should not appear in "my" archive message
 	When user open "my" archive message with suject "Incoming message for archiving 333" and click on button "Rollback"
 	Then mail with subject "Incoming message for archiving 333" should not appear in "my" archive message
-	When user opens department "QA" mail with subject "Encrypted message for archiving 222" "P@ssw0rd!@#"
+	When user opens department mail with subject "Encrypted message for archiving 222" "P@ssw0rd!@#"
 	Then user click on "dept,Archive" button and set "Comment for archive" ""
 	And mail with subject "Encrypted message for archiving 222" should not appear in "dept" inbox
-	When user opens department "QA" mail with subject "Outgoing message for archiving 444" ""
+	When user opens department mail with subject "Outgoing message for archiving 444" ""
 	Then user click on "deptOutgoing,Archive" button and set "Comment for archive" ""
 	And mail with subject "Outgoing message for archiving 444" should not appear in "dept" inbox
 	When user open "dept" archive message with suject "Encrypted message for archiving 222" and click on button "Rollback"
@@ -150,7 +150,7 @@ Scenario:ph1_003 Exporting Message -1
 	When user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"	
 	And user send the email and click on Cancel button	
 	Then save reference number from "my" in txt with subject "Incoming message for indirect export 111"
-	When user opens department "QA" mail with subject "Incoming message for indirect export 111" ""
+	When user opens department mail with subject "Incoming message for indirect export 111" ""
 	And click export
 	And user select To for outgoing "Administrative Communication Department"
 	And select the external department "ExternalEntitySameCountry"
@@ -173,7 +173,7 @@ Scenario:ph1_003 Exporting Message -1
 	When user opens root department "CommDepSameDep" mail with subject "Incoming message for indirect export 666"	
 	And user click on return button
 	And user click ok button
-	When user opens department "QA" mail with subject "Incoming message for indirect export 666" ""
+	When user opens department mail with subject "Incoming message for indirect export 666" ""
 	And user click on reply button
 	And user compose mail "Reply : incoming message for indirect export 666" "Reply : incoming message for indirect export 666"
 	And user delete the document with subject "Internal Message to Internal Department 111" from the list
@@ -251,7 +251,7 @@ Scenario:ph1_005 Exporting Message - 3
 	When user opens root department "CommDepSameDep" mail with subject "Outgoing message for direct export 444"
 	And user open connected document in dep for unexported message with subject "Any Doc"
 	And user click on exported message return button and write comment "I am in unexported and writing comment"
-	When user opens department "QA" mail with subject "Outgoing message for direct export 444" ""
+	When user opens department mail with subject "Outgoing message for direct export 444" ""
 	And click on "Reply All" button
 	And user compose mail "Reply All: Outgoing message for direct export 444" "Reply All: Outgoing message for direct export 444"
 	And user set properties "Paper" "67890" "Parcels" "" "" "" ""
@@ -335,14 +335,14 @@ Scenario:ph1_007 Retrieve  Message - 1
 	And user compose mail "Internal message for Retreiving 111" "Internal message for Retreiving 111"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for Retreiving 111"
-	When user opens department "QA" mail with subject "Internal message for Retreiving 111" ""
+	When user opens department mail with subject "Internal message for Retreiving 111" ""
 	And click on "Print" button 
 	And click on "Print Sticker" button
 	When user opens outbox email with subject "Internal message for Retreiving 111"
 	And click on "Retrieve" button
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for Retreiving 111"
-	When user opens department "QA" mail with subject "Internal message for Retreiving 111" ""
+	When user opens department mail with subject "Internal message for Retreiving 111" ""
 	And click on "Confirm Receiving" button
 	When user opens outbox email with subject "Internal message for Retreiving 111"
 	And click on "Retrieve" button
@@ -384,7 +384,7 @@ Scenario:ph1_009 Retrieve  Message - 3
 	And user compose mail "Encrypted message for Reteiving 333" "Encrypted message for Reteiving 333"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Encrypted message for Reteiving 333"
-	When user opens department "QA" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	When user opens department mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
 	And user deletes the mail
 	When user opens outbox email with subject "Encrypted message for Reteiving 333"
 	And user click on retrive button
@@ -394,7 +394,7 @@ Scenario:ph1_009 Retrieve  Message - 3
 	####following step is not working
 	And user click on retrive button
 	When user open department "internalDepartmentSameDep" inbox and create new folder "Automation 111"
-	When user opens department "QA" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	When user opens department mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
 	And user move mail to new folder "Automation 111"
 	When user opens Automation department "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
 	And user move mail to new folder "Automation 111"

@@ -477,6 +477,7 @@ namespace T2automation.Pages.Comm
 
         public void NavigateToQADeptInbox(IWebDriver driver)
         {
+            Thread.Sleep(2000);
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _departmentMessages);
