@@ -1070,6 +1070,14 @@ private IList<IWebElement> _daysOnCal() {
             return _driver.FindElements(By.XPath(".//table[@id = 'tbl_documentDocument']/tbody/tr/td[3]"));
         }
 
+        private IList<IWebElement> _selectToNameForAnnouncementsGroup()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='divAnnounGroupGridTemp']/tbody/tr[1]/td[2]"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divAnnounGroupGridTemp']/tbody/tr[1]/td[1]/label")]
+        private IList<IWebElement> _selectToCheckForAnnouncementsGroup;
+
         private IList<IWebElement> _connectedDocRefNoList()
         {
             return _driver.FindElements(By.XPath(".//*[@id='tbl_documentDocument']/tbody/tr/td[1]"));
@@ -1094,6 +1102,23 @@ private IList<IWebElement> _daysOnCal() {
         [FindsBy(How = How.XPath, Using = ".//*[@id='doc-part']/div[1]/div[2]/span/span[1]/span/ul/li[1]")]
         private IWebElement _userFromUserGroupfield;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='needReplyRadioDiv']/div/input[contains(@value,'2')]")]
+        private IWebElement _needReplyYesRadio;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='needReplyRadioDiv']/div/input[contains(@value,'1')][contains(@name,'rAnnounAcceptance')]")]
+        private IWebElement _needAcceptanceYesRadio;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='needReplyRadioDiv']/div/input[contains(@value,'3')]")]
+        private IWebElement _needReplyForbiddenRadio;
+        
+        [FindsBy(How = How.XPath, Using = "//*[@id='needReplyRadioDiv']/div/input[contains(@value,'0')][contains(@name,'rAnnounAcceptance')]")]
+        private IWebElement _needAcceptanceNoRadio;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='divAnnouncConfirm']/a/label")]
+        private IWebElement _announcementConfirmationBtn;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='head-menu']/div[4]/a/label")]
+        private IWebElement _deleteBtn2;
 
         private void _to_userCheckAndSelect(IWebDriver driver,string to_user)
         {
@@ -1147,6 +1172,104 @@ private IList<IWebElement> _daysOnCal() {
             WaitTillProcessing();
         }
 
+        public void SetReplyProperties(string needReply, string needAcceptance)
+        {
+            if ((needReply).Contains("Yes") && (needAcceptance.Contains("Yes")))
+            {
+                Click(_driver, _needReplyYesRadio);
+                Thread.Sleep(1000);
+
+                Click(_driver, _needAcceptanceYesRadio);
+                Thread.Sleep(4000);
+            }
+
+            else if ((needReply).Contains("Forbidden") && (needAcceptance.Contains("No")))
+            {
+                Click(_driver, _needReplyForbiddenRadio);
+                Thread.Sleep(1000);
+
+                Click(_driver, _needAcceptanceNoRadio);
+                Thread.Sleep(4000);
+            }
+
+        }
+        
+        public bool CheckOnAnnouncementConfirmationBtn()
+        {
+            try
+            {
+                if (_announcementConfirmationBtn.Displayed)
+                {
+                    Console.WriteLine("Announcement Confirmation Button is visible!!!");
+                    return true;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Announcement Confirmation Button is not visible!!!");
+                return true;
+            }
+            return false;
+
+        }
+        
+        public bool CheckOnReplyBtn()
+        {
+            try
+            {
+                if (_replyBtn.Displayed)
+                {
+                    Console.WriteLine("Reply Button is visible!!!");
+                    return true;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Reply Button is not visible!!!");
+                return true;
+            }
+            return false;
+
+        }
+
+        public bool CheckOnForwardBtn()
+        {
+            try
+            {
+                if (_forwardBtn.Displayed)
+                {
+                    Console.WriteLine("Forward Button is visible!!!");
+                    return true;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Forward Button is not visible!!!");
+                return true;
+            }
+            return false;
+
+        }
+
+        public bool CheckOnExportBtn()
+        {
+            try
+            {
+                if (_exportBtn.Displayed)
+                {
+                    Console.WriteLine("Export Button is visible!!!");
+                    return true;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Export Button is not visible!!!");
+                return true;
+            }
+            return false;
+
+        }
+        
         public bool CheckButtonAvailbility(IWebDriver driver, string buttonName, bool value)
         {
             IWebElement element = null;
@@ -1168,6 +1291,16 @@ private IList<IWebElement> _daysOnCal() {
             }
 
             return ElementIsDisplayed(driver, element) == value;
+        }
+
+        public void ClickOnDeleteBtn()
+        {
+            Thread.Sleep(1000);
+            Click(_driver, _deleteBtn2);
+            Thread.Sleep(2000);
+            Click(_driver, _yesBtn);
+            Thread.Sleep(1000);
+
         }
 
         public void cancelInstallation()
@@ -1398,6 +1531,24 @@ private IList<IWebElement> _daysOnCal() {
                     }
                 }
             }
+
+            else if (receiverType.Equals("Announcements Group"))
+            {
+                Thread.Sleep(4000);
+                for (int index = 0; index < _selectToNameForAnnouncementsGroup().Count; index++)
+                {
+                    string temp = GetText(driver, _selectToNameForAnnouncementsGroup().ElementAt(index));
+
+                    if (temp.Contains(user))
+                    {
+                        Click(driver, _selectToCheckForAnnouncementsGroup.ElementAt(index));
+                        Click(driver, _selectToFrameToBtn);
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                }
+            }
+
 
 
 
@@ -1631,7 +1782,7 @@ private IList<IWebElement> _daysOnCal() {
         public void ClickOkBtn()
         {
             Click(_driver, _okBtn());
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
         }
 
         public void ClickShowImageBtn()

@@ -111,6 +111,7 @@
     <Compile Include="Pages\MyMessages\InboxPage.cs" />
     <Compile Include="Pages\MyMessages\OutboxPage.cs" />
     <Compile Include="Pages\SystemManagement\LookUps\DepartmentSettingsPage.cs" />
+    <Compile Include="Pages\SystemManagement\SystemManagement\AnnouncementsGroupPage.cs" />
     <Compile Include="Pages\SystemManagement\SystemManagement\PermissionsPage.cs" />
     <Compile Include="Pages\SystemManagement\SystemManagement\UserManagerPage.cs" />
     <Compile Include="Program.cs" />

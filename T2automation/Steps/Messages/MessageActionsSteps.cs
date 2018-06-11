@@ -97,6 +97,11 @@ namespace T2automation.Steps.Messages
                 Thread.Sleep(3000);
                 outboxPage.NavigateToAuditDeptOutbox(driver);
             }
+            else if (type.Equals("Auto Internal"))
+            {
+                Thread.Sleep(3000);
+                outboxPage.NavigateToAutoInternalDeptOutbox(driver);
+            }
 
             if (subject.Contains("Encrypted message"))
             {
@@ -292,12 +297,12 @@ namespace T2automation.Steps.Messages
             inboxPage.SelectLevel(driver, readFromConfig.GetValue(level));
             inboxPage.SelectReceiverType(driver, receiverType);
             inboxPage.SearchNameCode = readFromConfig.GetValue(to);
-            inboxPage.WaitTillProcessing();
+            Thread.Sleep(5000);
+            //inboxPage.WaitTillProcessing();
             inboxPage.SelectToUser(driver, readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
             inboxPage._ifCloseBtn();
             inboxPage._ifCancelBtn();
-            
         }
 
         [When(@"user open ""(.*)"" archive message with suject ""(.*)"" and click on button ""(.*)""")]
@@ -726,6 +731,7 @@ namespace T2automation.Steps.Messages
         [When(@"user click ok button")]
         public void WhenUserClickOkButton()
         {
+            Thread.Sleep(2000);
             inboxPage.ClickOkBtn();
         }
 
@@ -959,6 +965,14 @@ namespace T2automation.Steps.Messages
             if (dept.Equals("Accounting"))
             {
                 inboxPage.NavigateToAccountingDeptInbox(driver);
+            }
+            if (dept.Equals("InternalDepForbidden"))
+            {
+                inboxPage.NavigateToForbiddenDeptInbox(driver);
+            }
+            if (dept.Equals("InternalDepartmentSameDep"))
+            {
+                inboxPage.NavigateToAutoInternalDeptInbox(driver);
             }
         }
 
@@ -1335,7 +1349,14 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
-            deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
+            if (deptName.Equals("internalDepartmentSameDep"))
+            {
+                inboxPage.NavigateToAutoInternalDeptInbox(driver);
+            }
+            else
+            {
+                deptMessageInboxPage.NavigateToAccountingDeptInbox(driver);
+            }
             inboxPage.CheckButtonClickable(driver, "Incoming Document");
         }
 

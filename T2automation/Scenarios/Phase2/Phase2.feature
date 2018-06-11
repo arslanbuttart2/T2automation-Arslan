@@ -197,20 +197,129 @@ Scenario:ph2_006 Department FavGroups - 2
 	And user go to dept "Audit" messages Inbox folder
 	And user search and open mail in dept "Audit" with subject "Incoming message for department groups 222"
 	
-Scenario:ph2_007 Announcement Groups 1
-When user search and open settings for "InternalDepartmentSameDep" in Lookups and open User Group tab
-	And added new user group "Announcement Group 1"
-	And open members popup for "Announcement Group 1"
-	And click on add new member
-	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And click on add new member
-	And search in user group "InternalDepartmentSameDepartment2Ar" "UserMainDepartmentAr" "Structural Hierarchy"
-	And click on add new member
-	And search in user group "Admin" "UserMainDepartmentAr" "Users"
-	And click on add new member
-	And search in user group "InternalMailChild" "InternalMailMain" "Structural Hierarchy"
-	And click on add new member
-	And search in user group "InternalDepartmentDisabledAr" "AutomationDepartment" "Structural Hierarchy"
-	And click on add new member
-	And search in user group "InternalDepForbiddenAr" "AutomationDepartment" "Structural Hierarchy"
 	
+Scenario:ph2_007 Announcement Groups 1
+
+	#####based on next 7 8 9 Tc I feel need for a separate page in system Mangement which is Announcement Group Page plz see 
+	When user create a new Announcement group "Announcement Groups 111" "Announcement Group 1" "All"
+	And user search "Announcement Group 1" and click members icon
+	And click on add new member
+	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "ChildDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "User" "UserMainDepartment" "Users"
+	When Admin set department sending message permissions for user "Announcement Group 1" "True" "Admin" "internalDepartmentSameDep"
+	And search and add "Announcement Groups 111"
+	When user go to dept "Auto Internal" messages Internal Document
+	########In app.config and inbox page SelectToUser() I added a new elseif(receiverType.Equals("Announcements Groups")) at the end so update your code 
+	And search "AnnouncementGroup1Ar" "UserMainDepartment" "Announcements Group"
+	And search CC "ChildDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And search CC "Admin" "UserMainDepartment" "Users"
+	And user compose mail "Internal message for Announcement Groups 111" "Internal message for Announcement Groups 111"
+	And user set reply properties "Need Reply,Yes" "Need Acceptance,Yes"
+	And user attach attachments 1 "1.pdf"
+	And user select connected document with subject "Any Doc"
+	And user send the email
+	Then save reference number from "Auto Internal" in txt with subject "Internal message for Announcement Groups 111"
+	When user search and open mail in dept "InternalDepartmentOtherDep" with subject "Internal message for Announcement Groups 111"
+	And check visibilty of "Announcement Confirmation" button
+	And user click on "Attachment" tab
+	And user click on "Connected Message" tab
+	And click on "Back" button 
+	And user search and select mail in dept "InternalDepartmentOtherDep" with subject "Internal message for Announcement Groups 111"
+	And user click on archieve button
+	And user search and open mail in dept "InternalDepartmentOtherDep" with subject "Internal message for Announcement Groups 111"
+	And click on "Reply" button
+	And user compose mail "Reply: Internal message for Announcement Groups 111" "Reply: Internal message for Announcement Groups 111"
+	And user send the email
+	When user search and open mail in dept_ "ChildDepartmentSameDep" with subject "Internal message for Announcement Groups 111"
+	And check visibilty of "Announcement Confirmation" button
+	And click on export button
+	And search CC "AnnouncementGroup1Ar" "UserMainDepartment" "Announcements Group"
+	And user compose mail "Export: Internal message for Announcement Groups 111" "Export: Internal message for Announcement Groups 111"
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "" "" "" "" "" "" "Indirect Export Method"
+
+Scenario:ph2_008 Announcement Groups 2
+
+### Permission walay ko eik nazar daikh laina uss ko False mein nay nae kiya.
+	When user create a new Announcement group "Announcement Groups 111" "Announcement Groups 111" "All"
+	And user search "Announcement Groups 111" and click members icon
+	And click on add new member
+	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "User" "UserMainDepartment" "Users"
+	And click on add new member
+	And search in user group "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "ChildDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	When Admin set department sending message permissions for user "Announcement Group 1" "True" "Admin" "internalDepartmentSameDep"
+	And search and add "Announcement Group 111"
+	When user go to dept "internalDepartmentSameDep" messages Incoming Document
+	And search "AnnouncementGroup1" "UserMainDepartment" "Announcements Group"
+	And search CC "Admin" "UserMainDepartment" "Users"
+	And user compose mail "Incoming message for Announcement Groups 222" "Incoming message for Announcement Groups 222"
+	And user set reply properties "Need Reply,Yes" "Need Acceptance,Yes"
+	And user set properties "" "" "" "+123456789" "now" "now" ""
+	And select the external department "ExternalEntitySameCountry"
+	And user attach attachments 1 "1.jpg"
+	And user select connected document with subject "Any Doc"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
+	And user send the email and click on Cancel button
+	Then save reference number from "Auto Internal" in txt with subject "Incoming message for Announcement Groups 222"	
+	When user search and open mail in dept "Auto Internal Outside" with subject "Incoming message for Announcement Groups 222"
+	And check visibilty of "Announcement Confirmation" button
+	And user click on "Attachment" tab
+	And user click on "Connected Message" tab
+	And click on "Back" button 
+	###In step defination added When above Then so it could be used for And
+	And user search and select mail in dept "Auto Internal Outside" with subject "Incoming message for Announcement Groups 222"
+	And user click "Delete" button
+	When user go to dept "my" messages Inbox folder
+	And user search and open mail in dept "my" with subject "Incoming message for Announcement Groups 222"
+	And check visibilty of "Announcement Confirmation" button
+	And user click "Forward" button
+	######## Data Not available in search And hence cannot excecute SN 66 from onward
+	And search "AnnouncementGroup1" "UserMainDepartment" "Announcements Group"
+	And user set reply properties "Need Reply,Yes" "Need Acceptance,Yes"
+	And user compose mail "Forward: Incoming message for Announcement Groups 222" "Forward: Incoming message for Announcement Groups 222"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Forward: Incoming message for Announcement Groups 222"	
+
+Scenario:ph2_009 Announcement Groups 3
+	When user create a new Announcement group "Announcement Groups 222" "Announcement Group 2" "UserMainDepartment"
+	And user search "Announcement Group 2" and click members icon
+	And click on add new member
+	And search in user group "InternalDepForbiddenAr" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "InternalDepartmentDisabledAr" "UserMainDepartment" "Structural Hierarchy"
+	And click on add new member
+	And search in user group "ChildDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	When Admin set department sending message permissions for user "Announcement Group 1" "True" "Admin" "internalDepartmentSameDep"
+	And search and add "Announcement Groups 222"
+	When user go to dept "internalDepartmentSameDep" messages Incoming Document
+	And search "AnnouncementGroups2" "UserMainDepartment" "Announcements Group"
+	And search CC "Admin" "UserMainDepartment" "Users"
+	And user compose mail "Incoming message for Announcement Group 333" "Incoming message for Announcement Group 333"
+	And user set reply properties "Need Reply,Forbidden" "Need Acceptance,No"
+	And user set properties "" "" "" "+123456789" "now" "now" ""
+	And select the external department "ExternalEntitySameCountry"
+	And user send the email
+	And user click ok button
+	Then user send the email and save refrence no from popup "Auto Internal" "Incoming message for Announcement Group 333" "True"
+	When user go to dept "InternalDepartmentSameDep" messages Inbox folder
+	And user search and open mail in dept "InternalDepartmentSameDep" with subject "Incoming message for Announcement Group 333"
+	When user search and open mail in dept "ChildDepartmentSameDep" with subject "Incoming message for Announcement Group 333"
+	And check visibilty of "Announcement Confirmation" button
+	And check visibilty of "Reply" button
+	And check visibilty of "Forward" button
+	And check visibilty of "Export" button
+	And user click on "Link,OutgoingDocument" upper bar button
+	#####SOrry something happened see system administrator appear kindly see it during debugging
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "" "" "" "" "" "" "Indirect Export Method"
+	And user compose mail "Outgoing message for Announcement Groups 333" "Outgoing message for Announcement Groups 333"
+

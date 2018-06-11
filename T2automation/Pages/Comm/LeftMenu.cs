@@ -285,6 +285,58 @@ namespace T2automation.Pages.Comm
             return _driver.FindElements(By.XPath(".//*[@id='organizationDocumentsDiv']/div/a/label"));
         }
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[3]/div[1]/div/a/label/i[contains(@class,'fa fa-users')]")]
+        private IWebElement _announcementsGroup;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub63635a60-776d-467d-9189-7997294e747f']")]
+        private IWebElement _departmentAutoInternalMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSub63635a60-776d-467d-9189-7997294e747f']/a")]
+        private IWebElement _autoInternalDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-63635a60-776d-467d-9189-7997294e747f']/a")]
+        private IWebElement _autoInternalInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-63635a60-776d-467d-9189-7997294e747f']/a[@class='o-folder'][@data-folder-flag=5]")]
+        private IWebElement _autoInternalDeptOutbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSubbfbb40b4-d039-422f-acc5-66c7515db372']")]
+        private IWebElement _departmentAutoChildOutsideMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubbfbb40b4-d039-422f-acc5-66c7515db372']/a")]
+        private IWebElement _autoChildOutsideDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-bfbb40b4-d039-422f-acc5-66c7515db372']/a/label")]
+        private IWebElement _autoChildOutsideInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSubb8dd1ab5-679f-426a-a678-fba4222c7d61']")]
+        private IWebElement _departmentAutoInternalOutsideMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubb8dd1ab5-679f-426a-a678-fba4222c7d61']/a")]
+        private IWebElement _autoInternalOutsideDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-b8dd1ab5-679f-426a-a678-fba4222c7d61']/a")]
+        private IWebElement _autoInternalOutsideInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSubbfbb40b4-d039-422f-acc5-66c7515db372']")]
+        private IWebElement _departmentAutoChildMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubbfbb40b4-d039-422f-acc5-66c7515db372']/a")]
+        private IWebElement _autoChildDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-bfbb40b4-d039-422f-acc5-66c7515db372']/a/label")]
+        private IWebElement _autoChildInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub8230198f-7d27-4d2b-ad0a-f3dd10dd51fc']")]
+        private IWebElement _departmentForbiddenMenuDiv;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSub8230198f-7d27-4d2b-ad0a-f3dd10dd51fc']/a")]
+        private IWebElement _forbiddenDept;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-8230198f-7d27-4d2b-ad0a-f3dd10dd51fc']/a/label")]
+        private IWebElement _forbiddenDeptInbox;
+
+
         public LeftMenu(IWebDriver driver)
         {
             _driver = driver;
@@ -653,5 +705,103 @@ namespace T2automation.Pages.Comm
             ClickForNavigation(driver, _departmentSettings);
             Thread.Sleep(1000);
         }
+
+        public void NavigateToAnnouncementGroup(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _systemManagementMainDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _systemManagementMain);
+                ClickForNavigation(driver, _systemManagement);
+            }
+            ClickForNavigation(driver, _announcementsGroup);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAutoInternalDeptOutbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
+            if (!GetAttribute(driver, _departmentAutoInternalMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _autoInternalDept);
+            }
+            ClickForNavigation(driver, _autoInternalDeptOutbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAutoChildOutsideInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
+            if (!GetAttribute(driver, _departmentAutoChildOutsideMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _autoChildOutsideDept);
+            }
+            ClickForNavigation(driver, _autoChildOutsideInbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAutoInternalOutsideInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
+            if (!GetAttribute(driver, _departmentAutoInternalOutsideMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _autoInternalOutsideDept);
+            }
+            ClickForNavigation(driver, _autoInternalOutsideInbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAutoChildInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
+            if (!GetAttribute(driver, _departmentAutoChildMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _autoChildDept);
+            }
+            ClickForNavigation(driver, _autoChildInbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToAutoInternalDeptInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
+            if (!GetAttribute(driver, _departmentAutoInternalMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _autoInternalDept);
+            }
+            ClickForNavigation(driver, _autoInternalInbox);
+            Thread.Sleep(1000);
+        }
+
+        public void NavigateToForbiddenDeptInbox(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _departmentMessages);
+            }
+            if (!GetAttribute(driver, _departmentForbiddenMenuDiv, "class").Contains("active"))
+            {
+                ClickForNavigation(driver, _forbiddenDept);
+            }
+            ClickForNavigation(driver, _forbiddenDeptInbox);
+            Thread.Sleep(1000);
+        }
+
+
+
     }
 }

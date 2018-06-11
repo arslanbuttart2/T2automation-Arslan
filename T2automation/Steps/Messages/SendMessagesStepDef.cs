@@ -161,6 +161,14 @@ namespace T2automation.Steps.My_Messages
             Assert.IsTrue(outboxPage.ValidateMail(driver, readFromConfig.GetValue(to), subject, content, listSubject, readFromConfig.GetValue(encryptedPass),refno,false));
         }
 
+        [When(@"user set reply properties ""(.*)"" ""(.*)""")]
+        public void WhenUserSetReplyProperties(string needReply, string needAcceptance)
+        {
+            driver = driverFactory.GetDriver();
+            myMessageInboxPage = new InboxPage(driver);
+            myMessageInboxPage.SetReplyProperties(needReply, needAcceptance);
+        }
+
         [Then(@"mail should appear in dept inbox ""(.*)"" ""(.*)"" ""(.*)""")]
         public void ThenMailShouldAppearInDeptInbox(string to, string subject, string content)
         {
@@ -280,6 +288,7 @@ namespace T2automation.Steps.My_Messages
             deptMessageInboxPage.NavigateToCommDeptExportF(driver, readFromConfig.GetValue(commDept));
         }
 
+        [When(@"user search and select mail in dept ""(.*)"" with subject ""(.*)""")]
         [Then(@"user search and select mail in dept ""(.*)"" with subject ""(.*)""")]
         public void ThenUserSearchAndSelectMailInDeptWithSubject(string Dept, string subject)
         {
@@ -321,6 +330,35 @@ namespace T2automation.Steps.My_Messages
             driver = driverFactory.GetDriver();
             txtManager = new TextFileManager();
             inboxPage = new InboxPage(driver);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
+        }
+
+
+        
+
+        [Then(@"user search and open mail in dept_ ""(.*)"" with subject ""(.*)""")]
+        [When(@"user search and open mail in dept_ ""(.*)"" with subject ""(.*)""")]
+        public void ThenUserSearchAndOpenMailInDept_WithSubject(string commDept, string subject)
+        {
+            driver = driverFactory.GetDriver();
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+            if (commDept.Equals("Auto Child Outside"))
+            {
+                Thread.Sleep(3000);
+                inboxPage.NavigateToAutoChildOutsideInbox(driver);
+            }
+            else if (commDept.Equals("Auto Internal Outside") || commDept.Equals("InternalDepartmentOtherDep"))
+            {
+                Thread.Sleep(3000);
+                inboxPage.NavigateToAutoInternalOutsideInbox(driver);
+            }
+            else if (commDept.Equals("ChildDepartmentSameDep"))
+            {
+                Thread.Sleep(3000);
+                inboxPage.NavigateToAutoChildInbox(driver);
+            }
             string refno = txtManager.readFromFile(subject);
             inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
         }
@@ -509,6 +547,25 @@ namespace T2automation.Steps.My_Messages
             string refno = inboxPage.SelectConnectedDocWithRefNoToSave(subject);
             Assert.IsTrue(txtManager.writeToFile(type,subject, refno));
         }
+        
+        [When(@"user click ""(.*)"" button")]
+        public void WhenUserClickButton(string name)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+            if (name.Equals("Delete"))
+            {
+                inboxPage.ClickOnDeleteBtn();
+            }
+            else if (name.Equals("Forward"))
+            {
+                inboxPage.ClickOnForward();
+            }
+        }
+
+
+
+
 
     }
 }

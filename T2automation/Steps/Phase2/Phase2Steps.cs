@@ -30,6 +30,7 @@ namespace T2automation.Steps.Phase2
         private Pages.DeptMessages.InboxPage deptMessageInboxPage;
         private TextFileManager txtManager;
         private InboxPage inboxPage;
+        private Pages.SystemManagement.SystemManagement.AnnouncementsGroupPage announcementsGroupPage;
 
         [When(@"open connected document in ""(.*)"" with subject ""(.*)""")]
         public void WhenOpenConnectedDocumentInWithSubject(string dept, string subject)
@@ -92,7 +93,6 @@ namespace T2automation.Steps.Phase2
                 Thread.Sleep(1000);
                 inboxPage.ClickOnPopupAttachmentTab();
             }
-
         }
 
         [When(@"user click on ""(.*)"" upper bar button")]
@@ -107,6 +107,11 @@ namespace T2automation.Steps.Phase2
                 inboxPage.ChangeStatustoUnread();
             }
             else if (upperBarBtn.Equals("Link,InternalDocument"))
+            {
+                Thread.Sleep(1000);
+                inboxPage.ClickLink(upperBarBtn, driver);
+            }
+            else if (upperBarBtn.Equals("Link,OutgoingDocument"))
             {
                 Thread.Sleep(1000);
                 inboxPage.ClickLink(upperBarBtn, driver);
@@ -236,7 +241,39 @@ namespace T2automation.Steps.Phase2
         {
             driver = driverFactory.GetDriver();
             permissionsPage = new PermissionsPage(driver);
-            permissionsPage.SearchDataForUserGroup(dataToSearch);
+            if (dataToSearch.Equals("Announcement Group 1") || dataToSearch.Equals("Announcement Groups 111") || dataToSearch.Equals("Announcement Groups 222"))
+            {
+                permissionsPage.SearchDataForAnnouncementGroups(dataToSearch);
+                return;
+            }
+            else
+            {
+                permissionsPage.SearchDataForUserGroup(dataToSearch);
+            }
+        }
+
+        [When(@"check visibilty of ""(.*)"" button")]
+        public void WhenCheckVisibiltyOfButton(string btnName)
+        {
+            driver = driverFactory.GetDriver();
+            inboxPage = new InboxPage(driver);
+
+            if (btnName.Equals("Announcement Confirmation"))
+            {
+                Assert.IsTrue(inboxPage.CheckOnAnnouncementConfirmationBtn());
+            }
+            else if (btnName.Equals("Reply"))
+            {
+                Assert.IsTrue(inboxPage.CheckOnReplyBtn());
+            }
+            else if (btnName.Equals("Forward"))
+            {
+                Assert.IsTrue(inboxPage.CheckOnForwardBtn());
+            }
+            else if (btnName.Equals("Export"))
+            {
+                Assert.IsTrue(inboxPage.CheckOnExportBtn());
+            }
         }
 
         [When(@"Search and add ""(.*)"" for ""(.*)""")]
@@ -365,6 +402,41 @@ namespace T2automation.Steps.Phase2
             inboxPage.SelectToUserInUserGroup(driver, readFromConfig.GetValue(to), receiverType);
             inboxPage.ClickOkBtn();
         }
+
+        [When(@"user create a new Announcement group ""(.*)"" ""(.*)"" ""(.*)""")]
+        public void WhenUserCreateANewAnnouncementGroup(string arabicName, string englishName, string groupLevel)
+        {
+            driver = driverFactory.GetDriver();
+            announcementsGroupPage = new Pages.SystemManagement.SystemManagement.AnnouncementsGroupPage(driver);
+            announcementsGroupPage.NavigateToAnnouncementGroup(driver);
+            readFromConfig = new ReadFromConfig();
+            if (groupLevel.Equals("UserMainDepartment"))
+            {
+                announcementsGroupPage.addNewGroup(driver, arabicName, englishName, readFromConfig.GetValue(groupLevel));
+                return;
+            }
+            else
+            {
+                announcementsGroupPage.addNewGroup(driver, arabicName, englishName, groupLevel);
+            }
+        }
+
+        [When(@"user search ""(.*)"" and click members icon")]
+        public void WhenUserSearchAndClickMembersIcon(string name)
+        {
+            driver = driverFactory.GetDriver();
+            readFromConfig = new ReadFromConfig();
+            announcementsGroupPage = new Pages.SystemManagement.SystemManagement.AnnouncementsGroupPage(driver);
+            announcementsGroupPage.SearchAndClickIcon(driver, name);
+        }
+
+
+
+
+
+
+
+
 
     }
 }
