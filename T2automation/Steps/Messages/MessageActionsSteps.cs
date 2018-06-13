@@ -976,6 +976,18 @@ namespace T2automation.Steps.Messages
             }
         }
 
+        [When(@"user opens department ""(.*)"" mail with subject ""(.*)"" ""(.*)""")]
+        public void WhenUserOpensDepartmentMailWithSubject(string dept, string subject, string encryptedPassword = "")
+        {
+            driver = driverFactory.GetDriver();
+            deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
+            txtManager = new TextFileManager();
+            inboxPage = new InboxPage(driver);
+            deptMessageInboxPage.NavigateToQADeptInbox(driver);
+            string refno = txtManager.readFromFile(subject);
+            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
+        }
+
         [When(@"user set connected person ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenUserSetConnectedPerson(string personName, string email, string mbl, string idNum, string idIssue, string issueDate, string idType, string saveStatus)
         {

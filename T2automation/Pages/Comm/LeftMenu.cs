@@ -115,12 +115,18 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']")]
         private IWebElement _departmentQAMenuDiv;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub63635a60-776d-467d-9189-7997294e747f']")]
+        private IWebElement _departmentQAMenuDivNew;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/div[@id='folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e']")]
         private IWebElement _departmentInboxMenuDiv;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub644dc7d2-f626-4abf-851f-8395d8a79674']")]
         private IWebElement _departmentAccountMenuDiv;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub2738404b-d625-4dfa-af82-419a13e27d0e']")]
+        private IWebElement _departmentAccountMenuDivNew;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSubdf82bbee-44d8-4d77-9b5b-92763d4362e9']")]
         private IWebElement _departmentAuditMenuDiv;
@@ -145,12 +151,21 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdd8ca884-0b05-4de6-900d-af5fc9623558']")]
         private IWebElement _commDeptMenuDiv;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3b54cf4b-9926-4370-9e98-c36265908c38']")]
+        private IWebElement _commDeptMenuDivNew;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdd8ca884-0b05-4de6-900d-af5fc9623558']/a/label")]
         private IWebElement _commDept;
         
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3b54cf4b-9926-4370-9e98-c36265908c38']/a/label")]
+        private IWebElement _commDeptNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub644dc7d2-f626-4abf-851f-8395d8a79674']/a")]
         private IWebElement _accountingDept;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub2738404b-d625-4dfa-af82-419a13e27d0e']/a")]
+        private IWebElement _accountingDeptNew;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdf82bbee-44d8-4d77-9b5b-92763d4362e9']/a")]
         private IWebElement _auditDept;
@@ -160,6 +175,9 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
         private IWebElement _accountingDeptInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-2738404b-d625-4dfa-af82-419a13e27d0e']/a/label")]
+        private IWebElement _accountingDeptInboxNew;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-df82bbee-44d8-4d77-9b5b-92763d4362e9']/a/label")]
         private IWebElement _auditDeptInbox;
@@ -179,6 +197,9 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-644dc7d2-f626-4abf-851f-8395d8a79674']/a/label")]
         private IWebElement _accountingDeptOutbox;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-2738404b-d625-4dfa-af82-419a13e27d0e']/a[@data-folder-flag='5']/label")]
+        private IWebElement _accountingDeptOutboxNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-df82bbee-44d8-4d77-9b5b-92763d4362e9']/a[@class='o-folder'][@data-folder-flag='5']")]
         private IWebElement _auditDeptOutbox;
         
@@ -190,37 +211,67 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDept;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub63635a60-776d-467d-9189-7997294e747f']/a/label")]
+        private IWebElement _qaDeptNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='sNav']/div[4]/div[3]/a/label")]
         private IWebElement _DeliveryStatementReportTab;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptInbox;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-63635a60-776d-467d-9189-7997294e747f']/a/label")]
+        private IWebElement _qaDeptInboxNew;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label/i[@class='fa fa-trash-o']")]
         private IWebElement _qaDeptDeletedF;
         
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-63635a60-776d-467d-9189-7997294e747f']/a/label/i[@class='fa fa-trash-o']")]
+        private IWebElement _qaDeptDeletedFNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a[@data-folder-flag='3']")]
         private IWebElement _qaDeptArchivedF;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-63635a60-776d-467d-9189-7997294e747f']/a/label/i[@class='fa fa-archive']")]
+        private IWebElement _qaDeptArchivedFNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3c76399d-2a03-4b67-9459-8a0925263d2e']/a/label")]
         private IWebElement _qaDeptOutbox;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-63635a60-776d-467d-9189-7997294e747f']/a[@data-folder-flag='5']/label")]
+        private IWebElement _qaDeptOutboxNew;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a[@data-folder-flag='0']")]
         private IWebElement _inboxMessageWithRoot;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3b54cf4b-9926-4370-9e98-c36265908c38']/a[@data-folder-flag='0']/label")]
+        private IWebElement _inboxMessageWithRootNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a[@class='o-folder'][@data-folder-flag='5']")]
         private IWebElement _commDeptOutbox;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3b54cf4b-9926-4370-9e98-c36265908c38']/a[@data-folder-flag='5']/label")]
+        private IWebElement _commDeptOutboxNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a[@class='o-folder'][@data-folder-flag='9']")]
         private IWebElement _commDeptExported;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3b54cf4b-9926-4370-9e98-c36265908c38']/a[@data-folder-flag='9']/label")]
+        private IWebElement _commDeptExportedNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a[@data-folder-flag='3']")]
         private IWebElement _commDeptArchivedF;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3b54cf4b-9926-4370-9e98-c36265908c38']/a[@data-folder-flag='3']/label")]
+        private IWebElement _commDeptArchivedFNew;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-dd8ca884-0b05-4de6-900d-af5fc9623558']/a[@data-folder-flag='4']")]
         private IWebElement _commDeptDeleteF;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3b54cf4b-9926-4370-9e98-c36265908c38']/a[@data-folder-flag='4']/label")]
+        private IWebElement _commDeptDeleteFNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='aSearch']/label")]
         private IWebElement _advanceSearch;
 
@@ -360,8 +411,10 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
-        public void NavigateToMyMessage(IWebDriver driver) {
-            if (!GetAttribute(driver, _myMessagesMenuDiv, "class").Contains("active")) {
+        public void NavigateToMyMessage(IWebDriver driver)
+        {
+            if (!GetAttribute(driver, _myMessagesMenuDiv, "class").Contains("active"))
+            {
                 ClickForNavigation(driver, _myMessages);
                 Thread.Sleep(1000);
             }
@@ -430,7 +483,7 @@ namespace T2automation.Pages.Comm
             ClickForNavigation(driver, _automation222DeptInbox);
             Thread.Sleep(1000);
         }
-        
+
         public void NavigateToAuditDeptInbox(IWebDriver driver)
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
@@ -458,7 +511,7 @@ namespace T2automation.Pages.Comm
             ClickForNavigation(driver, _auditDeptOutbox);
             Thread.Sleep(1000);
         }
-        
+
         public void NavigateToSaudiAffairsDeptInbox(IWebDriver driver)
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
@@ -493,11 +546,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentAccountMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentAccountMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _accountingDept);
+                ClickForNavigation(driver, _accountingDeptNew);
             }
-            ClickForNavigation(driver, _accountingDeptInbox);
+            ClickForNavigation(driver, _accountingDeptInboxNew);
             Thread.Sleep(1000);
         }
 
@@ -507,11 +560,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentAccountMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentAccountMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _accountingDept);
+                ClickForNavigation(driver, _accountingDeptNew);
             }
-            ClickForNavigation(driver, _accountingDeptOutbox);
+            ClickForNavigation(driver, _accountingDeptOutboxNew);
             Thread.Sleep(1000);
         }
 
@@ -534,11 +587,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentQAMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _qaDept);
+                ClickForNavigation(driver, _qaDeptNew);
             }
-            ClickForNavigation(driver, _qaDeptInbox);
+            ClickForNavigation(driver, _qaDeptInboxNew);
             Thread.Sleep(1000);
         }
 
@@ -548,11 +601,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentQAMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _qaDept);
+                ClickForNavigation(driver, _qaDeptNew);
             }
-            ClickForNavigation(driver, _qaDeptDeletedF);
+            ClickForNavigation(driver, _qaDeptDeletedFNew);
             Thread.Sleep(1000);
         }
 
@@ -562,11 +615,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentQAMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _qaDept);
+                ClickForNavigation(driver, _qaDeptNew);
             }
-            ClickForNavigation(driver, _qaDeptArchivedF);
+            ClickForNavigation(driver, _qaDeptArchivedFNew);
             Thread.Sleep(1000);
         }
 
@@ -577,15 +630,15 @@ namespace T2automation.Pages.Comm
                 ClickForNavigation(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _qaDeptMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentQAMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _qaDept);
+                ClickForNavigation(driver, _qaDeptNew);
             }
-            ClickForNavigation(driver, _qaDeptOutbox);
+            ClickForNavigation(driver, _qaDeptOutboxNew);
             Thread.Sleep(1000);
         }
 
-        public void NavigateToMessageRoot(IWebDriver driver, string CommDept="")
+        public void NavigateToMessageRoot(IWebDriver driver, string CommDept = "")
         {
             Thread.Sleep(2000);
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
@@ -593,73 +646,73 @@ namespace T2automation.Pages.Comm
                 ClickForNavigation(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _commDeptMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _commDept);
+                ClickForNavigation(driver, _commDeptNew);
             }
             Thread.Sleep(2000);
-            ClickForNavigation(driver, _inboxMessageWithRoot);
+            ClickForNavigation(driver, _inboxMessageWithRootNew);
             Thread.Sleep(1000);
         }
 
-        public void NavigateToCommDeptOutbox(IWebDriver driver, string CommDept="")
+        public void NavigateToCommDeptOutbox(IWebDriver driver, string CommDept = "")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _commDeptMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _commDept);
+                ClickForNavigation(driver, _commDeptNew);
             }
             Thread.Sleep(1500);
-            ClickForNavigation(driver, _commDeptOutbox);
+            ClickForNavigation(driver, _commDeptOutboxNew);
             Thread.Sleep(1000);
         }
 
 
-        public void NavigateToCommDeptExportF(IWebDriver driver, string CommDept="")
+        public void NavigateToCommDeptExportF(IWebDriver driver, string CommDept = "")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _commDeptMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _commDept);
+                ClickForNavigation(driver, _commDeptNew);
             }
             Thread.Sleep(3000);
-            ClickForNavigation(driver, _commDeptExported);
+            ClickForNavigation(driver, _commDeptExportedNew);
             Thread.Sleep(1000);
         }
 
-        public void NavigateToCommDeptArchiveF(IWebDriver driver, string CommDept="")
+        public void NavigateToCommDeptArchiveF(IWebDriver driver, string CommDept = "")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _commDeptMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _commDept);
+                ClickForNavigation(driver, _commDeptNew);
             }
-            ClickForNavigation(driver, _commDeptArchivedF);
+            ClickForNavigation(driver, _commDeptArchivedFNew);
             Thread.Sleep(1000);
         }
 
-        public void NavigateToCommDeptDeleteF(IWebDriver driver, string CommDept="")
+        public void NavigateToCommDeptDeleteF(IWebDriver driver, string CommDept = "")
         {
             if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
 
-            if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _commDeptMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _commDept);
+                ClickForNavigation(driver, _commDeptNew);
             }
             ClickForNavigation(driver, _commDeptDeleteF);
             Thread.Sleep(1000);
@@ -801,7 +854,459 @@ namespace T2automation.Pages.Comm
             Thread.Sleep(1000);
         }
 
+        //public void NavigateToUserManager(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _systemManagementMainDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _systemManagementMain);
+        //        ClickForNavigation(driver, _systemManagement);
+        //    }
+        //    ClickForNavigation(driver, _userManager);
+        //    Thread.Sleep(1000);
+        //}
 
+        //public void NavigateToMyMessage(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _myMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _myMessages);
+        //        Thread.Sleep(1000);
+        //    }
+        //}
+
+        //public void NavigateToMyMessageInbox(IWebDriver driver)
+        //{
+        //    NavigateToMyMessage(driver);
+        //    ClickForNavigation(driver, _myMessageInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToMyMessageDeletedF(IWebDriver driver)
+        //{
+        //    NavigateToMyMessage(driver);
+        //    ClickForNavigation(driver, _myMessageDeleted);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToMyMessageArchiveF(IWebDriver driver)
+        //{
+        //    NavigateToMyMessage(driver);
+        //    ClickForNavigation(driver, _myMessageArchived);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToMyMessageOutbox(IWebDriver driver)
+        //{
+        //    NavigateToMyMessage(driver);
+        //    ClickForNavigation(driver, _myMessageOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToQAAutomation111DeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        Thread.Sleep(2000);
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    Thread.Sleep(2000);
+        //    if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _qaDept);
+        //    }
+        //    Thread.Sleep(2000);
+        //    ClickForNavigation(driver, _automation111DeptInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToQAAutomation222DeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _qaDept);
+        //    }
+        //    if (!GetAttribute(driver, _departmentInboxMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _expandFolder111);
+        //        ClickForNavigation(driver, _automation111Dropdown);
+        //    }
+        //    ClickForNavigation(driver, _automation222DeptInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAuditDeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAuditMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _auditDept);
+        //    }
+        //    ClickForNavigation(driver, _auditDeptInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAuditDeptOutbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAuditMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _auditDept);
+        //    }
+        //    ClickForNavigation(driver, _auditDeptOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToSaudiAffairsDeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentSaudiAffairsMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _saudiAffairDept);
+        //    }
+        //    ClickForNavigation(driver, _saudiAffairstDeptInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToSaudiAffairsDeptOutbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentSaudiAffairsMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _saudiAffairDept);
+        //    }
+        //    ClickForNavigation(driver, _saudiAffairstDeptOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAccountingDeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAccountMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _accountingDept);
+        //    }
+        //    ClickForNavigation(driver, _accountingDeptInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAccountingDeptOutbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAccountMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _accountingDept);
+        //    }
+        //    ClickForNavigation(driver, _accountingDeptOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToMessageDeliveryStatementReport(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _MessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        Thread.Sleep(2000);
+        //        ClickForNavigation(driver, _MessagesTab);
+        //    }
+        //    Thread.Sleep(2000);
+        //    ClickForNavigation(driver, _DeliveryStatementReportTab);
+        //    Thread.Sleep(2000);
+        //}
+
+        //public void NavigateToQADeptInbox(IWebDriver driver)
+        //{
+        //    Thread.Sleep(2000);
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _qaDept);
+        //    }
+        //    ClickForNavigation(driver, _qaDeptInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToQADeptDeletedFolder(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _qaDept);
+        //    }
+        //    ClickForNavigation(driver, _qaDeptDeletedF);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToQADeptArchiveFolder(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _qaDept);
+        //    }
+        //    ClickForNavigation(driver, _qaDeptArchivedF);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToQADeptOutbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+
+        //    if (!GetAttribute(driver, _qaDeptMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _qaDept);
+        //    }
+        //    ClickForNavigation(driver, _qaDeptOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToMessageRoot(IWebDriver driver, string CommDept = "")
+        //{
+        //    Thread.Sleep(2000);
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+
+        //    if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _commDept);
+        //    }
+        //    Thread.Sleep(2000);
+        //    ClickForNavigation(driver, _inboxMessageWithRoot);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToCommDeptOutbox(IWebDriver driver, string CommDept = "")
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+
+        //    if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _commDept);
+        //    }
+        //    Thread.Sleep(1500);
+        //    ClickForNavigation(driver, _commDeptOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+
+        //public void NavigateToCommDeptExportF(IWebDriver driver, string CommDept = "")
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+
+        //    if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _commDept);
+        //    }
+        //    Thread.Sleep(3000);
+        //    ClickForNavigation(driver, _commDeptExported);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToCommDeptArchiveF(IWebDriver driver, string CommDept = "")
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+
+        //    if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _commDept);
+        //    }
+        //    ClickForNavigation(driver, _commDeptArchivedF);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToCommDeptDeleteF(IWebDriver driver, string CommDept = "")
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+
+        //    if (!GetAttribute(driver, _commDeptMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _commDept);
+        //    }
+        //    ClickForNavigation(driver, _commDeptDeleteF);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToSearchAdvance(IWebDriver driver)
+        //{
+        //    if (GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _searchMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _Search);
+        //    }
+        //    Thread.Sleep(1000);
+        //    ClickForNavigation(driver, _advanceSearch);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToSearchInquiry(IWebDriver driver)
+        //{
+        //    if (GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _searchMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _Search);
+        //    }
+        //    Thread.Sleep(1000);
+        //    ClickForNavigation(driver, _inquerySearch);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToDepartmentSettings(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _systemManagementMainDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _systemManagementMain);
+        //        ClickForNavigation(driver, _lookups);
+        //    }
+        //    ClickForNavigation(driver, _departmentSettings);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAnnouncementGroup(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _systemManagementMainDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _systemManagementMain);
+        //        ClickForNavigation(driver, _systemManagement);
+        //    }
+        //    ClickForNavigation(driver, _announcementsGroup);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAutoInternalDeptOutbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAutoInternalMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _autoInternalDept);
+        //    }
+        //    ClickForNavigation(driver, _autoInternalDeptOutbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAutoChildOutsideInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAutoChildOutsideMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _autoChildOutsideDept);
+        //    }
+        //    ClickForNavigation(driver, _autoChildOutsideInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAutoInternalOutsideInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAutoInternalOutsideMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _autoInternalOutsideDept);
+        //    }
+        //    ClickForNavigation(driver, _autoInternalOutsideInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAutoChildInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAutoChildMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _autoChildDept);
+        //    }
+        //    ClickForNavigation(driver, _autoChildInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToAutoInternalDeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentAutoInternalMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _autoInternalDept);
+        //    }
+        //    ClickForNavigation(driver, _autoInternalInbox);
+        //    Thread.Sleep(1000);
+        //}
+
+        //public void NavigateToForbiddenDeptInbox(IWebDriver driver)
+        //{
+        //    if (!GetAttribute(driver, _departmentMessagesMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _departmentMessages);
+        //    }
+        //    if (!GetAttribute(driver, _departmentForbiddenMenuDiv, "class").Contains("active"))
+        //    {
+        //        ClickForNavigation(driver, _forbiddenDept);
+        //    }
+        //    ClickForNavigation(driver, _forbiddenDeptInbox);
+        //    Thread.Sleep(1000);
+        //}
 
     }
 }

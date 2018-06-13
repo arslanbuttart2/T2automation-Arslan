@@ -2777,9 +2777,17 @@ private IList<IWebElement> _daysOnCal() {
                         flag = true;
                     }
                 }
-
-                Click(driver, _referenceNoList.ElementAt(0));
-
+                try
+                {
+                    Click(driver, _referenceNoList.ElementAt(0));
+                    flag = true;
+                }
+                catch
+                {
+                    Console.WriteLine("No Data from search appears to click!!!");
+                    flag = false;
+                }
+                
                 if (!encryptPass.Equals(""))
                 {
                     EncryptedPassword = encryptPass;

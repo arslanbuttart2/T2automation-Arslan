@@ -18,7 +18,6 @@ Scenario:ph2_001 Message Actions
 	Then user search and select mail in dept "QA" with subject "Incoming message for various actions 111" 
 	And click on "Follow-up Button" button and select "" "Formal View" ""
 	And click on "Actions And Movements" button and select "" "" "Just open Messaage Flow Tab"
-	###Some times back btn redirect us to the unwanted place!!! Here it redirect to outbox!!! -_-
 	When user go to dept "QA" messages Inbox folder
 	Then user search and open mail in dept "QA" with subject "Incoming message for various actions 111"
 	When user go to dept "QA" messages Inbox folder
