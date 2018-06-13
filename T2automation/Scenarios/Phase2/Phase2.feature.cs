@@ -546,33 +546,37 @@ this.FeatureBackground();
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 204
+#line 202
  testRunner.When("user create a new Announcement group \"Announcement Groups 111\" \"Announcement Grou" +
                     "p 1\" \"All\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 205
+#line 203
  testRunner.And("user search \"Announcement Group 1\" and click members icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 204
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 205
+ testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartment\" \"Structural " +
+                    "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 206
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 207
- testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartment\" \"Structural " +
-                    "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"InternalDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Struct" +
+                    "ural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 208
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 209
- testRunner.And("search in user group \"InternalDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Struct" +
-                    "ural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"ChildDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Structura" +
+                    "l Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 210
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 211
- testRunner.And("search in user group \"ChildDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Structura" +
-                    "l Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 212
- testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 213
  testRunner.And("search in user group \"User\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 214
+#line 212
  testRunner.When("Admin set department sending message permissions for user \"Announcement Group 1\" " +
                     "\"True\" \"Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 213
+ testRunner.And("search and add \"Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 214
+ testRunner.When("admin set sending permissions for \"Admin\" \"Send To Announcement Groups\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 215
  testRunner.And("search and add \"Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 216
@@ -630,15 +634,21 @@ this.FeatureBackground();
  testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 240
  testRunner.And("click on export button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 241
- testRunner.And("search CC \"AnnouncementGroup1Ar\" \"UserMainDepartment\" \"Announcements Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 242
- testRunner.And("user compose mail \"Export: Internal message for Announcement Groups 111\" \"Export:" +
-                    " Internal message for Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user click CC button \"UserMainDepartment\" \"Announcements Group\" \"AnnouncementGrou" +
+                    "p1Ar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 243
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 244
  testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 245
+ testRunner.And("user compose mail \"Export: Internal message for Announcement Groups 111\" \"Export:" +
+                    " Internal message for Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 246
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 247
+ testRunner.Then("save reference number from \"Auto Child\" in txt with subject \"Export: Internal mes" +
+                    "sage for Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -648,103 +658,137 @@ this.FeatureBackground();
         public virtual void Ph2_008AnnouncementGroups2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_008 Announcement Groups 2", ((string[])(null)));
-#line 246
+#line 249
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 249
+#line 251
  testRunner.When("user create a new Announcement group \"Announcement Groups 111\" \"Announcement Grou" +
                     "ps 111\" \"All\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 250
- testRunner.And("user search \"Announcement Groups 111\" and click members icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 251
- testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 252
- testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartment\" \"Structural " +
-                    "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user search \"Announcement Groups 111\" and click members icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 253
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 254
- testRunner.And("search in user group \"User\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartment\" \"Structural " +
+                    "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 255
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 256
- testRunner.And("search in user group \"InternalDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Struct" +
-                    "ural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search in user group \"User\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 257
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 258
+ testRunner.And("search in user group \"InternalDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Struct" +
+                    "ural Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 259
+ testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 260
  testRunner.And("search in user group \"ChildDepartmentOtherDepAr\" \"OtherMainDepartment\" \"Structura" +
                     "l Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 259
+#line 261
  testRunner.When("Admin set department sending message permissions for user \"Announcement Group 1\" " +
                     "\"True\" \"Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 260
- testRunner.And("search and add \"Announcement Group 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 261
- testRunner.When("user go to dept \"internalDepartmentSameDep\" messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 262
- testRunner.And("search \"AnnouncementGroup1\" \"UserMainDepartment\" \"Announcements Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("search and add \"Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 263
- testRunner.And("search CC \"Admin\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("admin set sending permissions for \"Admin\" \"Send To Announcement Groups\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 264
+ testRunner.And("search and add \"Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 265
+ testRunner.When("user go to dept \"internalDepartmentSameDep\" messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 266
+ testRunner.And("search \"AnnouncementGroup1Ar\" \"UserMainDepartment\" \"Announcements Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 267
+ testRunner.And("search CC \"Admin\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 268
  testRunner.And("user compose mail \"Incoming message for Announcement Groups 222\" \"Incoming messag" +
                     "e for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 265
- testRunner.And("user set reply properties \"Need Reply,Yes\" \"Need Acceptance,Yes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 266
- testRunner.And("user set properties \"\" \"\" \"\" \"+123456789\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 267
- testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 268
- testRunner.And("user attach attachments 1 \"1.jpg\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 269
- testRunner.And("user select connected document with subject \"Any Doc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user set reply properties \"Need Reply,Yes\" \"Need Acceptance,Yes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 270
+ testRunner.And("user set properties \"\" \"\" \"\" \"+123456789\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 271
+ testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 272
+ testRunner.And("user attach attachments 1 \"1.jpg\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 273
+ testRunner.And("user select connected document with subject \"Any Doc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 274
  testRunner.And("user set connected person \"Person Name1\" \"PersonEmail1@mail.com\" \"12345\" \"12345\" " +
                     "\"Riyadh\" \"now\" \"ID\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 271
+#line 275
  testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 272
+#line 276
  testRunner.Then("save reference number from \"Auto Internal\" in txt with subject \"Incoming message " +
                     "for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 273
+#line 277
  testRunner.When("user search and open mail in dept \"Auto Internal Outside\" with subject \"Incoming " +
                     "message for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 274
+#line 278
  testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 275
- testRunner.And("user click on \"Attachment\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 276
- testRunner.And("user click on \"Connected Message\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 277
- testRunner.And("click on \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 279
+ testRunner.And("user click on \"Attachment\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 280
+ testRunner.And("user click on \"Connected Message\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 281
+ testRunner.And("click on \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 282
  testRunner.And("user search and select mail in dept \"Auto Internal Outside\" with subject \"Incomin" +
                     "g message for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 280
+#line 283
  testRunner.And("user click \"Delete\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 281
+#line 284
  testRunner.When("user go to dept \"my\" messages Inbox folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 282
+#line 285
  testRunner.And("user search and open mail in dept \"my\" with subject \"Incoming message for Announc" +
                     "ement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 283
- testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 284
- testRunner.And("user click \"Forward\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 286
- testRunner.And("search \"AnnouncementGroup1\" \"UserMainDepartment\" \"Announcements Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 287
- testRunner.And("user set reply properties \"Need Reply,Yes\" \"Need Acceptance,Yes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user click \"Forward\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 288
+ testRunner.And("search \"AnnouncementGroup1Ar\" \"UserMainDepartment\" \"Announcements Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 289
  testRunner.And("user compose mail \"Forward: Incoming message for Announcement Groups 222\" \"Forwar" +
                     "d: Incoming message for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 289
- testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 290
+ testRunner.And("user set reply properties \"Need Reply,Yes\" \"Need Acceptance,Yes\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 291
+ testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 292
  testRunner.Then("save reference number from \"my\" in txt with subject \"Forward: Incoming message fo" +
                     "r Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 293
+ testRunner.When("user search and open mail in dept \"InternalDepartmentOtherDep\" with subject \"Forw" +
+                    "ard: Incoming message for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 294
+ testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 295
+ testRunner.And("user click on \"Attachment\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 296
+ testRunner.And("user click on \"Connected Message\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 297
+ testRunner.And("user click on \"Connected Person\" tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 298
+ testRunner.And("click on \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 299
+ testRunner.And("user search and select mail in dept \"InternalDepartmentOtherDep\" with subject \"Fo" +
+                    "rward: Incoming message for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 300
+ testRunner.And("user click on archieve button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 301
+ testRunner.And("user search and open mail in dept \"InternalDepartmentOtherDep\" with subject \"Forw" +
+                    "ard: Incoming message for Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 302
+ testRunner.Then("user search and delete Announcement group \"Announcement Groups 111\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 303
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 304
+ testRunner.When("Admin set department sending message permissions for user \"Announcement Group 1\" " +
+                    "\"False\" \"Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 305
+ testRunner.And("admin set sending permissions for \"Admin\" \"Send To Announcement Groups\" \"False\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -754,82 +798,114 @@ this.FeatureBackground();
         public virtual void Ph2_009AnnouncementGroups3()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ph2_009 Announcement Groups 3", ((string[])(null)));
-#line 292
+#line 307
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 293
+#line 308
  testRunner.When("user create a new Announcement group \"Announcement Groups 222\" \"Announcement Grou" +
                     "p 2\" \"UserMainDepartment\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 294
+#line 309
  testRunner.And("user search \"Announcement Group 2\" and click members icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 295
+#line 310
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 296
+#line 311
  testRunner.And("search in user group \"InternalDepForbiddenAr\" \"UserMainDepartment\" \"Structural Hi" +
                     "erarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 297
+#line 312
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 298
+#line 313
  testRunner.And("search in user group \"InternalDepartmentDisabledAr\" \"UserMainDepartment\" \"Structu" +
                     "ral Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 299
+#line 314
  testRunner.And("click on add new member", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 300
+#line 315
  testRunner.And("search in user group \"ChildDepartmentSameDepAr\" \"UserMainDepartment\" \"Structural " +
                     "Hierarchy\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 301
+#line 316
  testRunner.When("Admin set department sending message permissions for user \"Announcement Group 1\" " +
                     "\"True\" \"Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 302
+#line 317
  testRunner.And("search and add \"Announcement Groups 222\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 303
+#line 318
  testRunner.When("user go to dept \"internalDepartmentSameDep\" messages Incoming Document", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 304
+#line 319
  testRunner.And("search \"AnnouncementGroups2\" \"UserMainDepartment\" \"Announcements Group\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 305
+#line 320
  testRunner.And("search CC \"Admin\" \"UserMainDepartment\" \"Users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 306
+#line 321
  testRunner.And("user compose mail \"Incoming message for Announcement Group 333\" \"Incoming message" +
                     " for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 307
+#line 322
  testRunner.And("user set reply properties \"Need Reply,Forbidden\" \"Need Acceptance,No\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 308
+#line 323
  testRunner.And("user set properties \"\" \"\" \"\" \"+123456789\" \"now\" \"now\" \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 309
+#line 324
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 310
+#line 325
  testRunner.And("user send the email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 311
+#line 326
  testRunner.And("user click ok button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 312
- testRunner.Then("user send the email and save refrence no from popup \"Auto Internal\" \"Incoming mes" +
-                    "sage for Announcement Group 333\" \"True\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 313
+#line 327
+ testRunner.And("user click on cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 328
+ testRunner.Then("save reference number from \"Auto Internal\" in txt with subject \"Incoming message " +
+                    "for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 329
  testRunner.When("user go to dept \"InternalDepartmentSameDep\" messages Inbox folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 314
+#line 330
  testRunner.And("user search and open mail in dept \"InternalDepartmentSameDep\" with subject \"Incom" +
                     "ing message for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 315
+#line 331
  testRunner.When("user search and open mail in dept \"ChildDepartmentSameDep\" with subject \"Incoming" +
                     " message for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 316
+#line 332
  testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 317
+#line 333
  testRunner.And("check visibilty of \"Reply\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 318
+#line 334
  testRunner.And("check visibilty of \"Forward\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 319
+#line 335
  testRunner.And("check visibilty of \"Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 320
+#line 336
  testRunner.And("user click on \"Link,OutgoingDocument\" upper bar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 322
+#line 337
  testRunner.And("select the external department \"ExternalEntitySameCountry\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 323
+#line 338
  testRunner.And("user set properties \"\" \"\" \"\" \"\" \"\" \"\" \"Indirect Export Method\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 324
+#line 339
  testRunner.And("user compose mail \"Outgoing message for Announcement Groups 333\" \"Outgoing messag" +
                     "e for Announcement Groups 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 340
+ testRunner.And("user send the email and click on Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 341
+ testRunner.Then("save reference number from \"Auto Child\" in txt with subject \"Outgoing message for" +
+                    " Announcement Groups 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 342
+ testRunner.When("user search and open mail in dept_ \"ChildDepartmentSameDep\" with subject \"Incomin" +
+                    "g message for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 343
+ testRunner.And("user click on archieve button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 344
+ testRunner.When("user go to dept \"my\" messages Inbox folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 345
+ testRunner.And("user search and open mail in dept \"my\" with subject \"Incoming message for Announc" +
+                    "ement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 346
+ testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 347
+ testRunner.And("check visibilty of \"Reply\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 348
+ testRunner.And("check visibilty of \"Forward\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 349
+ testRunner.And("check visibilty of \"Export\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 350
+ testRunner.Then("user search and delete Announcement group \"Announcement Group 2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 351
+ testRunner.Given("Admin logged in \"AdminUserName\" \"AdminPassword\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 352
+ testRunner.When("Admin set department sending message permissions \"Announcement Group 1\" \"False\" \"" +
+                    "Admin\" \"internalDepartmentSameDep\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }

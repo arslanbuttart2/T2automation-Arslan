@@ -36,6 +36,12 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
         [FindsBy(How = How.XPath, Using = ".//*[@id='divUserGroup']/tbody/tr/td[3]")]
         private IList<IWebElement> _groupsNamesList;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divUserGroup']/tbody/tr/td[1]/label")]
+        private IList<IWebElement> _announcementGroupsChkBoxes;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='buttondivUserGroup']")]
+        private IWebElement _deleteBtn;
+
         private SelectElement _groupLevel(IWebDriver driver)
         {
             return new SelectElement(driver.FindElement(By.XPath(".//*[@id='slctGroupLevel']")));
@@ -62,6 +68,39 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             return _driver.FindElement(By.XPath(".//button[text() = 'Save']"));
         }
 
+        private IWebElement _yesBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Yes']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return _driver.FindElement(By.XPath(".//button[text() = 'Yes']"));
+        }
+
+        public void deleteAnnouncementGroup(IWebDriver driver, string text)
+        {
+            int temp;
+            SendKeys(driver, _searchGroupName, text);
+            Thread.Sleep(9000);
+            for (int i = 0; i < _groupsNamesList.Count; i++)
+            {
+                temp = _groupsNamesList.Count();
+                if (GetText(driver, _groupsNamesList.ElementAt(i)).Equals(text))
+                {
+                    Click(driver, _announcementGroupsChkBoxes.ElementAt(i));
+                    Thread.Sleep(2000);
+                    Click(driver, _deleteBtn);
+                    Thread.Sleep(2000);
+                    Click(driver, _yesBtn());
+                    Thread.Sleep(2000);
+                    return;
+                }
+            }
+        }
 
         public void SelectGroupLevel(IWebDriver driver, string level)
         {

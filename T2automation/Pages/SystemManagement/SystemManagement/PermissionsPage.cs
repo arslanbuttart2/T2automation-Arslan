@@ -290,9 +290,53 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             return driver.FindElements(By.XPath(".//*[@id='userDepartmentTable']/tbody/tr/td[4]"));
         }
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='userDepartmentTable']/tbody/tr/td[6]/a")]
+        private IList<IWebElement> _deptSendingPermissions2;
+
         private IList<IWebElement> _deptSendingPermissions(IWebDriver driver)
         {
             return driver.FindElements(By.XPath(".//*[@id='userDepartmentTable']/tbody/tr/td[6]/a"));
+        }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='announGroupList']/tbody/tr/td[1]/label")]
+        private IWebElement _announcementGroupsPermissionsChkbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='btnDeleteSendAnnounGroup']")]
+        private IWebElement _deleteSendAnnounGroup;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='chkbxSendAnnounGroup']")]
+        private IWebElement _AnnouncementGroupsChkbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='announGroupList']/tbody/tr/td[2]")]
+        private IWebElement _announcementGroupsSendingPermissions;
+
+        private IWebElement _saveBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Save']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return _driver.FindElement(By.XPath(".//button[text() = 'Save']"));
+        }
+
+        public void chkAnnouncementGroupsBox(IWebDriver driver)
+        {
+            if (!_AnnouncementGroupsChkbox.Selected)
+            {
+                Click(driver, _AnnouncementGroupsChkbox);
+            }
+        }
+
+        public void unChkAnnouncementGroupsBox(IWebDriver driver)
+        {
+            if (_AnnouncementGroupsChkbox.Selected)
+            {
+                Click(driver, _AnnouncementGroupsChkbox);
+            }
         }
 
         public void _ifOkBtn()
@@ -469,6 +513,65 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             }
         }
 
+        public void OpenSystemMessagePermissionsTab(IWebDriver driver, string chkbox, string permission)
+        {
+            Click(driver, _systemUserSendingPermisionTab);
+
+            if (chkbox.Equals("Send To Announcement Groups") && permission.Equals("True"))
+            {
+                chkAnnouncementGroupsBox(driver);
+                Thread.Sleep(2000);
+            }
+
+            else if (chkbox.Equals("Send To Announcement Groups") && permission.Equals("False"))
+            {
+                unChkAnnouncementGroupsBox(driver);
+                Thread.Sleep(2000);
+            }
+
+            Click(driver, _saveBtnForPermissionTab);
+        }
+
+        public void IncludeDeptSendingMessagePermissions2(IWebDriver driver, string dept, string permissionName, bool value)
+        {
+            Click(driver, _userPermissionOnDept);
+            SearchDept(driver, dept);
+            for (int index = 0; index < _deptName.Count; index++)
+            {
+                if (GetText(driver, _deptName.ElementAt(index)).Equals(dept))
+                {
+                    //var _sendingPermission = _deptSendingPermissions(driver);
+                    //Click(driver, _sendingPermission.ElementAt(index));
+
+                    //I added this and commented above 2, because it was not clicking on sending permission. Xpath is same but approach is different                    
+                    Click(driver, _deptSendingPermissions2.ElementAt(index));
+                    Thread.Sleep(5000);
+
+                    if (permissionName.Equals("Announcement Group 1"))
+                    {
+                        if (value == false)
+                        {
+                            try
+                            {
+                                Click(driver, _AnnouncementGroupsChkbox);
+                                Thread.Sleep(2000);
+                                Click(driver, _saveBtnForPermissionTab);
+                                Thread.Sleep(3000);
+                                return;
+
+
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Exception ouccers: " + e);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
         public void IncludeDeptSendingMessagePermissions(IWebDriver driver, string dept, string permissionName, bool value)
         {
             Click(driver, _userPermissionOnDept);
@@ -477,11 +580,12 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             {
                 if (GetText(driver, _deptName.ElementAt(index)).Equals(dept))
                 {
-                    var _sendingPermission = _deptSendingPermissions(driver);
-                    Click(driver, _sendingPermission.ElementAt(index));
-
+                    //Old not working!
+                    //var _sendingPermission = _deptSendingPermissions(driver);
+                    //Click(driver, _sendingPermission.ElementAt(index));
+                    //New Working
+                    Click(driver, _deptSendingPermissions2.ElementAt(index));
                     Thread.Sleep(5000);
-                    //var elm = _deptSendingMessagePermissions();
                     
                     if(permissionName.Equals("User Groups"))
                     {
@@ -637,29 +741,42 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (_userGroupsAddBtnDeptSendingPermissions.Displayed)
+                                if (_announcementGroupsSendingPermissions.Displayed)
                                 {
-                                    Click(driver, _announcementGroupsDeptSendingPermissionsChkbox);
+                                    Click(driver, _announcementGroupsPermissionsChkbox);
+                                    Thread.Sleep(2000);
+                                    Click(driver, _deleteSendAnnounGroup);
+                                    Thread.Sleep(2000);
+                                    Click(driver, _saveBtn());
+                                    Thread.Sleep(2000);
+                                    Click(driver, _AnnouncementGroupsChkbox);
+                                    Thread.Sleep(2000);
+                                    Click(driver, _saveBtnForPermissionTab);
+                                    Thread.Sleep(3000);
                                     return;
                                 }
+
                                 else
                                 {
+                                    Click(driver, _AnnouncementGroupsChkbox);
+                                    Thread.Sleep(2000);
+                                    Click(driver, _saveBtnForPermissionTab);
+                                    Thread.Sleep(3000);
                                     return;
                                 }
+
                             }
                             catch (Exception e)
                             {
                                 Console.WriteLine("Exception ouccers: " + e);
+
                             }
                         }
                     }
-
-
-
-
                 }
             }
         }
+
 
         public void SearchDataForAnnouncementGroups(string data)
         {

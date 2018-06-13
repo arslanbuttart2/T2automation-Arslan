@@ -47,6 +47,17 @@ namespace T2automation.Steps.Phase2
             }
         }
 
+        [When(@"user search and delete Announcement group ""(.*)""")]
+        [Then(@"user search and delete Announcement group ""(.*)""")]
+        public void ThenUserSearchAndDeleteAnnouncementGroup(string name)
+        {
+            driver = driverFactory.GetDriver();
+            announcementsGroupPage = new Pages.SystemManagement.SystemManagement.AnnouncementsGroupPage(driver);
+            announcementsGroupPage.NavigateToAnnouncementGroup(driver);
+
+            announcementsGroupPage.deleteAnnouncementGroup(driver, name);
+        }
+
         [When(@"user click on ""(.*)"" tab")]
         public void WhenUserClickOnTab(string tabName)
         {
@@ -92,6 +103,11 @@ namespace T2automation.Steps.Phase2
             {
                 Thread.Sleep(1000);
                 inboxPage.ClickOnPopupAttachmentTab();
+            }
+            else if (tabName.Equals("Connected Person"))
+            {
+                Thread.Sleep(1000);
+                inboxPage.ClickOnConnectedPersonTab();
             }
         }
 
@@ -241,7 +257,7 @@ namespace T2automation.Steps.Phase2
         {
             driver = driverFactory.GetDriver();
             permissionsPage = new PermissionsPage(driver);
-            if (dataToSearch.Equals("Announcement Group 1") || dataToSearch.Equals("Announcement Groups 111") || dataToSearch.Equals("Announcement Groups 222"))
+            if (dataToSearch.Equals("Announcement Group 1") || dataToSearch.Equals("Announcement Groups 111") || dataToSearch.Equals("Announcement Groups 222") || dataToSearch.Equals("Announcement Group 111"))
             {
                 permissionsPage.SearchDataForAnnouncementGroups(dataToSearch);
                 return;

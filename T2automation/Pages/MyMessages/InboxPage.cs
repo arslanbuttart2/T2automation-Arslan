@@ -764,6 +764,9 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/*//a/label/i[@class='fa fa-remove']")]
         private IWebElement _deleteMailBtn;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div/a[contains(text(),'ConnectedPersons')]")]
+        private IWebElement _connectedPersonTabChk;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Archive')]")]
         private IWebElement _inboxArchiveBtn;
 
@@ -1420,40 +1423,6 @@ private IList<IWebElement> _daysOnCal() {
                         string temp2 = temp.Trim();
                         aftersplit = temp2.Split('-');
                     }
-                    //if (aftersplit.Count() == 1)
-                    //{
-                    //    aftersplit[0] = aftersplit[0].Replace(" ", string.Empty);
-                    //    if (aftersplit[0].Equals(user))
-                    //    {
-                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
-                    //        Click(driver, _selectToFrameToBtn);
-                    //        Thread.Sleep(1000);
-                    //        return;
-                    //    }
-                    //}
-                    //if (aftersplit.Count() == 2)
-                    //{
-                    //    aftersplit[1] = aftersplit[1].Replace(" ", string.Empty);
-                    //    if (aftersplit[1].Equals(user))
-                    //    {
-                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
-                    //        Click(driver, _selectToFrameToBtn);
-                    //        Thread.Sleep(1000);
-                    //        return;
-                    //    }
-                    //}
-                    //if (aftersplit.Count() == 3)
-                    //{
-                    //    aftersplit[2] = aftersplit[2].Replace(" ", string.Empty);
-                    //    if (aftersplit[2].Equals(user))
-                    //    {
-                    //        Click(driver, _selectToCheckForUser.ElementAt(index));
-                    //        Click(driver, _selectToFrameToBtn);
-                    //        Thread.Sleep(1000);
-                    //        return;
-                    //    }
-                    //}
-                    //Trying It
                     aftersplit[aftersplit.Count() - 1] = aftersplit[aftersplit.Count() - 1].Replace(" ", string.Empty);
                     if (aftersplit[aftersplit.Count() - 1].Equals(user))
                     {
@@ -1463,15 +1432,6 @@ private IList<IWebElement> _daysOnCal() {
                         Thread.Sleep(1000);
                         return;
                     }
-
-                    /*
-                    if (GetText(driver, _selectToNameForUsers().ElementAt(index)).Contains(user))
-                    {
-                        Click(driver, _selectToCheckForUser.ElementAt(index));
-                        Click(driver, _selectToFrameToBtn);
-                        Thread.Sleep(1000);
-                        return;
-                    }*/
                 }
             }
             else if (receiverType.Equals("Structural Hierarchy"))
@@ -1488,15 +1448,6 @@ private IList<IWebElement> _daysOnCal() {
                         Thread.Sleep(1000);
                         return;
                     }
-
-                    /*
-                    if (GetText(driver, _selectToNameForStructuralHierarchy().ElementAt(index)).Contains(user))
-                    {
-                        Click(driver, _selectToCheckForStructuralHierarchy.ElementAt(index));
-                        Click(driver, _selectToFrameToBtn);
-                        Thread.Sleep(1000);
-                        return;
-                    }*/
                 }
             }
             else if (receiverType.Equals("User Groups"))
@@ -1548,13 +1499,15 @@ private IList<IWebElement> _daysOnCal() {
                     }
                 }
             }
-
-
-
-
-            //*[@id='organizationDestinationSearchGrid']/tbody/tr[1]/td[2]
+            
         }
 
+        public void ClickOnConnectedPersonTab()
+        {
+            WaitTillProcessing();
+            Click(_driver, _connectedPersonTabChk);
+            Thread.Sleep(2000);
+        }
 
         public bool CheckOnDeliveryStatementReportsTab()
         {
