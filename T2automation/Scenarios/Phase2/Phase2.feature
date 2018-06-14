@@ -355,3 +355,4 @@ Scenario:ph2_009 Announcement Groups 3
 	When Admin set department sending message permissions for user "Announcement Group 1" "False" "Admin" "internalDepartmentSameDep"
 	
 
+	
