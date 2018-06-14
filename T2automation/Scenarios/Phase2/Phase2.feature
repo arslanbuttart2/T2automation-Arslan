@@ -223,7 +223,7 @@ Scenario:ph2_007 Announcement Groups 1
 	And user select connected document with subject "Any Doc"
 	And user send the email
 	Then save reference number from "Auto Internal" in txt with subject "Internal message for Announcement Groups 111"
-	When user search and open mail in dept "InternalDepartmentOtherDep" with subject "Internal message for Announcement Groups 111"
+	When user search and open mail in dept_ "InternalDepartmentOtherDep" with subject "Internal message for Announcement Groups 111"
 	And check visibilty of "Announcement Confirmation" button
 	And user click on "Attachment" tab
 	And user click on "Connected Message" tab
@@ -244,6 +244,10 @@ Scenario:ph2_007 Announcement Groups 1
 	And user compose mail "Export: Internal message for Announcement Groups 111" "Export: Internal message for Announcement Groups 111"
 	And user send the email and click on Cancel button
 	Then save reference number from "Auto Child" in txt with subject "Export: Internal message for Announcement Groups 111"
+	######### Need to be completed from SN 73 TO onward. Due to no data in SN 67 I left it
+	Given Admin logged in "AdminUserName" "AdminPassword"
+	When Admin set department sending message permissions for user "Announcement Group 1" "False" "Admin" "internalDepartmentSameDep"
+	And admin set sending permissions for "Admin" "Send To Announcement Groups" "False"
 
 Scenario:ph2_008 Announcement Groups 2
 	### Permission walay ko eik nazar daikh laina uss ko False mein nay nae kiya.
@@ -348,5 +352,6 @@ Scenario:ph2_009 Announcement Groups 3
 	And check visibilty of "Export" button
 	Then user search and delete Announcement group "Announcement Group 2"
 	Given Admin logged in "AdminUserName" "AdminPassword"
-	When Admin set department sending message permissions "Announcement Group 1" "False" "Admin" "internalDepartmentSameDep"
+	When Admin set department sending message permissions for user "Announcement Group 1" "False" "Admin" "internalDepartmentSameDep"
+	
 

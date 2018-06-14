@@ -532,45 +532,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
             Click(driver, _saveBtnForPermissionTab);
         }
 
-        public void IncludeDeptSendingMessagePermissions2(IWebDriver driver, string dept, string permissionName, bool value)
-        {
-            Click(driver, _userPermissionOnDept);
-            SearchDept(driver, dept);
-            for (int index = 0; index < _deptName.Count; index++)
-            {
-                if (GetText(driver, _deptName.ElementAt(index)).Equals(dept))
-                {
-                    //var _sendingPermission = _deptSendingPermissions(driver);
-                    //Click(driver, _sendingPermission.ElementAt(index));
-
-                    //I added this and commented above 2, because it was not clicking on sending permission. Xpath is same but approach is different                    
-                    Click(driver, _deptSendingPermissions2.ElementAt(index));
-                    Thread.Sleep(5000);
-
-                    if (permissionName.Equals("Announcement Group 1"))
-                    {
-                        if (value == false)
-                        {
-                            try
-                            {
-                                Click(driver, _AnnouncementGroupsChkbox);
-                                Thread.Sleep(2000);
-                                Click(driver, _saveBtnForPermissionTab);
-                                Thread.Sleep(3000);
-                                return;
-
-
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine("Exception ouccers: " + e);
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
+        
 
         public void IncludeDeptSendingMessagePermissions(IWebDriver driver, string dept, string permissionName, bool value)
         {

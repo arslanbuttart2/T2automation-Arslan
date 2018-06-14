@@ -116,17 +116,7 @@ namespace T2automation
             permissionsPage = userManagerPage.OpenPermissions(driver, new ReadFromConfig().GetValue(user));
             permissionsPage.IncludeDeptSendingMessagePermissions(driver, readFromConfig.GetDeptName(dept), permissionName, value);
         }
-
-        [When(@"Admin set department sending message permissions ""(.*)"" ""(.*)"" ""(.*)"" ""(.*)""")]
-        public void WhenAdminSetDepartmentSendingMessagePermissions(string permissionName, bool value, string user, string dept)
-        {
-            userManagerPage = new UserManagerPage(driver);
-            userManagerPage.NavigateToUserManager(driver);
-            Assert.IsTrue(userManagerPage.IsAt(driver, userManagerPage.title));
-            permissionsPage = userManagerPage.OpenPermissions(driver, new ReadFromConfig().GetValue(user));
-            permissionsPage.IncludeDeptSendingMessagePermissions2(driver, readFromConfig.GetDeptName(dept), permissionName, value);
-        }
-
+        
         [When(@"admin set sending permissions for ""(.*)"" ""(.*)"" ""(.*)""")]
         public void WhenAdminSetSendingPermissionsFor(string user, string permissionName, string permission)
         {
