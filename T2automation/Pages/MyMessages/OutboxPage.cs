@@ -120,6 +120,7 @@ namespace T2automation.Pages.MyMessages
             int tries = 0;
             try
             {
+                Thread.Sleep(5000);
                 while (ElementIsDisplayed(_driver, _processing(_driver)) && tries < 1000)
                 {
                     tries++;
@@ -136,6 +137,7 @@ namespace T2automation.Pages.MyMessages
         {
             while (ElementIsDisplayed(_driver, _mailLoading(_driver)))
             {
+                Thread.Sleep(5000);
                 continue;
             }
         }

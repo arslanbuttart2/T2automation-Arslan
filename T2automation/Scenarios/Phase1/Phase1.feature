@@ -9,20 +9,20 @@ Scenario:ph1_001 Message Actions - Deleting Message
 	And Admin set department message permissions for user "Delete Messages from Inbox" "True" "User" "internalDepartmentSameDep"
 	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "True" "User" "internalDepartmentSameDep"
 	When user go to my messages Internal Document
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
 	And user compose mail "Internal message for deletion 111" "Internal message for deletion 111"
 	And user attach attachments 1 "1.pdf"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for deletion 111"
 	When user go to dept "Accounting" messages Internal Document
-	And search "User" "UserMainDepartmentAr" "Users"
+	And search "User" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for deletion 222" "Internal message for deletion 222"
 	And user attach attachments 1 "1.pdf"
 	And user select connected document with subject "Incoming Message to Outside Child Department 111"
 	And user send the email
 	Then save reference number from "deptAcc" in txt with subject "Internal message for deletion 222"
 	When user go to dept "Accounting" messages Incoming Document
-	And search "User" "UserMainDepartmentAr" "Users"
+	And search "User" "UserMainDepartment" "Users"
 	And user compose mail "Incoming message for deletion 333" "Incoming message for deletion 333"
 	And select the external department "ExternalEntitySameCountry"
 	And user enters incomming message no "+123456789" and incomming message Gregorian date "now"
@@ -63,14 +63,14 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	And Admin set department message permissions for user "Archive Messages" "True" "User" "CommDepSameDepEn"
 	And Admin set department message permissions for user "Rollback from Archive" "True" "User" "CommDepSameDepEn"
 	When user go to my messages Internal Document
-	And search "User" "UserMainDepartmentAr" "Users"
+	And search "User" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for archiving 111" "Internal message for archiving 111"
 	And user attach attachments 1 "1.pdf"
 	And user select connected document with subject "Internal Message to Internal Department 111"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for archiving 111"
 	When user go to "my" encrypted message 
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
 	And user compose mail "Encrypted message for archiving 222" "Encrypted message for archiving 222"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
 	And user attach attachments 1 "1.xlsx"
@@ -78,7 +78,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	And user send the email  
 	Then save reference number from "my" in txt with subject "Encrypted message for archiving 222"
 	When user go to dept "Accounting" messages Incoming Document
-	And search "User" "UserMainDepartmentAr" "Users"
+	And search "User" "UserMainDepartment" "Users"
 	And user set properties "" "" "" "12345" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
 	And user compose mail "Incoming message for archiving 333" "Incoming message for archiving 333"
@@ -89,7 +89,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	And user send the email and click on Cancel button
 	Then save reference number from "deptAcc" in txt with subject "Incoming message for archiving 333"
 	When user go to dept "Accounting" messages Outgoing Document
-	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
+	And user click CC button "UserMainDepartment" "Structural Hierarchy" "internalDepartmentSameDepAr"
 	And user compose mail "Outgoing message for archiving 444" "Outgoing message for archiving 444"   
 	And user set properties "Paper" "12345" "Parcels" "" "" "" "Indirect Export Method"
 	And select the external department "ExternalEntitySameCountry"
@@ -142,7 +142,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 
 Scenario:ph1_003 Exporting Message -1
 	When user go to my messages Incomming Document
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
 	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
 	And user compose mail "Incoming message for indirect export 111" "Incoming message for indirect export 111"
@@ -194,7 +194,7 @@ Scenario:ph1_004 Exporting Message - 2
 	When Admin set system message permissions for user "Create Internal Message" "True" "Admin"
 	And Admin logged in "AdminUserName" "AdminPassword"
 	When user go to dept messages Internal Document
-	And search "Admin" "UserMainDepartmentAr" "Users"
+	And search "Admin" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for direct export 222" "Internal message for direct export 222"
 	And user attach attachments 1 "1.pdf"
 	#No data available for the following search!
@@ -239,7 +239,7 @@ Scenario:ph1_004 Exporting Message - 2
 Scenario:ph1_005 Exporting Message - 3
 	#When user open outgoing The "To" field is empty by default! and no instruction are given to select the option in excel file
 	When user go to my messages Outgoing Document
-	And user click CC button "UserMainDepartmentAr" "Structural Hierarchy" "internalDepartmentSameDepAr"
+	And user click CC button "UserMainDepartment" "Structural Hierarchy" "internalDepartmentSameDepAr"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
 	And select the external department "ExternalEntitySameCountry"
 	And user compose mail "Outgoing message for direct export 444" "Outgoing message for direct export 444"
@@ -330,7 +330,7 @@ Scenario:ph1_006 Exporting Message - 4
 	
 Scenario:ph1_007 Retrieve  Message - 1
 	When user go to my messages Internal Document
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
 	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
 	And user compose mail "Internal message for Retreiving 111" "Internal message for Retreiving 111"
 	And user send the email
@@ -353,8 +353,8 @@ Scenario:ph1_008 Retrieve  Message - 2
 	When Admin logged in "AdminUserName" "AdminPassword"
 	When user go to dept messages Internal Document
 	###Saudi Affairs is not visible in this case so it is failing
-	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-	And search CC "Admin" "UserMainDepartmentAr" "Users"
+	And search "InternalDepartmentOtherDep" "OtherMainDepartment" "Structural Hierarchy"
+	And search CC "Admin" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for Retreiving 222" "Internal message for Retreiving 222"
 	And user send the email
 	Then save reference number from "dept" in txt with subject "Internal message for Retreiving 222"
@@ -379,8 +379,8 @@ Scenario:ph1_008 Retrieve  Message - 2
 		
 Scenario:ph1_009 Retrieve  Message - 3	
 	When user go to "my" encrypted message 
-	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
 	And user compose mail "Encrypted message for Reteiving 333" "Encrypted message for Reteiving 333"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Encrypted message for Reteiving 333"
@@ -405,7 +405,7 @@ Scenario:ph1_010 Retrieve  Message - 4
 	When Admin set system message permissions for user "Rollback Messages from Deleted Items" "True" "User"
 	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "True" "User" "internalDepartmentSameDep"
 	When user go to dept messages Incoming Document
-	And search "AdminUserName" "UserMainDepartmentAr" "Users"
+	And search "AdminUserName" "UserMainDepartment" "Users"
 	And user compose mail "Incoming message for Reteiving 444" "Incoming message for Reteiving 444"
 	And user set properties "" "" "" "12345" "now" "now" ""
 	And select the external department "ExternalEntitySameCountry"
@@ -433,7 +433,7 @@ Scenario:ph1_010 Retrieve  Message - 4
 
 Scenario:ph1_011 Print message - 1
 	When user go to dept messages Internal Document
-	And search "Admin" "UserMainDepartmentAr" "Users"
+	And search "Admin" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for print 222" "Internal message for print 222"
 	And user select and save the reference no "CD2" of connected document with subject "Any Doc"
 	And user attach attachments 1 "1.pdf"
@@ -500,8 +500,8 @@ Scenario:ph1_011 Print message - 1
 
 Scenario:ph1_012 Print message - 2
 	When user go to my messages Incomming Document
-	And search "internalDepartmentSameDepAr" "UserMainDepartmentAr" "Structural Hierarchy"
-	And search "InternalDepartmentOtherDepAr" "OtherMainDepartmentAr" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
 	And user compose mail "Incoming message for printing 333" "Incoming message for printing 333"
 	And select the external department "ExternalEntitySameCountry"
 	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
@@ -518,7 +518,7 @@ Scenario:ph1_012 Print message - 2
 	And user click on outbox "Pop Up Sticker,Save as PDF,my,Incoming message for printing 333,Sticker-On Sending-" button ""
 	And user click on cancel button
 	When user go to my messages Internal Document
-	And search "User" "UserMainDepartmentAr" "Users"
+	And search "User" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for printing 444" "Internal message for printing 444"
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for printing 444"

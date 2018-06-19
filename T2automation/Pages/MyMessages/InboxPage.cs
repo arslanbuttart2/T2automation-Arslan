@@ -763,7 +763,13 @@ namespace T2automation.Pages.MyMessages
         //*[@id='main-parent']/*//a/label/i[@class='fa fa-remove']
         [FindsBy(How = How.XPath, Using = "//*[@id='main-parent']/div/*//a/label/i[@class='fa fa-remove']")]
         private IWebElement _deleteMailBtn;
-
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='container']/tbody/tr/td[1]/label")]
+        private IWebElement _selectMailChkBtn;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='head-menu']/div[5]/a/label")]
+        private IWebElement _deleteBtnInboxF;
+        
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-tabs']/div/a[contains(text(),'ConnectedPersons')]")]
         private IWebElement _connectedPersonTabChk;
 
@@ -3012,6 +3018,7 @@ private IList<IWebElement> _daysOnCal() {
             int tries = 0;
             try
             {
+                Thread.Sleep(5000);
                 while (ElementIsDisplayed(_driver, _processing(_driver)) && tries < 1000)
                 {
                     tries++;
@@ -4328,6 +4335,26 @@ private IList<IWebElement> _daysOnCal() {
                 Thread.Sleep(1000);
                 Click(_driver, _yesBtn);
                 Console.WriteLine("Mail Deleted!!!");
+
+                try {
+                    Click(_driver, _backBtn);
+                    WaitTillProcessing();
+                    Click(_driver, _selectMailChkBtn);
+                    Thread.Sleep(1000);
+                    Click(_driver, _deleteBtnInboxF);
+                    Thread.Sleep(2000);
+                    Click(_driver, _yesBtn);
+                    Console.WriteLine("Mail Deleted!!!");
+
+                }
+                catch
+                {
+                    Console.WriteLine("Some Error in 2nd try Deleting Mail!!!");
+                    return false;
+                }
+
+
+
                 return true;
             }
             catch

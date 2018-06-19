@@ -714,7 +714,7 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _commDeptNew);
             }
-            ClickForNavigation(driver, _commDeptDeleteF);
+            ClickForNavigation(driver, _commDeptDeleteFNew);
             Thread.Sleep(1000);
         }
 
