@@ -188,6 +188,10 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = "//*/a[@data-folder-flag='0'][@class='o-folder'][@data-orgid='3c76399d-2a03-4b67-9459-8a0925263d2e']/label[contains(text(),'Automation 111')]")]
         private IWebElement _automation111DeptInbox;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSub63635a60-776d-467d-9189-7997294e747f']/div/div[2]/a/label")]
+        private IWebElement _automation111DeptInboxNew;
+        
+
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/div[contains(@id,'folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e')]/div/div[@class='folder-toggler']")]
         private IWebElement _automation111Dropdown;
 
@@ -456,12 +460,12 @@ namespace T2automation.Pages.Comm
                 ClickForNavigation(driver, _departmentMessages);
             }
             Thread.Sleep(2000);
-            if (!GetAttribute(driver, _departmentQAMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentQAMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _qaDept);
+                ClickForNavigation(driver, _qaDeptNew);
             }
             Thread.Sleep(2000);
-            ClickForNavigation(driver, _automation111DeptInbox);
+            ClickForNavigation(driver, _automation111DeptInboxNew);
             Thread.Sleep(1000);
         }
 

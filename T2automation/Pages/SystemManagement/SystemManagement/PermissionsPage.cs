@@ -287,7 +287,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
 
         private IList<IWebElement> _deptIncludeList(IWebDriver driver)
         {
-            return driver.FindElements(By.XPath(".//*[@id='userDepartmentTable']/tbody/tr/td[4]"));
+            return driver.FindElements(By.XPath(".//*[@id='userDepartmentTable']/tbody/tr/td[4]/a"));
         }
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='userDepartmentTable']/tbody/tr/td[6]/a")]

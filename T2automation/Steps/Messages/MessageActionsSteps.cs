@@ -473,7 +473,7 @@ namespace T2automation.Steps.Messages
                 deptMessageInboxPage.NavigateToMessageRoot(driver);
             }
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
+            inboxPage.OpenMailSpecialForOutbox(driver, refno, withSubject: false, text: subject);
         }
 
         [When(@"user click on undo export button")]
@@ -794,15 +794,16 @@ namespace T2automation.Steps.Messages
             driver = driverFactory.GetDriver();
             inboxPage = new InboxPage(driver);
             readFromConfig = new ReadFromConfig();
-            try
-            {
-                inboxPage.SelectExternalDeptTo(deptName: readFromConfig.GetValue(to));
-            }
-            catch
-            {
-                inboxPage._ifCancelBtn();
-                Console.WriteLine("----->>>>> No Data Found For The External Department: " + readFromConfig.GetValue(to));
-            }
+            Assert.IsTrue(inboxPage.SelectExternalDeptTo(deptName: readFromConfig.GetValue(to)),"External Department Error!!!");
+            //try
+            //{
+            //    inboxPage.SelectExternalDeptTo(deptName: readFromConfig.GetValue(to));
+            //}
+            //catch
+            //{
+            //    inboxPage._ifCancelBtn();
+            //    Console.WriteLine("----->>>>> No Data Found For The External Department: " + readFromConfig.GetValue(to));
+            //}
         }
 
         [When(@"select the external cc department ""(.*)""")]
@@ -1065,10 +1066,12 @@ namespace T2automation.Steps.Messages
             string refno = txtManager.readFromFile(subject);
             if (subject.Contains("Encrypted"))
             {
-                inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: "P@ssw0rd!@#");
+                inboxPage.OpenMailSpecialForOutbox(driver, refno, withSubject: false, encryptPass: "P@ssw0rd!@#");
+                Thread.Sleep(7700);
                 return;
             }
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false,text: subject);
+            inboxPage.OpenMailSpecialForOutbox(driver, refno, withSubject: false,text: subject);
+            Thread.Sleep(7700);
         }
 
         [When(@"user open inbox email with subject ""(.*)"" and reference no")]
@@ -1148,7 +1151,15 @@ namespace T2automation.Steps.Messages
             inboxPage = new InboxPage(driver);
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
+            string enc = "This message need a password";
+            if (subject.Contains("Encrypted message"))
+            {
+                inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword,text: enc);
+            }
+            else
+            {
+                inboxPage.OpenMailSpecial(driver, refno, withSubject: false, encryptPass: encryptedPassword);
+            }
         }
 
         [Then(@"mail with subject ""(.*)"" should not appear in ""(.*)"" inbox")]

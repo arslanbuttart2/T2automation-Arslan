@@ -331,7 +331,19 @@ namespace T2automation.Steps.My_Messages
             txtManager = new TextFileManager();
             inboxPage = new InboxPage(driver);
             string refno = txtManager.readFromFile(subject);
-            inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
+            refno = txtManager.refnoPure(refno);
+            if (commDept.Equals("qaDeptOutbox"))
+            {
+                inboxPage.OpenMailSpecial(driver, refno, withSubject: false);
+            }
+            else if (commDept.Equals("qaDeptOutbox2"))
+            {
+                inboxPage.OpenMailSpecialForOutbox(driver, refno, withSubject: false);
+            }
+            else
+            {
+                inboxPage.OpenMailSpecial(driver, refno, withSubject: false, text: subject);
+            }
         }
 
 
