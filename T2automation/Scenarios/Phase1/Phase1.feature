@@ -377,21 +377,21 @@ Scenario:ph1_008 Retrieve  Message - 2
 	And click on "Retrieve" button
 		
 Scenario:ph1_009 Retrieve  Message - 3	
-	#When user go to "my" encrypted message 
-	#And search "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
-	#And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
-	#And user compose mail "Encrypted message for Reteiving 333" "Encrypted message for Reteiving 333"
-	#And user send the email
-	#Then save reference number from "my" in txt with subject "Encrypted message for Reteiving 333"
-	#When user opens department mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
-	#And user deletes the mail
-	#When user opens outbox email with subject "Encrypted message for Reteiving 333"
-	#And user click on retrive button
-	#When user opens department delete "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
-	#And user click on roll back button
-	#When user opens outbox email with subject "Encrypted message for Reteiving 333"
-	#####following step is not working
-	#And user click on retrive button
+	When user go to "my" encrypted message 
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And user compose mail "Encrypted message for Reteiving 333" "Encrypted message for Reteiving 333"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Encrypted message for Reteiving 333"
+	When user opens department mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	And user deletes the mail
+	When user opens outbox email with subject "Encrypted message for Reteiving 333"
+	And user click on retrive button
+	When user opens department delete "internalDepartmentSameDep" mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
+	And user click on roll back button
+	When user opens outbox email with subject "Encrypted message for Reteiving 333"
+	####following step is not working
+	And user click on retrive button
 	When user open department "internalDepartmentSameDep" inbox and create new folder "Automation 111"
 	When user opens department mail with subject "Encrypted message for Reteiving 333" "P@ssw0rd!@#"
 	And user move mail to new folder "Automation 111"

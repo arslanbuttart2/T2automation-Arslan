@@ -513,7 +513,7 @@ namespace T2automation.Steps.Messages
             deptMessageInboxPage = new Pages.DeptMessages.InboxPage(driver);
             inboxPage = new InboxPage(driver);
             deptMessageInboxPage.NavigateToQADeptInbox(driver);
-
+            Thread.Sleep(7700);
             inboxPage.createFolder(name);
         }
 
