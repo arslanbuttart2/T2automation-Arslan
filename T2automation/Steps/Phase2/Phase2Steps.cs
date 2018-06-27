@@ -58,6 +58,7 @@ namespace T2automation.Steps.Phase2
             announcementsGroupPage.deleteAnnouncementGroup(driver, name);
         }
 
+        [Then(@"user click on ""(.*)"" tab")]
         [When(@"user click on ""(.*)"" tab")]
         public void WhenUserClickOnTab(string tabName)
         {

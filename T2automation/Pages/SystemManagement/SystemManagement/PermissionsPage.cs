@@ -597,7 +597,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                         {
                             try
                             {
-                                if (_sendAllDeptSendingPermissions.Displayed)
+                                if (!_sendAllDeptSendingPermissions.Displayed)
                                 {
                                     Click(driver, _sendAllDeptSendingPermissions);
                                     Click(_driver, _saveBtnDeptSendingPermissions);
@@ -802,6 +802,8 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                 }
                 Thread.Sleep(2000);
                 Click(_driver, _sendndingPermissionAllPermissionListDeleteBtn);
+                Thread.Sleep(2000);
+                _ifOkBtn();
                 Thread.Sleep(2000);
                 _ifSaveBtn();
                 Thread.Sleep(3000);

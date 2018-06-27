@@ -37,7 +37,10 @@ namespace T2automation.Pages.SystemManagement.LookUps
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='divUserGroup']/tbody/tr/td/a")]
         private IWebElement _membersIcon;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='divUserGroup']/tbody/tr/td/a")]
+        private IList<IWebElement> _membersIcon2;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='divUserGroup']/tbody/tr/td[2]")]
         private IList<IWebElement> _groupsNamesList;
 
@@ -52,10 +55,18 @@ namespace T2automation.Pages.SystemManagement.LookUps
 
         [FindsBy(How = How.XPath, Using = "html/body/div/div/div/div/div/button[2]")]
         private IWebElement _closeMemberDialogue;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationListGrid']/tbody/tr/td[2]/a")]
+        private IList<IWebElement> _organizationSettingsList;
 
         private IWebElement _processing(IWebDriver driver)
         {
             return driver.FindElement(By.Id("userDepartmentTable_processing"));
+        }
+
+        private IList<IWebElement> _organizationNameList()
+        {
+            return _driver.FindElements(By.XPath(".//*[@id='organizationListGrid']/tbody/tr/td[1]/a"));
         }
 
         private IWebElement _okBtn()
@@ -71,7 +82,18 @@ namespace T2automation.Pages.SystemManagement.LookUps
             return _driver.FindElement(By.XPath(".//button[text() = 'Ok']"));
         }
 
-
+        private IWebElement _yesBtn()
+        {
+            var elements = _driver.FindElements(By.XPath(".//button[text() = 'Yes']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return _driver.FindElement(By.XPath(".//button[text() = 'Yes']"));
+        }
 
         public DepartmentSettingsPage(IWebDriver driver) : base(driver)
         {
@@ -85,7 +107,30 @@ namespace T2automation.Pages.SystemManagement.LookUps
         {
             SendKeys(driver, _searchOrganization, text);
             Thread.Sleep(5000);
-            Click(driver, _organizationSettings);
+            //Click(driver, _organizationSettings);
+
+            for (int index = 0; index <= _organizationNameList().Count; index++)
+            {
+                string temp = GetText(driver, _organizationNameList().ElementAt(index));
+                string[] aftersplit;
+                if (temp.Contains("\\"))
+                {
+                    aftersplit = temp.Split('\\');
+                }
+                else
+                {
+                    string temp2 = temp.Trim();
+                    aftersplit = temp2.Split('\\');
+                }
+
+                if (aftersplit[aftersplit.Count() - 1].Trim().Equals(text))
+                {
+                    Click(driver, _organizationSettingsList.ElementAt(index));
+                    return;
+                }
+
+            }
+
         }
 
         public void ClickUserGroupTab(IWebDriver driver)
@@ -104,14 +149,27 @@ namespace T2automation.Pages.SystemManagement.LookUps
 
         public void SearchUserGroupAndOpenMembersDialogue(IWebDriver driver, string text)
         {
+            int temp;
             SearchUserGroup(driver, text);
-            Click(driver, _membersIcon);
+            //Click(driver, _membersIcon);
+            Thread.Sleep(9000);
+            for (int i = 0; i < _groupsNamesList.Count; i++)
+            {
+                temp = _groupsNamesList.Count();
+                if (GetText(driver, _groupsNamesList.ElementAt(i)).Equals(text))
+                {
+                    Click(driver, _membersIcon2.ElementAt(i));
+                    Thread.Sleep(2000);
+                    return;
+                }
+            }
         }
 
         public void SearchUserGroup(IWebDriver driver, string text)
         {
             Click(driver, _searchUserGroup);
             SendKeys(driver, _searchUserGroup, text);
+            Thread.Sleep(5000);
         }
 
         public void SearchAndDeleteUserGroup(IWebDriver driver, string text)
@@ -123,7 +181,8 @@ namespace T2automation.Pages.SystemManagement.LookUps
                     Click(driver, _groupsNamesListCB.ElementAt(i));
                     Click(driver, _userGroupDeleteBtn);
                     Thread.Sleep(2000);
-                    Click(driver, _okBtn());
+                    //Click(driver, _okBtn());
+                    Click(driver, _yesBtn());
                 }
             }
         }

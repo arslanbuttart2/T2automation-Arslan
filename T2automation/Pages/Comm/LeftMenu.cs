@@ -130,7 +130,10 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSubdf82bbee-44d8-4d77-9b5b-92763d4362e9']")]
         private IWebElement _departmentAuditMenuDiv;
-        
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSubbfbb40b4-d039-422f-acc5-66c7515db372']")]
+        private IWebElement _departmentAuditMenuDivNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub8cd8b29d-b115-4e18-a313-6d31a661bce1']")]
         private IWebElement _departmentSaudiAffairsMenuDiv;
 
@@ -170,6 +173,9 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubdf82bbee-44d8-4d77-9b5b-92763d4362e9']/a")]
         private IWebElement _auditDept;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSubbfbb40b4-d039-422f-acc5-66c7515db372']/a")]
+        private IWebElement _auditDeptNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='organizationDocumentsDivSub8cd8b29d-b115-4e18-a313-6d31a661bce1']/a")]
         private IWebElement _saudiAffairDept;
 
@@ -181,6 +187,9 @@ namespace T2automation.Pages.Comm
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-df82bbee-44d8-4d77-9b5b-92763d4362e9']/a/label")]
         private IWebElement _auditDeptInbox;
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-0-bfbb40b4-d039-422f-acc5-66c7515db372']/a/label")]
+        private IWebElement _auditDeptInboxNew;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='folder-0-8cd8b29d-b115-4e18-a313-6d31a661bce1']/a/label")]
         private IWebElement _saudiAffairstDeptInbox;
@@ -207,6 +216,9 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-df82bbee-44d8-4d77-9b5b-92763d4362e9']/a[@class='o-folder'][@data-folder-flag='5']")]
         private IWebElement _auditDeptOutbox;
         
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-bfbb40b4-d039-422f-acc5-66c7515db372']/a[@class='o-folder'][@data-folder-flag='5']")]
+        private IWebElement _auditDeptOutboxNew;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-8cd8b29d-b115-4e18-a313-6d31a661bce1']/a[@data-folder-flag='5']")]
         private IWebElement _saudiAffairstDeptOutbox;
 
@@ -494,11 +506,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentAuditMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentAuditMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _auditDept);
+                ClickForNavigation(driver, _auditDeptNew);
             }
-            ClickForNavigation(driver, _auditDeptInbox);
+            ClickForNavigation(driver, _auditDeptInboxNew);
             Thread.Sleep(1000);
         }
 
@@ -508,11 +520,11 @@ namespace T2automation.Pages.Comm
             {
                 ClickForNavigation(driver, _departmentMessages);
             }
-            if (!GetAttribute(driver, _departmentAuditMenuDiv, "class").Contains("active"))
+            if (!GetAttribute(driver, _departmentAuditMenuDivNew, "class").Contains("active"))
             {
-                ClickForNavigation(driver, _auditDept);
+                ClickForNavigation(driver, _auditDeptNew);
             }
-            ClickForNavigation(driver, _auditDeptOutbox);
+            ClickForNavigation(driver, _auditDeptOutboxNew);
             Thread.Sleep(1000);
         }
 
