@@ -547,6 +547,10 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.Id, Using = "btnDepartmentTo")]
         private IWebElement _externalDeptToBtn;
 
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='btnDepartmentToParent']/div/input")]
+        private IWebElement _externalDeptToBtnXPath;
+
         [FindsBy(How = How.Id, Using = "btnDepartmentCc")]
         private IWebElement _externalDeptCcBtn;
 
@@ -952,10 +956,22 @@ namespace T2automation.Pages.MyMessages
             }
             return false;
         }
-
+        
         public void _ifCancelBtn()
         {
             var elements = _driver.FindElements(By.XPath(".//button[text() = 'Cancel']"));
+            foreach (IWebElement elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    elem.Click();
+                }
+            }
+        }
+
+        public void _ifCancelBtnXPath()
+        {
+            var elements = _driver.FindElements(By.XPath("./html/body/div/div/div/div/div/button[2]"));
             foreach (IWebElement elem in elements)
             {
                 if (elem.Displayed)
@@ -1796,7 +1812,8 @@ private IList<IWebElement> _daysOnCal() {
             Click(_driver, _sendBtn);
             Thread.Sleep(2000);
             ChkIfPopupThenOK();
-            _ifCancelBtn();
+            Thread.Sleep(2000);
+            _ifCancelBtnXPath();
         }
 
         public void clickOnSendBtn(bool checkPopup = false)
@@ -3224,7 +3241,7 @@ private IList<IWebElement> _daysOnCal() {
             {
                 DropdownSelectByText(_driver, _deptType(_driver), type);
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(9000);
             WaitForElement(_driver, _deptNames(_driver).ElementAt(0));
             var deptNames = _deptNames(_driver);
             for (int index = 0; index < deptNames.Count; index++)
@@ -3240,12 +3257,16 @@ private IList<IWebElement> _daysOnCal() {
         public bool SelectExternalDeptTo(string deptName = "", string deptCode = "", string type = "")
         {
             Thread.Sleep(4000);
+                
+            //Click(_driver, _externalDeptToBtnXPath);
             //Click(_driver, _externalDeptToBtn);
-            ClickForNavigation(_driver, _externalDeptToBtn);
+            //ClickForNavigation(_driver, _externalDeptToBtn);
+            _externalDeptToBtnXPath.Click();
+            Thread.Sleep(3000);
             int index = SearchDept(deptName, deptCode, type);
             if (index != -1)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(9000);
                 Click(_driver, _deptRadioBtn(_driver).ElementAt(index));
                 Thread.Sleep(2000);
                 Click(_driver, _okBtn());

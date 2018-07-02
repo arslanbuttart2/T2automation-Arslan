@@ -887,7 +887,7 @@ namespace T2automation.Pages.SystemManagement.SystemManagement
                     Click(driver, _includeList.ElementAt(index));
                     Click(driver, _expandDepartmant);
                     Click(driver, _expandDeptMessagingPermissions);
-
+                    Thread.Sleep(3000);
                     if (permissionName.Equals("Add Related Message") || permissionName.Equals("Remove Related Messages") || permissionName.Equals("Open Related Messages"))
                     {
                         Click(driver, _expandViewRelatedMessagePermission);
