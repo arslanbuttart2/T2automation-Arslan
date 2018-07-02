@@ -3257,7 +3257,6 @@ private IList<IWebElement> _daysOnCal() {
         public bool SelectExternalDeptTo(string deptName = "", string deptCode = "", string type = "")
         {
             Thread.Sleep(4000);
-            
             //Click(_driver, _externalDeptToBtnXPath);
             //Click(_driver, _externalDeptToBtn);
             //ClickForNavigation(_driver, _externalDeptToBtn);
