@@ -882,7 +882,7 @@ namespace T2automation.Pages.MyMessages
         [FindsBy(How = How.XPath, Using = "//*[@id='organizationDocumentsDivSub3c76399d-2a03-4b67-9459-8a0925263d2e']/div[contains(@id,'folder-0-3c76399d-2a03-4b67-9459-8a0925263d2e')]/div/a/label[contains(text(),'Automation 111')]")]
         private IWebElement _automation111;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='folder-f8ee0f6e-01ac-4ec0-b3c4-0e4c3409df71']/a/label")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='folder-0-63635a60-776d-467d-9189-7997294e747f']/div/div/a")]
         private IWebElement _automation111New;
         
         [FindsBy(How = How.XPath, Using = ".//*[@id='main-parent']/div/div/div/div/div/div/a/label[contains(text(),'Move To Folder')]")]
@@ -893,6 +893,9 @@ namespace T2automation.Pages.MyMessages
 
         [FindsBy(How = How.XPath, Using = "//*/a[@data-folder-flag='0'][@class='o-folder'][@data-orgid='3c76399d-2a03-4b67-9459-8a0925263d2e']/label[contains(text(),'Automation 222')]")]
         private IWebElement _automation222;
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='folder-0-63635a60-776d-467d-9189-7997294e747f']/div/div[@id='folder-3c083f8b-10ad-421d-8868-91032561a5f7']")]
+        private IWebElement _automation222New;
 
         [FindsBy(How = How.XPath, Using = ".//*[@id='select-folder']/option")]
         private IList<IWebElement> _folderList;
@@ -3258,9 +3261,9 @@ private IList<IWebElement> _daysOnCal() {
         {
             Thread.Sleep(4000);
             //Click(_driver, _externalDeptToBtnXPath);
-            //Click(_driver, _externalDeptToBtn);
+            Click(_driver, _externalDeptToBtn);
             //ClickForNavigation(_driver, _externalDeptToBtn);
-            _externalDeptToBtnXPath.Click();
+            //_externalDeptToBtnXPath.Click();
             Thread.Sleep(3000);
             int index = SearchDept(deptName, deptCode, type);
             if (index != -1)
@@ -4149,12 +4152,30 @@ private IList<IWebElement> _daysOnCal() {
         public void createFolder2(string element, string folderName)
         {
 
-            RightClick(_driver, _automation111New);
-            Click(_driver, _createFolder);
-            Thread.Sleep(3000);
-            SendKeys(_driver, _folderName, folderName);
-            Thread.Sleep(1000);
-            Click(_driver, _okBtn());
+            //RightClick(_driver, _automation111New);
+            //Click(_driver, _createFolder);
+            //Thread.Sleep(3000);
+            //SendKeys(_driver, _folderName, folderName);
+            //Thread.Sleep(1000);
+            //Click(_driver, _okBtn());
+            try
+            {
+                if (_automation222New.Displayed)
+                {
+                    Console.WriteLine("Folder Existed Already!");
+                    return;
+                }
+            }
+            catch
+            {
+                RightClick(_driver, _automation111New);
+                Click(_driver, _createFolder);
+                Thread.Sleep(3000);
+                SendKeys(_driver, _folderName, folderName);
+                Thread.Sleep(1000);
+                Click(_driver, _okBtn());
+            }
+
         }
 
         public void ClickOnMoveToFolder()
@@ -4190,7 +4211,7 @@ private IList<IWebElement> _daysOnCal() {
         {
             if (folderName.Equals("Automation 222"))
             {
-                RightClick(_driver, _automation222);
+                RightClick(_driver, _automation222New);
                 Click(_driver, _deleteFolder);
                 Click(_driver, _okBtn());
 
