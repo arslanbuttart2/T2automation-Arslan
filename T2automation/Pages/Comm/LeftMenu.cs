@@ -98,6 +98,18 @@ namespace T2automation.Pages.Comm
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3']/a/label")]
         private IWebElement _myMessageArchived;
 
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3 ']/a/label")]
+        private IWebElement _myMessageArchivedNew;
+        
+        [FindsBy(How = How.XPath, Using = ".//*[@id='folder-3 ']/a/label/i")]
+        private IWebElement _myMessageArchivedNew2;
+
+        [FindsBy(How = How.Id, Using = "folder-3 ")]
+        private IWebElement _myMessageArchivedNewID;
+
+        [FindsBy(How = How.CssSelector, Using = "#folder-3\\20 > a > label")]
+        private IWebElement _myMessageArchivedCSS;
+
         [FindsBy(How = How.XPath, Using = ".//*[@id='folder-4']/a/label")]
         private IWebElement _myMessageDeleted;
 
@@ -455,7 +467,14 @@ namespace T2automation.Pages.Comm
         public void NavigateToMyMessageArchiveF(IWebDriver driver)
         {
             NavigateToMyMessage(driver);
-            ClickForNavigation(driver, _myMessageArchived);
+            try
+            {
+                ClickForNavigation(driver, _myMessageArchivedNewID);
+            }
+            catch
+            {
+                Console.WriteLine("Some Error in Inbox Archive button");
+            }
             Thread.Sleep(1000);
         }
 

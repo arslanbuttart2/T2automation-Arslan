@@ -317,6 +317,7 @@ namespace T2automation.Steps.Messages
             if (dept.Equals("my"))
             {
                 outboxPage.NavigateToMyMessageArchiveF(driver);
+                Thread.Sleep(4000);
             }
             else if (dept.Equals("dept"))
             {

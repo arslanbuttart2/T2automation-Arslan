@@ -460,10 +460,11 @@ Scenario:ph1_011 Print message - 1
 	And click on "Print,Save as PDF,dept,Internal message for print 222,Print Attachments-On Creating-" button
 	Then the file should appear in download "dept,Internal message for print 222,Print Attachments-On Creating-"
 	And user send the email and save refrence no from popup "my" "Export: Internal message for print 222" "Fasle"
+	#####Following Popup is not appearing!
 	And click on "Print Barcode,Save as PDF,my,Export: Internal message for print 222,Print Barcode-On Sending-" button
 	Then the file should appear in download "my,Export: Internal message for print 222,Print Barcode-On Sending-"
-	###And click on "Print Reference Number,Save as PDF,my,Export: Internal message for print 222,Print Reference Number-On Sending-" button
-	###Then the file should appear in download "my,Export: Internal message for print 222,Print Reference Number-On Sending-"
+	#####And click on "Print Reference Number,Save as PDF,my,Export: Internal message for print 222,Print Reference Number-On Sending-" button
+	#####Then the file should appear in download "my,Export: Internal message for print 222,Print Reference Number-On Sending-"
 	And click on "Print Delivery statement,Save as PDF,my,Export: Internal message for print 222,Print Delivery statement-On Sending-" button
 	Then the file should appear in download "my,Export: Internal message for print 222,Print Delivery statement-On Sending-"
 	And click on "Print Document,Save as PDF,my,Export: Internal message for print 222,Print Document-On Sending-" button
@@ -498,24 +499,24 @@ Scenario:ph1_011 Print message - 1
 	And click on "Print Sticker,Save As PDF,my,Export: Internal message for print 222,Print Sticker-Exported-In-" button
 
 Scenario:ph1_012 Print message - 2
-	#When user go to my messages Incomming Document
-	#And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
-	#And search "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
-	#And user compose mail "Incoming message for printing 333" "Incoming message for printing 333"
-	#And select the external department "ExternalEntitySameCountry"
-	#And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
-	#And user select and save the reference no "CD3" of connected document with subject "Incoming message for Reteiving 444"
-	#And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
-	#Then user send the email and save refrence no from popup "my" "Incoming message for printing 333" "Fasle"
-	#############################No Print Barcode button in popup
-	####And click on "Print Barcode,Save as PDF,my,Incoming message for printing 333,Print Barcode-On Sending-" button
-	####Then the file should appear in download "my,Incoming message for printing 333,Print Barcode-On Sending-"
-	####And click on "Print Reference Number,Save as PDF,my,Incoming message for printing 333,Print Reference Number-On Sending-" button
-	####Then the file should appear in download "my,Incoming message for printing 333,Print Reference Number-On Sending-"
-	#And user click on outbox "Print Delivery statement,Save as PDF,my,Incoming message for printing 333,Delivery statement-On Sending-" button ""
-	#And user click on outbox "Print Document,Save as PDF,my,Incoming message for printing 333,Document-On Sending-" button ""
-	#And user click on outbox "Pop Up Sticker,Save as PDF,my,Incoming message for printing 333,Sticker-On Sending-" button ""
-	#And user click on cancel button
+	When user go to my messages Incomming Document
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And search "InternalDepartmentOtherDepAr" "OtherMainDepartment" "Structural Hierarchy"
+	And user compose mail "Incoming message for printing 333" "Incoming message for printing 333"
+	And select the external department "ExternalEntitySameCountry"
+	And user set properties "Paper" "12345" "Parcels" "+123456789" "now" "now" ""
+	And user select and save the reference no "CD3" of connected document with subject "Incoming message for Reteiving 444"
+	And user set connected person "Person Name1" "PersonEmail1@mail.com" "12345" "12345" "Riyadh" "now" "ID" "True"
+	Then user send the email and save refrence no from popup "my" "Incoming message for printing 333" "Fasle"
+	############################No Print Barcode button in popup
+	###And click on "Print Barcode,Save as PDF,my,Incoming message for printing 333,Print Barcode-On Sending-" button
+	###Then the file should appear in download "my,Incoming message for printing 333,Print Barcode-On Sending-"
+	###And click on "Print Reference Number,Save as PDF,my,Incoming message for printing 333,Print Reference Number-On Sending-" button
+	###Then the file should appear in download "my,Incoming message for printing 333,Print Reference Number-On Sending-"
+	And user click on outbox "Print Delivery statement,Save as PDF,my,Incoming message for printing 333,Delivery statement-On Sending-" button ""
+	And user click on outbox "Print Document,Save as PDF,my,Incoming message for printing 333,Document-On Sending-" button ""
+	And user click on outbox "Pop Up Sticker,Save as PDF,my,Incoming message for printing 333,Sticker-On Sending-" button ""
+	And user click on cancel button
 	When user go to my messages Internal Document
 	And search "User" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for printing 444" "Internal message for printing 444"
