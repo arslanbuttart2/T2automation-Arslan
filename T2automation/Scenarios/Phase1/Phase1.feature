@@ -56,27 +56,27 @@ Scenario:ph1_001 Message Actions - Deleting Message
 	And Admin set department message permissions for user "Rollback Messages from Deleted Items" "False" "User" "internalDepartmentSameDep"
 
 Scenario:ph1_002 Message Actions - Archiving Message
-	#When Admin set system message permissions for user "Archive Messages" "True" "User"
-	#And Admin set system message permissions for user "Rollback from Archive" "True" "User"
-	#And Admin set department message permissions for user "Archive Messages" "True" "User" "internalDepartmentSameDep"
-	#And Admin set department message permissions for user "Rollback from Archive" "True" "User" "internalDepartmentSameDep"
-	#And Admin set department message permissions for user "Archive Messages" "True" "User" "CommDepSameDepEn"
-	#And Admin set department message permissions for user "Rollback from Archive" "True" "User" "CommDepSameDepEn"
-	#When user go to my messages Internal Document
-	#And search "User" "UserMainDepartment" "Users"
-	#And user compose mail "Internal message for archiving 111" "Internal message for archiving 111"
-	#And user attach attachments 1 "1.pdf"
-	#And user select connected document with subject "Internal Message to Internal Department 111"
-	#And user send the email
-	#Then save reference number from "my" in txt with subject "Internal message for archiving 111"
-	#When user go to "my" encrypted message 
-	#And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
-	#And user compose mail "Encrypted message for archiving 222" "Encrypted message for archiving 222"
-	#And user set properties "Paper" "12345" "Parcels" "" "" "" ""
-	#And user attach attachments 1 "1.xlsx"
-	#And user select connected document with subject "Internal Message to Internal Department 111"
-	#And user send the email  
-	#Then save reference number from "my" in txt with subject "Encrypted message for archiving 222"
+	When Admin set system message permissions for user "Archive Messages" "True" "User"
+	And Admin set system message permissions for user "Rollback from Archive" "True" "User"
+	And Admin set department message permissions for user "Archive Messages" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Rollback from Archive" "True" "User" "internalDepartmentSameDep"
+	And Admin set department message permissions for user "Archive Messages" "True" "User" "CommDepSameDepEn"
+	And Admin set department message permissions for user "Rollback from Archive" "True" "User" "CommDepSameDepEn"
+	When user go to my messages Internal Document
+	And search "User" "UserMainDepartment" "Users"
+	And user compose mail "Internal message for archiving 111" "Internal message for archiving 111"
+	And user attach attachments 1 "1.pdf"
+	And user select connected document with subject "Internal Message to Internal Department 111"
+	And user send the email
+	Then save reference number from "my" in txt with subject "Internal message for archiving 111"
+	When user go to "my" encrypted message 
+	And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
+	And user compose mail "Encrypted message for archiving 222" "Encrypted message for archiving 222"
+	And user set properties "Paper" "12345" "Parcels" "" "" "" ""
+	And user attach attachments 1 "1.xlsx"
+	And user select connected document with subject "Internal Message to Internal Department 111"
+	And user send the email  
+	Then save reference number from "my" in txt with subject "Encrypted message for archiving 222"
 	When user go to dept "Accounting" messages Incoming Document
 	And search "User" "UserMainDepartment" "Users"
 	And user set properties "" "" "" "12345" "now" "now" ""
@@ -97,7 +97,7 @@ Scenario:ph1_002 Message Actions - Archiving Message
 	And user send the email and click on Cancel button
 	Then save reference number from "deptAcc" in txt with subject "Outgoing message for archiving 444"
 	When User logs in "UserName" "Password"
-	#Mail is not appearing in inbox for Danish user
+	###Mail is not appearing in inbox for Danish user
 	And user opens inbox email with subject "Internal message for archiving 111"
 	Then user click on "my,Archive" button and set "Comment for archive" "1.png"
 	And mail with subject "Internal message for archiving 111" should not appear in "my" inbox
@@ -197,8 +197,8 @@ Scenario:ph1_004 Exporting Message - 2
 	And search "Admin" "UserMainDepartment" "Users"
 	And user compose mail "Internal message for direct export 222" "Internal message for direct export 222"
 	And user attach attachments 1 "1.pdf"
-	#No data available for the following search!
-	#And user select and save the reference no "CD2" of connected document with subject "Internal Message to Internal Department 111"
+	###No data available for the following search!
+	###And user select and save the reference no "CD2" of connected document with subject "Internal Message to Internal Department 111"
 	And user send the email
 	Then save reference number from "dept" in txt with subject "Internal message for direct export 222"
 	When user opens inbox email with subject "Internal message for direct export 222"

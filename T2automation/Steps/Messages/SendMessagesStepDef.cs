@@ -543,6 +543,7 @@ namespace T2automation.Steps.My_Messages
             string refno = txtManager.readFromFile(subject);
             refno = txtManager.refnoPure(refno);
             Thread.Sleep(3000);
+            inboxPage.WaitTillProcessing();
             Assert.IsTrue(inboxPage.ValidateMailAppearInAdvanceSearch(driver,refno));
         }
 
