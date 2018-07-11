@@ -497,6 +497,7 @@ Scenario:ph1_011 Print message - 1
 	And user click on outbox "Print Document for creator,Save as PDF,my,Export: Internal message for print 222,Print Delivery Int-Exported -In-" button ""
 	And click on "Print Sticker,Save As PDF,my,Export: Internal message for print 222,Print Sticker-Exported-In-" button
 
+
 Scenario:ph1_012 Print message - 2
 	#When user go to my messages Incomming Document
 	#And search "internalDepartmentSameDepAr" "UserMainDepartment" "Structural Hierarchy"
