@@ -335,7 +335,7 @@ Scenario:ph1_007 Retrieve  Message - 1
 	And user send the email
 	Then save reference number from "my" in txt with subject "Internal message for Retreiving 111"
 	When user opens department mail with subject "Internal message for Retreiving 111" ""
-	And click on "Print" button 
+	#And click on "Print" button 
 	And click on "Print Sticker" button
 	When user opens outbox email with subject "Internal message for Retreiving 111"
 	And click on "Retrieve" button
@@ -496,7 +496,6 @@ Scenario:ph1_011 Print message - 1
 	And click on "Print Delivery statement outbox,Save as PDF,my,Export: Internal message for print 222,Print Delivery Ext-Exported-In-" button
 	And user click on outbox "Print Document for creator,Save as PDF,my,Export: Internal message for print 222,Print Delivery Int-Exported -In-" button ""
 	And click on "Print Sticker,Save As PDF,my,Export: Internal message for print 222,Print Sticker-Exported-In-" button
-
 
 Scenario:ph1_012 Print message - 2
 	#When user go to my messages Incomming Document

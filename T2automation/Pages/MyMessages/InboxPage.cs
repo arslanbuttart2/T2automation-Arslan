@@ -1817,6 +1817,7 @@ private IList<IWebElement> _daysOnCal() {
             ChkIfPopupThenOK();
             Thread.Sleep(2000);
             _ifCancelBtnXPath();
+            _ifCancelBtn();
         }
 
         public void clickOnSendBtn(bool checkPopup = false)
@@ -3322,9 +3323,10 @@ private IList<IWebElement> _daysOnCal() {
             //_externalDeptToBtn.Click();
             Thread.Sleep(3000);
             int index = SearchDept(deptName, deptCode, type);
+            Thread.Sleep(5000);
             if (index != -1)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(2000);
                 Click(_driver, _deptRadioBtn(_driver).ElementAt(index));
                 Thread.Sleep(2000);
                 Click(_driver, _okBtn());
@@ -3337,12 +3339,63 @@ private IList<IWebElement> _daysOnCal() {
 
         public bool SelectExternalDeptCc(string deptName = "", string deptCode = "", string type = "")
         {
+            //Thread.Sleep(4000);
+            //Click(_driver, _externalDeptCcBtn);
+            //Thread.Sleep(4000);
+            //int index = SearchCcDept(deptName, deptCode, type);
+            //Thread.Sleep(8000);
+            //if (index != -1)
+            //{
+            //    Thread.Sleep(3000);
+            //    Click(_driver, _deptCcRadioBtn(_driver).ElementAt(index));
+            //    Thread.Sleep(2000);
+            //    Click(_driver, _okBtn());
+            //    Thread.Sleep(2000);
+            //    return true;
+            //}
+            //Click(_driver, _okBtn());
+            //return false;
+
+            /*-------------------------------New-------------------*/
+            
             Thread.Sleep(4000);
-            Click(_driver, _externalDeptCcBtn);
+            try
+            {
+                try
+                {
+                    if (_externalDeptCcBtn.Displayed)
+                    {
+                        Click(_driver, _externalDeptCcBtn);
+                    }
+                }
+                catch
+                {
+                    for (int i = 0; i <= 6; i++)
+                    {
+                        WebDriverWait wait = new WebDriverWait(_driver, WAIT_FOR_SECONDS);
+                        wait.Until(drv => ElementIsDisplayed(_driver, _externalDeptToBtn));
+                        if (_externalDeptToBtn.Displayed)
+                        {
+                            Click(_driver, _externalDeptToBtn);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("-------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Error! while clicking on External Department CC To Button");
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+            
+            Thread.Sleep(3000);
             int index = SearchCcDept(deptName, deptCode, type);
+            Thread.Sleep(5000);
             if (index != -1)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(2000);
                 Click(_driver, _deptCcRadioBtn(_driver).ElementAt(index));
                 Thread.Sleep(2000);
                 Click(_driver, _okBtn());
@@ -3351,6 +3404,7 @@ private IList<IWebElement> _daysOnCal() {
             }
             Click(_driver, _okBtn());
             return false;
+
         }
 
 
@@ -3368,7 +3422,7 @@ private IList<IWebElement> _daysOnCal() {
             {
                 DropdownSelectByText(_driver, _deptType(_driver), type);
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(12000);
             var deptNames = _deptCcNames(_driver);
             for (int index = 0; index < deptNames.Count; index++)
             {
