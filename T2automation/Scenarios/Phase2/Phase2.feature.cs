@@ -848,8 +848,8 @@ this.FeatureBackground();
  testRunner.And("user search and open mail in dept \"InternalDepartmentSameDep\" with subject \"Incom" +
                     "ing message for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 358
- testRunner.When("user search and open mail in dept \"ChildDepartmentSameDep\" with subject \"Incoming" +
-                    " message for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user search and open mail in dept_ \"ChildDepartmentSameDep\" with subject \"Incomin" +
+                    "g message for Announcement Group 333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 359
  testRunner.And("check visibilty of \"Announcement Confirmation\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 360

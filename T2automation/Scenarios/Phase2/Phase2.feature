@@ -355,7 +355,7 @@ Scenario:ph2_009 Announcement Groups 3
 	Then save reference number from "Auto Internal" in txt with subject "Incoming message for Announcement Group 333"
 	When user go to dept "InternalDepartmentSameDep" messages Inbox folder
 	And user search and open mail in dept "InternalDepartmentSameDep" with subject "Incoming message for Announcement Group 333"
-	When user search and open mail in dept "ChildDepartmentSameDep" with subject "Incoming message for Announcement Group 333"
+	When user search and open mail in dept_ "ChildDepartmentSameDep" with subject "Incoming message for Announcement Group 333"
 	And check visibilty of "Announcement Confirmation" button
 	And check visibilty of "Reply" button
 	And check visibilty of "Forward" button
